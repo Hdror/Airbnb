@@ -1,0 +1,18 @@
+[
+    {
+        "_id": "u101",
+        "fullname": "George Kopytov",
+        "imgUrl": "/img/img1.jpg",
+        "isHost": true,
+        "username": "user1",
+        "password": "secret"
+    },
+    {
+        "_id": "u102",
+        "fullname": "Nayah Hest",
+        "imgUrl": "/img/img2.jpg",
+        "isHost": true,
+        "username": "user2",
+        "password": "secret"
+    }
+]
