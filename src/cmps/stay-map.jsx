@@ -41,34 +41,12 @@ export function StayMap() {
                         zoom={14}
                     >
                         <Marker
-                            onClick={() => {
-                                setCenter(0)
-                                setInfo(!isInfoWindowOpen)
-                            }}
                             name={'Current location'}
                             position={centers[0]}
-                        />
-                        <Marker
-                            onClick={() => {
-                                setCenter(1)
-                                setInfo(!isInfoWindowOpen)
-                            }}
-                            name={'Current location'}
-                            position={centers[1]}
-                        />
-                        <Marker
-                            onClick={() => {
-                                setCenter(2)
-                                setInfo(!isInfoWindowOpen)
-                            }}
-                            name={'Current location'}
-                            position={centers[2]}
                         />
                         <InfoWindow position={centers[center]}>
                             <h1> Exact location provided after booking </h1>
                         </InfoWindow>
-
-                        <></>
                     </GoogleMap>
                 </LoadScript>
             </div>
