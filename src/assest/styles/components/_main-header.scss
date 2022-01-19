@@ -1,0 +1,12 @@
+.main-header {
+    min-height: 90vh;
+    justify-items: center;
+    align-content: center;
+
+    background-image: linear-gradient(185deg, rgba($clr6, 1) 0%, rgba($clr6, 1) 80%, rgba($clr6, 0) 100%);
+
+    .logo {
+        width: 260px;
+        transform: rotate(10deg);
+    }
+}

@@ -1,6 +1,6 @@
 import { StayPreview } from './stay-preview.jsx'
 
-export function StayList({ stays }) {
+export function StayList() {
     return (
         <section>
             <StayPreview />
