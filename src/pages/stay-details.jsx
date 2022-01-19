@@ -24,9 +24,13 @@ export class StayDetails extends React.Component {
         if (!this.state.stay) return "LOADING"
         const { name, avgRate, reviews, loc, imgUrls, facilites, capacity, host } = this.state.stay
         const numOfReviews = reviews.length
-        console.log(imgUrls);
+        const img = imgUrls.map((imgUrl, idx) => {
+            console.log(idx);
+            return idx
+        })
         return (
             <section>
+                console.log(img)
                 <div>{name}</div>
                 <div>
                     <span>{avgRate}</span>
@@ -35,7 +39,7 @@ export class StayDetails extends React.Component {
                 </div>
                 <section>
                     {imgUrls.map((imgUrl, idx) => {
-                        <img key={idx} src={imgUrl} alt="Not Found" />
+                        return <img key={idx} src={imgUrl} alt="Not Found" />
                     })}
                 </section>
             </section>
