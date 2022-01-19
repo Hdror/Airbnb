@@ -1,18 +1,22 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 export class StayPreview extends React.Component {
-    state = {
-
-    }
-
     render() {
-        return <div>
-            <Link to={`/stay/stayId`}> <div>Stay Preview 1</div> </Link>
-            <div>Stay Preview 2</div>
-            <div>Stay Preview 3</div>
-            <div>Stay Preview 4</div>
-        </div>
-
+        const { name, imgUrls, avgRate, price, address, reviews } = this.props.stay
+        return (
+            <Link to={`/stay/stayId`}>
+                {/* <React.Fragment> */}
+                    <div className='stay-preview'>
+                        <img src={imgUrls[0]} alt="" />
+                        <span>{avgRate}</span>
+                        <button>{reviews.length}</button>
+                        <h3>{address}</h3>
+                        <h1>{name}</h1>
+                        <h2>{price} / night</h2>
+                    </div>
+                {/* </React.Fragment> */}
+            </Link>
+        )
     }
 }

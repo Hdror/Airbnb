@@ -5,7 +5,14 @@
         "imgUrl": "/img/img1.jpg",
         "isHost": true,
         "username": "user1",
-        "password": "secret"
+        "password": "secret",
+        "likedStays": [
+            {
+                "_id": "u102",
+                "name": "Nayah Hest",
+                "imgUrl": "/img/img2.jpg"
+            }
+        ]
     },
     {
         "_id": "u102",
@@ -13,6 +20,13 @@
         "imgUrl": "/img/img2.jpg",
         "isHost": true,
         "username": "user2",
-        "password": "secret"
+        "password": "secret",
+        "likedStays": [
+            {
+                "_id": "u102",
+                "name": "Nayah Hest",
+                "imgUrl": "/img/img2.jpg"
+            }
+        ]
     }
 ]

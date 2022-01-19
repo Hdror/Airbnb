@@ -59,13 +59,6 @@
                     "imgUrl": "/img/img2.jpg"
                 }
             }
-        ],
-        "likedByUsers": [
-            {
-                "_id": "u102",
-                "fullname": "Nayah Hest",
-                "imgUrl": "/img/img2.jpg"
-            }
         ]
     },
     {
@@ -128,13 +121,6 @@
                     "fullname": "George Kopytov",
                     "imgUrl": "/img/img1.jpg"
                 }
-            }
-        ],
-        "likedByUsers": [
-            {
-                "_id": "u102",
-                "fullname": "Nayah Hest",
-                "imgUrl": "/img/img2.jpg"
             }
         ]
     },
@@ -199,17 +185,10 @@
                     "imgUrl": "/img/img2.jpg"
                 }
             }
-        ],
-        "likedByUsers": [
-            {
-                "_id": "u101",
-                "fullname": "George Kopytov",
-                "imgUrl": "/img/img2.jpg"
-            }
         ]
     },
     {
-        "_id": "10006666",
+        "_id": "10005666",
         "name": "The Culpeper Bedrooms - En-Suite Bedroom",
         "type": "Hotel",
         "avgRate": 4.89,
@@ -268,13 +247,6 @@
                     "fullname": "Nayah Hest",
                     "imgUrl": "/img/img2.jpg"
                 }
-            }
-        ],
-        "likedByUsers": [
-            {
-                "_id": "u101",
-                "fullname": "George Kopytov",
-                "imgUrl": "/img/img2.jpg"
             }
         ]
     },
@@ -338,13 +310,6 @@
                     "fullname": "George Kopytov",
                     "imgUrl": "/img/img2.jpg"
                 }
-            }
-        ],
-        "likedByUsers": [
-            {
-                "_id": "u101",
-                "fullname": "George Kopytov",
-                "imgUrl": "/img/img2.jpg"
             }
         ]
     }
