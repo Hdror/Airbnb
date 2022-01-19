@@ -8,11 +8,11 @@
             "fullname": "George Kopytov"
         },
         "totalPrice": 46.0,
-        "startDate": "2025/10/15",
-        "endDate": "2025/10/17",
+        "startDate": 1642591955977,
+        "endDate": 1642591972860,
         "guests": {
             "adults": 2,
-            "kids": 1
+            "children": 1
         },
         "stay": {
             "_id": "10006556",
@@ -30,11 +30,11 @@
             "fullname": "Nayah Hest"
         },
         "totalPrice": 126.0,
-        "startDate": "2025/10/15",
-        "endDate": "2025/10/17",
+        "startDate": 1642591955977,
+        "endDate": 1642591972860,
         "guests": {
             "adults": 2,
-            "kids": 1
+            "children": 1
         },
         "stay": {
             "_id": "10006666",

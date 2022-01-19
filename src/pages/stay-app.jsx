@@ -1,17 +1,20 @@
-import React from "react";
-
-import { StayList } from "../cmps/stay-list.jsx";
+import React from 'react'
+import { StayList } from '../cmps/stay-list.jsx'
+import { stayService } from '../services/stay.service.js'
 
 export class StayApp extends React.Component {
-    state = {
+  state = {}
 
-    }
+  componentDidMount() {
+    stayService.query()
+  }
+  render() {
+    return (
+      <React.Fragment>
+        <h1>Stay App</h1>
+        <StayList />
+      </React.Fragment>
 
-
-    render() {
-        return <section className="main-container">
-            <h1>Stay App</h1>
-            <StayList />
-        </section>
-    }
+    )
+  }
 }
