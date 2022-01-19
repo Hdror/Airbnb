@@ -11,7 +11,7 @@ class _StayList extends React.Component {
     const { stays } = this.props
     if (!stays.length) return <h1>There are no stays to show</h1>
     return (
-      <section className='stay-list clean-list'>
+      <section className='main-container stay-list clean-list'>
         {stays.map((stay) => (
           <StayPreview key={stay._id} stay={stay} />
         ))}
