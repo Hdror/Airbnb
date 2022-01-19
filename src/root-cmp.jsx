@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Switch, Route } from 'react-router'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { HomePage } from './pages/home-page.jsx'
+// import { StayEdit } from './pages/stay-edit.jsx'
+import { StayApp } from './pages/stay-app.jsx'
+
+import { StayDetails } from './pages/stay-details.jsx'
+// import { AppHeader } from './cmps/app-header.jsx'
+// import { AppFooter } from './cmps/app-footer.jsx'
+
+export class RootCmp extends React.Component {
+
+  render() {
+    return (
+      <div>
+        {/* <AppHeader /> */}
+        <main className="main-layout">
+          <Switch>
+            {/* <Route component={StayEdit} path="/stay-edit/:stayId" /> */}
+            <Route component={StayDetails} path="/stay/stayId" />
+            {/* <Route component={StayEdit} path="/stay-edit/" /> */}
+            <Route component={StayApp} path="/stay" />
+            <Route component={HomePage} exact path="/airbnb" />
+          </Switch>
+        </main>
+        {/* <AppFooter /> */}
+      </div>
+    )
+  }
 }
-
-export default App;
