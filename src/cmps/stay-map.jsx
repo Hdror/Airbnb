@@ -48,8 +48,6 @@ export function StayMap(props) {
                         <InfoWindow position={loc}>
                             <h1> Exact location provided after booking </h1>
                         </InfoWindow>
-
-                        <></>
                     </GoogleMap>
                 </LoadScript>
             </div>
