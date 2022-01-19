@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Switch, Route } from 'react-router'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { Home } from './pages/home.jsx'
+import { ToyEdit } from './pages/toy-edit.jsx'
+import { ToyApp } from './pages/toy-app.jsx'
+import { AboutPage } from './pages/toy-about.jsx'
+
+
+import { AppHeader } from './cmps/app-header.jsx'
+// import {AppFooter} from './cmps/app-footer.jsx'
+
+export class RootCmp extends React.Component {
+
+    render() {
+        return (
+            <div>
+                <AppHeader />
+                <main className="main-layout">
+                    <Switch>
+                        <Route component={ToyEdit} path="/toy-edit/:toyId" />
+                        <Route component={StayEdit} path="/toy-edit/" />
+                        <Route component={AboutPage} path="/about/" />
+                        <Route component={StayApp} path="/stay" />
+                        <Route component={Home} exact path="/" />
+                    </Switch>
+                </main>
+                {/* <AppFooter /> */}
+            </div>
+        )
+    }
 }
-
-export default App;
