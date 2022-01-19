@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 
 export class StayPreview extends React.Component {
     render() {
-        const { name, imgUrls, avgRate, price, address, reviews } = this.props.stay
+        const { _id, name, imgUrls, avgRate, price, address, reviews } = this.props.stay
         return (
-            <Link to={`/stay/stayId`}>
+            <Link to={`/stay/${_id}`}>
                 {/* <React.Fragment> */}
                 <div className='stay-preview'>
                     <img src={imgUrls[0]} alt="" />
