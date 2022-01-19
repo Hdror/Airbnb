@@ -18,7 +18,7 @@ export class RootCmp extends React.Component {
         <main className="main-layout">
           <Switch>
             {/* <Route component={StayEdit} path="/stay-edit/:stayId" /> */}
-            <Route component={StayDetails} path="/stay/stayId" />
+            <Route component={StayDetails} path="/stay/:stayId" />
             {/* <Route component={StayEdit} path="/stay-edit/" /> */}
             <Route component={StayApp} path="/stay" />
             <Route component={HomePage} exact path="/airbnb" />
