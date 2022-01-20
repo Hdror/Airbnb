@@ -10,10 +10,16 @@
 @import "basics/base.scss";
 
 // Components
-@import "components/main-header.scss";
 @import "components/cat-card.scss";
+<<<<<<< HEAD
 @import "components/stay-app/stay-list.scss";
 @import "components/stay-app/stay-preview.scss";
+=======
+@import "components/stay-list/stay-list.scss";
+@import "components/app-footer/app-footer.scss";
+@import "components/app-header/app-header.scss";
+@import "components/stay-map.scss";
+>>>>>>> 0a5d3749a07bb66bdc68bb14d83f22cf497573d8
 
 // Pages
 @import "pages/stay-details.scss";

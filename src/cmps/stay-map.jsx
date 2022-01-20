@@ -15,6 +15,7 @@ export function StayMap(props) {
     const loc = { lat: props.loc.lat, lng: props.loc.lng }
     return (
         <section className='map-section'>
+            <div><h2>Where you'll be</h2></div>
             <div>
                 <LoadScript googleMapsApiKey='AIzaSyCzuZp75Yeu8Eh4TD1RtRYO3Cxs-R5wNwo'>
                     <GoogleMap mapContainerStyle={containerStyle} center={loc} zoom={14}>
@@ -24,6 +25,11 @@ export function StayMap(props) {
                         </InfoWindow>
                     </GoogleMap>
                 </LoadScript>
+            </div>
+            <div>
+                <h3>{loc.address}</h3>
+                <div className="map-extra-info"><span>Great location</span><br></br><span>Public transport near by</span></div>
+                <span>Show more &#8594;</span>
             </div>
         </section>
     )
