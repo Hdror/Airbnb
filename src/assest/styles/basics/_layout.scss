@@ -10,12 +10,12 @@
         grid-column: 1 / -1;
     }
 
-//     $break-mobile: 400px;
-// $break-narrow: 560px;
-// $break-tablet: 720px;
-// $break-normal: 960px;
-// $break-large: 1200px;
-// $break-wide: 1800px;
+    //     $break-mobile: 400px;
+    // $break-narrow: 560px;
+    // $break-tablet: 720px;
+    // $break-normal: 960px;
+    // $break-large: 1200px;
+    // $break-wide: 1800px;
 
     @include for-narrow-layout {
         grid-template-columns: minmax(2rem, 1fr) $break-mobile minmax(2rem, 1fr);
@@ -48,6 +48,6 @@
     // grid-auto-rows: 300px;
 
     > * {
-        @include aspect-ratio(1, 1);
+        @include aspect-ratio(16, 9);
     }
 }

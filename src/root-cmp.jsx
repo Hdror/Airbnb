@@ -6,15 +6,15 @@ import { HomePage } from './pages/home-page.jsx'
 import { StayApp } from './pages/stay-app.jsx'
 
 import { StayDetails } from './pages/stay-details.jsx'
-// import { AppHeader } from './cmps/app-header.jsx'
-// import { AppFooter } from './cmps/app-footer.jsx'
+import { AppHeader } from './cmps/app-header.jsx'
+import { AppFooter } from './cmps/app-footer.jsx'
 
 export class RootCmp extends React.Component {
 
   render() {
     return (
       <div>
-        {/* <AppHeader /> */}
+        <AppHeader />
         <main className="main-layout">
           <Switch>
             {/* <Route component={StayEdit} path="/stay-edit/:stayId" /> */}
@@ -24,7 +24,7 @@ export class RootCmp extends React.Component {
             <Route component={HomePage} exact path="/" />
           </Switch>
         </main>
-        {/* <AppFooter /> */}
+        <AppFooter />
       </div>
     )
   }

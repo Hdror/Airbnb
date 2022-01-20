@@ -1,5 +1,4 @@
 import React from 'react'
-import { useState } from 'react'
 import {
     GoogleMap,
     LoadScript,
@@ -7,17 +6,6 @@ import {
     InfoWindow,
     MarkerClusterer,
 } from '@react-google-maps/api'
-
-const containerStyle = {
-    width: '60vw',
-    height: '75vh',
-}
-const centers = [ // from prev
-    {
-        lat: 31.777373,
-        lng: 34.64148,
-    }
-]
 
 
 export function StayMap(props) {
@@ -36,16 +24,12 @@ export function StayMap(props) {
                     >
 
                         <Marker
-                            // onClick={() => {
-                            //     setCenter(0)
-                            //     setInfo(!isInfoWindowOpen)
-                            // }}
                             name={'Current location'}
                             position={loc}
 
                         />
                         <InfoWindow position={loc}>
-                            <h1> Exact location provided after booking </h1>
+                            <h1>Exact location provided after booking</h1>
                         </InfoWindow>
                     </GoogleMap>
                 </LoadScript>
