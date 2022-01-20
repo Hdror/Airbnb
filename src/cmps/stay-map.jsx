@@ -7,12 +7,14 @@ import {
     MarkerClusterer,
 } from '@react-google-maps/api'
 
+const containerStyle = {
+    width: '100%',
+    height: '35vh',
+}
+
 
 export function StayMap(props) {
     const loc = { lat: props.loc.lat, lng: props.loc.lng }
-
-    const [isInfoWindowOpen, setInfo] = useState(false)
-
     return (
         <section className='map-section'>
             <div>
