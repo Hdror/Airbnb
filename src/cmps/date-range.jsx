@@ -25,8 +25,6 @@ class _DateRange extends React.Component {
             endDate: endDate,
             key: 'selection'
         }
-
-        console.log(stayRange)
         return (
             <div className='date-range-container'>
                 <DateRangePicker
