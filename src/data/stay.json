@@ -44,6 +44,7 @@
         },
         "loc": {
             "country": "Iceland",
+            "city": "Akranes",
             "countryCode": "IS",
             "address": "Akranes, Iceland",
             "lat": 64.403349,
@@ -107,6 +108,7 @@
                 },
         "loc": {
             "country": "Thailand",
+            "city": "Pattaya",
             "countryCode": "TH",
             "address": "Muang Pattaya, Chang Wat Chon Buri, Thailand",
             "lat": 12.917712,
@@ -170,6 +172,7 @@
                 },
         "loc": {
             "country": "Netherlands",
+            "city": "Amsterdam",
             "countryCode": "NL",
             "address": "Amsterdam, North Holland, Netherlands",
             "lat": 52.365292,
@@ -233,6 +236,7 @@
                 },
         "loc": {
             "country": "England",
+            "city": "London",
             "countryCode": "UK",
             "address": "London, United Kingdom",
             "lat": 51.516910,
@@ -296,6 +300,7 @@
                 },
         "loc": {
             "country": "United States",
+            "city": "New York",
             "countryCode": "US",
             "address": "New York, United States",
             "lat": 40.761054,
