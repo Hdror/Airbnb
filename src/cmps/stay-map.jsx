@@ -4,16 +4,15 @@ import {
     LoadScript,
     Marker,
     InfoWindow,
+    MarkerClusterer,
 } from '@react-google-maps/api'
-
-const containerStyle = {
-    width: '100%',
-    height: '35vh',
-}
 
 
 export function StayMap(props) {
     const loc = { lat: props.loc.lat, lng: props.loc.lng }
+
+    const [isInfoWindowOpen, setInfo] = useState(false)
+
     return (
         <section className='map-section'>
             <div>
@@ -23,9 +22,11 @@ export function StayMap(props) {
                         center={loc}
                         zoom={14}
                     >
+
                         <Marker
                             name={'Current location'}
                             position={loc}
+
                         />
                         <InfoWindow position={loc}>
                             <h1>Exact location provided after booking</h1>
