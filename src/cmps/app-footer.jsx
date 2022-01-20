@@ -17,9 +17,9 @@ class _AppFooter extends React.Component {
         return (
             <footer>
                 <section className="main-container">
-                    <div>
-                        <div>Inspiration for future getaways</div>
-                        <div className="">
+                    <div className="inspiration-container">
+                        <h2>Inspiration for future getaways</h2>
+                        <div className="inspiration">
                             {stays.map((stay, idx) => (
                                 <div className=" flex" key={idx}>
                                     <a className="clean-link" href="">
@@ -32,7 +32,8 @@ class _AppFooter extends React.Component {
                             ))}
                         </div>
                     </div>
-                    <div>
+                    <div className="border"></div>
+                    <div className="footer-bottom-section">
                         <section>
                             <h3>Support</h3>
                             <ul className="clean-list">
@@ -76,32 +77,32 @@ class _AppFooter extends React.Component {
                         </section>
                     </div>
                     <div>
-                        <div className='footer-bottom'>
-                            <div>
-                                <p>© 2022 SomthingBnb, Inc.</p>
+                        <div className='footer-bottom flex'>
+                            <div className="flex">
+                                <p>© 2022 SomthingBnb Inc .</p>
                                 <span>·</span>
-                                <Link to='#' className="link"><p>Privacy</p></Link>
+                                <a className="clean-link" href="#"> <p>Privacy</p></a>
                                 <span>·</span>
-                                <Link to='#' className="link"><p>Terms</p></Link>
+                                <a className="clean-link" href="#"> <p>Terms</p></a>
                                 <span>·</span>
-                                <Link to='#' className="link"><p>Settings</p></Link>
+                                <a className="clean-link" href="#"> <p>Settings</p></a>
                             </div>
-                            <div className='media-container'>
-                                <div>
-                                    <span><h6>globe icon</h6></span>
-                                    <span>English (US)</span>
-                                    <span>$ USD</span>
+                            <div className="media-container flex">
+                                <div className="language-state flex">
+                                    <span><p>globe icon</p></span>
+                                    <span className="language"><p>English (US)</p></span>
+                                    <span><p>$ <span className="language">USD</span></p></span>
                                 </div>
-                                <div>
-                                    <span className='social-media-icon'><h6>facebook icon</h6></span>
-                                    <span className='social-media-icon'><h6>twitter icon</h6></span>
-                                    <span className='social-media-icon'><h6>insta icon</h6></span>
+                                <div className="social-media flex">
+                                    <span className='social-media-icon'><p>facebook icon</p></span>
+                                    <span className='social-media-icon'><p>twitter icon</p></span>
+                                    <span className='social-media-icon'><p>insta icon</p></span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-            </footer>
+            </footer >
         )
     }
 

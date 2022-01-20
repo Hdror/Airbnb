@@ -1,6 +1,69 @@
 footer {
+    font-size: rem(14px);
+    background-color: $clr6;
 
-    .inspiration-cards{
-        flex-direction: column;
-margin: 1rem 1rem;    }
+    h2 {
+        font-size: rem(21px);
+        padding-bottom: 1.5rem;
+    }
+
+    h1 {
+        font-size: rem(24px);
+        line-height: 20px;
+    }
+
+    .inspiration-container {
+        padding: 48px 0px;
+    }
+
+    .inspiration {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+        line-height: 20px;
+    }
+
+    .footer-bottom-section {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        font-size: rem(14px);
+        padding: 48px 0px;
+        border-bottom: 1px solid #e2e2e2;
+        border-top: 1px solid #e2e2e2;
+
+        a {
+            font-size: rem(14px);
+        }
+
+        ul {
+            padding: 0;
+        }
+
+        h3{
+            font-size: rem(14px);
+        }
+    }
+
+    .footer-bottom {
+        grid-column: 1/-1;
+        justify-content: space-between;
+        padding: 24px 0px;
+
+        .social-media-icon,
+        .language-state {
+            margin: 0rem 0.3rem;
+        }
+
+        p {
+            margin: 0rem 0.2rem;
+        }
+
+        .language {
+            font-weight: 600;
+            text-decoration: underline;
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
 }
