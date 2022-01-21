@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { loadStays } from '../store/stay.action.js'
 
+import globe from '../assest/svg/app-footer/globe.svg'
 class _AppFooter extends React.Component {
     componentDidMount() {
         const stays = this.props.loadStays()
@@ -21,11 +22,11 @@ class _AppFooter extends React.Component {
                         <h2>Inspiration for future getaways</h2>
                         <div className="inspiration">
                             {stays.map((stay, idx) => (
-                                <div className=" flex" key={idx}>
+                                <div className="locations-suggestions flex" key={idx}>
                                     <a className="clean-link" href="">
                                         <div>
-                                            <div>{stay.loc.city}</div>
-                                            <div>{stay.loc.country}</div>
+                                            <div className="inspiraton-cities">{stay.loc.city}</div>
+                                            <div className="inspiraton-countries">{stay.loc.country}</div>
                                         </div>
                                     </a>
                                 </div>
@@ -89,13 +90,13 @@ class _AppFooter extends React.Component {
                             </div>
                             <div className="media-container flex">
                                 <div className="language-state flex">
-                                    <span><p>globe icon</p></span>
+                                    <img src={globe} alt="" />
                                     <span className="language"><p>English (US)</p></span>
                                     <span><p>$ <span className="language">USD</span></p></span>
                                 </div>
                                 <div className="social-media flex">
-                                    <span className='social-media-icon'><p>facebook icon</p></span>
-                                    <span className='social-media-icon'><p>twitter icon</p></span>
+                                    <span className='social-media-icon'><p>fb icon</p></span>
+                                    <span className='social-media-icon'><p>tw icon</p></span>
                                     <span className='social-media-icon'><p>insta icon</p></span>
                                 </div>
                             </div>
