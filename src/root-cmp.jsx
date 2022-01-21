@@ -15,7 +15,7 @@ export class RootCmp extends React.Component {
     return (
       <div>
         <AppHeader />
-        <main className="main-layout">
+        <main >
           <Switch>
             {/* <Route component={StayEdit} path="/stay-edit/:stayId" /> */}
             <Route component={StayDetails} path="/stay/:stayId" />

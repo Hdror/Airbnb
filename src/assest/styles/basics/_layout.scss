@@ -18,19 +18,19 @@
     // $break-wide: 1800px;
 
     @include for-narrow-layout {
-        grid-template-columns: minmax(2rem, 1fr) $break-mobile minmax(2rem, 1fr);
+        grid-template-columns: minmax(1rem, 1fr) $break-narrow minmax(1rem, 1fr);
     }
 
     @include for-tablet-layout {
-        grid-template-columns: minmax(2rem, 1fr) $break-narrow minmax(2rem, 1fr);
+        grid-template-columns: minmax(1rem, 1fr) $break-tablet minmax(1rem, 1fr);
     }
 
     @include for-normal-layout {
-        grid-template-columns: minmax(2rem, 1fr) $break-tablet minmax(2rem, 1fr);
+        grid-template-columns: minmax(2rem, 1fr) $break-normal minmax(2rem, 1fr);
     }
 
     @include for-large-layout {
-        grid-template-columns: minmax(2rem, 1fr) $break-normal minmax(2rem, 1fr);
+        grid-template-columns: minmax(2rem, 1fr) $break-large minmax(2rem, 1fr);
     }
 
     @include for-wide-layout {
@@ -40,14 +40,14 @@
 
 // Main Header Layout
 
-.card-grid {
-    display: grid;
-    grid-auto-flow: dense;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 20px;
-    // grid-auto-rows: 300px;
+// .card-grid {
+//     display: grid;
+//     grid-auto-flow: dense;
+//     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+//     gap: 20px;
+//     // grid-auto-rows: 300px;
 
-    > * {
-        @include aspect-ratio(16, 9);
-    }
-}
+//     > * {
+//         @include aspect-ratio(16, 9);
+//     }
+// }

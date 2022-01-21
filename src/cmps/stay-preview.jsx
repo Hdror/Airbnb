@@ -7,8 +7,8 @@ export class StayPreview extends React.Component {
     render() {
         const { _id, name, avgRate, price, address, reviews } = this.props.stay
         return (
-            <Link className="clean-link" to={`/stay/${_id}`}>
-                <div className='stay-preview'>
+            <div className='stay-preview'>
+                <Link className="clean-link" to={`/stay/${_id}`}>
                     <ImgSlider stay={this.props.stay} />
                     <div className="stay-preview-info">
                         <span>{avgRate}</span>
@@ -17,8 +17,8 @@ export class StayPreview extends React.Component {
                         <h1>{name}</h1>
                         <p><span>{price}$</span><span>/ night</span></p>
                     </div>
-                </div>
-            </Link>
+                </Link>
+            </div>
         )
     }
 }
