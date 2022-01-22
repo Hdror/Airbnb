@@ -23,12 +23,7 @@ export default class ImgSlider extends React.Component {
                         return <img key={idx} src={imgUrl} alt="Not Found" />
                     })}
                 </Slider>
-<<<<<<< HEAD
             // </div>
         );
-=======
-            </div>
-        )
->>>>>>> 8bc92935a784c791fc47030307215d093fb15c29
     }
 }
