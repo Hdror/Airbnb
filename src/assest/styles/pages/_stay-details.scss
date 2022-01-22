@@ -1,4 +1,19 @@
 .stay-details {
+  .stay-summary {
+    h2 {
+      padding-block-start: 30px;
+      padding-block-end: 20px;
+    }
+    margin-block-end: 30px;
+    img {
+      width: 14px;
+      height: 14px;
+      filter: invert(56%) sepia(80%) saturate(6258%) hue-rotate(328deg)
+        brightness(100%) contrast(103%);
+      margin-right: 5px;
+    }
+  }
+
   .image-container {
     width: 100%;
     height: 500px;
