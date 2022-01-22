@@ -89,16 +89,17 @@
             "grabBars": false
         },
         "amenities": [
-            "Beach access – Beachfront",
+            "Beach access",
+            "Beachfront",
             "Bathroom",
             "Elevator",
             "Kitchen",
             "Wifi",
             "Patio or balcony",
-            "Hair dryer",
+            "Dryer",
             "Backyard",
             "TV with standard cable",
-            "Free parking on premises"
+            "Free parking"
         ],
         "host": {
             "_id": "51399392",
@@ -155,12 +156,11 @@
         "amenities": [
             "Waterfront",
             "Refrigerator",
-            "Hair dryer",
+            "Dryer",
             "Microwave",
             "Wifi",
             "Private patio or balcony",
             "Kitchen",
-            "Hair dryer",
             "TV with standard cable",
             "EV charge"
         ],

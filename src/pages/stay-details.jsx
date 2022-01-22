@@ -14,6 +14,8 @@ import TV from "../assest/svg/amenities/TV.svg"
 import Oven from "../assest/svg/amenities/Oven.svg"
 import Hangers from "../assest/svg/amenities/Hangers.svg"
 
+import Star from "../assest/svg/app-detials/star.svg"
+
 import { stayService } from '../services/stay.service.js'
 import { StayMap } from '../cmps/stay-map.jsx'
 import { StayReserve } from "../cmps/stay-reserve.jsx"
@@ -29,22 +31,7 @@ export class StayDetails extends React.Component {
         stayService.getById(stayId)
             .then(stay => { this.setState({ stay }) })
     }
-    // getIcon = (icon) => {
-    //     const currIcon = ''
-    //     switch (icon) {
-    //         case Wifi:
-    //             currIcon = Wifi
-    //             break;
 
-    //         default:
-    //             break;
-    //     }
-
-    // }
-
-    // isAmenOnPage = (amen) => {
-    //     if 
-    // }
 
     render() {
         if (!this.state.stay) return "LOADING"
@@ -54,11 +41,12 @@ export class StayDetails extends React.Component {
         const amens = { Hangers, Wifi, Heating, HotTub, Free_Parking, Dryer, Kitchen, Microwave, Refrigerator, Stove, TV, Oven }
         return (
             <main className="main-container stay-details">
-                <div>
-                    <h2>{loc.address}</h2>
-                    <span>{avgRate} <button>{numOfReviews} reviews</button></span>
+                <div className="stay-summary">
+                    {/* <div></div> */}
+                    <h2>{name}</h2>
+                    <span><img src={Star} alt="" />{avgRate} · <a href="#">{numOfReviews} Reviews</a> · <span>{loc.address}</span></span>
                 </div>
-                <div>{name}</div>
+                {/* <div>{name}</div> */}
                 <div className="image-container">
                     {imgUrls.map((imgUrl, idx) => {
                         return <div key={idx} className="img">
@@ -97,8 +85,8 @@ export class StayDetails extends React.Component {
                         <section className="amenities-container">
                             <h1>What this place offers</h1>
                             <ul className="amenities clean-list">
-                                {amenities.map((amenitie, idx) => {
-                                    return <li key={idx}>  <img src={amens[amenitie]} alt="" />  {amenitie}
+                                {amenities.map((amenity, idx) => {
+                                    return <li key={idx}> <span><img src={amens[amenity]} alt="" /></span>  {amenity}
                                     </li>
                                 })}
                             </ul>
