@@ -100,7 +100,7 @@ class _AppHeader extends React.Component {
                                         aria-autocomplete="none"
                                         autoCorrect="off"
                                         name="quary"
-                                        placeholder="Where are  you going?"
+                                        placeholder="Where are you going?"
                                     />
                                 </div>
                             </label>
