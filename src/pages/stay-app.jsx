@@ -10,10 +10,11 @@ export class StayApp extends React.Component {
   }
   render() {
     return (
-      <React.Fragment>
-        <h1>Stay App</h1>
+    <main className="main-container">
+
         <StayList />
-      </React.Fragment>
+     
+    </main>
 
     )
   }

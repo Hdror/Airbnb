@@ -6,9 +6,9 @@
         grid-column: 2;
     }
 
-    > *.full {
-        grid-column: 1 / -1;
-    }
+    // > *.full {
+    //     grid-column: 1 / -1;
+    // }
 
     //     $break-mobile: 400px;
     // $break-narrow: 560px;
@@ -34,7 +34,7 @@
     }
 
     @include for-wide-layout {
-        grid-template-columns: minmax(2rem, 1fr) $break-large minmax(2rem, 1fr);
+        grid-template-columns: minmax(2rem, 1fr) $break-wide minmax(2rem, 1fr);
     }
 }
 

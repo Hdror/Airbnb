@@ -50,7 +50,7 @@ export class StayDetails extends React.Component {
         const txt = facilites.beds > 1 ? 'beds' : 'bed'
         const amens = [Wifi, Heating, HotTub, FreeParking, HairDryer, Kitchen, Microwave, Refrigerator, Stove, TV]
         return (
-            <section className="main-container stay-details">
+            <main className="main-container stay-details">
                 <div>{name}</div>
                 <div>
                     <span>{avgRate}</span>
@@ -113,7 +113,7 @@ export class StayDetails extends React.Component {
                 <div>
                     <StayMap loc={loc} />
                 </div>
-            </section>
+            </main>
         )
     }
 }

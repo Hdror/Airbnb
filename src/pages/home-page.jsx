@@ -16,10 +16,10 @@ export class HomePage extends React.Component {
     }
 
     render() {
-        return <section>
-            <h1>Home Page</h1>
+        return <main className="main-container">
             <Link to={`/stay`}> Stay Page </Link>
-        </section>
+        </main>
+        
     }
 }
 
