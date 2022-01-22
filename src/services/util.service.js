@@ -4,6 +4,7 @@ export const utilService = {
   getRandomIntInclusive,
   delay,
   formattedDates,
+  getRandomAmenities,
 }
 
 function makeId(length = 6) {
@@ -77,4 +78,17 @@ function formattedDates(chosenDate) {
   if (!chosenDate) return 'Add dates'
   const date = new Date(chosenDate)
   return date.toLocaleDateString('en-GB')
+}
+
+
+function getRandomAmenities() {
+  const amens = ['Wifi', 'HotTub', 'Free Parking', 'Dryer', 'Kitchen', 'Microwave', 'Refrigerator', 'Stove', 'TV', 'Oven', 'Hot Water', 'Bathroom', 'Heating', 'Elevator', 'Beachfront', 'Patio or balcony', 'Backyard', 'EV charge']
+  
+  let newAmens = []
+  for (var i = 0; i < 4; i++) {
+    const index = getRandomIntInclusive(0, amens.length-1)
+    let amenity = amens.splice(index, 1)
+    newAmens.push(amenity)
+  }
+  return newAmens
 }

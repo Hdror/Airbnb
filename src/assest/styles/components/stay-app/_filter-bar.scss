@@ -1,0 +1,18 @@
+.filter-bar {
+    margin-block-end: 17px;
+    padding-block-start: 12px;
+    // height: 40px;
+
+    > div {
+        height: 40px;
+        margin-right: 10px;
+        display: flex;
+        align-items: center;
+        // width: 100%;
+        padding: 0px 16px;
+        justify-content: center;
+        border: 1px solid $clr7;
+        border-radius: 30px;
+        font-size: rem(14px);
+    }
+}
