@@ -28,15 +28,11 @@ class _DateRange extends React.Component {
         return (
             <div className='date-range-container'>
                 <DateRangePicker
-                    className='date-range'
-                    ranges={[stayRange]}
-                    onChange={this.handleDateSelect}
+                className="date-range-calender"
+                    appearance="default"
+                    placeholder="Default"
                     months={2}
-                    direction='horizontal'
-                    showSelectionPreview={true}
-                    moveRangeOnFirstSelection={false}
-                />
-                <button type='button'>Close</button>
+                    direction='horizontal' />
             </div>
         )
     }

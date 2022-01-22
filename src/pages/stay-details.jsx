@@ -4,16 +4,19 @@ import { Link } from "react-router-dom"
 import Wifi from "../assest/svg/amenities/Wifi.svg"
 import Heating from "../assest/svg/amenities/Heating.svg"
 import HotTub from "../assest/svg/amenities/HotTub.svg"
-import FreeParking from "../assest/svg/amenities/FreeParking.svg"
-import HairDryer from "../assest/svg/amenities/HairDryer.svg"
+import Free_Parking from "../assest/svg/amenities/Free_Parking.svg"
+import Dryer from "../assest/svg/amenities/Dryer.svg"
 import Kitchen from "../assest/svg/amenities/Kitchen.svg"
 import Microwave from "../assest/svg/amenities/Microwave.svg"
 import Refrigerator from "../assest/svg/amenities/Refrigerator.svg"
 import Stove from "../assest/svg/amenities/Stove.svg"
 import TV from "../assest/svg/amenities/TV.svg"
+import Oven from "../assest/svg/amenities/Oven.svg"
+import Hangers from "../assest/svg/amenities/Hangers.svg"
 
 import { stayService } from '../services/stay.service.js'
 import { StayMap } from '../cmps/stay-map.jsx'
+import { StayReserve } from "../cmps/stay-reserve.jsx"
 
 
 export class StayDetails extends React.Component {
@@ -48,15 +51,14 @@ export class StayDetails extends React.Component {
         const { name, avgRate, reviews, loc, imgUrls, facilites, capacity, host, summary, type, amenities } = this.state.stay
         const numOfReviews = reviews.length
         const txt = facilites.beds > 1 ? 'beds' : 'bed'
-        const amens = [Wifi, Heating, HotTub, FreeParking, HairDryer, Kitchen, Microwave, Refrigerator, Stove, TV]
+        const amens = { Hangers, Wifi, Heating, HotTub, Free_Parking, Dryer, Kitchen, Microwave, Refrigerator, Stove, TV, Oven }
         return (
             <main className="main-container stay-details">
-                <div>{name}</div>
                 <div>
-                    <span>{avgRate}</span>
-                    <button>{numOfReviews} reviews</button>
                     <h2>{loc.address}</h2>
+                    <span>{avgRate} <button>{numOfReviews} reviews</button></span>
                 </div>
+                <div>{name}</div>
                 <div className="image-container">
                     {imgUrls.map((imgUrl, idx) => {
                         return <div key={idx} className="img">
@@ -81,9 +83,7 @@ export class StayDetails extends React.Component {
                                     <img src={host.imgUrl} alt="photo needed" />
                                 </div>
                             </div>
-                            <div className="order-container">
-                                {/* <Reserve/> */}
-                            </div>
+
                         </div>
                         <div className="stay-perks">
                             <ul className="clean-list">
@@ -98,8 +98,7 @@ export class StayDetails extends React.Component {
                             <h1>What this place offers</h1>
                             <ul className="amenities clean-list">
                                 {amenities.map((amenitie, idx) => {
-                                    return <li key={idx}> {amenitie}
-                                        <img src={amens[idx]} alt="" />
+                                    return <li key={idx}>  <img src={amens[amenitie]} alt="" />  {amenitie}
                                     </li>
                                 })}
                             </ul>
@@ -107,7 +106,7 @@ export class StayDetails extends React.Component {
                         </section>
                     </div>
                     <div className="order">
-                        <div className="reserve">Check availability</div>
+                        <div className="reserve"><StayReserve /></div>
                     </div>
                 </div>
                 <div>

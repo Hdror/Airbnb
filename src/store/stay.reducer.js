@@ -6,9 +6,7 @@ export function stayReducer(state = initialState, action) {
   let newState = state
   switch (action.type) {
     case 'SET_STAYS':
-      console.log(state);
       newState = { ...state, stays: [...action.stays] }
-      console.log(newState);
       break
     case 'ADD_STAY':
       newState = { ...state, stays: [...state.stays, action.stay] }
