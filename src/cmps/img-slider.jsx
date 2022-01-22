@@ -14,6 +14,7 @@ export default class ImgSlider extends React.Component {
             slidesToShow: 1,
             slidesToScroll: 1
         }
+
         return (
             <div className='container'>
                 <Slider className='main-slider' {...settings}>
@@ -22,6 +23,6 @@ export default class ImgSlider extends React.Component {
                     })}
                 </Slider>
             </div>
-        );
+        )
     }
 }

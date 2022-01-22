@@ -1,0 +1,46 @@
+.date-range-calender {
+    position: absolute;
+    border-radius: 30px;
+    font-family: f-bold;
+    z-index: 5;
+
+    .rdrWeekDay {
+        font-size: rem(12px);
+    }
+
+    .rdrMonths {
+        justify-content: space-evenly;
+    }
+
+    .rdrMonthName {
+        display: flex;
+        justify-content: center;
+        font-size: rem(16px);
+    }
+
+    .rdrMonthPicker select {
+        font-size: rem(16px);
+        font-family: f-medium;
+    }
+
+    .rdrYearPicker select {
+        font-size: rem(16px);
+        font-family: f-medium;
+    }
+
+    .rdrDay {
+        font-size: rem(16px);
+
+        &:hover {
+            color: $clr5;
+        }
+    }
+
+    .rdrDayNumber {
+        border-radius: 50%;
+        &:hover {
+            background-color: #000000;
+            color: $clr5;
+        }
+    }
+}

@@ -7,15 +7,11 @@ import globe from '../assest/svg/app-footer/globe.svg'
 class _AppFooter extends React.Component {
     componentDidMount() {
         const stays = this.props.loadStays()
-        console.log(stays)
     }
 
     render() {
         const { stays } = this.props
-        console.log(stays)
-        const cities = ['Akranes', 'Muang Pattaya', 'Amsterdam', 'London', 'New York',]
-        const countries = ['Iceland', 'Thailand', 'Netherlands', 'UK', 'US']
-        return (
+            return (
             <footer>
                 <section className="main-container">
                     <div className="inspiration-container">

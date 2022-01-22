@@ -1,19 +1,35 @@
 header {
     background-color: #000000;
-    color: white;
+    color: $clr5;
     flex-direction: column;
     align-content: center;
     align-items: center;
     display: grid;
     grid-auto-flow: dense;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    padding-block-end: 20px;
 
     .main-header {
         justify-content: space-between;
     }
 
+    .logo-container {
+        padding: 20px 0px;
+        align-items: center;
+
+        h2 {
+            font-size: rem(20px);
+        }
+
+        .logo {
+            height: 34px;
+            margin-right: 10px;
+        }
+    }
+
     .menu-actions {
         gap: 20px;
+        padding: 20px 0px;
 
         a {
             display: flex;
@@ -26,47 +42,130 @@ header {
             height: 35px;
             width: 35px;
             border-radius: 50%;
-
-            &:first-child {
-                margin-inline-end: 13px;
-            }
         }
+
         .menu-wrapper {
-            height: 45px;
-            background-color: #ffffff;
+            height: 42px;
+            background-color: $clr5;
             line-height: 2;
             border-radius: 1.5rem;
             padding-left: 15px;
             padding-right: 5px;
             align-items: center;
             .menu-icon {
-                height: 20px;
-                width: 20px;
+                margin-right: 15px;
+                height: 18px;
+                width: 18px;
             }
         }
     }
 
     .trip-build-container {
-        background-color: #ffffff;
+        margin: auto;
+        width: 850px;
+        background-color: $clr5;
         flex-direction: column;
         justify-content: center;
-    }
+        border-radius: 40px;
 
-    .trip-selections {
-        color: $clr2;
-        font-size:rem(14px);
-        font-family: f-large;
-    }
+        .trip-location-selector {
+            width: 270px;
+            justify-content: center;
+            align-items: center;
 
-    .trip-instructions {
-        color: $clr8;
-        font-family: f-large;
-    }
+            &:hover {
+                background-color: $clr9;
+                border-radius: 1.7rem;
+            }
+        }
 
-    form {
-        display: flex;
-        .search-input{
-            border: none;
+        .trip-destination {
+            flex-direction: column;
+            padding: 0px;
+            color: $clr2;
+            font-family: f-medium;
+            font-size: rem(14px);
+        }
+
+        form {
+            display: flex;
+            .search-input {
+                border: none;
+            }
+
+            input {
+                padding: 0;
+                font-family: f-light;
+                outline-style: none;
+                box-shadow: none;
+                border-color: transparent;
+                font-size: rem(14px);
+                background-color: #ffffff00;
+
+                &::-webkit-input-placeholder {
+                    color: $clr8;
+                    font-family: f-light;
+                }
+            }
+
+            .trip-selections {
+                color: $clr2;
+                font-size: rem(14px);
+                font-family: f-medium;
+                flex-direction: column;
+                justify-content: space-evenly;
+                padding: 14px 0px;
+
+                > div {
+                    padding: 0px 24px;
+                    border-left: 1px solid $clr7;
+                }
+
+                &:hover {
+                    background-color: $clr9;
+                    border-radius: 1.7rem;
+
+                    > div {
+                        border-right:none;
+                    }
+                }
+
+                > :last-child {
+                    font-family: f-light;
+                    font-size: rem(14px);
+                    color: $clr8;
+                }
+
+                :not(:last-child) {
+                    width: 170px;
+                }
+            }
+            .search-btn-container {
+                justify-content: space-between;
+                &:hover {
+                    background-color: $clr9;
+                    border-radius: 1.7rem;
+                }
+                gap: 12px;
+                .search-btn {
+                    justify-content: center;
+                    align-content: center;
+                    align-items: center;
+                    .img-container {
+                        align-content: center;
+                        align-items: center;
+                        justify-content: center;
+                        height: 50px;
+                        width: 50px;
+                        border-radius: 50%;
+                        background-color: $clr1;
+                        .search-btn-img {
+                            height: 20px;
+                            width: 20px;
+                        }
+                    }
+                }
+            }
         }
     }
 }
