@@ -84,7 +84,6 @@ export class StayDetails extends React.Component {
                                     </li>
                                 })}
                             </ul>
-
                         </section>
                     </div>
                     <div className="order">
