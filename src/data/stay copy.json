@@ -26,17 +26,14 @@
             "grabBars": false
         },
         "amenities": [
+            "Hot water",
+            "Bathroom",
             "Dryer",
             "Wifi",
             "Heating",
             "Kitchen",
             "Stove",
-            "Oven",
-            "Free parking",
-            "TV",
-            "HotTub",
-            "Hair dryer"
-
+            "Oven"
         ],
         "host": {
             "_id": "51399391",
@@ -92,16 +89,17 @@
             "grabBars": false
         },
         "amenities": [
-            "Refrigerator",
-            "Microwave",
-            "Stove",
-            "Hangers",
-            "Heating",            
+            "Beach access",
+            "Beachfront",
+            "Bathroom",
+            "Elevator",
             "Kitchen",
             "Wifi",
+            "Patio or balcony",
             "Dryer",
-            "Free parking",
-            "Wifi"
+            "Backyard",
+            "TV with standard cable",
+            "Free parking"
         ],
         "host": {
             "_id": "51399392",
@@ -156,16 +154,15 @@
             "grabBars": false
         },
         "amenities": [
+            "Waterfront",
             "Refrigerator",
             "Dryer",
             "Microwave",
             "Wifi",
+            "Private patio or balcony",
             "Kitchen",
-            "TV",
-            "Free parking",
-            "Hair dryer",
-            "Hangers",
-            "HotTub"
+            "TV with standard cable",
+            "EV charge"
         ],
         "host": {
             "_id": "53249392",
@@ -221,15 +218,15 @@
         },
         "amenities": [
             "Wifi",
+            "Dedicated workspace",
             "TV",
             "Hangers",
-            "Stove",
+            "Security cameras on property",
+            "Breakfast",
             "Kitchen",
             "Hair dryer",
-            "Free parking",
-            "Wifi",
-            "Refrigerator",
-            "Oven"
+            "Iron",
+            "Essentials"
         ],
         "host": {
             "_id": "5111392",
@@ -285,15 +282,15 @@
         },
         "amenities": [
             "Wifi",
+            "Air conditioning",
             "TV",
+            "Long term stays allowed",
+            "Gym",
+            "Pets allowed",
             "Kitchen",
-            "Microwave",
-            "Refrigerator",
-            "Free parking",
-            "Hair dryer",
-            "Stove",
-            "Dryer",
-            "Oven"
+            "Elevator",
+            "Iron",
+            "Dedicated workspace"
         ],
         "host": {
             "_id": "51356392",
