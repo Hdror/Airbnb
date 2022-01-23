@@ -1,15 +1,34 @@
 import { storageService } from './async.storage.js'
 import jsonStays from '../data/stay.json'
 
+
+import Wifi from "../assest/svg/amenities/Wifi.svg"
+import Heating from "../assest/svg/amenities/Heating.svg"
+import HotTub from "../assest/svg/amenities/HotTub.svg"
+import Free_Parking from "../assest/svg/amenities/Free_Parking.svg"
+import Dryer from "../assest/svg/amenities/Dryer.svg"
+import Kitchen from "../assest/svg/amenities/Kitchen.svg"
+import Microwave from "../assest/svg/amenities/Microwave.svg"
+import Refrigerator from "../assest/svg/amenities/Refrigerator.svg"
+import Stove from "../assest/svg/amenities/Stove.svg"
+import TV from "../assest/svg/amenities/TV.svg"
+import Oven from "../assest/svg/amenities/Oven.svg"
+import Hangers from "../assest/svg/amenities/Hangers.svg"
+import Hair_Dryer from "../assest/svg/amenities/Hair_Dryer.svg"
+
 // import { userService } from './user.service.js'
 
 const STORAGE_KEY = 'stayDB'
+const amenitiesSvg = { Dryer, 'Free parking': Free_Parking, Wifi, Heating, HotTub, Kitchen, Microwave, Refrigerator, Stove, TV, Oven, Hangers, 'Hair dryer': Hair_Dryer }
+
 
 export const stayService = {
   query,
   getById,
   save,
   remove,
+  amenitiesSvg,
+
 }
 
 _createStays()
@@ -45,3 +64,5 @@ function save(stay) {
     return storageService.post(STORAGE_KEY, stay)
   }
 }
+
+

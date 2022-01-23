@@ -6,12 +6,12 @@ import { connect } from 'react-redux'
 // import { loadStays } from '../store/stay.action.js'
 
 // COMPONENT
-import { DateRange } from './date-range.jsx'
+import { TripFilter } from './trip-filter.jsx'
+import { MenuDropDown } from './app-dropdown-menu.jsx'
 
 // SVG
 import menu from '../assest/svg/app-header/menu.svg'
 import logo from '../assest/svg/app-header/logo.svg'
-import search from '../assest/svg/app-header/search.svg'
 
 
 class _AppHeader extends React.Component {
@@ -29,7 +29,23 @@ class _AppHeader extends React.Component {
             }
         },
         loggedInUser: null,
-        dateRangeModal: false
+        MenuDropDownModal: false,
+        isMiniHeader: false
+    }
+    // STORE FOR APP LAYOUT - HOLDING CURRPAGE AND MINI HEADER (FOR NOW)
+
+    componentDidMount() {
+        window.addEventListener("scroll", this.checkScrollY)
+    }
+
+    checkScrollY = ({ target }) => {
+        const { scrollTop } = target.scrollingElement
+        if (scrollTop > 50 && this.state.isMiniHeader || scrollTop < 50 && !this.state.isMiniHeader) return
+        if (scrollTop > 50) {
+            this.setState({ isMiniHeader: true })
+        } else {
+            this.setState({ isMiniHeader: false })
+        }
     }
 
     getFormattedDates = (selectedDate) => {
@@ -55,80 +71,37 @@ class _AppHeader extends React.Component {
         this.setState({ ...clearedState })
     }
 
-    handleChange = (ev) => {
-        const field = ev.target.name
-        const value = ev.target.value
-        this.setState((prevState) => ({
-            tripOrder: { ...prevState.tripOrder, [field]: value },
-        }))
+    toggleMenuDropDownModal = () => {
+        this.setState({ MenuDropDownModal: !this.state.MenuDropDownModal })
+        console.log();
     }
 
-    toggleDateRange = () => {
-        this.setState({ dateRangeModal: !this.state.dateRangeModal })
-    }
 
     // TODO - if user is host - instead of become a host
 
     render() {
-        const { dateRangeModal } = this.state
+        const { MenuDropDownModal, isMiniHeader } = this.state
         return (
-            <header className="main-container">
-
-                <div className="main-header flex">
-                    <Link className="site-logo-name clean-link" to="/">
-                        <div className="logo-container flex">
-                            <img className="logo" src={logo} alt="" /><h2>SomthingBnb</h2>
-                        </div>
-                    </Link>
-
-                    <div className="menu-actions flex">
-                        <NavLink className="clean-link" to="/stay">Explore</NavLink>
-                        <NavLink className="clean-link" to="/host">Become a host</NavLink>
-                        <div className="menu-wrapper flex">
-                            <img className="menu-icon" src={menu} alt="" />
-                            <img src="https://randomuser.me/api/portraits/women/95.jpg" alt="" />
+            <header className={isMiniHeader ? "main-container mini-header" : "main-container"}>
+                <div>
+                    <div className="main-header flex">
+                        <Link className="site-logo-name clean-link" to="/">
+                            <div className="logo-container flex">
+                                <img className="logo" src={logo} alt="" /><h2>somthingBnb</h2>
+                            </div>
+                        </Link>
+                        <div className="menu-actions flex">
+                            <NavLink className="clean-link" to="/stay">Explore</NavLink>
+                            <NavLink className="clean-link" to="/host">Become a host</NavLink>
+                            <div className="menu-wrapper flex">
+                                <img className="menu-icon" src={menu} alt=""  onClick={this.toggleMenuDropDownModal}/>
+                                <img className="user-icon" src="https://randomuser.me/api/portraits/women/95.jpg" alt="" />
+                            </div>
                         </div>
                     </div>
+                    <TripFilter isMiniHeader={isMiniHeader}/>
                 </div>
-                <div className="trip-build-container flex">
-                    <form action="">
-                        <div className="trip-location-selector flex">
-                            <label htmlFor="trip-location">
-                                <div className="trip-destination flex">Location
-                                    <input className="search-input trip-instructions"
-                                        type="text"
-                                        aria-autocomplete="none"
-                                        autoCorrect="off"
-                                        name="quary"
-                                        placeholder="Where are you going?"
-                                    />
-                                </div>
-                            </label>
-                        </div>
-                        <div className="flex">
-                            <div className="trip-selections flex" onClick={this.toggleDateRange}>
-                                <div>Check in</div>
-                                <div>Add dates</div>
-                            </div>
-
-                            <div className="trip-selections flex" onClick={this.toggleDateRange}>
-                                <div>Check out</div>
-                                <div>Add dates</div>
-                            </div>
-
-                            <div className="search-btn-container flex">
-                                <div className="trip-selections flex">
-                                    <div>Guests</div>
-                                    <div>Add guests</div>
-                                </div>
-                                <div className="search-btn flex">
-                                    <div className="img-container flex"><div></div><img className="search-btn-img" src={search} alt="" /> </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                {dateRangeModal && <DateRange setDates={this.setDates} />}
+                {MenuDropDownModal && <MenuDropDown />}
             </header >
         )
     }

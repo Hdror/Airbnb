@@ -16,7 +16,7 @@ export class HomePage extends React.Component {
     }
 
     render() {
-        return <main className="main-container">
+        return <main className="main-container page">
             <Link to={`/stay`}> Stay Page </Link>
         </main>
         

@@ -10,7 +10,7 @@ export class StayApp extends React.Component {
   }
   render() {
     return (
-    <main className="main-container">
+    <main className="main-container page">
 
         <StayList />
      
