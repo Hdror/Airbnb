@@ -8,11 +8,25 @@
         margin-right: 10px;
         display: flex;
         align-items: center;
-        // width: 100%;
         padding: 0px 16px;
         justify-content: center;
         border: 1px solid $clr7;
         border-radius: 30px;
         font-size: rem(14px);
+
+        @for $i from 0 to 7 {
+            &:nth-child(#{$i + 1}) {
+                @if $i > 3 {
+                    display: none;
+                }
+            }
+        }
+        &:last-child {
+            display: flex;
+        }
+
+        @include for-normal-layout {
+            display: flex !important;
+        }
     }
 }

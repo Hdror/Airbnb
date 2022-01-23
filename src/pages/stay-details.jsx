@@ -86,7 +86,7 @@ export class StayDetails extends React.Component {
                             <h1>What this place offers</h1>
                             <ul className="amenities clean-list">
                                 {amenities.map((amenity, idx) => {
-                                    return <li key={idx}> <span><img src={amens[amenity]} alt="" /></span>  {amenity}
+                                    return <li key={idx}> <img src={amens[amenity]} alt="" /> {amenity}
                                     </li>
                                 })}
                             </ul>

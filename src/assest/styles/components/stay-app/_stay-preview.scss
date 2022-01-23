@@ -7,50 +7,150 @@
     font-size: rem(18px);
     // max-width: 310px;
 
+    
     .stay-card {
         display: flex;
         flex-direction: column;
         height: 100%;
-
+        img {
+            border-radius: 15px;
+            object-fit: cover;
+            height: 100%;
+        }
+        
         .slider {
             flex-grow: 1;
             height: 0;
 
-            .slick-slider{
-                height: 100%;
+            button {
+                &.slick-next {
+                    opacity: 0;
+                    right: 10px !important;
+                }
 
-                .slick-list{
+                &.slick-prev {
+                    opacity: 0;
+                    left: 10px !important;
+                }
+            }
+
+            .slick-slider {
+                height: 100%;
+                position: relative;
+
+                // .slick-active button::before {
+                //     color: $clr5;
+                // }
+
+                .slick-dots li {
+                    margin: 0;
+                    width: 15px;
+                    button {
+                        width: 15px;
+                        &:before {
+                            color: $clr5;
+                            &:hover {
+                                color: $clr5;
+                            }
+                        }
+                    }
+                    bottom: 30px;
+                }
+
+                .slick-list {
                     height: 100%;
 
-                    .slick-track{
+                    .slick-track {
                         height: 100%;
 
-                        .slick-slide{
+                        .slick-slide {
                             height: 100%;
 
-                            > div{
+                            > div {
                                 height: 100%;
                             }
                         }
                     }
                 }
+            }
+        }
 
+        &:hover {
+            .slick-arrow {
+                position: absolute;
+                opacity: 0.85 !important;
+                color: $clr5;
+                z-index: 99;
 
+                
+                
+
+                &:hover {
+                    opacity: 1;
+                }
+
+                // &.slick-next {
+                  
+                // }
+
+                &.slick-prev{                  
+                    bottom: 10px;
+
+                    // &::before {
+                    //     opacity: 0.85;
+                    // }
+
+                    // &.slick-disabled:before {
+                    //     opacity: 0.85;
+                    // }
+                }
+
+                &.slick-next{
+                    &:focus::before{
+                        opacity: 0.85 !important;
+                    }
+                    &:focus:hover::before{
+                        opacity: 1 !important;
+                    }
+                }
             }
         }
 
         .stay-preview-info {
             height: 100px;
-            h1 {
-                font-size: rem(18px);
+            padding-block-start: 7px;
+            line-height: 1.4;
+
+            .star {
+                height: 12px;
+                width: 12px;
+                line-height: 1;
+                filter: invert(37%) sepia(56%) saturate(3663%) hue-rotate(327deg) brightness(101%) contrast(110%);
+                // filter: brightness(0) saturate(100%) invert(44%) sepia(52%) saturate(7135%) hue-rotate(330deg) brightness(104%) contrast(101%);
+            }
+            h3 {
+                font-size: rem(16px);
+                font-weight: 300;
                 width: 100%;
                 text-overflow: ellipsis;
                 overflow: hidden;
                 white-space: nowrap;
             }
+           
+
+            span {
+                margin-inline-end: 5px;
+                font-size: rem(12px);
+
+                &.review-count {
+                    font-size: rem(10px);
+                }
+            }
 
             p {
                 span {
+                    font-size: 1rem;
+                    margin: 0;
                     &:first-child {
                         font-family: f-medium;
                     }
@@ -58,23 +158,8 @@
             }
         }
     }
-
-    img {
-        border-radius: 15px;
-        object-fit: cover;
-        height: 100%;
-    }
-
-    button{
-
-        
-        &.slick-next {
-            right: 10px;
-        }
-        
-        &.slick-prev {
-            bottom: 10px;
-            color: $clr5;
-        }
-    }
+    
 }
+
+
+

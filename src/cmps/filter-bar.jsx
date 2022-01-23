@@ -2,6 +2,7 @@ import React from 'react'
 
 import { utilService } from '../services/util.service.js'
 
+
 export class FilterBar extends React.Component {
 
     state = {
@@ -20,8 +21,12 @@ export class FilterBar extends React.Component {
             <div>Price</div>
             <div>Type of place</div>
             {amenities.map((amenity, idx) => {
-               return <div key={idx}>{amenity}</div>
+                return <div key={idx}>{amenity}</div>
             })}
+            <div>
+                <p>Filter</p>
+                {/* <img src={filter} alt="" /> */}
+            </div>
 
         </section>
 
