@@ -34,7 +34,7 @@ export class StayDetails extends React.Component {
         const numOfReviews = reviews.length
         const txt = facilites.beds > 1 ? 'beds' : 'bed'
         return (
-            <main className="main-container stay-details">
+            <main className="main-container stay-details page">
                 <div className="stay-summary">
                     {/* <div></div> */}
                     <h2>{name}</h2>
