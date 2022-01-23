@@ -80,11 +80,7 @@ export class StayDetails extends React.Component {
                             <h1>What this place offers</h1>
                             <ul className="amenities clean-list">
                                 {amenities.map((amenity, idx) => {
-<<<<<<< HEAD
-                                    return <li key={idx}> <img src={amens[amenity]} alt="" /> {amenity}
-=======
                                     return <li className="flex" key={idx}>  <img src={stayService.amenitiesSvg[amenity]} alt="" />  {amenity}
->>>>>>> f396bf56c8bee9f1c668aac3c65c4510b4e723f2
                                     </li>
                                 })}
                             </ul>
