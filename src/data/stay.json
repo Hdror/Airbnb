@@ -38,8 +38,7 @@
         "host": {
             "_id": "51399391",
             "fullname": "Elka Viketaj",
-            "imgUrl": "https://randomuser.me/api/portraits/men/69.jpg"
-            
+            "imgUrl": "https://randomuser.me/api/portraits/women/19.jpg"
         },
         "loc": {
             "country": "Iceland",
@@ -57,7 +56,7 @@
                 "by": {
                     "_id": "u102",
                     "fullname": "Nayah Hest",
-                    "imgUrl": "/img/img2.jpg"
+                    "imgUrl": "https://randomuser.me/api/portraits/women/32.jpg"
                 }
             }
         ]
@@ -104,8 +103,8 @@
         "host": {
             "_id": "51399392",
             "fullname": "Alexandre Vincent Pierre",
-            "imgUrl": "https://randomuser.me/api/portraits/men/69.jpg"
-                },
+            "imgUrl": "https://randomuser.me/api/portraits/women/79.jpg"
+        },
         "loc": {
             "country": "Thailand",
             "city": "Pattaya",
@@ -122,7 +121,7 @@
                 "by": {
                     "_id": "u101",
                     "fullname": "George Kopytov",
-                    "imgUrl": "/img/img1.jpg"
+                    "imgUrl": "https://randomuser.me/api/portraits/men/51.jpg"
                 }
             }
         ]
@@ -167,8 +166,8 @@
         "host": {
             "_id": "53249392",
             "fullname": "Peter Boatista",
-            "imgUrl": "https://randomuser.me/api/portraits/men/69.jpg"
-                },
+            "imgUrl": "https://randomuser.me/api/portraits/men/51.jpg"
+        },
         "loc": {
             "country": "Netherlands",
             "city": "Amsterdam",
@@ -185,7 +184,7 @@
                 "by": {
                     "_id": "u102",
                     "fullname": "Nayah Hest",
-                    "imgUrl": "/img/img2.jpg"
+                    "imgUrl": "https://randomuser.me/api/portraits/women/32.jpg"
                 }
             }
         ]
@@ -232,7 +231,7 @@
             "_id": "5111392",
             "fullname": " Culpeper Brit",
             "imgUrl": "https://randomuser.me/api/portraits/men/69.jpg"
-                },
+        },
         "loc": {
             "country": "England",
             "city": "London",
@@ -249,7 +248,7 @@
                 "by": {
                     "_id": "u102",
                     "fullname": "Nayah Hest",
-                    "imgUrl": "/img/img2.jpg"
+                    "imgUrl": "https://randomuser.me/api/portraits/women/32.jpg"
                 }
             }
         ]
@@ -296,7 +295,7 @@
             "_id": "51356392",
             "fullname": "Michael Woods",
             "imgUrl": "https://randomuser.me/api/portraits/men/69.jpg"
-                },
+        },
         "loc": {
             "country": "United States",
             "city": "New York",
@@ -313,7 +312,134 @@
                 "by": {
                     "_id": "u101",
                     "fullname": "George Kopytov",
-                    "imgUrl": "/img/img2.jpg"
+                    "imgUrl": "https://randomuser.me/api/portraits/men/51.jpg"
+                }
+            }
+        ]
+    },
+    {
+        "_id": "1222726",
+        "name": "Great Bedroom in Large Studio in Central Barcelona",
+        "type": "Bed and breakfast",
+        "avgRate": 4.93,
+        "imgUrls": [
+            "https://a0.muscache.com/im/pictures/f91c43de-a7a8-4de7-8fb0-44efa8b88d75.jpg?im_w=1200",
+            "https://a0.muscache.com/im/pictures/ca2e711c-aec9-4b74-9967-7bc47c4ef161.jpg?im_w=720",
+            "https://a0.muscache.com/im/pictures/918e3d71-1528-4c5f-a69e-05dbb3e3064e.jpg?im_w=720",
+            "https://a0.muscache.com/im/pictures/e5f8dac7-8772-4b55-945e-b02254c11ea2.jpg?im_w=1200",
+            "https://a0.muscache.com/im/pictures/ad10d655-8d51-41ad-aed3-8e8254f417ab.jpg?im_w=720"
+        ],
+        "price": 45.0,
+        "summary": "A very comfortable bedroom with ensuite shower, and free access to a great and well-equipped kitchen and library room. In a very interesting part of town, Gracia, it is five to ten minutes away on foot from such central streets like Passeig de Gracia, Rambla Catalunya, Diagonal; only two metro stops away (ten minute ride) from Plaça Catalunya, heart of the city.",
+        "capacity": 2,
+        "facilites": {
+            "beds": 1,
+            "bedrooms": 1,
+            "bathrooms": 1
+        },
+        "accessibility": {
+            "stepFreeEntrance": false,
+            "accessibleParkingSpot": false,
+            "wideDoorsEntrances": false,
+            "grabBars": false
+        },
+        "amenities": [
+            "Wifi",
+            "Washer",
+            "TV",
+            "Long term stays allowed",
+            "Air conditioning",
+            "Kitchen",
+            "Elevator",
+            "Iron",
+            "Dryer"
+        ],
+        "host": {
+            "_id": "5123392",
+            "fullname": "John Raul",
+            "imgUrl": "https://randomuser.me/api/portraits/men/32.jpg"
+        },
+        "loc": {
+            "country": "Spain",
+            "city": "Barcelona",
+            "countryCode": "ES",
+            "address": "Barcelona, Catalunya, Spain",
+            "lat": 41.399481,
+            "lng": 2.152079
+        },
+        "reviews": [
+            {
+                "id": "r106",
+                "txt": "Lication is amazing, right in the center of things, clean - big equipped kitchen!, great place to stay!",
+                "rate": 5,
+                "by": {
+                    "_id": "u101",
+                    "fullname": "George Kopytov",
+                    "imgUrl": "https://randomuser.me/api/portraits/men/51.jpg"
+                }
+            }
+        ]
+    },
+    {
+        "_id": "1142726",
+        "name": "Cohen Cabin Waterfront Retreat",
+        "type": "Cabin",
+        "avgRate": 4.97,
+        "imgUrls": [
+            "https://a0.muscache.com/im/pictures/ef5a3d3a-8fce-4eab-a0e5-41a7028e7f83.jpg?im_w=1200",
+            "https://a0.muscache.com/im/pictures/f6030b8c-1b13-4533-8ba3-a7ded3e1c87f.jpg?im_w=720",
+            "https://a0.muscache.com/im/pictures/d74b0809-2075-4f68-8ca8-491e970b0d24.jpg?im_w=720",
+            "https://a0.muscache.com/im/pictures/89a7bea0-00e2-4bb5-9004-fdd6a7fa4ea9.jpg?im_w=1200",
+            "https://a0.muscache.com/im/pictures/751a92f0-bdc9-48a0-84ed-b4bc735164d9.jpg?im_w=720"
+        ],
+        "price": 177.0,
+        "summary": "One bedroom waterfront cabin located on the shores of Tee Harbor in beautiful Juneau Alaska. Wildlife abounds watch playful Harbor Seals, soaring Eagles, and Salmon runs. Water access, great for kayaks and minutes from scenic trail heads. Your home in the last frontier. Included with your stay are use of the 2 double and 3 single kayaks and Mt. Roberts Tram passes. Instant book will not be available off season if you would like to book a stay during the off season please send us a request.",
+        "capacity": 4,
+        "facilites": {
+            "beds": 1,
+            "bedrooms": 1,
+            "bathrooms": 1
+        },
+        "accessibility": {
+            "stepFreeEntrance": false,
+            "accessibleParkingSpot": false,
+            "wideDoorsEntrances": false,
+            "grabBars": false
+        },
+        "amenities": [
+            "Private beach access",
+            "Wifi",
+            "TV with Amazon Prime Video, Fire TV",
+            "Dryer",
+            "Backyard",
+            "Kitchen",
+            "Free parking on premises",
+            "Washer",
+            "Patio or balcony",
+            "Luggage dropoff allowed"
+        ],
+        "host": {
+            "_id": "5123392",
+            "fullname": "Annie Jefferson",
+            "imgUrl": "https://randomuser.me/api/portraits/women/12.jpg"
+        },
+        "loc": {
+            "country": "US",
+            "city": "Juneau ,Alaska",
+            "countryCode": "US",
+            "address": "Juneau, Alaska, United States",
+            "lat": 58.434596,
+            "lng": -134.765998
+        },
+        "reviews": [
+            {
+                "id": "r107",
+                "txt": "Experience of a lifetime!, isolated amazing place with great view, host is very nice!",
+                "rate": 5,
+                "by": {
+                    "_id": "u101",
+                    "fullname": "George Kopytov",
+                    "imgUrl": "https://randomuser.me/api/portraits/men/51.jpg"
                 }
             }
         ]
