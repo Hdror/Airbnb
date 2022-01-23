@@ -3,7 +3,7 @@
   border: 1px solid $clr7;
   border-radius: 12px;
   padding: 20px;
-  width: 300px;
+  // width: 300px;
   margin: 0px auto 10px;
   // box-shadow: 0 0 5px 5px #00000015;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
@@ -20,10 +20,12 @@
 }
 
 .order-form-header {
+  margin-block-start: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  margin-block-end: 30px;
 }
 
 .order-data {
