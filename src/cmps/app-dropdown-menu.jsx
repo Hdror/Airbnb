@@ -10,13 +10,13 @@ export class MenuDropDown extends React.Component {
     render() {
 
         return (
-            <div>
+            <div className="dropdown-user-menu">
                 <Menu style={{ margin: 20, width: 300 }}>
-                        <Link><MenuItem key="1">Log in</MenuItem></Link>
-                        <Link><MenuItem key="2">Sign up</MenuItem></Link>
-                        <Link><MenuItem key="3">Host your home</MenuItem></Link>
-                        <Link><MenuItem key="4">Host an experience</MenuItem></Link>
-                        <Link><MenuItem key="4">Help</MenuItem></Link>
+                        <Link className="clean-link"><MenuItem key="1">Log in</MenuItem></Link>
+                        <Link className="clean-link"><MenuItem key="2">Sign up</MenuItem></Link>
+                        <Link className="clean-link"><MenuItem key="3">Host your home</MenuItem></Link>
+                        <Link className="clean-link"><MenuItem key="4">Host an experience</MenuItem></Link>
+                        <Link className="clean-link"><MenuItem key="4">Help</MenuItem></Link>
                 </Menu>
             </div>
         )

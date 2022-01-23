@@ -1,0 +1,38 @@
+.dropdown-user-menu {
+    position: absolute;
+    top: 80px;
+    width: 208px;
+    right: 185px;
+    background-color: $clr5;
+    border-radius: 50% !important;
+
+
+    .rc-menu-vertical,
+    .rc-menu-vertical-left,
+    .rc-menu-vertical-right,
+    .rc-menu-inline {
+        padding: 0;
+        margin: 0 !important;
+        width: unset !important;
+        border-radius: 50% !important;
+        border:none;
+
+        li{
+            background-color: $clr5;
+            font-family: f-medium;
+            &:hover{
+                background-color: $clr6;
+            }
+        }
+    }
+
+    .rc-menu.rc-menu-root.rc-menu-vertical ul {
+        width: 80px !important;
+        margin: 0 !important;
+        padding: 0;
+
+        .rc-menu-item li {
+            width: 30px;
+        }
+    }
+}
