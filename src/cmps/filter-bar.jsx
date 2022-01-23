@@ -2,6 +2,8 @@ import React from 'react'
 
 import { utilService } from '../services/util.service.js'
 
+import filter  from '../assest/svg/general/filter.svg'
+
 
 export class FilterBar extends React.Component {
 
@@ -24,8 +26,8 @@ export class FilterBar extends React.Component {
                 return <div key={idx}>{amenity}</div>
             })}
             <div>
+                 <img className="filter-svg flex" src={filter} alt="" />
                 <p>Filter</p>
-                {/* <img src={filter} alt="" /> */}
             </div>
 
         </section>

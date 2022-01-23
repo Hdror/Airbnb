@@ -5,9 +5,9 @@
     text-decoration: none;
     color: inherit;
     font-size: rem(18px);
+    
     // max-width: 310px;
 
-    
     .stay-card {
         display: flex;
         flex-direction: column;
@@ -17,7 +17,7 @@
             object-fit: cover;
             height: 100%;
         }
-        
+
         .slider {
             flex-grow: 1;
             height: 0;
@@ -82,18 +82,15 @@
                 color: $clr5;
                 z-index: 99;
 
-                
-                
-
                 &:hover {
                     opacity: 1;
                 }
 
                 // &.slick-next {
-                  
+
                 // }
 
-                &.slick-prev{                  
+                &.slick-prev {
                     bottom: 10px;
 
                     // &::before {
@@ -105,11 +102,11 @@
                     // }
                 }
 
-                &.slick-next{
-                    &:focus::before{
+                &.slick-next {
+                    &:focus::before {
                         opacity: 0.85 !important;
                     }
-                    &:focus:hover::before{
+                    &:focus:hover::before {
                         opacity: 1 !important;
                     }
                 }
@@ -119,12 +116,19 @@
         .stay-preview-info {
             height: 100px;
             padding-block-start: 7px;
-            line-height: 1.4;
+            line-height: 1.31em;
+
+
+            > div {
+                gap: 5px;
+            }
 
             .star {
-                height: 12px;
+                height: 15px;
                 width: 12px;
                 line-height: 1;
+                border-radius: 0;
+                padding-block-end: 0.15em;
                 filter: invert(37%) sepia(56%) saturate(3663%) hue-rotate(327deg) brightness(101%) contrast(110%);
                 // filter: brightness(0) saturate(100%) invert(44%) sepia(52%) saturate(7135%) hue-rotate(330deg) brightness(104%) contrast(101%);
             }
@@ -136,14 +140,15 @@
                 overflow: hidden;
                 white-space: nowrap;
             }
-           
 
             span {
-                margin-inline-end: 5px;
-                font-size: rem(12px);
+                // margin-inline-end: 5px;
+                font-size: rem(14px);
+                color: $clr2;
 
                 &.review-count {
-                    font-size: rem(10px);
+                    font-size: rem(14px);
+                    color: $clr8;
                 }
             }
 
@@ -158,8 +163,4 @@
             }
         }
     }
-    
 }
-
-
-

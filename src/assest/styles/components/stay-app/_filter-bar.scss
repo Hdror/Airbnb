@@ -3,6 +3,11 @@
     padding-block-start: 12px;
     // height: 40px;
 
+    img {
+        height: 16px;
+        width: 16px;
+        margin-inline-end: 3px;
+    }
     > div {
         height: 40px;
         margin-right: 10px;
@@ -13,6 +18,8 @@
         border: 1px solid $clr7;
         border-radius: 30px;
         font-size: rem(14px);
+
+       
 
         @for $i from 0 to 7 {
             &:nth-child(#{$i + 1}) {
