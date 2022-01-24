@@ -28,6 +28,7 @@ export const stayService = {
   save,
   remove,
   amenitiesSvg,
+  getPriceAvg
 
 }
 
@@ -66,3 +67,10 @@ function save(stay) {
 }
 
 
+function getPriceAvg(stays) {
+  let sumPrice = 0
+  stays.map(stay => {
+    sumPrice += +stay.price
+  })
+  return sumPrice/(stays.length)
+}

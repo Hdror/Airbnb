@@ -2,13 +2,20 @@ import React from 'react'
 
 import { utilService } from '../services/util.service.js'
 
-import filter  from '../assest/svg/general/filter.svg'
+import filter from '../assest/svg/general/filter.svg'
+import arrow_down from '../assest/svg/general/arrow-down.svg'
+
+import { TypeOfPlaceModal } from './type-of-place-modal.jsx'
+import { PriceModal } from './price-modal.jsx'
 
 
 export class FilterBar extends React.Component {
 
     state = {
-        amenities: utilService.getRandomAmenities()
+        stays: this.props.stays,
+        amenities: utilService.getRandomAmenities(),
+        isPriceModalOpen: false,
+        isTypeOfPlaceModal: false
     }
 
 
@@ -16,17 +23,34 @@ export class FilterBar extends React.Component {
         // this.setState({ amenities: utilService.getRandomAmenities() })
     }
 
+    toggleTypeOfPlaceModal = () => {
+        if (this.state.isPriceModalOpen) {
+            return this.setState({ isPriceModalOpen: false })
+        }
+        this.setState({ isTypeOfPlaceModal: !this.state.isTypeOfPlaceModal })
+    }
+
+    togglePriceModal = () => {
+        if (this.state.isTypeOfPlaceModal) {
+            return this.setState({ isTypeOfPlaceModal: false })
+        }
+        this.setState({ isPriceModalOpen: !this.state.isPriceModalOpen })
+    }
+
+
 
     render() {
-        const { amenities } = this.state
+        const { amenities, isPriceModalOpen, isTypeOfPlaceModal, stays } = this.state
         return <section className="filter-bar flex">
-            <div>Price</div>
-            <div>Type of place</div>
+            <div onClick={this.togglePriceModal}>Price <img src={arrow_down} alt="" /></div>
+            <div onClick={this.toggleTypeOfPlaceModal}>Type of place <img src={arrow_down} alt="" /></div>
             {amenities.map((amenity, idx) => {
                 return <div key={idx}>{amenity}</div>
             })}
+             {isTypeOfPlaceModal && <TypeOfPlaceModal />}
+            {isPriceModalOpen && <PriceModal stays={stays} />}
             <div>
-                 <img className="filter-svg flex" src={filter} alt="" />
+                <img className="filter-svg flex" src={filter} alt="" />
                 <p>Filter</p>
             </div>
 

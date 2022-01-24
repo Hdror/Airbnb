@@ -21,7 +21,7 @@ export class StayPreview extends React.Component {
                         </div>
                         <h3>Entire rental unit · {loc.city}</h3>
                         <h3>{name}</h3>
-                        <p><span>{price}$</span><span> / night</span></p>
+                        <p><span>${price}</span><span> / night</span></p>
                     </div>
                 </Link>
             </div>

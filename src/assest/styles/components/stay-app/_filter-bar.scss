@@ -1,13 +1,19 @@
 .filter-bar {
     margin-block-end: 17px;
     padding-block-start: 12px;
+    // position: fixed;
     // height: 40px;
 
     img {
-        height: 16px;
-        width: 16px;
-        margin-inline-end: 3px;
+        height: 12px;
+        width: 12px;
+        &.filter-svg{
+            margin-inline-end: 5px;
+            width: 16px;
+            height: 16px;
+        }
     }
+
     > div {
         height: 40px;
         margin-right: 10px;
@@ -18,8 +24,19 @@
         border: 1px solid $clr7;
         border-radius: 30px;
         font-size: rem(14px);
+        transition: ease-in-out 0.15s;
+        cursor: pointer;
+
+        &:not(:last-child){
+            gap: 10px;
+        }
 
        
+
+       &:hover{
+           border-color: $clr10;
+           transition: ease-in-out 0.15s;
+       }
 
         @for $i from 0 to 7 {
             &:nth-child(#{$i + 1}) {
