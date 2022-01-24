@@ -2,11 +2,13 @@ import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
 import thunk from 'redux-thunk'
 
 import { stayReducer } from './stay.reducer.js'
+import { tripReducer } from './trip/trip.reducer.js'
 // import { userReducer } from './user.reducer.js'
 // import { orderReducer } from './order.reducer.js'
 
 const rootReducer = combineReducers({
   stayModule: stayReducer,
+  tripModule: tripReducer
   //   userModule: userReducer,
   //   orderModule: orderReducer,
 })

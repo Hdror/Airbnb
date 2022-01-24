@@ -35,7 +35,7 @@ _createStays()
 // CREATE STAYS
 function _createStays() {
   const stays = jsonStays
-  storageService._save(STORAGE_KEY, stays)
+  storageService.saveToStorage(STORAGE_KEY, stays)
 }
 
 // GET STAYS

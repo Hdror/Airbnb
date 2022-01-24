@@ -1,5 +1,11 @@
 const initialState = {
   stays: [],
+  filterBy: {
+    city: '',
+    checkInDate: '',
+    checkOutDate: '',
+
+  }
 }
 
 export function stayReducer(state = initialState, action) {
