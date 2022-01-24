@@ -25,10 +25,13 @@ class _DateRange extends React.Component {
             endDate: endDate,
             key: 'selection'
         }
+        
         return (
             <div className='date-range-container'>
                 <DateRangePicker
-                className="date-range-calender"
+                    onChange={this.handleSelect}
+                    className="date-range-calender"
+                    ranges={[stayRange]}
                     appearance="default"
                     placeholder="Default"
                     months={2}

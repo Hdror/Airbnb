@@ -7,15 +7,28 @@ export const storageService = {
   put,
   remove,
   postMany,
-  _save
+  // _save
+  loadFromStorage,
+  saveToStorage
 }
+
+function loadFromStorage(key) {
+  var val = localStorage.getItem(key)
+  return val ? JSON.parse(val) : null
+}
+
+function saveToStorage(key, val) {
+  localStorage[key] = JSON.stringify(val)
+}
+
+
 
 function query(entityType, delay = 500) {
   var entities = JSON.parse(localStorage.getItem(entityType)) || []
-  return new Promise((resolve, reject)=>{
-      setTimeout(()=>{
-          resolve(entities)
-      }, delay)   
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(entities)
+    }, delay)
   })
 }
 

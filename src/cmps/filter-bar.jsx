@@ -1,6 +1,8 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 import { utilService } from '../services/util.service.js'
+import { loadStays } from '../store/stay.action.js'
 
 import filter from '../assest/svg/general/filter.svg'
 import arrow_down from '../assest/svg/general/arrow-down.svg'
@@ -9,7 +11,7 @@ import { TypeOfPlaceModal } from './type-of-place-modal.jsx'
 import { PriceModal } from './price-modal.jsx'
 
 
-export class FilterBar extends React.Component {
+export class _FilterBar extends React.Component {
 
     state = {
         stays: this.props.stays,
@@ -18,9 +20,11 @@ export class FilterBar extends React.Component {
         isTypeOfPlaceModal: false
     }
 
+        
+    
 
     componentDidMount() {
-        // this.setState({ amenities: utilService.getRandomAmenities() })
+        this.props.loadStays()
     }
 
     toggleTypeOfPlaceModal = () => {
@@ -55,7 +59,17 @@ export class FilterBar extends React.Component {
             </div>
 
         </section>
-
     }
-
 }
+
+function mapStateToProps({ stayModule }) {
+    return {
+      stays: stayModule.stays
+    }
+  }
+  
+  const mapDispatchToProps = {
+    loadStays
+  }
+  
+  export const FilterBar = connect(mapStateToProps, mapDispatchToProps)(_FilterBar)

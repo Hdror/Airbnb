@@ -1,7 +1,6 @@
 import { storageService } from './async.storage.js'
 import jsonStays from '../data/stay.json'
 
-
 import Wifi from "../assest/svg/amenities/Wifi.svg"
 import Heating from "../assest/svg/amenities/Heating.svg"
 import HotTub from "../assest/svg/amenities/HotTub.svg"
@@ -36,12 +35,21 @@ _createStays()
 // CREATE STAYS
 function _createStays() {
   const stays = jsonStays
-  storageService._save(STORAGE_KEY, stays)
+  storageService.saveToStorage(STORAGE_KEY, stays)
 }
 
 // GET STAYS
-function query(filterBy = {}) {
-  return storageService.query(STORAGE_KEY)
+async function query(filterBy = {}) {
+  const stays = storageService.query(STORAGE_KEY)
+  return stays
+}
+
+function _filteredStaysByAmens(stays, filterBy) {
+  const { amenities } = filterBy
+  const filteredStaysByAmens = stays.amenities.filter((stay) => {
+    return stay.amenities.includes()
+  })
+  return Promise.resolve(filteredStaysByAmens)
 }
 
 // GET BY ID

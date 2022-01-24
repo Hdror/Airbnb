@@ -10,3 +10,11 @@ export function loadStays() {
     })
   }
 }
+
+export function addStay(stay) {
+  stayService.save(stay)
+}
+
+export function removeStay(stayId) {
+  stayService.remove(stayId)
+}

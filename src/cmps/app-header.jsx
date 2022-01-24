@@ -11,7 +11,6 @@ import { MenuDropDown } from './app-dropdown-menu.jsx'
 
 // SVG
 import menu from '../assest/svg/app-header/menu.svg'
-import logo from '../assest/svg/app-header/logo.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAirbnb } from '@fortawesome/free-brands-svg-icons'
 
@@ -75,8 +74,14 @@ class _AppHeader extends React.Component {
 
     toggleMenuDropDownModal = () => {
         this.setState({ MenuDropDownModal: !this.state.MenuDropDownModal })
-        console.log();
     }
+get pageClass(){
+    return this.props.currPage
+}
+
+get miniHeaderClass(){
+    return this.state.isMiniHeader ? "main-container mini-header" : "main-container"
+}
 
 
     // TODO - if user is host - instead of become a host
@@ -84,12 +89,11 @@ class _AppHeader extends React.Component {
     render() {
         const { MenuDropDownModal, isMiniHeader } = this.state
         return (
-            <header className={isMiniHeader ? "main-container mini-header" : "main-container"}>
+            <header className={`${this.miniHeaderClass} ${this.pageClass}`} >
                 <div>
                     <div className="main-header flex">
                         <Link className="site-logo-name clean-link" to="/">
                             <div className="logo-container flex">
-                                {/* <img className="logo" src={logo} alt="" /> */}
                                 <FontAwesomeIcon className="logo" icon={faAirbnb} />
                                 <h2>somthingBnb</h2>
                             </div>
@@ -113,7 +117,7 @@ class _AppHeader extends React.Component {
 
 function mapStateToProps(state) {
     return {
-
+        currPage: state.pageModule.currPage
     }
 }
 const mapDispatchToProps = {
