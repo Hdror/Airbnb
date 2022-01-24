@@ -1,5 +1,8 @@
 const initialState = {
   stays: [],
+  filterBy: {
+    amenities: []
+  }
 }
 
 export function stayReducer(state = initialState, action) {

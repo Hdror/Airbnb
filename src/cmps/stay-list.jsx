@@ -2,12 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import { StayPreview } from './stay-preview.jsx'
-import {FilterBar} from './filter-bar.jsx'
+import { FilterBar } from './filter-bar.jsx'
 
 import { loadStays } from '../store/stay.action.js'
 
 
 class _StayList extends React.Component {
+  
   componentDidMount() {
     this.props.loadStays()
   }
@@ -17,7 +18,7 @@ class _StayList extends React.Component {
     if (!stays.length) return <h1>There are no stays to show</h1>
     return (
       <section >
-        <FilterBar/>
+        <FilterBar />
         <div className="stay-list">
           {stays.map((stay) => (
             <StayPreview key={stay._id} stay={stay} />

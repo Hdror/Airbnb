@@ -1,19 +1,23 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 import { utilService } from '../services/util.service.js'
+import { loadStays } from '../store/stay.action.js'
 
-import filter  from '../assest/svg/general/filter.svg'
+import filter from '../assest/svg/general/filter.svg'
 
 
-export class FilterBar extends React.Component {
+export class _FilterBar extends React.Component {
 
     state = {
-        amenities: utilService.getRandomAmenities()
+        amenities: utilService.getRandomAmenities(),
+        filterBy:{
+
+        }
     }
 
-
     componentDidMount() {
-        // this.setState({ amenities: utilService.getRandomAmenities() })
+        this.props.loadStays()
     }
 
 
@@ -26,12 +30,22 @@ export class FilterBar extends React.Component {
                 return <div key={idx}>{amenity}</div>
             })}
             <div>
-                 <img className="filter-svg flex" src={filter} alt="" />
+                <img className="filter-svg flex" src={filter} alt="" />
                 <p>Filter</p>
             </div>
 
         </section>
-
     }
-
 }
+
+function mapStateToProps({ stayModule }) {
+    return {
+      stays: stayModule.stays
+    }
+  }
+  
+  const mapDispatchToProps = {
+    loadStays
+  }
+  
+  export const FilterBar = connect(mapStateToProps, mapDispatchToProps)(_FilterBar)

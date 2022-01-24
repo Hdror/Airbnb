@@ -5,14 +5,16 @@
         "imgUrl": "/img/img1.jpg",
         "isHost": true,
         "username": "user1",
-        "password": "secret",
+        "phonenumber": "secret",
+        "email": "cori20789@gmail.com",
         "likedStays": [
             {
                 "_id": "u102",
                 "name": "Nayah Hest",
                 "imgUrl": "https://randomuser.me/api/portraits/women/32.jpg"
             }
-        ]
+        ],
+        "orders": []
     },
     {
         "_id": "u102",
@@ -20,13 +22,15 @@
         "imgUrl": "/img/img2.jpg",
         "isHost": true,
         "username": "user2",
-        "password": "secret",
+        "phonenumber": "secret",
+        "email": "z3tatok@gmail.com",
         "likedStays": [
             {
                 "_id": "u102",
                 "name": "Nayah Hest",
                 "imgUrl": "https://randomuser.me/api/portraits/men/51.jpg"
             }
-        ]
+        ],
+        "orders": []
     }
 ]

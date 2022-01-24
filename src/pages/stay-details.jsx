@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import { connect } from 'react-redux'
 
 import Enhanced_clean from "../assest/svg/perks/Enhanced_clean.svg"
 import Entire_home from "../assest/svg/perks/Entire_home.svg"
@@ -12,16 +13,18 @@ import Star from "../assest/svg/app-detials/star.svg"
 import { stayService } from '../services/stay.service.js'
 import { StayMap } from '../cmps/stay-map.jsx'
 import { StayReserve } from "../cmps/stay-reserve.jsx"
+import { changePage } from '../store/page.action.js'
 
 
 
 
-export class StayDetails extends React.Component {
+class _StayDetails extends React.Component {
     state = {
         stay: null
     }
 
     componentDidMount() {
+        this.props.changePage('stay-details')
         const { stayId } = this.props.match.params
         stayService.getById(stayId)
             .then(stay => { this.setState({ stay }) })
@@ -97,3 +100,13 @@ export class StayDetails extends React.Component {
         )
     }
 }
+
+
+const mapDispatchToProps = {
+    changePage
+}
+
+export const StayDetails = connect(
+    null,
+    mapDispatchToProps
+)(_StayDetails)

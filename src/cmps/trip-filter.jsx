@@ -10,6 +10,8 @@ import { DateRange } from './date-range.jsx'
 
 export class TripFilter extends React.Component {
     state = {
+        startDate: null,
+        endDate: null,
         dateRangeModal: false,
     }
 
@@ -23,6 +25,10 @@ export class TripFilter extends React.Component {
         this.setState((prevState) => ({
             tripOrder: { ...prevState.tripOrder, [field]: value },
         }))
+    }
+
+    setDates = ({ startDate, endDate }) => {
+
     }
 
     render() {
@@ -66,11 +72,18 @@ export class TripFilter extends React.Component {
                         </div>
                     </div>
                 </form>}
-                {isMiniHeader && <div className="mini-header-content">
-                    {"Location"}
-                </div>}
+                {isMiniHeader &&
+                    <div className="mini-header-filter flex">
+                        <div className="mini-header-content flex">
+                            {"Location"}
+                        </div>
+                        <div className="search-img-btn flex">
+                            <div className="img-container flex"><img className="search-btn-img" src={search} alt="" /> </div>
+                        </div>
+
+                    </div >}
                 {dateRangeModal && <DateRange setDates={this.setDates} />}
-            </div>
+            </div >
         )
     }
 }
