@@ -9,6 +9,9 @@ import Self_check_in from "../assest/svg/perks/Self_check_in.svg"
 
 
 import Star from "../assest/svg/app-detials/star.svg"
+import Save from "../assest/svg/app-detials/save.svg"
+import Share from "../assest/svg/app-detials/Share.svg"
+
 
 import { stayService } from '../services/stay.service.js'
 import { StayMap } from '../cmps/stay-map.jsx'
@@ -41,7 +44,7 @@ class _StayDetails extends React.Component {
                 <div className="stay-summary">
                     {/* <div></div> */}
                     <h2>{name}</h2>
-                    <span><img src={Star} alt="" />{avgRate} · <a href="#">{numOfReviews} Reviews</a> · <span>{loc.address}</span></span>
+                    <span className="stay-summary-address flex"><img src={Star} alt="" />{avgRate} · <a href="#">{numOfReviews} Reviews</a> · <span>{loc.address}</span><span className="summary-share-save"><img src={Share} alt="" /> <a href="#">Share</a><img src={Save} alt="" /><a href="#">Save</a></span></span>
                 </div>
                 {/* <div>{name}</div> */}
                 <div className="image-container">

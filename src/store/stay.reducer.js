@@ -1,7 +1,11 @@
 const initialState = {
   stays: [],
   filterBy: {
-    amenities: []
+    amenities: [],
+    city: '',
+    checkInDate: '',
+    checkOutDate: '',
+
   }
 }
 

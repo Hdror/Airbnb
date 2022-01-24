@@ -3,15 +3,15 @@ import thunk from 'redux-thunk'
 
 import { stayReducer } from './stay.reducer.js'
 import { userReducer } from './user.reducer.js'
-import { pageReducer } from './page.reducer'
-
+import { pageReducer } from './page.reducer.js'
+import { tripReducer } from './trip/trip.reducer.js'
 // import { orderReducer } from './order.reducer.js'
 
 const rootReducer = combineReducers({
   stayModule: stayReducer,
   userModule: userReducer,
   pageModule: pageReducer,
-
+  tripModule: tripReducer
   //   orderModule: orderReducer,
 })
 
