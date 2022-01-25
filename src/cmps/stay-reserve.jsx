@@ -38,8 +38,7 @@ class _StayReserve extends React.Component {
 
     componentDidMount() {
         const { stay } = this.props
-
-        console.log('STAY', this.props);
+        // console.log('STAY', this.props);
         this.props.loadTrips()
         this.setState({ trip: { ...this.state.trip, stay: { address: stay.loc.address } } })
     }
@@ -49,7 +48,7 @@ class _StayReserve extends React.Component {
     };
 
     onAddTrip = (ev) => {
-        console.log('Saved');
+        // console.log('Saved');
         ev.preventDefault()
         let { trip } = this.state
         tripService.save(trip)
@@ -68,7 +67,7 @@ class _StayReserve extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.filterBy !== this.props.filterBy) {
-            this.props.loadStays();
+            this.props.loadStays(this.props.filterBy);
         }
     }
 
@@ -78,7 +77,7 @@ class _StayReserve extends React.Component {
     }
 
     handleSelect = (ranges) => {
-        console.log(ranges);
+        // console.log(ranges);
         const { trip } = this.state
 
         this.setState((prevState) => ({
@@ -120,8 +119,8 @@ class _StayReserve extends React.Component {
 
     render() {
         const { MenuDropDownModal, isTripCreated, trip } = this.state
-        console.log(this.state);
-        console.log('props', this.props);
+        // console.log(this.state);
+        // console.log('props', this.props);
         const selectionRange = {
             startDate: new Date(),
             endDate: new Date(),

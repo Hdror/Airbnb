@@ -7,35 +7,36 @@ import 'react-date-range/dist/theme/default.css' // theme css file
 
 class _DateRange extends React.Component {
     state = {
-        startDate: new Date(),
-        endDate: new Date()
+        trip: {
+            stayTime: {
+                startDate: '',
+                endDate: '',
+            }
+        }
     }
 
     handleSelect = (ranges) => {
         const { startDate, endDate } = ranges.selection
         this.setState({ startDate, endDate }, () => {
             this.props.setDates(startDate, endDate)
-        });
-    };
+        })
+        console.log('start', ranges.selection.startDate)
+        console.log('end', ranges.selection.endDate)
+    }
 
     render() {
-        const { startDate, endDate } = this.state
-        const stayRange = {
-            startDate: startDate,
-            endDate: endDate,
-            key: 'selection'
-        }
-        
+        const selectionRange = { startDate: new Date(), endDate: new Date(), key: "selection" }
         return (
             <div className='date-range-container'>
                 <DateRangePicker
                     onChange={this.handleSelect}
                     className="date-range-calender"
-                    ranges={[stayRange]}
+                    ranges={[selectionRange]}
                     appearance="default"
                     placeholder="Default"
                     months={2}
-                    direction='horizontal' />
+                    direction='horizontal'
+                />
             </div>
         )
     }

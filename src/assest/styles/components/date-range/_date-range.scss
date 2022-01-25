@@ -2,7 +2,12 @@
     position: absolute;
     border-radius: 30px;
     font-family: f-bold;
+    box-shadow: 0px 6px 20px rgb(0 0 0 / 20%);
     z-index: 5;
+
+    .rdrDateDisplayWrapper {
+        display: none;
+    }
 
     .rdrWeekDay {
         font-size: rem(12px);

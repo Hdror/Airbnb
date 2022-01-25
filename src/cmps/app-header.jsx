@@ -3,7 +3,6 @@ import { Link, NavLink } from 'react-router-dom'
 
 // STORE
 import { connect } from 'react-redux'
-// import { loadStays } from '../store/stay.action.js'
 
 // COMPONENT
 import { TripFilter } from './trip-filter.jsx'
@@ -18,9 +17,6 @@ import { faAirbnb } from '@fortawesome/free-brands-svg-icons'
 class _AppHeader extends React.Component {
     state = {
         tripCity: '',
-        filterBy: {
-            city: ''
-        },
         tripOrder: {
             checkIn: '',
             checkOut: '',
@@ -37,6 +33,10 @@ class _AppHeader extends React.Component {
 
     componentDidMount() {
         window.addEventListener("scroll", this.checkScrollY)
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("scroll", this.checkScrollY)
     }
 
     checkScrollY = ({ target }) => {
@@ -57,9 +57,6 @@ class _AppHeader extends React.Component {
 
     clearState = () => {
         const clearedState = {
-            filterBy: {
-                city: ''
-            },
             tripOrder: {
                 checkIn: '',
                 checkOut: '',
@@ -75,6 +72,11 @@ class _AppHeader extends React.Component {
     toggleMenuDropDownModal = () => {
         this.setState({ MenuDropDownModal: !this.state.MenuDropDownModal })
     }
+
+    onSetFilter = (filterBy) => {
+        this.props.setFilter(filterBy)
+    }
+
     get pageClass() {
         return this.props.currPage
     }
@@ -105,7 +107,7 @@ class _AppHeader extends React.Component {
                                 <img className="menu-icon" src={menu} alt="" onClick={this.toggleMenuDropDownModal} />
                                 <img className="user-icon" src="https://randomuser.me/api/portraits/women/95.jpg" alt="" />
                             </div>
-                                {MenuDropDownModal && <MenuDropDown />}
+                            {MenuDropDownModal && <MenuDropDown />}
                         </div>
                     </div>
                     <TripFilter isMiniHeader={isMiniHeader} />
@@ -117,11 +119,10 @@ class _AppHeader extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        currPage: state.pageModule.currPage
+        currPage: state.pageModule.currPage,
     }
 }
 const mapDispatchToProps = {
-
 }
 
 export const AppHeader = connect(

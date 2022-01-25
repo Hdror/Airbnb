@@ -6,16 +6,26 @@ header {
     flex-direction: column;
     align-items: flex-start;
     background-color: $clr5;
-    color: $clr2;
     top: 0;
     left: 0;
     width: 100vw;
     height: 176px;
     z-index: 100;
+    box-shadow: rgb(0 0 0 / 8%) 0px 1px 12px !important;
 
     &.home-page {
         background-color: black;
         color: $clr5;
+
+            .logo-container {
+            h2 {
+                color: $clr5;
+            }
+
+            .logo {
+                color: $clr5;
+            }
+        }
     }
 
     // MINI HEADER
@@ -58,10 +68,10 @@ header {
             box-shadow: 0 0 3px 2px $clr7;
             padding: 0px 20px;
             justify-content: space-evenly;
-            border: 2px solid $clr7;
+            border: 1px solid $clr9;
 
             &:hover {
-                box-shadow: 0px 8px 7px -2px $clr7;
+                box-shadow: 0px 5px 4px 1px $clr9;
             }
 
             .trip-dates-filter {
@@ -105,6 +115,9 @@ header {
         }
     }
 
+
+
+
     .main-header {
         justify-content: space-between;
     }
@@ -116,11 +129,13 @@ header {
         h2 {
             font-size: rem(24px);
             font-family: f-bold;
+            color: $clr1;
         }
 
         .logo {
             font-size: rem(34px);
             margin-right: 8px;
+            color:$clr1;
         }
     }
 
@@ -150,6 +165,7 @@ header {
             border-radius: 1.5rem;
             align-items: center;
             justify-content: center;
+            border: 1px solid $clr7;
 
             .menu-icon {
                 margin-right: 10px;
@@ -164,12 +180,13 @@ header {
         top: 0%;
         left: 50%;
         transform: translate(-50%, 125%);
-        margin: auto;
         background-color: $clr5;
         flex-direction: column;
         justify-content: center;
         border-radius: 100vw;
         transition: width 0.3s, top 0.3s, transform 0.3s;
+        border: 1px solid $clr7;
+        margin: auto;
 
         .trip-location-selector {
             width: 270px;
@@ -181,13 +198,6 @@ header {
                 background-color: $clr9;
                 border-radius: 100vw;
             }
-
-            // .trip-location-selector::after {
-            //     background-clip: padding-box;
-            //     border: 1px solid $clr5;
-            //     content: "";
-            //     box-shadow: rgb(0 0 0 / 20%) 0px 6px 20px;
-            // }
         }
 
         .trip-destination {
