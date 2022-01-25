@@ -1,20 +1,23 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { loadStays } from '../store/stay.action.js'
 
+// STORE
+
+// SVG
 import globe from '../assest/svg/app-footer/globe.svg'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFacebookF } from '@fortawesome/free-brands-svg-icons'
+import { faTwitter } from '@fortawesome/free-brands-svg-icons'
+import { faInstagram } from '@fortawesome/free-brands-svg-icons'
+
 class _AppFooter extends React.Component {
-    componentDidMount() {
-        const stays = this.props.loadStays()
-    }
 
     render() {
-        const { stays } = this.props
-            return (
+        const { stays, user } = this.props
+        return (
             <footer>
                 <section className="main-container">
-                    <div className="inspiration-container">
+                    {!user && <div className="inspiration-container">
                         <h2>Inspiration for future getaways</h2>
                         <div className="inspiration">
                             {stays.map((stay, idx) => (
@@ -28,7 +31,7 @@ class _AppFooter extends React.Component {
                                 </div>
                             ))}
                         </div>
-                    </div>
+                    </div>}
                     <div className="border"></div>
                     <div className="footer-bottom-section">
                         <section>
@@ -87,13 +90,13 @@ class _AppFooter extends React.Component {
                             <div className="media-container flex">
                                 <div className="language-state flex">
                                     <img src={globe} alt="" />
-                                    <span className="language"><p>English (US)</p></span>
-                                    <span><p>$ <span className="language">USD</span></p></span>
+                                    <span className="language"><p className="pref-language">English (US)</p></span>
+                                    <span><p>$ <span className="currency">USD</span></p></span>
                                 </div>
                                 <div className="social-media flex">
-                                    <span className='social-media-icon'><p>fb icon</p></span>
-                                    <span className='social-media-icon'><p>tw icon</p></span>
-                                    <span className='social-media-icon'><p>insta icon</p></span>
+                                    <span className='social-media-icon'><FontAwesomeIcon className="footer-social-icons" icon={faFacebookF} /></span>
+                                    <span className='social-media-icon'><FontAwesomeIcon className="footer-social-icons" icon={faTwitter} /></span>
+                                    <span className='social-media-icon'><FontAwesomeIcon className="footer-social-icons" icon={faInstagram} /></span>
                                 </div>
                             </div>
                         </div>
@@ -108,11 +111,11 @@ class _AppFooter extends React.Component {
 function mapStateToProps(state) {
     return {
         stays: state.stayModule.stays,
+        user: state.userModule.user,
     }
 }
 
 const mapDispatchToProps = {
-    loadStays,
 }
 
 export const AppFooter = connect(

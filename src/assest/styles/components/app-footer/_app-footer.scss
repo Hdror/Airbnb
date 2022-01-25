@@ -63,19 +63,35 @@ footer {
     .footer-bottom {
         grid-column: 1/-1;
         justify-content: space-between;
+        margin: 0 5px;
         padding: 24px 0px;
+        font-size: rem(14px);
 
         .language-state {
             margin: 0rem 0.3rem;
             img {
-                width: 20px;
-                height: 20px;
+                width: 17px;
+                height: 16px;
                 margin: 0px 5px;
             }
         }
 
+        .pref-language{
+            margin-right:15px;
+        }
+
         p {
-            margin: 0rem 0.2rem;
+            margin-right: 30px;
+            margin-left: 5px;
+
+            .currency {
+                font-weight: 600;
+                text-decoration: underline;
+                padding-inline-start: 5px;
+                &:hover {
+                    text-decoration: none;
+                }
+            }
         }
 
         .language {
@@ -86,9 +102,10 @@ footer {
             }
         }
 
-        .social-media-icons {
-            height: 20px;
-            width: 20px;
+        .footer-social-icons {
+            margin:0 5px;
+            width: 35px;
+            height: 18px;
         }
     }
 }

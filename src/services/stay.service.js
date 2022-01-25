@@ -26,30 +26,33 @@ export const stayService = {
   getById,
   save,
   remove,
+  getPriceAvg,
   amenitiesSvg,
-  getPriceAvg
 
 }
 
+const stays = jsonStays
 _createStays()
 // CREATE STAYS
 function _createStays() {
-  const stays = jsonStays
   storageService.saveToStorage(STORAGE_KEY, stays)
 }
 
 // GET STAYS
-async function query(filterBy = {}) {
-  const stays = storageService.query(STORAGE_KEY)
-  return stays
+async function query(filterBy) {
+  const stays = await storageService.query(STORAGE_KEY)
+  const filteredStays = _filteredStays(stays, filterBy)
+  return filteredStays
 }
 
-function _filteredStaysByAmens(stays, filterBy) {
-  const { amenities } = filterBy
-  const filteredStaysByAmens = stays.amenities.filter((stay) => {
-    return stay.amenities.includes()
+// GET FILTERED STAYS
+function _filteredStays(stays, filterBy) {
+  console.log(filterBy);
+  const { loc } = filterBy
+  const filteredStays = stays.filter((stay) => {
+    return stay.loc.city.includes(loc) || stay.loc.country.includes(loc)
   })
-  return Promise.resolve(filteredStaysByAmens)
+  return filteredStays
 }
 
 // GET BY ID
@@ -74,11 +77,10 @@ function save(stay) {
   }
 }
 
-
 function getPriceAvg(stays) {
   let sumPrice = 0
   stays.map(stay => {
     sumPrice += +stay.price
   })
-  return sumPrice/(stays.length)
+  return sumPrice / (stays.length)
 }

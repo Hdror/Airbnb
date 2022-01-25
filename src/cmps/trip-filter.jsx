@@ -1,4 +1,6 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { loadStays, setFilter } from '../store/stay.action.js'
 
 // SVG
 import search from '../assest/svg/app-header/search.svg'
@@ -6,12 +8,13 @@ import search from '../assest/svg/app-header/search.svg'
 // COMPONENTS
 import { DateRange } from './date-range.jsx'
 
-
-
-export class TripFilter extends React.Component {
+export class _TripFilter extends React.Component {
     state = {
-        startDate: null,
-        endDate: null,
+        filterBy: {
+            loc: '',
+            checkInDate: '',
+            checkOutDate: '',
+        },
         dateRangeModal: false,
     }
 
@@ -19,16 +22,19 @@ export class TripFilter extends React.Component {
         this.setState({ dateRangeModal: !this.state.dateRangeModal })
     }
 
-    handleChange = (ev) => {
+    handleSearchChanges = (ev) => {
         const field = ev.target.name
         const value = ev.target.value
         this.setState((prevState) => ({
-            tripOrder: { ...prevState.tripOrder, [field]: value },
+            filterBy: { ...prevState.filterBy, [field]: value }
         }))
     }
 
-    setDates = ({ startDate, endDate }) => {
-
+    onSetStayFilter = (ev) => {
+        ev.preventDefault()
+        const { filterBy } = this.state
+        this.props.setFilter(filterBy)
+        this.props.loadStays(filterBy)
     }
 
     render() {
@@ -41,10 +47,12 @@ export class TripFilter extends React.Component {
                         <label htmlFor="trip-location">
                             <div className="trip-destination flex"><span>Location</span>
                                 <input className="search-input"
+                                    onChange={this.handleSearchChanges}
                                     type="text"
                                     aria-autocomplete="none"
                                     autoCorrect="off"
-                                    name="quary"
+                                    name="loc"
+                                    value={this.state.filterBy.loc}
                                     placeholder="Where are you going?"
                                 />
                             </div>
@@ -67,7 +75,7 @@ export class TripFilter extends React.Component {
                                 <div>Add guests</div>
                             </div>
                             <div className="search-btn flex">
-                                <div className="img-container flex"><div></div><img className="search-btn-img" src={search} alt="" /> </div>
+                                <div className="img-container flex"><div></div><img onClick={this.onSetStayFilter} className="search-btn-img" src={search} alt="" /> </div>
                             </div>
                         </div>
                     </div>
@@ -87,3 +95,18 @@ export class TripFilter extends React.Component {
         )
     }
 }
+
+function mapStateToProps(state) {
+    return {
+
+    }
+}
+const mapDispatchToProps = {
+    loadStays,
+    setFilter
+}
+
+export const TripFilter = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(_TripFilter)
