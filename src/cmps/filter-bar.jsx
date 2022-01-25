@@ -34,13 +34,12 @@ export class _FilterBar extends React.Component {
     }
 
     filterStays = () => {
-        const { stays, filterBy } = this.state
-        const filteredStays = stays.filter(stay=>{
-            // console.log('stay.typeOfPlace:',stay.typeOfPlace); 
-            console.log(filterBy.typeOfPlace[stay.typeOfPlace]);
-            if(filterBy.typeOfPlace[stay.typeOfPlace]) return stay
-        })
-        console.log('filteredStays:', filteredStays);
+        const {filterBy } = this.state
+        const {stays } = this.props
+        let filteredStays = stays.filter(stay=>{
+            if(filterBy.typeOfPlace[stay.typeOfPlace]) 
+            return stay  
+        },()=>{  this.props.setFiltersStays(filteredStays)})
         this.props.setFiltersStays(filteredStays)
     }
 
@@ -53,9 +52,9 @@ export class _FilterBar extends React.Component {
         let value = target.value
         // let value = target.type === 'number' ? +target.value : target.value
         if (target.type === 'checkbox') {
-            value = target.value === 'true'
+            value = target.checked
             console.log('value:', value, 'field:', field);
-            this.setState({ filterBy: { ...this.state.filterBy, typeOfPlace: { ...this.state.filterBy.typeOfPlace, [field]: !value } } }, () => { console.log(this.state) })
+            this.setState({ filterBy: { ...this.state.filterBy, typeOfPlace: { ...this.state.filterBy.typeOfPlace, [field]: value } } })
             // this.props.setFiltersStays()
             //         switch (field) {
             //             case 'entirePlace':
@@ -77,12 +76,11 @@ export class _FilterBar extends React.Component {
             //     this.setState(prevState => ({ filterBy: { ...prevState.filterBy, labels } }), () => { this.props.setFilterBy(this.state.filterBy) })
             // }
         }
-        this.filterStays()
     }
 
-    componentDidMount() {
-        this.props.loadStays()
-    }
+    // componentDidMount() {
+    //     this.props.loadStays()
+    // }
 
     toggleTypeOfPlaceModal = () => {
         if (this.state.isPriceModalOpen) {
@@ -101,14 +99,15 @@ export class _FilterBar extends React.Component {
 
 
     render() {
-        const { amenities, isPriceModalOpen, isTypeOfPlaceModal, stays, filterBy } = this.state
+        const { amenities, isPriceModalOpen, isTypeOfPlaceModal, filterBy } = this.state
+        const{stays} = this.props
         return <section className="filter-bar flex">
             <div onClick={this.togglePriceModal}>Price <img src={arrow_down} alt="" /></div>
             <div onClick={this.toggleTypeOfPlaceModal}>Type of place <img src={arrow_down} alt="" /></div>
             {amenities.map((amenity, idx) => {
                 return <div key={idx}>{amenity}</div>
             })}
-            {isTypeOfPlaceModal && <TypeOfPlaceModal filterBy={filterBy} handleChange={this.handleChange} />}
+            {isTypeOfPlaceModal && <TypeOfPlaceModal filterBy={filterBy}  filterStays={this.filterStays} handleChange={this.handleChange} />}
             {isPriceModalOpen && <PriceModal handleChange={this.handleChange} stays={stays} />}
             <div>
                 <img className="filter-svg flex" src={filter} alt="" />
