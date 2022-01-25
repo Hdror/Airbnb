@@ -7,7 +7,6 @@ export const storageService = {
   put,
   remove,
   postMany,
-  // _save
   loadFromStorage,
   saveToStorage
 }

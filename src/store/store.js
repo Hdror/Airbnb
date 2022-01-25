@@ -5,14 +5,14 @@ import { stayReducer } from './stay.reducer.js'
 import { userReducer } from './user.reducer.js'
 import { pageReducer } from './page.reducer.js'
 import { tripReducer } from './trip/trip.reducer.js'
-// import { orderReducer } from './order.reducer.js'
+import { orderReducer } from '../store/order/order.reducer.js'
 
 const rootReducer = combineReducers({
   stayModule: stayReducer,
   userModule: userReducer,
   pageModule: pageReducer,
-  tripModule: tripReducer
-  //   orderModule: orderReducer,
+  tripModule: tripReducer,
+  orderModule: orderReducer,
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
