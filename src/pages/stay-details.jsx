@@ -36,7 +36,9 @@ class _StayDetails extends React.Component {
 
     render() {
         if (!this.state.stay) return "LOADING"
-        const { name, avgRate, reviews, loc, imgUrls, facilites, capacity, host, summary, type, amenities } = this.state.stay
+        const { stay } = this.state
+        console.log(stay);
+        const { name, avgRate, reviews, loc, imgUrls, facilites, capacity, host, summary, type, amenities } = stay
         const numOfReviews = reviews.length
         const txt = facilites.beds > 1 ? 'beds' : 'bed'
         return (
@@ -93,7 +95,7 @@ class _StayDetails extends React.Component {
                         </section>
                     </div>
                     <div className="order">
-                        <div className="reserve"><StayReserve /></div>
+                        <div className="reserve"><StayReserve stay={stay} /></div>
                     </div>
                 </div>
                 <div>
