@@ -6,7 +6,7 @@ header {
     flex-direction: column;
     align-items: flex-start;
     background-color: $clr5;
-    color: $clr5;
+    color: $clr2;
     top: 0;
     left: 0;
     width: 100vw;
@@ -15,6 +15,7 @@ header {
 
     &.home-page {
         background-color: black;
+        color: $clr5;
     }
 
     // MINI HEADER

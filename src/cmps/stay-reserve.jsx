@@ -5,6 +5,7 @@ import { MenuDropDown } from './app-dropdown-menu.jsx'
 import { DateRange as DateRangePicker } from 'react-date-range'
 import { GuestDropDown } from "./guest-dropdown-menu.jsx";
 import { Calendar } from 'react-date-range';
+import { orderService } from '../services/order.service.js'
 // import { DateRangePicker } from 'react-date-range';
 
 
@@ -21,7 +22,7 @@ class _StayReserve extends React.Component {
         trip: {
             stayTime: {
                 startDate: '',
-                endDate: null,
+                endDate: '',
             },
             guests: {
                 adults: 1,
@@ -32,10 +33,15 @@ class _StayReserve extends React.Component {
             },
         },
         MenuDropDownModal: false,
+        isTripCreated: false
     }
 
     componentDidMount() {
+        const { stay } = this.props
+
+        console.log('STAY', this.props);
         this.props.loadTrips()
+        this.setState({ trip: { ...this.state.trip, stay: { address: stay.loc.address } } })
     }
 
     onRemoveTrip = stayId => {
@@ -47,7 +53,12 @@ class _StayReserve extends React.Component {
         ev.preventDefault()
         let { trip } = this.state
         tripService.save(trip)
+        this.setState({ MenuDropDownModal: false, isTripCreated: true })
 
+    }
+
+    onCreateOrder = () => {
+        orderService.createOrder()
     }
 
 
@@ -74,6 +85,7 @@ class _StayReserve extends React.Component {
             trip: { ...prevState.trip, stayTime: { startDate: ranges.selection.startDate, endDate: ranges.selection.endDate } }
             // , stayTime: { [field]: value }    
         }))
+        this.setState({ MenuDropDownModal: false })
 
         // const { startDate, endDate } = ranges.selection
         // this.setState({ startDate, endDate }, () => {
@@ -86,6 +98,8 @@ class _StayReserve extends React.Component {
 
     onHandleChange = ({ target }) => {
         const { trip } = this.state
+        const { stay } = this.props
+
         const field = target.name
         const value = target.type === 'number' ? +target.value : target.value
         if (value < 1) return
@@ -105,8 +119,9 @@ class _StayReserve extends React.Component {
     }
 
     render() {
-        const { MenuDropDownModal, trip } = this.state
+        const { MenuDropDownModal, isTripCreated, trip } = this.state
         console.log(this.state);
+        console.log('props', this.props);
         const selectionRange = {
             startDate: new Date(),
             endDate: new Date(),
@@ -128,7 +143,7 @@ class _StayReserve extends React.Component {
                         </div>
                         <div className="date-input">
                             <label onClick={this.toggleMenuDropDownModal}>CHECKOUT</label>
-                            <input placeholder="Add date"></input>
+                            <input onChange={this.handleSelect} value={trip.stayTime.endDate} placeholder="Add date"></input>
                         </div>
                     </div>
                     <div className="guest-input">
@@ -136,15 +151,24 @@ class _StayReserve extends React.Component {
                         <input type="number" value={trip.guests.adults + trip.guests.children} name="guests" onChange={this.onHandleChange} placeholder="1 guest"></input>
                     </div>
                 </div>
-
-                <div onClick={this.onAddTrip} className="btn-container">
-                    {this.getCells()}
-                    <div className="content">
-                        <button className="action-btn" >
-                            <span>Check availability</span>
-                        </button>
+                {isTripCreated ?
+                    <div onClick={this.onCreateOrder} className="btn-container">
+                        {this.getCells()}
+                        <div className="content">
+                            <button className="action-btn" >
+                                <span>Reserve</span>
+                            </button>
+                        </div>
                     </div>
-                </div>
+                    : <div onClick={this.onAddTrip} className="btn-container">
+                        {this.getCells()}
+                        <div className="content">
+                            <button className="action-btn" >
+                                <span>Check availability</span>
+                            </button>
+                        </div>
+                    </div>
+                }
             </section>
             <p className="footer"> <img src={Flag} alt="" /> <a href="#">Report this listing</a></p>
             <div className='date-range-container'>
@@ -178,9 +202,9 @@ class _StayReserve extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        stay: state.stayModule.stays,
-        trip: state.tripModule.trip,
-        filterBy: state.tripModule.filterBy,
+        // stay: state.stayModule.stays,
+        // trip: state.tripModule.trip,
+        // filterBy: state.tripModule.filterBy,
         //user: state.userModule.user
 
     }
