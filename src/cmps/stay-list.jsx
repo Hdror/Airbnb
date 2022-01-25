@@ -11,9 +11,7 @@ class _StayList extends React.Component {
 
   state = {
     filteredStays: [],
-    filterBy: {
 
-    },
 
   }
 
@@ -21,12 +19,16 @@ class _StayList extends React.Component {
     this.props.loadStays()
   }
 
+  setFiltersStays = (stays) => {
+    this.setState({ filteredStays: stays })
+  }
+
   render() {
     const { stays } = this.props
     if (!stays.length) return <h1>There are no stays to show</h1>
     return (
       <section >
-        <FilterBar stays={stays} />
+        <FilterBar setFiltersStays={this.setFiltersStays} stays={stays} />
         <div className="stay-list">
           {stays.map((stay) => (
             <StayPreview key={stay._id} stay={stay} />

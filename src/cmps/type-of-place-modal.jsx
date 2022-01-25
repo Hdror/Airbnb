@@ -3,11 +3,19 @@ import React from 'react'
 export class TypeOfPlaceModal extends React.Component {
 
 
+    state={
+        filterBy:{
+            
+        }
+    }
+
+
     render() {
+        const {handleChange}= this.props
         return <section className="modal-container flex">
             <form className="flex" action="">
                 <div className="check-box-section flex">
-                    <input className="check-box" type="checkbox" />
+                    <input className="check-box" name='entirePlace' value={this.props.filterBy.typeOfPlace.entirePlace} onChange={handleChange} type="checkbox" />
                     <div className="checkbox-desc">
                         <p> Entire place</p>
                         <p>Have a place to yourself</p>

@@ -75,13 +75,13 @@ class _AppHeader extends React.Component {
     toggleMenuDropDownModal = () => {
         this.setState({ MenuDropDownModal: !this.state.MenuDropDownModal })
     }
-get pageClass(){
-    return this.props.currPage
-}
+    get pageClass() {
+        return this.props.currPage
+    }
 
-get miniHeaderClass(){
-    return this.state.isMiniHeader ? "main-container mini-header" : "main-container"
-}
+    get miniHeaderClass() {
+        return this.state.isMiniHeader ? "main-container mini-header" : "main-container"
+    }
 
 
     // TODO - if user is host - instead of become a host
@@ -105,11 +105,11 @@ get miniHeaderClass(){
                                 <img className="menu-icon" src={menu} alt="" onClick={this.toggleMenuDropDownModal} />
                                 <img className="user-icon" src="https://randomuser.me/api/portraits/women/95.jpg" alt="" />
                             </div>
+                                {MenuDropDownModal && <MenuDropDown />}
                         </div>
                     </div>
                     <TripFilter isMiniHeader={isMiniHeader} />
                 </div>
-                {MenuDropDownModal && <MenuDropDown />}
             </header >
         )
     }

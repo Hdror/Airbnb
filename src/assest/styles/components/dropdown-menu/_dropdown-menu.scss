@@ -5,6 +5,9 @@
     border-radius: 10px;
     box-shadow: 0 0 1px 0 $clr8;
     z-index:101;
+    position: absolute;
+    right: 0;
+    top: 100%;
 
     .dropdown-container {
         padding: 0;

@@ -3,6 +3,7 @@
         "_id": "10006546",
         "name": "Brekka Retreat - New cozy cottage",
         "type": "Cottage",
+        "typeOfPlace":"Entire place",
         "avgRate": 4.93,
         "imgUrls": [
             "https://a0.muscache.com/im/pictures/850dc8db-f9cd-46e5-8ac8-3d2fafc5024f.jpg?im_w=1440",
@@ -68,6 +69,7 @@
         "_id": "10006556",
         "name": "The Peak Towers Sea View 1 Bedroom High Floor",
         "type": "Apartment",
+        "typeOfPlace":"Entire place",
         "avgRate": 4.87,
         "imgUrls": [
             "https://a0.muscache.com/im/pictures/4f468c51-9b05-4098-92a6-8b8d1e698973.jpg?im_w=1200",
@@ -132,6 +134,7 @@
         "_id": "10006666",
         "name": "Sleeping in a unique ship in the center of A'dam!",
         "type": "Boat",
+        "typeOfPlace":"Entire place",
         "avgRate": 4.93,
         "imgUrls": [
             "https://a0.muscache.com/im/pictures/98386fd4-6629-49d1-8b03-36c387c6e70b.jpg?im_w=1200",
@@ -196,6 +199,7 @@
         "_id": "10005666",
         "name": "The Culpeper Bedrooms - En-Suite Bedroom",
         "type": "Hotel",
+        "typeOfPlace":"Hotel room",
         "avgRate": 4.89,
         "imgUrls": [
             "https://a0.muscache.com/im/pictures/99e00d4d-17cc-48f6-9af5-0939ed95ab33.jpg?im_w=1200",
@@ -260,6 +264,7 @@
         "_id": "1222666",
         "name": "Come catch a Broadway Show & stay in Times Square",
         "type": "Hotel",
+        "typeOfPlace":"Hotel room",
         "avgRate": 4.69,
         "imgUrls": [
             "https://a0.muscache.com/im/pictures/miso/Hosting-49381739/original/ddca4b48-7044-4e29-8978-540dc9415df0.jpeg?im_w=1200",
@@ -324,6 +329,7 @@
         "_id": "1222726",
         "name": "Great Bedroom in Large Studio in Central Barcelona",
         "type": "Bed and breakfast",
+        "typeOfPlace":"Entire place",
         "avgRate": 4.93,
         "imgUrls": [
             "https://a0.muscache.com/im/pictures/f91c43de-a7a8-4de7-8fb0-44efa8b88d75.jpg?im_w=1200",
@@ -387,6 +393,7 @@
         "_id": "1142726",
         "name": "Cohen Cabin Waterfront Retreat",
         "type": "Cabin",
+        "typeOfPlace":"Entire place",
         "avgRate": 4.97,
         "imgUrls": [
             "https://a0.muscache.com/im/pictures/ef5a3d3a-8fce-4eab-a0e5-41a7028e7f83.jpg?im_w=1200",
