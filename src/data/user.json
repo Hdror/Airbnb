@@ -2,16 +2,16 @@
     {
         "_id": "u101",
         "fullname": "George Kopytov",
-        "imgUrl": "/img/img1.jpg",
+        "imgUrl": "https://randomuser.me/api/portraits/men/51.jpg",
         "isHost": true,
         "username": "user1",
-        "phonenumber": "secret",
+        "phonenumber": "111222333",
         "email": "cori20789@gmail.com",
         "likedStays": [
             {
-                "_id": "u102",
-                "name": "Nayah Hest",
-                "imgUrl": "https://randomuser.me/api/portraits/women/32.jpg"
+                "_id": "10006546",
+                "name": "Brekka Retreat - New cozy cottage",
+                "imgUrl": "https://a0.muscache.com/im/pictures/850dc8db-f9cd-46e5-8ac8-3d2fafc5024f.jpg?im_w=1440"
             }
         ],
         "orders": []
@@ -19,16 +19,16 @@
     {
         "_id": "u102",
         "fullname": "Nayah Hest",
-        "imgUrl": "/img/img2.jpg",
+        "imgUrl": "https://randomuser.me/api/portraits/women/32.jpg",
         "isHost": true,
         "username": "user2",
-        "phonenumber": "secret",
+        "phonenumber": "111222333",
         "email": "z3tatok@gmail.com",
         "likedStays": [
             {
-                "_id": "u102",
-                "name": "Nayah Hest",
-                "imgUrl": "https://randomuser.me/api/portraits/men/51.jpg"
+                "_id": "10006556",
+                "name": "The Peak Towers Sea View 1 Bedroom High Floor",
+                "imgUrl": "https://a0.muscache.com/im/pictures/4f468c51-9b05-4098-92a6-8b8d1e698973.jpg?im_w=1200"
             }
         ],
         "orders": []

@@ -1,7 +1,16 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
+
+// COMPONENTS
 import { login, signup, update } from '../store/user.actions.js'
 import { changePage } from '../store/page.action.js'
+
+// SVG
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFacebook } from '@fortawesome/free-brands-svg-icons'
+import { faGoogle } from '@fortawesome/free-brands-svg-icons'
+import { faApple } from '@fortawesome/free-brands-svg-icons'
+// import { faEmail } from '@fortawesome/free-brands-svg-icons'
 class _LoginSignup extends Component {
     state = {
         credentials: {
@@ -47,12 +56,12 @@ class _LoginSignup extends Component {
         try {
             let user = await this.props.login(this.state.credentials);
             if (user) {
-                this.props.history.push('/');
+                this.props.history.push('/')
             }
         } catch (err) {
-            console.log('error:', err);
+            console.log('error:', err)
         }
-        this.clearState();
+        this.clearState()
     }
 
     onSignup = (ev = null) => {
@@ -67,6 +76,7 @@ class _LoginSignup extends Component {
 
         try {
             const user = this.props.signup(this.state.credentials)
+            this.props.history.push('/')
         } catch (err) {
             console.log('error:', err)
         }
@@ -81,10 +91,9 @@ class _LoginSignup extends Component {
                 <div className='login-page-container'>
                     {!isSignup && (
                         <div className='login-form-container'>
+                            <div className="login-page-header"><h2>Log in or sign up</h2></div>
+                            <div><h3>Welcome to SomethingBnb</h3></div>
                             <form className='login-form' onSubmit={this.onLogin}>
-                                <div className='login-header'>
-                                    <h2>Log in or sign up</h2>
-                                </div>
                                 <div className='login-content'>
                                     <input
                                         className='login-form-input'
@@ -108,12 +117,20 @@ class _LoginSignup extends Component {
                                     />
                                 </div>
                                 <div className='login-form-actions'>
-                                    <small>We’ll call or text you to confirm your number. <br />Standard message and data rates apply. <span>Privacy Policy</span></small>
-                                    <div>
+                                    <small>We’ll call or text you to confirm your number. Standard message and data rates apply. <span>Privacy Policy</span></small>
+                                    <div className="signin-btn-container">
                                         <button type='submit' className='login-btn'>Login</button>
-                                        <button onClick={this.toggleSignup}>New User?</button>
-                                        <button>Forgot phonenumber?</button>
+                                        <button className='login-btn' onClick={this.toggleSignup}>New User?</button>
                                     </div>
+                                </div>
+                                <div className="social-login-container flex">
+                                    <span>or</span>
+                                </div>
+                                <div className="social-login-btns-container flex">
+                                    <div className="social-btn"><FontAwesomeIcon className="social-media-icon" icon={faFacebook} /></div>
+                                    <div className="social-btn"><FontAwesomeIcon className="social-media-icon" icon={faGoogle} /></div>
+                                    <div className="social-btn"><FontAwesomeIcon className="social-media-icon" icon={faApple} /></div>
+                                    {/* <div className="social-btn"><FontAwesomeIcon className="social-media-icon" icon={faEmail} /></div> */}
                                 </div>
                             </form>
                         </div>
@@ -121,10 +138,9 @@ class _LoginSignup extends Component {
 
                     {isSignup && (
                         <div className='login-form-container'>
+                            <div className="login-page-header"><h2>Log in or sign up</h2></div>
+                            <div><h3>Welcome to SomethingBnb</h3></div>
                             <form className='login-form' onSubmit={this.onSignup}>
-                                <div className='login-header'>
-                                    <h2>Sign up</h2>
-                                </div>
                                 <div className='login-content'>
                                     <input
                                         className='login-form-input'
@@ -156,20 +172,23 @@ class _LoginSignup extends Component {
                                         onChange={this.handleChange}
                                         required
                                     />
-                                    <button type='submit' className='login-btn'>
-                                        sign up
-                                    </button>
                                 </div>
                                 <div className='login-form-actions'>
-                                    <button onClick={this.toggleSignup}>
-                                        I already have an account
-                                    </button>
+                                    <small>We’ll call or text you to confirm your number. Standard message and data rates apply. <span>Privacy Policy</span></small>
+                                    <div className="signin-btn-container">
+                                        <button type='submit' className='login-btn'>sign up</button>
+                                        <button className='login-btn' onClick={this.toggleSignup}>Log to my account</button>
+                                    </div>
+                                </div>
+                                <div className="social-login-container">
+                                    <div className="login-divider"><span>or</span></div>
                                 </div>
                             </form>
                         </div>
-                    )}
+                    )
+                    }
                 </div>
-            </section>
+            </section >
         );
     }
 }

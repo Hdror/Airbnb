@@ -10,6 +10,8 @@ import { AppHeader } from './cmps/app-header.jsx'
 import { AppFooter } from './cmps/app-footer.jsx'
 import { LoginSignup } from './cmps/login-signup.jsx'
 
+// Screen component transparant 
+// fix position - and onclick close modal (store - isModalOpen - page)
 export class RootCmp extends React.Component {
 
   render() {

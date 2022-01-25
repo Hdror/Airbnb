@@ -2,18 +2,39 @@
     display: flex;
     justify-content: center;
 
+    h3 {
+        font-family: f-light;
+        padding: 40px 0 5px 24px;
+        font-size: rem(22px);
+    }
+
     .login-page-container {
-        border-radius: 20px;
+        width: 503;
+        border-radius: 10px;
         margin-top: 40px;
         border: 1px solid $clr7;
         display: flex;
-        padding: 36px 20px;
 
         .login-form-container {
+            .login-page-header {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 64px;
+                border-bottom: 1px solid $clr9;
+                padding: 0 24px;
+                h2 {
+                    font-size: rem(14px);
+                    font-family: f-medium;
+                }
+            }
+
             .login-form {
                 display: flex;
                 flex-direction: column;
-                gap: 20px;
+                gap: 15px;
+                padding: 24px;
+
                 .login-header {
                     padding: 15px 0;
                     font-family: f-light;
@@ -21,6 +42,32 @@
                     font-size: rem(12px);
                     display: flex;
                     justify-content: center;
+                }
+
+                .login-form-actions {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    small {
+                        font-size: rem(12px);
+                        max-width: 455px;
+                    }
+
+                    .signin-btn-container {
+                        display: flex;
+                        gap: 15px;
+                        padding: 20px 0px;
+                    }
+                }
+            }
+            .social-login-container {
+                justify-content: center;
+                span {
+                    text-decoration: none;
+                    font-family: f-medium;
+                    color: $clr2;
+                    font-size: rem(12px);
                 }
             }
         }
@@ -33,9 +80,11 @@
         .login-content {
             display: flex;
             flex-direction: column;
+            align-items: center;
+            width: 100%;
 
             .login-form-input {
-                border: 1px solid $clr7;
+                border: 1px solid $clr12;
                 width: 455px;
                 height: 20px;
                 padding: 26px 36px;
@@ -48,10 +97,8 @@
                 }
             }
         }
-
     }
-    .login-form-actions{
-        display: flex;
-        flex-direction:column;
+    .social-login-btns-container {
+        flex-direction: column;
     }
 }
