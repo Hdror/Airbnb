@@ -47,7 +47,7 @@ class _StayReserve extends React.Component {
     };
 
     onAddTrip = (ev) => {
-        console.log('Saved');
+        // console.log('Saved');
         ev.preventDefault()
         let { trip } = this.state
         console.log(trip);
@@ -73,7 +73,7 @@ class _StayReserve extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.filterBy !== this.props.filterBy) {
-            this.props.loadStays();
+            this.props.loadStays(this.props.filterBy);
         }
     }
 
@@ -83,7 +83,7 @@ class _StayReserve extends React.Component {
     }
 
     handleSelect = (ranges) => {
-        console.log(ranges);
+        // console.log(ranges);
         const { trip } = this.state
 
         this.setState((prevState) => ({

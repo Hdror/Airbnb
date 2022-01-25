@@ -16,7 +16,7 @@ class _StayList extends React.Component {
   }
 
   componentDidMount() {
-    this.props.loadStays()
+    this.props.loadStays(this.props.filterBy)
   }
 
   setFiltersStays = (stays) => {
@@ -42,7 +42,8 @@ class _StayList extends React.Component {
 
 function mapStateToProps({ stayModule }) {
   return {
-    stays: stayModule.stays
+    stays: stayModule.stays,
+    filterBy: stayModule.filterBy
   }
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import { utilService } from '../services/util.service.js'
-import { loadStays } from '../store/stay.action.js'
+// import { loadStays } from '../store/stay.action.js'
 
 import filter from '../assest/svg/general/filter.svg'
 import arrow_down from '../assest/svg/general/arrow-down.svg'
@@ -81,7 +81,7 @@ export class _FilterBar extends React.Component {
     }
 
     componentDidMount() {
-        this.props.loadStays()
+        // this.props.loadStays()
     }
 
     toggleTypeOfPlaceModal = () => {
@@ -126,7 +126,7 @@ function mapStateToProps({ stayModule }) {
 }
 
 const mapDispatchToProps = {
-    loadStays
+    // loadStays
 }
 
 export const FilterBar = connect(mapStateToProps, mapDispatchToProps)(_FilterBar)

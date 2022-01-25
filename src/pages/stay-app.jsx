@@ -1,6 +1,6 @@
 import React from 'react'
 import { StayList } from '../cmps/stay-list.jsx'
-import { stayService } from '../services/stay.service.js'
+// import { stayService } from '../services/stay.service.js'
 import { changePage } from '../store/page.action.js'
 import { connect } from 'react-redux'
 
@@ -8,7 +8,7 @@ class _StayApp extends React.Component {
   state = {}
 
   componentDidMount() {
-    stayService.query()
+    // stayService.query(this.props.filterBy)
     this.props.changePage('stay-app')
   }
 
@@ -24,12 +24,17 @@ class _StayApp extends React.Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    filterBy: state.stayModule.filterBy
+  }
+}
 
 const mapDispatchToProps = {
   changePage
 }
 
 export const StayApp = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(_StayApp)

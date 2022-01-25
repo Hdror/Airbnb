@@ -12,8 +12,14 @@ export const userService = {
 
 const STORAGE_KEY = 'users'
 const STORAGE_KEY_LOGGEDIN = 'loggedinUser'
-// localStorage.setItem(STORAGE_KEY, JSON.stringify(userJson))
+
 window.us = userService
+
+const users = userJson
+_createUsers()
+function _createUsers() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(users))
+}
 
 function login(credentials) {
   return storageService.query(STORAGE_KEY).then(users => {
