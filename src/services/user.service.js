@@ -12,8 +12,7 @@ export const userService = {
 
 const STORAGE_KEY = 'users'
 const STORAGE_KEY_LOGGEDIN = 'loggedinUser'
-localStorage.setItem(STORAGE_KEY, JSON.stringify(userJson))
-
+// localStorage.setItem(STORAGE_KEY, JSON.stringify(userJson))
 window.us = userService
 
 function login(credentials) {
@@ -21,7 +20,7 @@ function login(credentials) {
     const user = users.find(user => user.phonenumber === credentials.phonenumber &&
       user.email === credentials.email)
     if (user) {
-      sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
+      localStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
       return user
     } else {
       console.log('No user with those credentials')
@@ -45,7 +44,7 @@ function logout() {
 }
 
 function getLoggedinUser() {
-  return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN))
+  return JSON.parse(localStorage.getItem(STORAGE_KEY_LOGGEDIN))
 }
 
 function getEmptyUser() {
