@@ -1,0 +1,75 @@
+.guests-modal {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 380px;
+    padding: 16px 32px;
+    border-radius: 30px;
+    box-shadow: 0 0 1px 0 $clr8;
+    background-color: $clr5;
+    font-size: rem(16px);
+    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2%);
+    z-index: 100;
+
+    > :not(:last-child) {
+        width: 100%;
+        border-bottom: 1px solid $clr11;
+    }
+    .modal-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px;
+
+        > :last-child {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+        }
+
+        .modal-text-container {
+            display: flex;
+            flex-direction: column;
+
+            p {
+                margin: 0;
+            }
+
+            p:first-child {
+                font-size: rem(16px);
+                font-family: f-medium;
+                line-height: 20px;
+                color: $clr2;
+            }
+
+            p:last-child {
+                font-size: rem(14px);
+                font-family: f-light;
+                line-height: 18px;
+                color: $clr3;
+            }
+        }
+
+        .modal-btns-container {
+            display: flex;
+            gap: 15px;
+
+            span {
+                color: $clr2;
+            }
+
+            .modal-btn {
+                height: 32px;
+                width: 32px;
+                color: $clr8;
+                border: 1px solid $clr3;
+                align-items: center;
+                justify-content: center;
+                background-color: transparent;
+                border-radius: 50%;
+                font-size: rem(18px);
+            }
+        }
+    }
+}

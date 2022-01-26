@@ -3,11 +3,12 @@ import { connect } from "react-redux";
 import { TripFilter } from './trip-filter.jsx'
 import { MenuDropDown } from './app-dropdown-menu.jsx'
 import { DateRange as DateRangePicker } from 'react-date-range'
+import 'react-date-range/dist/styles.css' // main css file  
+import 'react-date-range/dist/theme/default.css' // theme css file
 import { GuestDropDown } from "./guest-dropdown-menu.jsx";
 import { Calendar } from 'react-date-range';
 import { orderService } from '../services/order.service.js'
 // import { DateRangePicker } from 'react-date-range';
-
 
 import { tripService } from "../services/trip.service.js"
 import { addTrip, loadTrips, removeTrip } from "../store/trip/trip.action.js"

@@ -2,6 +2,8 @@ const initialState = {
   stays: [],
   filterBy: {
     loc: '',
+    checkInDate: '',
+    checkOutDate: '',
   }
 }
 

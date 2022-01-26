@@ -127,9 +127,21 @@ class _LoginSignup extends Component {
                                     <span>or</span>
                                 </div>
                                 <div className="social-login-btns-container flex">
-                                    <div className="social-btn"><FontAwesomeIcon className="social-media-icon" icon={faFacebook} /></div>
-                                    <div className="social-btn"><FontAwesomeIcon className="social-media-icon" icon={faGoogle} /></div>
-                                    <div className="social-btn"><FontAwesomeIcon className="social-media-icon" icon={faApple} /></div>
+                                    <div className="social-btn">
+                                        <FontAwesomeIcon className="social-media-icon facebook" icon={faFacebook} />
+                                        <h4>Continue with Facebook</h4>
+                                        <span></span>
+                                    </div>
+                                    <div className="social-btn">
+                                        <FontAwesomeIcon className="social-media-icon google" icon={faGoogle} />
+                                        <h4>Continue with Google</h4>
+                                        <span></span>
+                                    </div>
+                                    <div className="social-btn">
+                                        <FontAwesomeIcon className="social-media-icon apple" icon={faApple} />
+                                        <h4>Continue with Apple</h4>
+                                        <span></span>
+                                    </div>
                                     {/* <div className="social-btn"><FontAwesomeIcon className="social-media-icon" icon={faEmail} /></div> */}
                                 </div>
                             </form>

@@ -1,3 +1,19 @@
-
-// HOME PAGE PHOTO  
+// HOME PAGE PHOTO
 // https://a0.muscache.com/im/pictures/53e51dcb-8fad-4ce8-b61c-8a7a369267bf.jpg?im_q=highq&im_w=1920
+
+.home {
+    background-color: $clr10;
+}
+.upper-fold {
+    .main-pic-container {
+        margin: auto;
+        display: flex;
+        height: 100vh;
+        background-color: $clr10;
+        border-radius: 20px;
+
+        img {
+            border-radius: 20px;
+        }
+    }
+}
