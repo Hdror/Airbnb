@@ -46,7 +46,7 @@ function remove(tripId) {
 
 // SAVE OR UPDATE TRIP
 function save(trip) {
-    console.log(trip)
+    console.log('Trip created', trip)
 
     // if (trip._id) {
     //     return storageService.put(STORAGE_KEY, trip)

@@ -12,20 +12,39 @@ export function loadOrders() {
 }
 
 
-export function addOrder(order) {
-    console.log('Checking store:', order);
-    return (dispatch) => {
-        orderService.createOrder(order)
-            .then(savedOrder => {
-                const action = { type: 'ADD_ORDER', order: savedOrder }
-                dispatch(action)
-                console.log('order added')
-            })
-            .catch(err => {
-                console.error('Cannot add order', err)
-            })
+// export function addOrder(order) {
+//     console.log('Checking store:', order);
+//     return (dispatch) => {
+//         orderService.save(order)
+//             .then(savedOrder => {
+//                 console.log(savedOrder);
+//                 const action = { type: 'ADD_ORDER', order: savedOrder }
+//                 dispatch(action)
+//                 console.log('order added')
+//             })
+//             .catch(err => {
+//                 console.error('Cannot add order', err)
+//             })
+//     }
+// }
+
+
+export function addOrder(orderToAdd) {
+
+    return async (dispatch) => {
+        try {
+            const order = await orderService.save(orderToAdd)
+            console.log(order);
+            dispatch({ type: 'ADD_ORDER', order })
+
+        } catch (err) {
+            console.log('Cannot add order', err);
+        }
     }
 }
+
+
+
 
 export function removeOrder(orderId) {
 }

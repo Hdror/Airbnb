@@ -7,8 +7,7 @@ export function orderReducer(state = initialState, action = {}) {
         case 'SET_ORDERS':
             return { ...state, orders: action.orders }
         case 'ADD_ORDER':
-            console.log(123);
-            return { ...state, orders: [...state.orders, action.order] }
+            return { ...state, orders: [...state.orders, action.order] };
         case 'REMOVE_ORDER':
             return { ...state, orders: state.orders.filter(order => order._id !== action.orderId) }
         // case 'UPDATE_ORDER':
@@ -19,6 +18,8 @@ export function orderReducer(state = initialState, action = {}) {
         //         )
         //     }
         default:
+
             return state
     }
+
 }

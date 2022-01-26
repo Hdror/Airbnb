@@ -7,7 +7,7 @@ const STORAGE_KEY = 'orderDB'
 
 export const orderService = {
     createOrder,
-    // save
+    save
 }
 
 // fs.readFile('../data/order copy.json')
@@ -21,3 +21,16 @@ function createOrder(trip) {
 // function save(order) {
 
 // }
+
+function save(order) {
+    console.log('Asynch', order);
+    // if (order._id) {
+    //     return httpService.put(`order/${order._id}`, order)
+    return order
+
+    // } else {
+
+    //     return httpService.post(`order/`, order)
+    // }
+
+}
