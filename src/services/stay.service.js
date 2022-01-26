@@ -47,7 +47,6 @@ async function query(filterBy) {
 
 // GET FILTERED STAYS
 function _filteredStays(stays, filterBy) {
-  console.log(filterBy);
   const { loc } = filterBy
   const filteredStays = stays.filter((stay) => {
     return stay.loc.city.includes(loc) || stay.loc.country.includes(loc)
@@ -67,7 +66,6 @@ function remove(stayId) {
 
 // SAVE OR UPDATE STAY
 function save(stay) {
-  console.log(stay)
   if (stay._id) {
     return storageService.put(STORAGE_KEY, stay)
   } else {

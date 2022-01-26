@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 // COMPONENT
 import { TripFilter } from './trip-filter.jsx'
 import { MenuDropDown } from './app-dropdown-menu.jsx'
-
+import {GuestsModal} from './guests-dropdown.jsx'
 // SVG
 import menu from '../assest/svg/app-header/menu.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -16,15 +16,6 @@ import { faAirbnb } from '@fortawesome/free-brands-svg-icons'
 
 class _AppHeader extends React.Component {
     state = {
-        tripCity: '',
-        tripOrder: {
-            checkIn: '',
-            checkOut: '',
-            tripGuests: {
-                adults: 0,
-                children: 0
-            }
-        },
         loggedInUser: null,
         MenuDropDownModal: false,
         isMiniHeader: false
@@ -85,11 +76,9 @@ class _AppHeader extends React.Component {
         return this.state.isMiniHeader ? "main-container mini-header" : "main-container"
     }
 
-
-    // TODO - if user is host - instead of become a host
-
     render() {
         const { MenuDropDownModal, isMiniHeader } = this.state
+        const { user } = this.props
         return (
             <header className={`${this.miniHeaderClass} ${this.pageClass}`} >
                 <div>
@@ -105,7 +94,8 @@ class _AppHeader extends React.Component {
                             <NavLink className="clean-link" to="/host">Become a host</NavLink>
                             <div className="menu-wrapper flex">
                                 <img className="menu-icon" src={menu} alt="" onClick={this.toggleMenuDropDownModal} />
-                                <img className="user-icon" src="https://randomuser.me/api/portraits/women/95.jpg" alt="" />
+                                {!user && <img className="user-icon" src="https://randomuser.me/api/portraits/women/95.jpg" alt="" />}
+                                {user &&<img className="user-icon" src={user.imgUrl} alt="" />}
                             </div>
                             {MenuDropDownModal && <MenuDropDown />}
                         </div>
@@ -120,6 +110,7 @@ class _AppHeader extends React.Component {
 function mapStateToProps(state) {
     return {
         currPage: state.pageModule.currPage,
+        user: state.userModule.user,
     }
 }
 const mapDispatchToProps = {
