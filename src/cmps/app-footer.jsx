@@ -1,7 +1,8 @@
 import React from 'react'
-import { connect } from 'react-redux'
 
 // STORE
+import { connect } from 'react-redux'
+import { loadStays } from '../store/stay.action.js'
 
 // SVG
 import globe from '../assest/svg/app-footer/globe.svg'
@@ -12,26 +13,30 @@ import { faInstagram } from '@fortawesome/free-brands-svg-icons'
 
 class _AppFooter extends React.Component {
 
+    componentDidMount() {
+    }
+
     render() {
         const { stays, user } = this.props
         return (
             <footer>
                 <section className="main-container">
-                    {!user && <div className="inspiration-container">
-                        <h2>Inspiration for future getaways</h2>
-                        <div className="inspiration">
-                            {stays.map((stay, idx) => (
-                                <div className="locations-suggestions flex" key={idx}>
-                                    <a className="clean-link" href="">
-                                        <div>
-                                            <div className="inspiraton-cities">{stay.loc.city}</div>
-                                            <div className="inspiraton-countries">{stay.loc.country}</div>
-                                        </div>
-                                    </a>
-                                </div>
-                            ))}
-                        </div>
-                    </div>}
+                    {!user &&
+                            <div className="inspiration-container">
+                            <h2>Inspiration for future getaways</h2>
+                            <div className="inspiration">
+                                {stays.map((stay, idx) => (
+                                    <div className="locations-suggestions flex" key={idx}>
+                                        <a className="clean-link" href="">
+                                            <div>
+                                                <div className="inspiraton-cities">{stay.loc.city}</div>
+                                                <div className="inspiraton-countries">{stay.loc.country}</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>}
                     <div className="border"></div>
                     <div className="footer-bottom-section">
                         <section>
@@ -116,6 +121,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
+    loadStays
 }
 
 export const AppFooter = connect(

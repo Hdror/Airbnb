@@ -15,8 +15,6 @@ class _MenuDropDown extends React.Component {
 
     componentDidMount() {
         const user = this.props.user
-        console.log(this.props)
-        console.log(user)
     }
 
     onLogout = () => {

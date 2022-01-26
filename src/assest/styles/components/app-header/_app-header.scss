@@ -17,7 +17,7 @@ header {
         background-color: black;
         color: $clr5;
 
-            .logo-container {
+        .logo-container {
             h2 {
                 color: $clr5;
             }
@@ -115,9 +115,6 @@ header {
         }
     }
 
-
-
-
     .main-header {
         justify-content: space-between;
     }
@@ -135,7 +132,7 @@ header {
         .logo {
             font-size: rem(34px);
             margin-right: 8px;
-            color:$clr1;
+            color: $clr1;
         }
     }
 
@@ -213,6 +210,11 @@ header {
             .search-input {
                 border: none;
                 font-size: rem(14px);
+                background-color: #ffffff00;
+
+                input:-internal-autofill-selected {
+                    background-color: $clr5;
+                }
             }
 
             input {
@@ -228,6 +230,7 @@ header {
                 &::-webkit-input-placeholder {
                     color: $clr8;
                     font-family: f-light;
+                    background-color: #ffffff00;
                 }
             }
 
@@ -257,6 +260,7 @@ header {
                     font-family: f-light;
                     font-size: rem(14px);
                     color: $clr8;
+                    padding: 0px 24px;
                 }
 
                 :not(:last-child) {
