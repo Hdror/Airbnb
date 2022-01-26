@@ -20,7 +20,7 @@ export class _FilterBar extends React.Component {
         isTypeOfPlaceModal: false,
         filterBy: {
             typeOfPlace: {
-               'Entire place': false,
+                'Entire place': false,
                 'Private room': false,
                 'Hotel room': false,
                 'Shared room': false
@@ -34,53 +34,51 @@ export class _FilterBar extends React.Component {
     }
 
     filterStays = () => {
-        const {filterBy } = this.state
-        const {stays } = this.props
-        let filteredStays = stays.filter(stay=>{
-            if(filterBy.typeOfPlace[stay.typeOfPlace]) 
-            return stay  
-        },()=>{  this.props.setFiltersStays(filteredStays)})
+        const { filterBy } = this.state
+        console.log(filterBy);
+        const { stays } = this.props
+        console.log(stays);
+        let filteredStays = stays.filter(stay => {
+            if (filterBy.typeOfPlace[stay.typeOfPlace] && filterBy.amenities.every((amemity) => {
+                console.log(amemity);
+                return stay.amenities.includes(amemity)
+            })) return stay
+
+
+        })
+        console.log(filteredStays);
         this.props.setFiltersStays(filteredStays)
+        this.setState({ isPriceModalOpen: false, isTypeOfPlaceModal: false })
+    }
+
+    cleanForm = () => {
+        this.setState({ filterBy: { ...this.state.filterBy, typeOfPlace: { 'Entire place': false, 'Private room': false, 'Hotel room': false, 'Shared room': false } } })
     }
 
     handleChange = (ev) => {
         const { target } = ev
-        console.log(target);
-        // if (target) {
 
         let field = target.name
         let value = target.value
         // let value = target.type === 'number' ? +target.value : target.value
         if (target.type === 'checkbox') {
             value = target.checked
-            console.log('value:', value, 'field:', field);
             this.setState({ filterBy: { ...this.state.filterBy, typeOfPlace: { ...this.state.filterBy.typeOfPlace, [field]: value } } })
-            // this.props.setFiltersStays()
-            //         switch (field) {
-            //             case 'entirePlace':
-            //                 this.setState({})
-            //                 break;
 
-            //             default:
-            //                 break;
-            //         }
-            //         let { inStock } = this.state.filterBy
-            //         if (inStock) value = false
-            //         else value = true
-            //     }
+        } else if (target.id === 'amenities') {
+            value = target.className
+            const { amenities } = this.state.filterBy
+            if (this.state.filterBy.amenities.includes(value)) {
+                this.setState({
+                    filterBy: { ...this.state.filterBy, amenities: amenities.filter((val) => { return val !== value }) }
+                }, () => {  this.filterStays() })
+            } else {
+                this.setState({ filterBy: { ...this.state.filterBy, amenities: [...amenities, value] } }, () => {  this.filterStays() })
+            }
 
-            //     this.setState((prevState) => ({ filterBy: { ...prevState.filterBy, [field]: value } }), () => { this.props.setFilterBy(this.state.filterBy) })
-
-            // } else if (ev) {
-            //     const labels = ev.map(option => option.value.toLowerCase())
-            //     this.setState(prevState => ({ filterBy: { ...prevState.filterBy, labels } }), () => { this.props.setFilterBy(this.state.filterBy) })
-            // }
         }
     }
 
-    // componentDidMount() {
-    //     this.props.loadStays()
-    // }
 
     toggleTypeOfPlaceModal = () => {
         if (this.state.isPriceModalOpen) {
@@ -100,17 +98,17 @@ export class _FilterBar extends React.Component {
 
     render() {
         const { amenities, isPriceModalOpen, isTypeOfPlaceModal, filterBy } = this.state
-        const{stays} = this.props
+        const { stays } = this.props
         return <section className="filter-bar flex">
-            <div onClick={this.togglePriceModal}>Price <img src={arrow_down} alt="" /></div>
-            <div onClick={this.toggleTypeOfPlaceModal}>Type of place <img src={arrow_down} alt="" /></div>
+            <div onClick={this.togglePriceModal}>Price <img src={arrow_down} /></div>
+            <div onClick={this.toggleTypeOfPlaceModal}>Type of place <img src={arrow_down} /></div>
             {amenities.map((amenity, idx) => {
-                return <div key={idx}>{amenity}</div>
+                return <div onClick={this.handleChange} id="amenities" className={amenity} key={idx}>{amenity}</div>
             })}
-            {isTypeOfPlaceModal && <TypeOfPlaceModal filterBy={filterBy}  filterStays={this.filterStays} handleChange={this.handleChange} />}
+            {isTypeOfPlaceModal && <TypeOfPlaceModal filterBy={filterBy} cleanForm={this.cleanForm} filterStays={this.filterStays} handleChange={this.handleChange} />}
             {isPriceModalOpen && <PriceModal handleChange={this.handleChange} stays={stays} />}
             <div>
-                <img className="filter-svg flex" src={filter} alt="" />
+                <img className="filter-svg flex" src={filter} />
                 <p>Filter</p>
             </div>
 

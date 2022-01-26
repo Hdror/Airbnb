@@ -3,19 +3,20 @@ import React from 'react'
 export class TypeOfPlaceModal extends React.Component {
 
 
-    state={
-        filterBy:{
-            
+    state = {
+        filterBy: {
+
         }
     }
-    cleanForm = () => {
-        this.setState({ filterBy: {} })
-    }
+
+    // cleanForm = () => {
+    //     this.setState({ filterBy: {} })
+    // }
 
     render() {
-        const {handleChange}= this.props
+        const { handleChange, cleanForm, filterStays } = this.props
         return <section className="modal-container flex">
-            <form className="flex"  action="">
+            <form className="flex" action="">
                 <div className="check-box-section flex">
                     <input className="check-box" name='Entire place' checked={this.props.filterBy.typeOfPlace['Entire place']} onChange={handleChange} type="checkbox" />
                     <div className="checkbox-desc">
@@ -46,10 +47,10 @@ export class TypeOfPlaceModal extends React.Component {
                 </div>
             </form>
             <div className="save-clear flex">
-                <div onClick={this.cleanForm} className="clear" >
-                    <p >Clear</p>
-                    </div>
-                <div onClick={this.props.filterStays} className="save">Save</div>
+                <div className="clear" >
+                    <p onClick={cleanForm}>Clear</p>
+                </div>
+                <div onClick={filterStays} className="save">Save</div>
             </div>
         </section>
     }

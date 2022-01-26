@@ -82,7 +82,7 @@ function formattedDates(chosenDate) {
 
 
 function getRandomAmenities() {
-  const amens = ['Wifi', 'HotTub', 'Free Parking', 'Dryer', 'Kitchen', 'Microwave', 'Refrigerator', 'Stove', 'TV', 'Oven', 'Hot Water', 'Bathroom', 'Heating', 'Elevator', 'Beachfront', 'Patio or balcony', 'Backyard', 'EV charge']
+  const amens = ['Wifi', 'HotTub', 'Free Parking', 'Dryer', 'Kitchen', 'Microwave', 'Refrigerator', 'Stove', 'TV', 'Oven', 'Hot Water', 'Heating', 'Elevator', 'Beachfront', 'Patio or balcony', 'Backyard', 'EV charge']
   
   let newAmens = []
   for (var i = 0; i < 4; i++) {

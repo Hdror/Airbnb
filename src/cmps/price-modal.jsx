@@ -23,7 +23,12 @@ export class PriceModal extends React.Component {
             <p className="price-avg">The average nightly price is ${priceAvg}</p>
             <form className="flex" action="">
 
-                <Range />
+                <Range 
+                       defaultValue={[20, 50]}
+                       min={this.state.min}
+                       max={this.state.max}
+                       onChange={this.onSliderChange}
+                />
             </form>
             <div className="save-clear flex">
                 <div className="clear" >

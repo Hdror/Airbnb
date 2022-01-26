@@ -16,7 +16,6 @@ export class StayPreview extends React.Component {
                     <div className="stay-preview-info">
                         <div className="flex align-center">
                             <img src={Star} alt="not-found" className="star" /> <span>{avgRate}</span>
-                            {/* <a className="clean-link" href="#">({reviews.length}  ·  reviews)</a> */}
                             <span className="review-count" >( {reviews.length} ) </span>
                         </div>
                         <h3>Entire rental unit · {loc.city}</h3>
