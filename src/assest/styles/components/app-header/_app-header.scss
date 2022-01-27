@@ -14,16 +14,17 @@ header {
     box-shadow: rgb(0 0 0 / 8%) 0px 1px 12px !important;
 
     &.home-page {
-        background-color: black;
-        color: $clr5;
+        background-color: rgba(0, 0, 0, 0);
+        // color: $clr5;
+        box-shadow: unset !important;
 
         .logo-container {
             h2 {
-                color: $clr5;
+                // color: $clr5;
             }
 
             .logo {
-                color: $clr5;
+                // color: $clr5;
             }
         }
     }
@@ -68,6 +69,7 @@ header {
             box-shadow: 0 0 3px 2px $clr7;
             padding: 0px 20px;
             justify-content: space-evenly;
+            height: 48px;
             border: 1px solid $clr9;
 
             &:hover {
@@ -143,7 +145,8 @@ header {
 
         a {
             display: flex;
-            font-family: f-bold;
+            font-family: f-book;
+            font-size: rem(14px);
             line-height: 1.685;
             align-items: center;
         }
