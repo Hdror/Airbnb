@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 // STORE 
-import { addTrip, loadTrips, removeTrip } from '../store/trip/trip.action.js'
 import { addOrder } from '../store/order/order.actions.js'
 
 // LIBS
@@ -40,14 +39,13 @@ class _StayReserve extends React.Component {
         },
         MenuDropDownModal: false,
         isTripCreated: false,
-        guestsModal: false
+        guestsModal: false,
+        istBtnDisabled: false
     }
 
     componentDidMount() {
         const { stay } = this.props
-        this.props.loadTrips()
-        const trip = tripService.query().then(
-            this.setState({ trip: { ...this.state.trip, stay: { address: stay.loc.address } } })
+        tripService.query().then(trip => this.setState({ trip: { ...trip, stay: { address: stay.loc.address } } })
         )
     }
 
@@ -55,9 +53,6 @@ class _StayReserve extends React.Component {
         this.setState({ guestsModal: !this.state.guestsModal })
     }
 
-    onRemoveTrip = stayId => {
-        this.props.removeTrip(stayId)
-    }
 
     onAddTrip = (ev) => {
         ev.preventDefault()
@@ -65,6 +60,14 @@ class _StayReserve extends React.Component {
         tripService.save(trip)
         this.setState({ MenuDropDownModal: false, isTripCreated: true })
 
+    }
+
+    toggleDisableBtn = () => {
+        this.setState({ istBtnDisabled: true }, () => {
+            setTimeout(() => {
+                this.setState({ istBtnDisabled: false })
+            }, 5000)
+        })
     }
 
     onCreateOrder = () => {
@@ -96,6 +99,7 @@ class _StayReserve extends React.Component {
         this.props.addOrder(orderToSave)
 
         this.clearState()
+        this.toggleDisableBtn()
 
 
     }
@@ -118,10 +122,8 @@ class _StayReserve extends React.Component {
 
     handleSelect = (ranges) => {
         const { trip } = this.state
-        // console.log(ranges.selection.startDate.getTime());
         let startDate = ranges.selection.startDate.getTime()
         let endDate = ranges.selection.endDate.getTime()
-        // console.log(startDate);
 
         this.setState((prevState) => ({
             trip: { ...prevState.trip, stayTime: { startDate: startDate, endDate: endDate } }
@@ -171,6 +173,8 @@ class _StayReserve extends React.Component {
             endDate: new Date(),
             key: 'selection',
         }
+        console.log(trip);
+
         return <main>
             <section className="order-container">
                 <div className="order-form-header">
@@ -197,7 +201,7 @@ class _StayReserve extends React.Component {
                     </div>
                 </div>
                 {isTripCreated ?
-                    <div onClick={this.onCreateOrder} className="btn-container">
+                    <div onClick={this.onCreateOrder} className={this.state.istBtnDisabled ? "btn-container disabled" : "btn-container"}>
                         {this.getCells()}
                         <div className="content">
                             <button className="action-btn" >
@@ -257,9 +261,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-    addTrip,
-    loadTrips,
-    removeTrip,
+
     addOrder,
 
 }

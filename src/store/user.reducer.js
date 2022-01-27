@@ -1,12 +1,12 @@
 import { userService } from '../services/user.service.js'
 
 const loggedInUser = userService.getLoggedinUser()
-const guest = {
-    _id: 123,
-    fullname: 'guest123'
-}
+// const guest = {
+//     _id: 123,
+//     fullname: 'guest123'
+// }
 const initialState = {
-    user: loggedInUser ? loggedInUser : guest,
+    user: loggedInUser ? loggedInUser : null,
     users: []
 }
 
