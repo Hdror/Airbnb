@@ -12,19 +12,7 @@ export const orderService = {
     query
 }
 
-// fs.readFile('../data/order copy.json')
 
-function createOrder(trip) {
-    console.log('Order created', trip);
-    // console.log('Order Data', orderData);
-    // localStorage.setItem(STORAGE_KEY, JSON.stringify(trip))
-}
-
-function loadFromStorage(key) {
-    var val = localStorage.getItem(key)
-    console.log('va', val);
-    return (val) ? JSON.parse(val) : null;
-}
 
 
 

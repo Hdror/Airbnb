@@ -117,6 +117,13 @@ span.reviews {
       --positionY: #{$i};
     }
   }
+  &.disabled {
+    pointer-events: none;
+    .content {
+      background-image: unset;
+      background-color: gray !important;
+    }
+  }
 }
 
 .cell {

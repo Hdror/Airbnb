@@ -14,6 +14,8 @@ import 'react-date-range/dist/styles.css' // main css file
 import 'react-date-range/dist/theme/default.css' // theme css file
 import { GuestsDropDown } from './guests-dropdown.jsx'
 import { tripService } from '../services/trip.service.js'
+import { utilService } from '../services/util.service.js'
+
 export class _TripFilter extends React.Component {
     state = {
         filterBy: {
@@ -22,12 +24,12 @@ export class _TripFilter extends React.Component {
         },
         trip: {
             stayTime: {
-                startDate: '',
-                endDate: '',
+                startDate: 0,
+                endDate: 0,
             },
             guests: {
-                adults: '',
-                children: ''
+                adults: 1,
+                children: 0
             },
             stay: {
                 address: ''
@@ -68,9 +70,11 @@ export class _TripFilter extends React.Component {
 
     // DATES HANDLE
     handleSelect = (ranges) => {
-        const { trip } = this.state
+        // const { trip } = this.state
+        let startDate = ranges.selection.startDate.getTime()
+        let endDate = ranges.selection.endDate.getTime()
         this.setState((prevState) => ({
-            trip: { ...prevState.trip, stayTime: { startDate: ranges.selection.startDate, endDate: ranges.selection.endDate } }
+            trip: { ...prevState.trip, stayTime: { startDate, endDate } }
         }))
         this.setState({ dateRangeModal: false })
     }
@@ -117,7 +121,7 @@ export class _TripFilter extends React.Component {
                             <input readOnly
                                 type="text"
                                 onChange={this.handleSelect}
-                                value={trip.stayTime.startDate}
+                                value={utilService.formattedDates(trip.stayTime.startDate)}
                                 name="stayTime"
                                 placeholder="Add date" />
                         </div>
@@ -127,7 +131,7 @@ export class _TripFilter extends React.Component {
                             <input readOnly
                                 type="text"
                                 onChange={this.handleSelect}
-                                value={trip.stayTime.endDate}
+                                value={utilService.formattedDates(trip.stayTime.endDate)}
                                 name="stayTime"
                                 placeholder="Add date" />
                         </div>
