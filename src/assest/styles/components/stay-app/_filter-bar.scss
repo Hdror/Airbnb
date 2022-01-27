@@ -38,6 +38,7 @@
            transition: ease-in-out 0.15s;
        }
 
+
         @for $i from 0 to 7 {
             &:nth-child(#{$i + 1}) {
                 @if $i > 3 {

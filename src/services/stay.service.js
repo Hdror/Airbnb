@@ -76,9 +76,8 @@ function save(stay) {
 }
 
 function getPriceAvg(stays) {
-  let sumPrice = 0
-  stays.map(stay => {
-    sumPrice += +stay.price
-  })
+  let sumPrice = stays.reduce((acc, stay) => {
+   return acc + stay.price
+  },0)
   return sumPrice / (stays.length)
 }

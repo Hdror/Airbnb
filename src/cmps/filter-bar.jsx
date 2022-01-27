@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import { utilService } from '../services/util.service.js'
-// import { loadStays } from '../store/stay.action.js'
+import { setFrontFilter } from '../store/stay.action.js'
 
 import filter from '../assest/svg/general/filter.svg'
 import arrow_down from '../assest/svg/general/arrow-down.svg'
@@ -27,8 +27,8 @@ export class _FilterBar extends React.Component {
             },
             amenities: [],
             price: {
-                min: 0,
-                max: Infinity
+                minPrice: 0,
+                maxPrice: Infinity
             }
         }
     }
@@ -37,14 +37,12 @@ export class _FilterBar extends React.Component {
         const { filterBy } = this.state
         console.log(filterBy);
         const { stays } = this.props
-        console.log(stays);
         let filteredStays = stays.filter(stay => {
+            console.log(stay.price, filterBy.price);
             if (filterBy.typeOfPlace[stay.typeOfPlace] && filterBy.amenities.every((amemity) => {
-                console.log(amemity);
                 return stay.amenities.includes(amemity)
-            })) return stay
-
-
+            }) && (filterBy.price.minPrice < stay.price && filterBy.price.maxPrice > stay.price))
+                return stay
         })
         console.log(filteredStays);
         this.props.setFiltersStays(filteredStays)
@@ -56,27 +54,30 @@ export class _FilterBar extends React.Component {
     }
 
     handleChange = (ev) => {
-        const { target } = ev
+        if (ev.target) {
+            const { target } = ev
+            let field = target.name
+            let value = target.value
+            if (target.type === 'checkbox') {
+                value = target.checked
+                this.setState({ filterBy: { ...this.state.filterBy, typeOfPlace: { ...this.state.filterBy.typeOfPlace, [field]: value } } })
 
-        let field = target.name
-        let value = target.value
-        // let value = target.type === 'number' ? +target.value : target.value
-        if (target.type === 'checkbox') {
-            value = target.checked
-            this.setState({ filterBy: { ...this.state.filterBy, typeOfPlace: { ...this.state.filterBy.typeOfPlace, [field]: value } } })
-
-        } else if (target.id === 'amenities') {
-            value = target.className
-            const { amenities } = this.state.filterBy
-            if (this.state.filterBy.amenities.includes(value)) {
-                this.setState({
-                    filterBy: { ...this.state.filterBy, amenities: amenities.filter((val) => { return val !== value }) }
-                }, () => {  this.filterStays() })
-            } else {
-                this.setState({ filterBy: { ...this.state.filterBy, amenities: [...amenities, value] } }, () => {  this.filterStays() })
+            } else if (target.id === 'amenities') {
+                value = target.className
+                const { amenities } = this.state.filterBy
+                if (this.state.filterBy.amenities.includes(value)) {
+                    this.setState({
+                        filterBy: { ...this.state.filterBy, amenities: amenities.filter((val) => { return val !== value }) }
+                    }, () => { this.filterStays() })
+                } else {
+                    this.setState({ filterBy: { ...this.state.filterBy, amenities: [...amenities, value] } }, () => { this.filterStays() })
+                }
             }
-
+        } else {
+            const [minPrice, maxPrice] = ev
+            this.setState({ filterBy: { ...this.state.filterBy, price: { minPrice, maxPrice } } })
         }
+
     }
 
 
@@ -103,27 +104,27 @@ export class _FilterBar extends React.Component {
             <div onClick={this.togglePriceModal}>Price <img src={arrow_down} /></div>
             <div onClick={this.toggleTypeOfPlaceModal}>Type of place <img src={arrow_down} /></div>
             {amenities.map((amenity, idx) => {
-                return <div onClick={this.handleChange} id="amenities" className={amenity} key={idx}>{amenity}</div>
+                return <div onClick={this.handleChange} id="amenities"  className={amenity} key={idx}>{amenity}</div>
             })}
             {isTypeOfPlaceModal && <TypeOfPlaceModal filterBy={filterBy} cleanForm={this.cleanForm} filterStays={this.filterStays} handleChange={this.handleChange} />}
-            {isPriceModalOpen && <PriceModal handleChange={this.handleChange} stays={stays} />}
+            {isPriceModalOpen && <PriceModal handleChange={this.handleChange} filterStays={this.filterStays} stays={stays} />}
             <div>
                 <img className="filter-svg flex" src={filter} />
                 <p>Filter</p>
             </div>
-
         </section>
     }
 }
 
 function mapStateToProps({ stayModule }) {
     return {
-        stays: stayModule.stays
+        stays: stayModule.stays,
+        filterBy: stayModule.frontFilterBy
     }
 }
 
 const mapDispatchToProps = {
-    // loadStays
+    setFrontFilter
 }
 
 export const FilterBar = connect(mapStateToProps, mapDispatchToProps)(_FilterBar)

@@ -6,35 +6,45 @@ import { stayService } from '../services/stay.service.js';
 
 
 
-
-
 export class PriceModal extends React.Component {
 
     state = {
         stays: this.props,
-        priceAvg: stayService.getPriceAvg(this.props.stays)
+        priceAvg: stayService.getPriceAvg(this.props.stays),
+        price: {
+            minPrice: 0,
+            maxPrice: Infinity
+        }
     }
 
+    onSliderChange = (values) => {
+        // console.log(values);
+        const [minPrice, maxPrice] = values
+        this.setState({ price: {minPrice, maxPrice} }, () => { console.log(this.state.price)})
+    }
 
+    onSave = () => {
+        this.props.handleChange(this.state.price, true)
+    }
 
     render() {
-        const {stays,priceAvg} = this.state
+        const { priceAvg } = this.state
         return <section className="price-modal-container flex">
             <p className="price-avg">The average nightly price is ${priceAvg}</p>
-            <form className="flex" action="">
+            <form className="flex" >
 
-                <Range 
-                       defaultValue={[20, 50]}
-                       min={this.state.min}
-                       max={this.state.max}
-                       onChange={this.onSliderChange}
+                <Range
+                    defaultValue={[0, 100]}
+                    min={0}
+                    max={1000}
+                    onChange={ this.props.handleChange}
                 />
             </form>
             <div className="save-clear flex">
                 <div className="clear" >
                     <p >Clear</p>
                 </div>
-                <div className="save">Save</div>
+                <div onClick={this.props.filterStays} className="save">Save</div>
             </div>
         </section>
     }

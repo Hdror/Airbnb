@@ -13,7 +13,7 @@ ReactDOM.render(
       <Router>
         <RootCmp />
       </Router>
-    </Provider>
-  </React.StrictMode>,
+    </Provider>,
+  // </React.StrictMode>,
   document.getElementById('root')
 )

@@ -4,12 +4,28 @@ const initialState = {
     loc: '',
     checkInDate: '',
     checkOutDate: '',
+  },
+  frontFilterBy:
+  {
+    typeOfPlace: {
+      'Entire place': false,
+      'Private room': false,
+      'Hotel room': false,
+      'Shared room': false
+    },
+    amenities: [],
+    price: {
+      minPrice: 0,
+      maxPrice: 1000
+    }
   }
 }
 
 export function stayReducer(state = initialState, action) {
   let newState = state
+  console.log(action);
   switch (action.type) {
+
     case 'SET_STAYS':
       newState = { ...state, stays: [...action.stays] }
       break
@@ -28,6 +44,9 @@ export function stayReducer(state = initialState, action) {
       break
     case 'SET_FILTER':
       newState = { ...state, filterBy: { ...action.filterBy } }
+      break
+    case 'SET_FRONT_FILTER':
+      newState = { ...state, frontFilterBy: { ...action.FilterBy } }
       break
   }
   return newState

@@ -23,3 +23,11 @@ export function setFilter(filterBy) {
     dispatch({ type: 'SET_FILTER', filterBy })
   }
 }
+
+export function setFrontFilter(filterBy){
+  return (dispatch) => {
+    const action = { type: 'SET_FRONT_FILTER', filterBy }
+    
+    dispatch(action)
+  }
+}
