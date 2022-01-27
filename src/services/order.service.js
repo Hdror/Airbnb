@@ -1,8 +1,8 @@
 import { storageService } from './async.storage.js'
-import jsonorders from '../data/order.json'
-// const fs = require('fs')
+// import jsonorders from '../data/order.json'
+// // const fs = require('fs')
 
-// const orderData = require('../data/order copy.json')
+// // const orderData = require('../data/order copy.json')
 
 const STORAGE_KEY = 'orderDB'
 
@@ -11,8 +11,6 @@ export const orderService = {
     save,
     query
 }
-
-// fs.readFile('../data/order copy.json')
 
 function createOrder(trip) {
     console.log('Order created', trip);

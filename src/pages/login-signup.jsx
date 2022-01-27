@@ -50,8 +50,8 @@ class _LoginSignup extends Component {
         this.setState({ clearTemplate })
     }
 
-    onLogin = async (ev = null) => {
-        if (ev) ev.preventDefault()
+    onLogin = async (ev) => {
+        ev.preventDefault()
         if (!this.state.credentials.email || !this.state.credentials.phonenumber) return
         try {
             let user = await this.props.login(this.state.credentials);
@@ -64,18 +64,17 @@ class _LoginSignup extends Component {
         this.clearState()
     }
 
-    onSignup = (ev = null) => {
-
+    onSignup = (ev) => {
         if (
             !this.state.credentials.email ||
             !this.state.credentials.phonenumber ||
             !this.state.credentials.fullname
         ) return
 
-        if (ev) ev.preventDefault()
+        ev.preventDefault()
 
         try {
-            const user = this.props.signup(this.state.credentials)
+            this.props.signup(this.state.credentials)
             this.props.history.push('/')
         } catch (err) {
             console.log('error:', err)

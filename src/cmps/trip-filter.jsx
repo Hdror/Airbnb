@@ -26,8 +26,8 @@ export class _TripFilter extends React.Component {
                 endDate: '',
             },
             guests: {
-                adults: '',
-                children: ''
+                adults: 1,
+                children: 0
             },
             stay: {
                 address: ''
