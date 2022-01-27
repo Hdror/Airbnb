@@ -4,7 +4,7 @@ export function loadOrders() {
     return (dispatch, getState) => {
         const { orderModule } = getState()
         const { filterBy } = orderModule
-        orderService.query(filterBy).then((orders) => {
+        orderService.query().then((orders) => {
             const action = { type: 'SET_ORDERS', orders }
             dispatch(action)
         })
@@ -29,13 +29,13 @@ export function loadOrders() {
 // }
 
 
-export function addOrder(orderToAdd) {
+export function addOrder(order) {
 
     return async (dispatch) => {
         try {
-            const order = await orderService.save(orderToAdd)
-            console.log(order);
-            dispatch({ type: 'ADD_ORDER', order })
+            const orderToAdd = await orderService.save(order)
+            console.log(orderToAdd);
+            dispatch({ type: 'ADD_ORDER', order: orderToAdd })
 
         } catch (err) {
             console.log('Cannot add order', err);
