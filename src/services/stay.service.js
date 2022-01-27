@@ -1,5 +1,6 @@
 import { storageService } from './async.storage.js'
 import jsonStays from '../data/stay.json'
+import { httpService } from './http.service.js'
 
 import Wifi from "../assest/svg/amenities/Wifi.svg"
 import Heating from "../assest/svg/amenities/Heating.svg"
@@ -32,6 +33,7 @@ export const stayService = {
 
 }
 
+
 const stays = jsonStays
 _createStays()
 // CREATE STAYS
@@ -41,7 +43,8 @@ function _createStays() {
 
 // GET STAYS
 async function query(filterBy) {
-  const stays = await storageService.query(STORAGE_KEY)
+  // const stays = await storageService.query(STORAGE_KEY)
+  const stays = await httpService.get('stay', filterBy)
   const filteredStays = _filteredStays(stays, filterBy)
   return filteredStays
 }
@@ -57,27 +60,29 @@ function _filteredStays(stays, filterBy) {
 
 // GET BY ID
 function getById(stayId) {
-  return storageService.get(STORAGE_KEY, stayId)
+  // return storageService.get(STORAGE_KEY, stayId)
+  return httpService.get(`stay/${stayId}`)
 }
 
 // REMOVE
 function remove(stayId) {
-  return storageService.remove(STORAGE_KEY, stayId)
+  return httpService.remove(`stay/${stayId}`)
+  // return storageService.remove(STORAGE_KEY, stayId)
 }
 
 // SAVE OR UPDATE STAY
 function save(stay) {
   if (stay._id) {
-    return storageService.put(STORAGE_KEY, stay)
+    return httpService.put(`stay/${stay._id}`, stay)
   } else {
-    return storageService.post(STORAGE_KEY, stay)
+    return httpService.post('stay', stay)
   }
 }
 
 // reduce / foreach
 function getPriceAvg(stays) {
   let sumPrice = stays.reduce((acc, stay) => {
-   return acc + stay.price
-  },0)
+    return acc + stay.price
+  }, 0)
   return sumPrice / (stays.length)
 }
