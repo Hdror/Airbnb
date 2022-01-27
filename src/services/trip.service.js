@@ -1,15 +1,10 @@
 
-
 // _getEmptyTrip()
 // updateTrip()
 // query() - localStorage to get trip
 // clearTrip() after trip -> order
 
 import { storageService } from './async.storage.js'
-// import jsontrips from '../data/trip.json'
-
-
-// import { userService } from './user.service.js'
 
 const STORAGE_KEY = 'tripDB'
 
@@ -30,7 +25,7 @@ function _createTrips() {
 }
 
 // GET TRIPS
-function query(filterBy = {}) {
+function query() {
     return storageService.query(STORAGE_KEY)
 }
 
@@ -46,15 +41,6 @@ function remove(tripId) {
 
 // SAVE OR UPDATE TRIP
 function save(trip) {
-    console.log('Trip created', trip)
-
-    // if (trip._id) {
-    //     return storageService.put(STORAGE_KEY, trip)
-    // } else {
-    //     // trip.owner = userService.getLoggedinUser()
-    //     // console.log(trip.owner, trip)
-    // return storageService.post(STORAGE_KEY, trip)
-    // }
     localStorage.setItem(STORAGE_KEY, JSON.stringify(trip))
 }
 

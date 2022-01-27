@@ -1,38 +1,33 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react"
+import { Link } from "react-router-dom"
 import { connect } from 'react-redux'
 
-import Enhanced_clean from '../assest/svg/perks/Enhanced_clean.svg'
-import Entire_home from '../assest/svg/perks/Entire_home.svg'
-import Great_location from '../assest/svg/perks/Great_location.svg'
-import Self_check_in from '../assest/svg/perks/Self_check_in.svg'
 
-
-import Star from '../assest/svg/app-detials/star.svg'
-import Save from '../assest/svg/app-detials/save.svg'
-import Share from '../assest/svg/app-detials/Share.svg'
 
 
 import { stayService } from '../services/stay.service.js'
 import { StayMap } from '../cmps/stay-map.jsx'
-import { StayReserve } from '../cmps/stay-reserve.jsx'
+import { StayReserve } from "../cmps/stay-reserve.jsx"
 import { changePage } from '../store/page.action.js'
 
-class _StayDetails extends React.Component {
+
+
+
+class _BackOffice extends React.Component {
     state = {
         stay: null
     }
 
     componentDidMount() {
-        window.scrollTo(0, 0)
-        this.props.changePage('stay-details')
-        const { stayId } = this.props.match.params
-        stayService.getById(stayId)
-            .then(stay => { this.setState({ stay }) })
+        // this.props.changePage('stay-details')
+        // const { stayId } = this.props.match.params
+        // stayService.getById(stayId)
+        //     .then(stay => { this.setState({ stay }) })
     }
 
+
     render() {
-        if (!this.state.stay) return 'LOADING'
+        if (!this.state.stay) return "LOADING"
         const { stay } = this.state
         // console.log(stay);
         const { name, avgRate, reviews, loc, imgUrls, facilites, capacity, host, summary, type, amenities } = stay
@@ -43,16 +38,17 @@ class _StayDetails extends React.Component {
                 <div className="stay-summary">
                     {/* <div></div> */}
                     <h2>{name}</h2>
-                    <span className="stay-summary-address flex"><img src={Star} alt="" />{avgRate} · <a href="#">{numOfReviews} Reviews</a> · <span>{loc.address}</span><span className="summary-share-save"><img src={Share} alt="" /> <a href="#">Share</a><img src={Save} alt="" /><a href="#">Save</a></span></span>
+                    <span className="stay-summary-address flex">
+                        <span><input type="text" placeholder="Enter stay name here" /></span><span className="summary-share-save"></span></span>
                 </div>
                 {/* <div>{name}</div> */}
-                <div className="image-container">
+                {/* <div className="image-container">
                     {imgUrls.map((imgUrl, idx) => {
                         return <div key={idx} className="img">
                             <img src={imgUrl} alt="Not Found" />
                         </div>
                     })}
-                </div>
+                </div> */}
                 <div className="stay-info-container">
                     <div className="info flex">
                         <div className="stay-container flex">
@@ -60,15 +56,15 @@ class _StayDetails extends React.Component {
                                 <section className="stay-info flex">
                                     <h1>Entire {type} hosted by {host.fullname}</h1>
                                     <ul className="clean-list">
-                                        <li>{capacity} guests</li><span>·</span>
-                                        <li>{type}</li><span>·</span>
-                                        <li>{facilites.bedrooms} bedrooms</li><span>·</span>
-                                        <li>{facilites.beds} {txt}</li>
+                                        <li><input type="number" placeholder="Enter guest capacity" /></li><span>·</span>
+                                        <li><input type="text" placeholder="Enter type of stay" /></li><span>·</span>
+                                        <li><input type="text" placeholder="Enter number of bedrooms" /></li><span>·</span>
+                                        <li><input type="text" placeholder="Enter number of beds" /></li>
                                     </ul>
                                 </section>
-                                <div className="host-portrait">
+                                {/* <div className="host-portrait">
                                     <img src={host.imgUrl} alt="photo needed" />
-                                </div>
+                                </div> */}
                             </div>
 
                         </div>
@@ -96,7 +92,6 @@ class _StayDetails extends React.Component {
                     </div>
                 </div>
                 <div>
-                    <StayMap loc={loc} />
                 </div>
             </main>
         )
@@ -111,4 +106,4 @@ const mapDispatchToProps = {
 export const StayDetails = connect(
     null,
     mapDispatchToProps
-)(_StayDetails)
+)(_BackOffice)

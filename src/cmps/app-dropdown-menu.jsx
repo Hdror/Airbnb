@@ -20,7 +20,7 @@ class _MenuDropDown extends React.Component {
     onLogout = () => {
         this.props.logout()
         this.setState({ isLoggedIn: false })
-      }
+    }
 
     render() {
         const { user } = this.props
@@ -30,6 +30,7 @@ class _MenuDropDown extends React.Component {
                     {!user && < Link className="clean-link clean-list" to="/login"><li>Log in</li></Link>}
                     {!user && <Link className="clean-link clean-list" to="/login"><li>Sign up</li></Link>}
                     <Link className="clean-link clean-list" to="/login"><li>Host your home</li></Link>
+                    <Link className="clean-link clean-list" to="/orders"><li>Orders</li></Link>
                     <Link className="clean-link clean-list" to="/login"><li>Help</li></Link>
                     {user && <Link className="clean-link clean-list" to="/"><li onClick={this.onLogout}>Log out</li></Link>}
                 </ul>

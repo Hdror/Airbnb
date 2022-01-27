@@ -1,21 +1,27 @@
-import React from "react";
-import { connect } from "react-redux";
-import { TripFilter } from './trip-filter.jsx'
-import { MenuDropDown } from './app-dropdown-menu.jsx'
+import React from 'react'
+import { connect } from 'react-redux'
+
+// STORE 
+import { addTrip, loadTrips, removeTrip } from '../store/trip/trip.action.js'
+import { addOrder } from '../store/order/order.actions.js'
+
+// LIBS
 import { DateRange as DateRangePicker } from 'react-date-range'
 import 'react-date-range/dist/styles.css' // main css file  
 import 'react-date-range/dist/theme/default.css' // theme css file
-import { GuestDropDown } from "./guest-dropdown-menu.jsx";
-import { Calendar } from 'react-date-range';
+// import { Calendar } from 'react-date-range';
+
+// SERVICES
 import { orderService } from '../services/order.service.js'
+import { tripService } from '../services/trip.service.js'
+import { utilService } from "../services/util.service.js";
 
-import { tripService } from "../services/trip.service.js"
-import { addTrip, loadTrips, removeTrip } from "../store/trip/trip.action.js"
-import { addOrder } from "../store/order/order.actions.js"
+// COMPONENTS
+import { GuestsDropDown } from './guests-dropdown.jsx'
 
-
-import Star from "../assest/svg/app-detials/star.svg"
-import Flag from "../assest/svg/app-detials/flag.svg"
+// SVG
+import Star from '../assest/svg/app-detials/star.svg'
+import Flag from '../assest/svg/app-detials/flag.svg'
 
 class _StayReserve extends React.Component {
     state = {
@@ -33,18 +39,25 @@ class _StayReserve extends React.Component {
             },
         },
         MenuDropDownModal: false,
-        isTripCreated: false
+        isTripCreated: false,
+        guestsModal: false
     }
 
     componentDidMount() {
         const { stay } = this.props
         this.props.loadTrips()
-        this.setState({ trip: { ...this.state.trip, stay: { address: stay.loc.address } } })
+        const trip = tripService.query().then(
+            this.setState({ trip: { ...this.state.trip, stay: { address: stay.loc.address } } })
+        )
+    }
+
+    toggleGuestsModal = () => {
+        this.setState({ guestsModal: !this.state.guestsModal })
     }
 
     onRemoveTrip = stayId => {
-        this.props.removeTrip(stayId);
-    };
+        this.props.removeTrip(stayId)
+    }
 
     onAddTrip = (ev) => {
         ev.preventDefault()
@@ -56,19 +69,45 @@ class _StayReserve extends React.Component {
 
     onCreateOrder = () => {
         const { trip } = this.state
-        orderService.createOrder(trip)
-        this.props.addOrder(trip)
+        // orderService.save(trip)
+        const orderToSave = {
+            hostId: this.props.stay.host._id,
+            createdAt: Date.now(),
+            buyer: {
+                _id: this.props.user._id,
+                fullname: this.props.user.fullname,
+
+            },
+            totalPrice: this.props.stay.price * (trip.stayTime.endDate - trip.stayTime.startDate) / 1000 / 60 / 60 / 24,
+            startDate: trip.stayTime.startDate,
+            endDate: trip.stayTime.endDate,
+            guests: trip.guests,
+            stay: {
+                _id: this.props.stay._id,
+                name: this.props.stay.name,
+                price: this.props.stay.price
+
+            },
+            image: this.props.stay.imgUrls[0],
+            status: 'pending'
+
+
+        }
+        this.props.addOrder(orderToSave)
+
         this.clearState()
+
+
     }
 
 
     onSetFilterBy = (filterBy) => {
-        this.props.setFilterBy(filterBy);
+        this.props.setFilterBy(filterBy)
     }
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.filterBy !== this.props.filterBy) {
-            this.props.loadStays(this.props.filterBy);
+            this.props.loadStays(this.props.filterBy)
         }
     }
 
@@ -79,9 +118,13 @@ class _StayReserve extends React.Component {
 
     handleSelect = (ranges) => {
         const { trip } = this.state
+        // console.log(ranges.selection.startDate.getTime());
+        let startDate = ranges.selection.startDate.getTime()
+        let endDate = ranges.selection.endDate.getTime()
+        // console.log(startDate);
 
         this.setState((prevState) => ({
-            trip: { ...prevState.trip, stayTime: { startDate: ranges.selection.startDate, endDate: ranges.selection.endDate } }
+            trip: { ...prevState.trip, stayTime: { startDate: startDate, endDate: endDate } }
         }))
         this.setState({ MenuDropDownModal: false })
 
@@ -91,14 +134,20 @@ class _StayReserve extends React.Component {
         this.setState({ trip: { stayTime: { startDate: '', endDate: '', }, guests: { adults: 1, children: 0 }, stay: { address: '' } } })
     }
 
-
+    updateNumOfGuests = (diff, type, ev) => {
+        ev.preventDefault()
+        ev.stopPropagation()
+        const { guests } = this.state.trip
+        if (guests[type] + diff < 0) return
+        guests[type] += diff
+        this.setState((prevState) => ({
+            trip: { ...prevState.trip, guests },
+        }))
+    }
 
 
     onHandleChange = ({ target }) => {
         const { trip } = this.state
-        const { stay } = this.props
-
-        const field = target.name
         const value = target.type === 'number' ? +target.value : target.value
         if (value < 1) return
         this.setState((prevState) => ({
@@ -115,7 +164,8 @@ class _StayReserve extends React.Component {
     }
 
     render() {
-        const { MenuDropDownModal, isTripCreated, trip } = this.state
+        const { MenuDropDownModal, isTripCreated, trip, guestsModal } = this.state
+        const { guests } = trip
         const selectionRange = {
             startDate: new Date(),
             endDate: new Date(),
@@ -132,17 +182,18 @@ class _StayReserve extends React.Component {
                     <div className="date-picker">
                         <div className="date-input">
                             <label onClick={this.toggleMenuDropDownModal}>CHECK-IN</label>
-                            <input onChange={this.handleSelect} value={trip.stayTime.startDate} name="stayTime" placeholder="Add date"></input>
-
+                            <input onChange={this.handleSelect} value={utilService.formattedDates(trip.stayTime.startDate)} name="stayTime" placeholder="Add date"></input>
+                            <div>{trip.startDate}</div>
                         </div>
                         <div className="date-input">
                             <label onClick={this.toggleMenuDropDownModal}>CHECKOUT</label>
-                            <input onChange={this.handleSelect} value={trip.stayTime.endDate} placeholder="Add date"></input>
+                            <input onChange={this.handleSelect} value={utilService.formattedDates(trip.stayTime.endDate)} name="stayTime" placeholder="Add date"></input>
+                            <div>{trip.endDate}</div>
                         </div>
                     </div>
-                    <div className="guest-input">
+                    <div className="guest-input" onClick={this.toggleGuestsModal}>
                         <label>GUESTS</label>
-                        <input type="number" value={trip.guests.adults + trip.guests.children} name="guests" onChange={this.onHandleChange} placeholder="1 guest"></input>
+                        <input readOnly value={trip.guests.adults + trip.guests.children} name="guests" onChange={this.onHandleChange} placeholder="1 guest"></input>
                     </div>
                 </div>
                 {isTripCreated ?
@@ -172,16 +223,20 @@ class _StayReserve extends React.Component {
                     placeholder="Default"
                     ranges={[selectionRange]}
                     months={2}
-                    direction='horizontal'
+                    direction="horizontal"
 
                     date={new Date()}
                     onChange={this.handleSelect}
                     moveRangeOnFirstSelection={true}
                     hasCustomRendering={false}
-
-
                 />}
             </div>
+            {guestsModal && <div>
+                <GuestsDropDown
+                    guests={guests}
+                    updateNumOfGuests={this.updateNumOfGuests} />
+            </div>}
+
 
 
         </main>
@@ -193,9 +248,9 @@ function mapStateToProps(state) {
     return {
         // stay: state.stayModule.stays,
         // trip: state.tripModule.trip,
-        order: state.orderModule.order
+        order: state.orderModule.order,
         // filterBy: state.tripModule.filterBy,
-        //user: state.userModule.user
+        user: state.userModule.user
 
 
     }

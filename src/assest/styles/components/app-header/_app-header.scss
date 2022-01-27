@@ -187,7 +187,8 @@ header {
 
         .trip-location-selector {
             width: 270px;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: space-evenly;
             align-items: center;
             padding: 14px 0;
 
@@ -207,9 +208,12 @@ header {
 
         form {
             display: flex;
+            
             .search-input {
                 border: none;
                 font-size: rem(14px);
+                font-family: f-light;
+                color: $clr8;
                 background-color: #ffffff00;
 
                 input:-internal-autofill-selected {
@@ -259,6 +263,7 @@ header {
                 > :last-child {
                     font-family: f-light;
                     font-size: rem(14px);
+                    border-left: 1px solid #ddd;
                     color: $clr8;
                     padding: 0px 24px;
                 }

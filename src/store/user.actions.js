@@ -1,4 +1,5 @@
 import { userService } from '../services/user.service.js'
+import { orderService } from '../services/order.service.js'
 
 
 // add update user 
@@ -53,10 +54,7 @@ export function getCurrentUser() {
     return async (dispatch) => {
         try {
             const user = await userService.getLoggedinUser()
-            dispatch({
-                type: 'SET_USER',
-                user,
-            })
+            dispatch({ type: 'SET_USER', user })
             return user
         } catch (err) {
             console.log('No user found', err)
@@ -68,10 +66,7 @@ export function update(credentials) {
     return async (dispatch) => {
         try {
             const user = await userService.update(credentials)
-            dispatch({
-                type: 'SET_USER',
-                user,
-            })
+            dispatch({ type: 'SET_USER', user })
             return user
         } catch (err) {
             console.log('Cannot signup', err)
@@ -85,10 +80,7 @@ export function addToLikedStays(stayId) {
             const user = userService.getLoggedinUser()
             user.likedStays.push(stayId)
             await userService.update(user)
-            dispatch({
-                type: 'ADD_USER_LIKED_STAY',
-                user,
-            })
+            dispatch({ type: 'ADD_USER_LIKED_STAY', user })
         } catch (err) {
             console.log('Cannot save stay', err)
         }
@@ -103,10 +95,7 @@ export function removeFromLikedStays(stayId) {
                 (likedStay) => likedStay !== stayId
             )
             await userService.update({ ...user, likedStays })
-            dispatch({
-                type: 'REMOVE_USER_LIKED_STAY',
-                user,
-            })
+            dispatch({ type: 'REMOVE_USER_LIKED_STAY', user })
         } catch (err) {
             console.log('Cannot save stay', err)
         }
@@ -122,6 +111,33 @@ export function loadUserLikedStays() {
             return likedStays
         } catch (err) {
             console.log('UserActions: err in loadStaysFromUser', err)
+        }
+    }
+}
+
+export function loadOrdersFromUser() {
+    return async (dispatch) => {
+      try {
+        const user = await userService.getLoggedinUser()
+        const orders = await orderService.getOrders(user._id)
+        dispatch({ type: 'LOAD_ORDERS_FROM_USER', orders })
+        return orders
+      } catch (err) {
+        console.log('UserActions: err in loadOrdersFromUser', err)
+      }
+    }
+  }
+
+export function removeOrderFromUser(orderId) {
+    return async (dispatch) => {
+        try {
+            await orderService.remove(orderId)
+            return dispatch({
+                type: 'REMOVE_ORDER_FROM_USER',
+                orderId,
+            })
+        } catch (err) {
+            console.log('Cannot remove order', err)
         }
     }
 }

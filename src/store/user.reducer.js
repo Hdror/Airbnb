@@ -1,8 +1,13 @@
 import { userService } from '../services/user.service.js'
 
 const loggedInUser = userService.getLoggedinUser()
+const guest = {
+    _id: 123,
+    fullname: 'guest123'
+}
 const initialState = {
-    user: loggedInUser ? loggedInUser : null,
+    user: loggedInUser ? loggedInUser : guest,
+    users: []
 }
 
 
@@ -26,6 +31,15 @@ export function userReducer(state = initialState, action) {
             break
         case 'LOAD_USER_LIKED_STAYS':
             newState = { ...state, savedStays: [...action.stays] }
+            break
+        case 'LOAD_USER_STAYS':
+            newState = { ...state, savedStays: [...action.stays] }
+            break
+        case 'REMOVE_ORDER_FROM_USER':
+            newState = {
+                ...state,
+                orders: state.orders.filter((order) => order._id !== action.orderId),
+            }
             break
 
     }

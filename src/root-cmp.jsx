@@ -8,7 +8,8 @@ import { StayApp } from './pages/stay-app.jsx'
 import { StayDetails } from './pages/stay-details.jsx'
 import { AppHeader } from './cmps/app-header.jsx'
 import { AppFooter } from './cmps/app-footer.jsx'
-import { LoginSignup } from './cmps/login-signup.jsx'
+import { LoginSignup } from './pages/login-signup.jsx'
+import { Orders } from './pages/order.jsx'
 
 // Screen component transparant 
 // fix position - and onclick close modal (store - isModalOpen - page)
@@ -24,6 +25,7 @@ export class RootCmp extends React.Component {
           {/* <Route component={StayEdit} path="/stay-edit/" /> */}
           <Route component={StayApp} path="/stay" />
           <Route component={LoginSignup} path="/login" />
+          <Route component={Orders} path="/orders" />
           <Route component={HomePage} exact path="/" />
         </Switch>
         <AppFooter />

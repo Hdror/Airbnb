@@ -13,6 +13,7 @@ import { DateRange as DateRangePicker } from 'react-date-range'
 import 'react-date-range/dist/styles.css' // main css file  
 import 'react-date-range/dist/theme/default.css' // theme css file
 import { GuestsDropDown } from './guests-dropdown.jsx'
+import { tripService } from '../services/trip.service.js'
 export class _TripFilter extends React.Component {
     state = {
         filterBy: {
@@ -25,8 +26,8 @@ export class _TripFilter extends React.Component {
                 endDate: '',
             },
             guests: {
-                adults: 1,
-                children: 0
+                adults: '',
+                children: ''
             },
             stay: {
                 address: ''
@@ -40,7 +41,7 @@ export class _TripFilter extends React.Component {
         this.setState({ dateRangeModal: !this.state.dateRangeModal })
     }
 
-    toggleguestsModal = () => {
+    toggleGuestsModal = () => {
         this.setState({ guestsModal: !this.state.guestsModal })
     }
 
@@ -53,13 +54,6 @@ export class _TripFilter extends React.Component {
         }))
     }
 
-    convertDates = (str) => {
-        var date = new Date(str),
-            mnth = ("0" + (date.getMonth() + 1)).slice(-2),
-            day = ("0" + date.getDate()).slice(-2);
-        return [date.getFullYear(), mnth, day].join("-");
-    }
-
     // GUESTS HANDLE
     updateNumOfGuests = (diff, type, ev) => {
         ev.preventDefault()
@@ -68,13 +62,12 @@ export class _TripFilter extends React.Component {
         if (guests[type] + diff < 0) return
         guests[type] += diff
         this.setState((prevState) => ({
-            newOrder: { ...prevState.newOrder, guests },
+            trip: { ...prevState.trip, guests },
         }))
     }
 
     // DATES HANDLE
     handleSelect = (ranges) => {
-        console.log(ranges);
         const { trip } = this.state
         this.setState((prevState) => ({
             trip: { ...prevState.trip, stayTime: { startDate: ranges.selection.startDate, endDate: ranges.selection.endDate } }
@@ -84,11 +77,11 @@ export class _TripFilter extends React.Component {
 
     // FILTER BY ADDRESS
     onSetStayFilter = (ev) => {
-        console.log(this.state.trip);
         ev.preventDefault()
-        const { filterBy } = this.state
+        const { filterBy, trip } = this.state
         this.props.setFilter(filterBy)
         this.props.loadStays(filterBy)
+        tripService.save(trip)
     }
 
     render() {
@@ -100,23 +93,23 @@ export class _TripFilter extends React.Component {
             endDate: new Date(),
             key: 'selection',
         }
+
         return (
             <div className="trip-build-container flex">
                 {!isMiniHeader && <form action="">
                     <div className="trip-location-selector flex">
-                        <label htmlFor="trip-location">
-                            <div className="trip-destination flex"><span>Location</span>
-                                <input className="search-input"
-                                    onChange={this.handleSearchChanges}
-                                    type="text"
-                                    aria-autocomplete="none"
-                                    autoCorrect="off"
-                                    name="loc"
-                                    value={this.state.filterBy.loc}
-                                    placeholder="Where are you going?"
-                                />
-                            </div>
-                        </label>
+                        <div className="trip-destination flex">
+                            <div className="location-indicator">Location</div>
+                            <input className="search-input"
+                                onChange={this.handleSearchChanges}
+                                type="text"
+                                aria-autocomplete="none"
+                                autoCorrect="off"
+                                name="loc"
+                                value={this.state.filterBy.loc}
+                                placeholder="Where are you going?"
+                            />
+                        </div>
                     </div>
                     <div className="flex">
                         <div className="trip-selections trip-dates-filter flex" onClick={this.toggleDateRange}>
@@ -140,9 +133,19 @@ export class _TripFilter extends React.Component {
                         </div>
 
                         <div className="search-btn-container flex">
-                            <div onClick={this.toggleguestsModal} className="trip-selections trip-dates-filter flex">
+                            <div onClick={this.toggleGuestsModal} className="trip-selections trip-dates-filter flex">
                                 <div>Guests</div>
-                                <div>Add guests</div>
+                                <div>
+                                    <input
+                                        readOnly
+                                        className="search-input"
+                                        type="text"
+                                        onChange={this.handleSelect}
+                                        name="guests"
+                                        value={`Adults ${trip.guests.adults}, Childern ${trip.guests.children}`}
+                                        placeholder="Add guests"
+                                    />
+                                </div>
                             </div>
 
                             <div className="search-btn flex" onClick={this.onSetStayFilter}>
@@ -193,6 +196,7 @@ function mapStateToProps(state) {
 
     }
 }
+
 const mapDispatchToProps = {
     loadStays,
     setFilter

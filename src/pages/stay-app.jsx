@@ -8,18 +8,15 @@ class _StayApp extends React.Component {
   state = {}
 
   componentDidMount() {
-    // stayService.query(this.props.filterBy)
+    window.scrollTo(0, 0)
     this.props.changePage('stay-app')
   }
 
   render() {
     return (
       <main className="main-container page">
-
         <StayList />
-
       </main>
-
     )
   }
 }

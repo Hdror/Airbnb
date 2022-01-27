@@ -127,4 +127,4 @@ const mapDispatchToProps = {
 export const AppFooter = connect(
     mapStateToProps,
     mapDispatchToProps
-)(_AppFooter);
+)(_AppFooter)
