@@ -1,25 +1,22 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import React from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import Enhanced_clean from "../assest/svg/perks/Enhanced_clean.svg"
-import Entire_home from "../assest/svg/perks/Entire_home.svg"
-import Great_location from "../assest/svg/perks/Great_location.svg"
-import Self_check_in from "../assest/svg/perks/Self_check_in.svg"
+import Enhanced_clean from '../assest/svg/perks/Enhanced_clean.svg'
+import Entire_home from '../assest/svg/perks/Entire_home.svg'
+import Great_location from '../assest/svg/perks/Great_location.svg'
+import Self_check_in from '../assest/svg/perks/Self_check_in.svg'
 
 
-import Star from "../assest/svg/app-detials/star.svg"
-import Save from "../assest/svg/app-detials/save.svg"
-import Share from "../assest/svg/app-detials/Share.svg"
+import Star from '../assest/svg/app-detials/star.svg'
+import Save from '../assest/svg/app-detials/save.svg'
+import Share from '../assest/svg/app-detials/Share.svg'
 
 
 import { stayService } from '../services/stay.service.js'
 import { StayMap } from '../cmps/stay-map.jsx'
-import { StayReserve } from "../cmps/stay-reserve.jsx"
+import { StayReserve } from '../cmps/stay-reserve.jsx'
 import { changePage } from '../store/page.action.js'
-
-
-
 
 class _StayDetails extends React.Component {
     state = {
@@ -27,15 +24,15 @@ class _StayDetails extends React.Component {
     }
 
     componentDidMount() {
+        window.scrollTo(0, 0)
         this.props.changePage('stay-details')
         const { stayId } = this.props.match.params
         stayService.getById(stayId)
             .then(stay => { this.setState({ stay }) })
     }
 
-
     render() {
-        if (!this.state.stay) return "LOADING"
+        if (!this.state.stay) return 'LOADING'
         const { stay } = this.state
         // console.log(stay);
         const { name, avgRate, reviews, loc, imgUrls, facilites, capacity, host, summary, type, amenities } = stay

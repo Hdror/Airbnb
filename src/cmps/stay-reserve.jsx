@@ -1,21 +1,18 @@
-import React from "react";
-import { connect } from "react-redux";
-import { TripFilter } from './trip-filter.jsx'
-import { MenuDropDown } from './app-dropdown-menu.jsx'
+import React from 'react'
+import { connect } from 'react-redux'
 import { DateRange as DateRangePicker } from 'react-date-range'
 import 'react-date-range/dist/styles.css' // main css file  
 import 'react-date-range/dist/theme/default.css' // theme css file
-import { GuestDropDown } from "./guest-dropdown-menu.jsx";
-import { Calendar } from 'react-date-range';
+// import { Calendar } from 'react-date-range';
 import { orderService } from '../services/order.service.js'
+import { GuestsDropDown } from './guests-dropdown.jsx'
+import { tripService } from '../services/trip.service.js'
+import { addTrip, loadTrips, removeTrip } from '../store/trip/trip.action.js'
+import { addOrder } from '../store/order/order.actions.js'
 
-import { tripService } from "../services/trip.service.js"
-import { addTrip, loadTrips, removeTrip } from "../store/trip/trip.action.js"
-import { addOrder } from "../store/order/order.actions.js"
 
-
-import Star from "../assest/svg/app-detials/star.svg"
-import Flag from "../assest/svg/app-detials/flag.svg"
+import Star from '../assest/svg/app-detials/star.svg'
+import Flag from '../assest/svg/app-detials/flag.svg'
 
 class _StayReserve extends React.Component {
     state = {
@@ -33,18 +30,24 @@ class _StayReserve extends React.Component {
             },
         },
         MenuDropDownModal: false,
-        isTripCreated: false
+        isTripCreated: false,
+        guestsModal: false
     }
 
     componentDidMount() {
         const { stay } = this.props
-        this.props.loadTrips()
-        this.setState({ trip: { ...this.state.trip, stay: { address: stay.loc.address } } })
+        const trip = tripService.query().then(
+            this.setState({ trip: { ...this.state.trip, stay: { address: stay.loc.address } } })
+        )
+    }
+
+    toggleGuestsModal = () => {
+        this.setState({ guestsModal: !this.state.guestsModal })
     }
 
     onRemoveTrip = stayId => {
-        this.props.removeTrip(stayId);
-    };
+        this.props.removeTrip(stayId)
+    }
 
     onAddTrip = (ev) => {
         ev.preventDefault()
@@ -63,12 +66,12 @@ class _StayReserve extends React.Component {
 
 
     onSetFilterBy = (filterBy) => {
-        this.props.setFilterBy(filterBy);
+        this.props.setFilterBy(filterBy)
     }
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.filterBy !== this.props.filterBy) {
-            this.props.loadStays(this.props.filterBy);
+            this.props.loadStays(this.props.filterBy)
         }
     }
 
@@ -91,14 +94,20 @@ class _StayReserve extends React.Component {
         this.setState({ trip: { stayTime: { startDate: '', endDate: '', }, guests: { adults: 1, children: 0 }, stay: { address: '' } } })
     }
 
-
+    updateNumOfGuests = (diff, type, ev) => {
+        ev.preventDefault()
+        ev.stopPropagation()
+        const { guests } = this.state.trip
+        if (guests[type] + diff < 0) return
+        guests[type] += diff
+        this.setState((prevState) => ({
+            trip: { ...prevState.trip, guests },
+        }))
+    }
 
 
     onHandleChange = ({ target }) => {
         const { trip } = this.state
-        const { stay } = this.props
-
-        const field = target.name
         const value = target.type === 'number' ? +target.value : target.value
         if (value < 1) return
         this.setState((prevState) => ({
@@ -115,7 +124,8 @@ class _StayReserve extends React.Component {
     }
 
     render() {
-        const { MenuDropDownModal, isTripCreated, trip } = this.state
+        const { MenuDropDownModal, isTripCreated, trip, guestsModal } = this.state
+        const { guests } = trip
         const selectionRange = {
             startDate: new Date(),
             endDate: new Date(),
@@ -133,16 +143,17 @@ class _StayReserve extends React.Component {
                         <div className="date-input">
                             <label onClick={this.toggleMenuDropDownModal}>CHECK-IN</label>
                             <input onChange={this.handleSelect} value={trip.stayTime.startDate} name="stayTime" placeholder="Add date"></input>
-
+                            <div>{trip.startDate}</div>
                         </div>
                         <div className="date-input">
                             <label onClick={this.toggleMenuDropDownModal}>CHECKOUT</label>
                             <input onChange={this.handleSelect} value={trip.stayTime.endDate} placeholder="Add date"></input>
+                            <div>{trip.endDate}</div>
                         </div>
                     </div>
-                    <div className="guest-input">
+                    <div className="guest-input" onClick={this.toggleGuestsModal}>
                         <label>GUESTS</label>
-                        <input type="number" value={trip.guests.adults + trip.guests.children} name="guests" onChange={this.onHandleChange} placeholder="1 guest"></input>
+                        <input readOnly value={trip.guests.adults + trip.guests.children} name="guests" onChange={this.onHandleChange} placeholder="1 guest"></input>
                     </div>
                 </div>
                 {isTripCreated ?
@@ -172,16 +183,20 @@ class _StayReserve extends React.Component {
                     placeholder="Default"
                     ranges={[selectionRange]}
                     months={2}
-                    direction='horizontal'
+                    direction="horizontal"
 
                     date={new Date()}
                     onChange={this.handleSelect}
                     moveRangeOnFirstSelection={true}
                     hasCustomRendering={false}
-
-
                 />}
             </div>
+            {guestsModal && <div>
+                <GuestsDropDown
+                    guests={guests}
+                    updateNumOfGuests={this.updateNumOfGuests} />
+            </div>}
+
 
 
         </main>

@@ -29,6 +29,9 @@ export function stayReducer(state = initialState, action) {
     case 'SET_FILTER':
       newState = { ...state, filterBy: { ...action.filterBy } }
       break
+    case 'SET_STAY_BY_ID':
+      newState = { ...state, currStay: action.currStay }
+      break
   }
   return newState
 }

@@ -10,7 +10,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook } from '@fortawesome/free-brands-svg-icons'
 import { faGoogle } from '@fortawesome/free-brands-svg-icons'
 import { faApple } from '@fortawesome/free-brands-svg-icons'
-// import { faEmail } from '@fortawesome/free-brands-svg-icons'
 class _LoginSignup extends Component {
     state = {
         credentials: {
@@ -22,6 +21,7 @@ class _LoginSignup extends Component {
     }
 
     componentDidMount() {
+        window.scrollTo(0, 0)
         this.props.changePage('login')
         if (this.props.user) this.props.history.push('/')
     }

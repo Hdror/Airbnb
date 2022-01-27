@@ -4,7 +4,6 @@ import jsonStays from '../data/stay.json'
 import Wifi from "../assest/svg/amenities/Wifi.svg"
 import Heating from "../assest/svg/amenities/Heating.svg"
 import HotTub from "../assest/svg/amenities/HotTub.svg"
-import Free_Parking from "../assest/svg/amenities/Free_Parking.svg"
 import Dryer from "../assest/svg/amenities/Dryer.svg"
 import Kitchen from "../assest/svg/amenities/Kitchen.svg"
 import Microwave from "../assest/svg/amenities/Microwave.svg"
@@ -14,6 +13,8 @@ import TV from "../assest/svg/amenities/TV.svg"
 import Oven from "../assest/svg/amenities/Oven.svg"
 import Hangers from "../assest/svg/amenities/Hangers.svg"
 import Hair_Dryer from "../assest/svg/amenities/Hair_Dryer.svg"
+import Free_Parking from "../assest/svg/amenities/Free_Parking.svg"
+
 
 // import { userService } from './user.service.js'
 
@@ -49,7 +50,7 @@ async function query(filterBy) {
 function _filteredStays(stays, filterBy) {
   const { loc } = filterBy
   const filteredStays = stays.filter((stay) => {
-    return stay.loc.city.includes(loc) || stay.loc.country.includes(loc)
+    return stay.loc.city.toUpperCase().includes(loc.toUpperCase()) || stay.loc.country.toUpperCase().includes(loc.toUpperCase())
   })
   return filteredStays
 }
@@ -69,12 +70,11 @@ function save(stay) {
   if (stay._id) {
     return storageService.put(STORAGE_KEY, stay)
   } else {
-    // stay.owner = userService.getLoggedinUser()
-    // console.log(stay.owner, stay)
     return storageService.post(STORAGE_KEY, stay)
   }
 }
 
+// reduce / foreach
 function getPriceAvg(stays) {
   let sumPrice = 0
   stays.map(stay => {

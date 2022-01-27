@@ -8,7 +8,7 @@ import { StayApp } from './pages/stay-app.jsx'
 import { StayDetails } from './pages/stay-details.jsx'
 import { AppHeader } from './cmps/app-header.jsx'
 import { AppFooter } from './cmps/app-footer.jsx'
-import { LoginSignup } from './cmps/login-signup.jsx'
+import { LoginSignup } from './pages/login-signup.jsx'
 
 // Screen component transparant 
 // fix position - and onclick close modal (store - isModalOpen - page)

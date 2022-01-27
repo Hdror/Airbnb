@@ -9,10 +9,6 @@ export class TypeOfPlaceModal extends React.Component {
         }
     }
 
-    // cleanForm = () => {
-    //     this.setState({ filterBy: {} })
-    // }
-
     render() {
         const { handleChange, cleanForm, filterStays } = this.props
         return <section className="modal-container flex">

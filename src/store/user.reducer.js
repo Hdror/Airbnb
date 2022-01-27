@@ -27,6 +27,15 @@ export function userReducer(state = initialState, action) {
         case 'LOAD_USER_LIKED_STAYS':
             newState = { ...state, savedStays: [...action.stays] }
             break
+        case 'LOAD_USER_STAYS':
+            newState = { ...state, savedStays: [...action.stays] }
+            break
+        case 'REMOVE_ORDER_FROM_USER':
+            newState = {
+                ...state,
+                orders: state.orders.filter((order) => order._id !== action.orderId),
+            }
+            break
 
     }
     return newState
