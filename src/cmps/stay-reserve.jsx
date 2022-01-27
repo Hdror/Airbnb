@@ -3,11 +3,11 @@ import { connect } from "react-redux";
 import { TripFilter } from './trip-filter.jsx'
 import { MenuDropDown } from './app-dropdown-menu.jsx'
 import { DateRange as DateRangePicker } from 'react-date-range'
-import 'react-date-range/dist/styles.css' // main css file  
-import 'react-date-range/dist/theme/default.css' // theme css file
 import { GuestDropDown } from "./guest-dropdown-menu.jsx";
 import { Calendar } from 'react-date-range';
 import { orderService } from '../services/order.service.js'
+import { utilService } from "../services/util.service.js";
+
 
 import { tripService } from "../services/trip.service.js"
 import { addTrip, loadTrips, removeTrip } from "../store/trip/trip.action.js"
@@ -38,6 +38,7 @@ class _StayReserve extends React.Component {
 
     componentDidMount() {
         const { stay } = this.props
+        console.log('Stay', stay);
         this.props.loadTrips()
         this.setState({ trip: { ...this.state.trip, stay: { address: stay.loc.address } } })
     }
@@ -56,9 +57,35 @@ class _StayReserve extends React.Component {
 
     onCreateOrder = () => {
         const { trip } = this.state
-        orderService.createOrder(trip)
-        this.props.addOrder(trip)
+        // orderService.save(trip)
+        const orderToSave = {
+            hostId: this.props.stay.host._id,
+            createdAt: Date.now(),
+            buyer: {
+                _id: this.props.user._id,
+                fullname: this.props.user.fullname,
+
+            },
+            totalPrice: this.props.stay.price * (trip.stayTime.endDate - trip.stayTime.startDate) / 1000 / 60 / 60 / 24,
+            startDate: trip.stayTime.startDate,
+            endDate: trip.stayTime.endDate,
+            guests: trip.guests,
+            stay: {
+                _id: this.props.stay._id,
+                name: this.props.stay.name,
+                price: this.props.stay.price
+
+            },
+            image: this.props.stay.imgUrls[0],
+            status: 'pending'
+
+
+        }
+        this.props.addOrder(orderToSave)
+
         this.clearState()
+
+
     }
 
 
@@ -79,9 +106,13 @@ class _StayReserve extends React.Component {
 
     handleSelect = (ranges) => {
         const { trip } = this.state
+        // console.log(ranges.selection.startDate.getTime());
+        let startDate = ranges.selection.startDate.getTime()
+        let endDate = ranges.selection.endDate.getTime()
+        // console.log(startDate);
 
         this.setState((prevState) => ({
-            trip: { ...prevState.trip, stayTime: { startDate: ranges.selection.startDate, endDate: ranges.selection.endDate } }
+            trip: { ...prevState.trip, stayTime: { startDate: startDate, endDate: endDate } }
         }))
         this.setState({ MenuDropDownModal: false })
 
@@ -115,6 +146,8 @@ class _StayReserve extends React.Component {
     }
 
     render() {
+        console.log(this.props.stay);
+
         const { MenuDropDownModal, isTripCreated, trip } = this.state
         const selectionRange = {
             startDate: new Date(),
@@ -132,12 +165,12 @@ class _StayReserve extends React.Component {
                     <div className="date-picker">
                         <div className="date-input">
                             <label onClick={this.toggleMenuDropDownModal}>CHECK-IN</label>
-                            <input onChange={this.handleSelect} value={trip.stayTime.startDate} name="stayTime" placeholder="Add date"></input>
+                            <input onChange={this.handleSelect} value={utilService.formattedDates(trip.stayTime.startDate)} name="stayTime" placeholder="Add date"></input>
 
                         </div>
                         <div className="date-input">
                             <label onClick={this.toggleMenuDropDownModal}>CHECKOUT</label>
-                            <input onChange={this.handleSelect} value={trip.stayTime.endDate} placeholder="Add date"></input>
+                            <input onChange={this.handleSelect} value={utilService.formattedDates(trip.stayTime.endDate)} placeholder="Add date"></input>
                         </div>
                     </div>
                     <div className="guest-input">
@@ -193,9 +226,9 @@ function mapStateToProps(state) {
     return {
         // stay: state.stayModule.stays,
         // trip: state.tripModule.trip,
-        order: state.orderModule.order
+        order: state.orderModule.order,
         // filterBy: state.tripModule.filterBy,
-        //user: state.userModule.user
+        user: state.userModule.user
 
 
     }
