@@ -26,6 +26,7 @@
   justify-content: space-between;
   width: 100%;
   margin-block-end: 30px;
+
   img {
     width: 12px;
     height: 12px;
@@ -92,7 +93,7 @@ span.cost {
 
 span.reviews {
   color: $clr2;
-  font-size: 0.85em;
+  font-size: rem(14px);
   text-decoration: underline;
 }
 
@@ -181,8 +182,11 @@ p.footer {
     filter: invert(49%) sepia(0%) saturate(1334%) hue-rotate(167deg)
       brightness(88%) contrast(89%);
     margin-inline-end: 7px;
+    margin-top:18px;
   }
   a {
     color: $clr3;
+    font-size: (14px);
+    font-family: f-medium;
   }
 }

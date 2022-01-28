@@ -34,10 +34,18 @@ export class _TripFilter extends React.Component {
             stay: {
                 address: ''
             },
+            totalPrice: 0
         },
         dateRangeModal: false,
         guestsModal: false
     }
+
+    // componentDidMount() {
+    //     this.props.loadStays(filterBy).then(stays => {
+    //         console.log(stays);
+    //     })
+    // }
+
 
     toggleDateRange = () => {
         this.setState({ dateRangeModal: !this.state.dateRangeModal })

@@ -72,10 +72,10 @@ export function setFilter(filterBy) {
   }
 }
 
-export function setFrontFilter(filterBy){
+export function setFrontFilter(filterBy) {
   return (dispatch) => {
     const action = { type: 'SET_FRONT_FILTER', filterBy }
-    
+
     dispatch(action)
   }
 }

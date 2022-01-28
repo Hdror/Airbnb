@@ -86,7 +86,7 @@ class _AppHeader extends React.Component {
                         <Link className="site-logo-name clean-link" to="/">
                             <div className="logo-container flex">
                                 <FontAwesomeIcon className="logo" icon={faAirbnb} />
-                                <h2>somthingBnb</h2>
+                                <h2>Bnb</h2>
                             </div>
                         </Link>
                         <div className="menu-actions flex">

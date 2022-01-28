@@ -26,8 +26,8 @@ class _StayReserve extends React.Component {
     state = {
         trip: {
             stayTime: {
-                startDate: '',
-                endDate: '',
+                startDate: 0,
+                endDate: 0,
             },
             guests: {
                 adults: 1,
@@ -40,26 +40,27 @@ class _StayReserve extends React.Component {
         MenuDropDownModal: false,
         isTripCreated: false,
         guestsModal: false,
-        istBtnDisabled: false
+        istBtnDisabled: false,
+        isStayTimePicked: false,
+        totalPrice: this.props.stay.price
     }
 
     componentDidMount() {
         const { stay } = this.props
-        tripService.query().then(trip => this.setState({ trip: { ...trip, stay: { address: stay.loc.address } } })
-        )
+        tripService.query().then(trip => {
+            this.setState({ trip: { ...trip, stay: { address: stay.loc.address } } })
+        })
     }
 
     toggleGuestsModal = () => {
         this.setState({ guestsModal: !this.state.guestsModal })
     }
 
-
     onAddTrip = (ev) => {
         ev.preventDefault()
         let { trip } = this.state
         tripService.save(trip)
         this.setState({ MenuDropDownModal: false, isTripCreated: true })
-
     }
 
     toggleDisableBtn = () => {
@@ -72,14 +73,12 @@ class _StayReserve extends React.Component {
 
     onCreateOrder = () => {
         const { trip } = this.state
-        // orderService.save(trip)
         const orderToSave = {
             hostId: this.props.stay.host._id,
             createdAt: Date.now(),
             buyer: {
                 _id: this.props.user._id,
                 fullname: this.props.user.fullname,
-
             },
             totalPrice: this.props.stay.price * (trip.stayTime.endDate - trip.stayTime.startDate) / 1000 / 60 / 60 / 24,
             startDate: trip.stayTime.startDate,
@@ -89,21 +88,15 @@ class _StayReserve extends React.Component {
                 _id: this.props.stay._id,
                 name: this.props.stay.name,
                 price: this.props.stay.price
-
             },
             image: this.props.stay.imgUrls[0],
             status: 'pending'
-
-
         }
         this.props.addOrder(orderToSave)
-
-        this.clearState()
         this.toggleDisableBtn()
-
-
+        this.setState({ totalPrice: orderToSave.totalPrice })
+        this.clearState()
     }
-
 
     onSetFilterBy = (filterBy) => {
         this.props.setFilterBy(filterBy)
@@ -124,16 +117,13 @@ class _StayReserve extends React.Component {
         const { trip } = this.state
         let startDate = ranges.selection.startDate.getTime()
         let endDate = ranges.selection.endDate.getTime()
-
         this.setState((prevState) => ({
             trip: { ...prevState.trip, stayTime: { startDate: startDate, endDate: endDate } }
         }))
-        this.setState({ MenuDropDownModal: false })
-
-    };
-
+        this.setState({ MenuDropDownModal: false, isStayTimePicked: this.state.isStayTimePicked = true, totalPrice: this.props.stay.price * (endDate - startDate) / 1000 / 60 / 60 / 24 })
+    }
     clearState = () => {
-        this.setState({ trip: { stayTime: { startDate: '', endDate: '', }, guests: { adults: 1, children: 0 }, stay: { address: '' } } })
+        this.setState({ trip: { stayTime: { startDate: '', endDate: '', }, guests: { adults: 1, children: 0 }, stay: { address: '' } }, totalPrice: this.props.stay.price })
     }
 
     updateNumOfGuests = (diff, type, ev) => {
@@ -146,7 +136,6 @@ class _StayReserve extends React.Component {
             trip: { ...prevState.trip, guests },
         }))
     }
-
 
     onHandleChange = ({ target }) => {
         const { trip } = this.state
@@ -167,18 +156,19 @@ class _StayReserve extends React.Component {
 
     render() {
         const { MenuDropDownModal, isTripCreated, trip, guestsModal } = this.state
-        const { guests } = trip
+        const { guests, stayTime } = trip
         const selectionRange = {
             startDate: new Date(),
             endDate: new Date(),
             key: 'selection',
         }
-        console.log(trip);
+        console.log(trip)
+        console.log(stayTime);
 
         return <main>
             <section className="order-container">
                 <div className="order-form-header">
-                    <p><span className="cost">$150</span> / night</p>
+                    <p><span className="cost">${this.state.isStayTimePicked ? this.state.totalPrice : this.props.stay.price}</span> / night</p>
                     <p> <img src={Star} alt="" /> 4.38 <span className="dot">· </span><span className="reviews">(4 reviews)</span></p>
                 </div>
 
@@ -186,12 +176,12 @@ class _StayReserve extends React.Component {
                     <div className="date-picker">
                         <div className="date-input">
                             <label onClick={this.toggleMenuDropDownModal}>CHECK-IN</label>
-                            <input onChange={this.handleSelect} value={utilService.formattedDates(trip.stayTime.startDate)} name="stayTime" placeholder="Add date"></input>
+                            <input onChange={this.handleSelect} value={utilService.formattedDates(stayTime.startDate)} name="stayTime" placeholder="Add date"></input>
                             <div>{trip.startDate}</div>
                         </div>
                         <div className="date-input">
                             <label onClick={this.toggleMenuDropDownModal}>CHECKOUT</label>
-                            <input onChange={this.handleSelect} value={utilService.formattedDates(trip.stayTime.endDate)} name="stayTime" placeholder="Add date"></input>
+                            <input onChange={this.handleSelect} value={utilService.formattedDates(stayTime.endDate)} name="stayTime" placeholder="Add date"></input>
                             <div>{trip.endDate}</div>
                         </div>
                     </div>
@@ -240,30 +230,19 @@ class _StayReserve extends React.Component {
                     guests={guests}
                     updateNumOfGuests={this.updateNumOfGuests} />
             </div>}
-
-
-
         </main>
     }
-
 }
 
 function mapStateToProps(state) {
     return {
-        // stay: state.stayModule.stays,
-        // trip: state.tripModule.trip,
         order: state.orderModule.order,
-        // filterBy: state.tripModule.filterBy,
         user: state.userModule.user
-
-
     }
 }
 
 const mapDispatchToProps = {
-
     addOrder,
-
 }
 
 export const StayReserve = connect(mapStateToProps, mapDispatchToProps)(_StayReserve)

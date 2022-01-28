@@ -43,7 +43,7 @@ class _StayDetails extends React.Component {
                 <div className="stay-summary">
                     {/* <div></div> */}
                     <h2>{name}</h2>
-                    <span className="stay-summary-address flex"><img src={Star} alt="" />{avgRate} · <a href="#">{numOfReviews} Reviews</a> · <span>{loc.address}</span><span className="summary-share-save"><img src={Share} alt="" /> <a href="#">Share</a><img src={Save} alt="" /><a href="#">Save</a></span></span>
+                    <span className="stay-summary-address flex"><span className="summary-details flex"><img src={Star} alt="" />{avgRate} · <a href="#">{numOfReviews} Reviews</a> · <span>{loc.address}</span></span><span className="summary-share-save flex"><span className="summary-share"><img src={Share} alt="" /> <a href="#">Share</a></span><span className="summary-save"><img src={Save} alt="" /><a href="#">Save</a></span></span></span>
                 </div>
                 {/* <div>{name}</div> */}
                 <div className="image-container">
