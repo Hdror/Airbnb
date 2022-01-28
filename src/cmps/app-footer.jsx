@@ -107,7 +107,7 @@ class _AppFooter extends React.Component {
                         </div>
                     </div>
                 </section>
-            </footer >
+            </footer>
         )
     }
 

@@ -69,7 +69,7 @@ header {
             box-shadow: 0 0 3px 2px $clr7;
             padding: 0px 20px;
             justify-content: space-evenly;
-            height: 48px;
+            // height: 48px;
             border: 1px solid $clr9;
 
             &:hover {
@@ -207,6 +207,8 @@ header {
             color: $clr2;
             font-family: f-medium;
             font-size: rem(12px);
+
+            .location-indicator{}
         }
 
         form {

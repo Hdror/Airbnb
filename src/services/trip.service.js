@@ -14,13 +14,27 @@ export const tripService = {
     getById,
     save,
     remove,
+}
 
+
+const initialTrip = {
+    stayTime: {
+        startDate: 0,
+        endDate: 0,
+    },
+    guests: {
+        adults: 1,
+        children: 0
+    },
+    stay: {
+        address: ''
+    },
 }
 
 _createTrips()
 // CREATE TRIP
 function _createTrips() {
-    const trips = storageService.loadFromStorage(STORAGE_KEY) || []
+    const trips = storageService.loadFromStorage(STORAGE_KEY) || initialTrip
     storageService.saveToStorage(STORAGE_KEY, trips)
 }
 

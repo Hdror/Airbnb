@@ -19,7 +19,9 @@
     }
 
     .top-rated {
+        flex-direction: column;
         padding-block-start: 50px;
+        margin-bottom: 80px;
         p {
             margin-block-end: 30px;
             font-size: 25px;
