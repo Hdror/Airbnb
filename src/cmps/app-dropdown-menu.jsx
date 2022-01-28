@@ -29,7 +29,7 @@ class _MenuDropDown extends React.Component {
                 <ul className="dropdown-container">
                     {!user && < Link className="clean-link clean-list" to="/login"><li>Log in</li></Link>}
                     {!user && <Link className="clean-link clean-list" to="/login"><li>Sign up</li></Link>}
-                    <Link className="clean-link clean-list" to="/login"><li>Host your home</li></Link>
+                    <Link className="clean-link clean-list" to="/host"><li>Host your home</li></Link>
                     <Link className="clean-link clean-list" to="/orders"><li>Orders</li></Link>
                     <Link className="clean-link clean-list" to="/login"><li>Help</li></Link>
                     {user && <Link className="clean-link clean-list" to="/"><li onClick={this.onLogout}>Log out</li></Link>}

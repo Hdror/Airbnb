@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom'
 import { HomePage } from './pages/home-page.jsx'
 // import { StayEdit } from './pages/stay-edit.jsx'
 import { StayApp } from './pages/stay-app.jsx'
+import { HostPage } from './pages/host.jsx'
 
 import { StayDetails } from './pages/stay-details.jsx'
 import { AppHeader } from './cmps/app-header.jsx'
@@ -28,6 +29,7 @@ export class RootCmp extends React.Component {
           <Route component={LoginSignup} path="/login" />
           <Route component={Orders} path="/orders" />
           <Route component={HomePage} exact path="/" />
+          <Route component={HostPage} exact path="/host" />
         </Switch>
         <AppFooter />
       </>

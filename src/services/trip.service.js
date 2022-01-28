@@ -1,9 +1,4 @@
 
-// _getEmptyTrip()
-// updateTrip()
-// query() - localStorage to get trip
-// clearTrip() after trip -> order
-
 import { storageService } from './async.storage.js'
 
 const STORAGE_KEY = 'tripDB'
@@ -29,6 +24,7 @@ const initialTrip = {
         address: ''
     },
 }
+
 
 _createTrips()
 // CREATE TRIP
