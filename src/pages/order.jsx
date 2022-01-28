@@ -19,7 +19,7 @@ class _Orders extends React.Component {
         if (!orders.length) return <h1 className="page main-container">Loading</h1>
         return <ul className="page main-container">
             {orders.map((order, idx) => {
-                return <li key={idx}> Order saved at {order.stay.name} From {utilService.formattedDates(order.startDate)}, to {utilService.formattedDates(order.endDate)}, for {order.guests.adults} adults and {order.guests.children} children, at the price of ${order.stay.price} <img src={order.image} alt="" />
+                return <li key={idx}> Order saved at {order.stay.name} From {utilService.formattedDates(order.startDate)}, to {utilService.formattedDates(order.endDate)}, for {order.guests.adults} adults and {order.guests.children} children, at the price of ${order.totalPrice} <img src={order.image} alt="" />
                 </li>
             })}
         </ul>

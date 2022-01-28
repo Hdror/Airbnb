@@ -7,15 +7,8 @@ import { storageService } from './async.storage.js'
 const STORAGE_KEY = 'orderDB'
 
 export const orderService = {
-    createOrder,
     save,
     query
-}
-
-function createOrder(trip) {
-    console.log('Order created', trip);
-    // console.log('Order Data', orderData);
-    // localStorage.setItem(STORAGE_KEY, JSON.stringify(trip))
 }
 
 function loadFromStorage(key) {

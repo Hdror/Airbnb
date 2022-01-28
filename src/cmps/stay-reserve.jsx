@@ -36,11 +36,15 @@ class _StayReserve extends React.Component {
             stay: {
                 address: ''
             },
+            // totalPrice: this.props.stay.price
         },
         MenuDropDownModal: false,
         isTripCreated: false,
         guestsModal: false,
-        istBtnDisabled: false
+        istBtnDisabled: false,
+        isStayTimePicked: false,
+        totalPrice: this.props.stay.price
+
     }
 
     componentDidMount() {
@@ -70,6 +74,7 @@ class _StayReserve extends React.Component {
         })
     }
 
+
     onCreateOrder = () => {
         const { trip } = this.state
         // orderService.save(trip)
@@ -98,9 +103,9 @@ class _StayReserve extends React.Component {
         }
         this.props.addOrder(orderToSave)
 
-        this.clearState()
         this.toggleDisableBtn()
-
+        this.setState({ totalPrice: orderToSave.totalPrice })
+        this.clearState()
 
     }
 
@@ -124,16 +129,18 @@ class _StayReserve extends React.Component {
         const { trip } = this.state
         let startDate = ranges.selection.startDate.getTime()
         let endDate = ranges.selection.endDate.getTime()
+        console.log(endDate);
+        console.log(startDate);
 
         this.setState((prevState) => ({
             trip: { ...prevState.trip, stayTime: { startDate: startDate, endDate: endDate } }
         }))
-        this.setState({ MenuDropDownModal: false })
+        this.setState({ MenuDropDownModal: false, isStayTimePicked: this.state.isStayTimePicked = true, totalPrice: this.props.stay.price * (endDate - startDate) / 1000 / 60 / 60 / 24 })
 
     };
 
     clearState = () => {
-        this.setState({ trip: { stayTime: { startDate: '', endDate: '', }, guests: { adults: 1, children: 0 }, stay: { address: '' } } })
+        this.setState({ trip: { stayTime: { startDate: '', endDate: '', }, guests: { adults: 1, children: 0 }, stay: { address: '' } }, totalPrice: this.props.stay.price })
     }
 
     updateNumOfGuests = (diff, type, ev) => {
@@ -178,7 +185,7 @@ class _StayReserve extends React.Component {
         return <main>
             <section className="order-container">
                 <div className="order-form-header">
-                    <p><span className="cost">$150</span> / night</p>
+                    <p><span className="cost">${this.state.isStayTimePicked ? this.state.totalPrice : this.props.stay.price}</span> / night</p>
                     <p> <img src={Star} alt="" /> 4.38 <span className="dot">· </span><span className="reviews">(4 reviews)</span></p>
                 </div>
 
