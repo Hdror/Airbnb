@@ -2,7 +2,7 @@ import { stayService } from '../services/stay.service.js'
 
 
 // LOAD STAYS
-export function loadStays(filterBy) {
+export function loadStays(filterBy = {}) {
   return async (dispatch, getState) => {
     const { stayModule } = getState()
     const stays = await stayService.query(filterBy)
@@ -71,10 +71,10 @@ export function setFilter(filterBy) {
   }
 }
 
-export function setFrontFilter(filterBy){
+export function setFrontFilter(filterBy) {
   return (dispatch) => {
     const action = { type: 'SET_FRONT_FILTER', filterBy }
-    
+
     dispatch(action)
   }
 }

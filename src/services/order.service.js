@@ -10,13 +10,14 @@ export const orderService = {
     remove
 }
 
+// GET orderS
 async function query() {
     const orders = await storageService.query(STORAGE_KEY)
     console.log(orders);
-    // const filteredOrders = _filteredOrders(orders, filterBy)
     return orders
 }
 
+// SAVE NEW OR EDIT ORDER
 async function save(order) {
     if (order._id) {
         const newOrder = await httpService.post('order', order)

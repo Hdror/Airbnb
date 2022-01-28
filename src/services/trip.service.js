@@ -31,6 +31,30 @@ const initialTrip = {
     },
 }
 
+// _createTrips()
+// CREATE TRIP
+// function _createTrips() {
+//     const trips = storageService.loadFromStorage(STORAGE_KEY) || []
+//     storageService.saveToStorage(STORAGE_KEY, trips)
+// }
+
+
+
+
+const initialTrip = {
+    stayTime: {
+        startDate: 0,
+        endDate: 0,
+    },
+    guests: {
+        adults: 1,
+        children: 0
+
+
+    },
+    totalPrice: 0
+}
+
 _createTrips()
 // CREATE TRIP
 function _createTrips() {
