@@ -69,7 +69,7 @@ header {
             box-shadow: 0 0 3px 2px $clr7;
             padding: 0px 20px;
             justify-content: space-evenly;
-            height: 48px;
+            // height: 48px;
             border: 1px solid $clr9;
 
             &:hover {
@@ -217,13 +217,21 @@ header {
                 font-size: rem(14px);
                 font-family: f-light;
                 color: $clr8;
-                background-color: #ffffff00;
+                background: none;
+                // background-color: #ffffff00 !important;
 
-                input:-internal-autofill-selected {
-                    background-color: $clr5;
-                }
+                // input[type="text"] {
+                //     background-color: $clr5 ;
+                //     color: blue !important;
+                // }
             }
-
+            input[type="text"], textarea {
+                background-color: unset;
+            }
+            input:-webkit-autofill {
+                background-color: transparent !important;
+                -webkit-box-shadow: 0 0 0 50px rgb(235, 235, 235) inset;
+            }
             input {
                 width: 100%;
                 padding: 0;
@@ -257,7 +265,10 @@ header {
                 &:hover {
                     background-color: $clr9;
                     border-radius: 100vw;
-
+                    &input:-webkit-autofill {
+                        background-color: transparent !important;
+                        -webkit-box-shadow: 0 0 0 50px rgb(235, 235, 235) inset;
+                    }
                     > div {
                         border-right: none;
                     }

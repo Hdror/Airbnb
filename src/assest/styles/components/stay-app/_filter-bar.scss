@@ -31,6 +31,11 @@
             gap: 10px;
         }
 
+        &.active{
+            background-color: violet;
+            color: violet;
+        }
+
        
 
        &:hover{

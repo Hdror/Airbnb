@@ -3,6 +3,7 @@ import { stayService } from '../services/stay.service.js'
 
 // LOAD STAYS
 export function loadStays(filterBy) {
+  console.log(filterBy);
   return async (dispatch, getState) => {
     const { stayModule } = getState()
     const stays = await stayService.query(filterBy)
