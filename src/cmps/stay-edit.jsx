@@ -38,6 +38,7 @@ class _StayEdit extends React.Component {
 
     }
 
+
     onHandleChange = (ev) => {
         let { target } = ev
         if (target) {
@@ -143,7 +144,7 @@ class _StayEdit extends React.Component {
                         </section>
                     </div>
                 </div>
-                <button>Save</button>
+                <button onClick={this.updateStay}>Save</button>
             </main>
         )
     }

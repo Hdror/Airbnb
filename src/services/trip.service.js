@@ -41,20 +41,6 @@ const initialTrip = {
 
 
 
-const initialTrip = {
-    stayTime: {
-        startDate: 0,
-        endDate: 0,
-    },
-    guests: {
-        adults: 1,
-        children: 0
-
-
-    },
-    totalPrice: 0
-}
-
 _createTrips()
 // CREATE TRIP
 function _createTrips() {
