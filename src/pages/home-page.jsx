@@ -23,7 +23,7 @@ export class _HomePage extends React.Component {
         console.log(ev.target.name);
         ev.preventDefault()
         const filterBy = { loc: ev.target.id ,checkInDate: '', checkOutDate: ''}
-        this.props.setFilter({filterBy})
+        this.props.setFilter(filterBy)
         loadStays({loc: ev.target.id} )
     }
 
@@ -58,7 +58,7 @@ export class _HomePage extends React.Component {
                 <p>Popular destinations</p>
                 <div className="city-container flex">
                     <div className="img-container">
-                        <div className="img-text">Places to stay in London</div>
+                        <div onClick={this.onSetFilter} className="img-text">Places to stay in London</div>
                         <img id="london" onClick={this.onSetFilter} src="https://images.unsplash.com/photo-1545853332-147d5073187e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80" alt="" />
                     </div>
                     <div onClick={this.onSetFilter} className="img-container">

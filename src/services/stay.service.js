@@ -35,15 +35,20 @@ export const stayService = {
 
 // GET STAYS
 async function query(filterBy) {
-  const stays = await httpService.get('stay', filterBy)
-  const filteredStays = _filteredStays(stays, filterBy)
-  return filteredStays
+  console.log(filterBy);
+  return await httpService.get('stay', filterBy)
+  // console.log(stays);
+  // const filteredStays = _filteredStays(stays, filterBy)
+  // return filteredStays
 }
 
 // GET FILTERED STAYS
 function _filteredStays(stays, filterBy) {
+  console.log( filterBy?.loc)
   const { loc } = filterBy
+  console.log(loc);
   const filteredStays = stays.filter((stay) => {
+    console.log(stay);
     return stay.loc.city.toUpperCase().includes(loc.toUpperCase()) || stay.loc.country.toUpperCase().includes(loc.toUpperCase())
   })
   return filteredStays
