@@ -1,10 +1,10 @@
 export const utilService = {
   makeId,
-  makeLorem,
   getRandomIntInclusive,
   delay,
   formattedDates,
   getRandomAmenities,
+  timeConverter
 }
 
 function makeId(length = 6) {
@@ -16,49 +16,6 @@ function makeId(length = 6) {
     txt += possible.charAt(Math.floor(Math.random() * possible.length))
   }
 
-  return txt
-}
-
-function makeLorem(size = 100) {
-  var words = [
-    'The sky',
-    'above',
-    'the port',
-    'was',
-    'the color of television',
-    'tuned',
-    'to',
-    'a dead channel',
-    '.',
-    'All',
-    'this happened',
-    'more or less',
-    '.',
-    'I',
-    'had',
-    'the story',
-    'bit by bit',
-    'from various people',
-    'and',
-    'as generally',
-    'happens',
-    'in such cases',
-    'each time',
-    'it',
-    'was',
-    'a different story',
-    '.',
-    'It',
-    'was',
-    'a pleasure',
-    'to',
-    'burn',
-  ]
-  var txt = ''
-  while (size > 0) {
-    size--
-    txt += words[Math.floor(Math.random() * words.length)] + ' '
-  }
   return txt
 }
 
@@ -93,9 +50,16 @@ function getRandomAmenities() {
   return newAmens
 }
 
-function loadFromStorage(key) {
-  var val = localStorage.getItem(key)
-  console.log('va', val);
-  return (val) ? JSON.parse(val) : null;
+function timeConverter(time) {
+  var a = new Date(time * 1000)
+  var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  var year = a.getFullYear()
+  var month = months[a.getMonth()]
+  var date = a.getDate()
+  var hour = a.getHours()
+  var min = a.getMinutes()
+  var sec = a.getSeconds()
+  var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec
+  return time
 }
 

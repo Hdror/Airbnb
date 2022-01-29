@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 import { loadStays, addStay, onUpdateStay, removeStay } from '../store/stay.action.js'
 import { changePage } from '../store/page.action.js'
+import { Upload } from "./upload.jsx"
 
 import Enhanced_clean from '../assest/svg/perks/Enhanced_clean.svg'
 import Entire_home from '../assest/svg/perks/Entire_home.svg'
@@ -18,13 +19,57 @@ import { StayReserve } from "./stay-reserve.jsx"
 
 class _StayEdit extends React.Component {
     state = {
-        stay: null
+        stay: {
+            name: '',
+            type: '',
+            typeOfPlace: "Entire place",
+            imgUrls: [],
+            price: 0,
+            summary: '',
+            capacity: 2,
+            facilites: {
+                beds: 1,
+                bedrooms: 1,
+                bathrooms: 1
+            },
+            amenities: {
+                Wifi: false,
+                Heating: false,
+                HotTub: false,
+                Dryer: false,
+                Kitchen: false,
+                Microwave: false,
+                Refrigerator: false,
+                Stove: false,
+                TV: false,
+                Oven: false,
+                Hangers: false,
+                'Hair dryer': false,
+                'Free parking': false,
+            },
+            host: {},
+            loc: {
+                country: '',
+                city: '',
+                countryCode: '',
+                address: '',
+                lat: 0,
+                lng: 0
+            },
+            reviews: []
+        }
+
     }
 
+
     componentDidMount() {
+        if (this.props.stayId) {
+            // getById to stay and add to stay state
+        }
+
         // this.props.loadStays()
-        const { stays } = this.props
-        console.log(stays);
+        // const { stays } = this.props
+        // console.log(stays);
 
         // this.props.loadStays(this.props.filterBy).then(stays => {
         // })
@@ -34,6 +79,12 @@ class _StayEdit extends React.Component {
         //     .then(stay => { this.setState({ stay }) })
     }
 
+    onUploadImg = (imgState, position) => {
+        const { imgUrls } = this.state.stay
+        imgUrls[position] = imgState.imgUrl
+        this.setState({ stay: { ...this.state.stay, imgUrls } })
+    }
+
     updateStay = () => {
 
     }
@@ -41,6 +92,7 @@ class _StayEdit extends React.Component {
 
     onHandleChange = (ev) => {
         let { target } = ev
+        console.log(target.value);
         if (target) {
             const field = target.name
             const value = target.type === 'number' ? +target.value : target.value
@@ -62,7 +114,7 @@ class _StayEdit extends React.Component {
         if (!this.props.stays) return "LOADING"
         const { stay } = this.state
         const { stays } = this.props
-        console.log(stays);
+        // console.log(stay);
         const { name, avgRate, reviews, loc, imgUrls, facilites, capacity, host, summary, type, amenities } = stays
         // const txt = facilites.beds > 1 ? 'beds' : 'bed'
         return (
@@ -71,7 +123,7 @@ class _StayEdit extends React.Component {
                     {/* <div></div> */}
                     <h2>{name}</h2>
                     <span className="stay-edit-location">
-                        <span><input type="text" name="name" placeholder="Enter stay name here" /></span>
+                        <span><input type="text" name="name" placeholder="Enter stay name here" onChange={this.onHandleChange} value={stay.name} /></span>
                         <span><input type="text" name="address" placeholder="Enter stay address here" /></span>
                     </span>
                 </div>
@@ -90,7 +142,7 @@ class _StayEdit extends React.Component {
                                 <section className="stay-edit-details flex">
                                     {/* <h1>Entire {type} hosted by {host.fullname}</h1> */}
                                     <ul className="clean-list">
-                                        <li><input type="number" name="capacity" placeholder="Enter guest capacity" /></li><span>·</span>
+                                        <li><input type="number" name="capacity" placeholder="Enter guest capacity" /></li>
                                         <select name="stayType" id="">
                                             <option value="Entire Place">Entire Place</option>
                                             <option value="Private Room">Private Room</option>
@@ -98,14 +150,14 @@ class _StayEdit extends React.Component {
                                             <option value="Hotel Room">Hotel Room</option>
                                         </select>
                                         <select name="propertyType" id="">
-                                            <option value="Loft">Loft</option>
-                                            <option value="Apartment">Apartment</option>
-                                            <option value="Shared Room">Shared Room</option>
-                                            <option value="Hotel">Hotel</option>
-                                            <option value="House">House</option>
-                                            <option value="Guesthouse">Guesthouse</option>
+                                            <option onChange={this.onHandleChange} value={stay.type}>Loft</option>
+                                            <option onChange={this.onHandleChange} value="Apartment">Apartment</option>
+                                            <option onChange={this.onHandleChange} value="Shared Room">Shared Room</option>
+                                            <option onChange={this.onHandleChange} value="Hotel">Hotel</option>
+                                            <option onChange={this.onHandleChange} value="House">House</option>
+                                            <option onChange={this.onHandleChange} value="Guesthouse">Guesthouse</option>
                                         </select>
-                                        <li><input type="text" name="bedrooms" placeholder="Enter number of bedrooms" /></li><span>·</span>
+                                        <li><input type="text" name="bedrooms" placeholder="Enter number of bedrooms" /></li>
                                         <li><input type="text" name="beds" placeholder="Enter number of beds" /></li>
                                     </ul>
                                 </section>
@@ -113,7 +165,10 @@ class _StayEdit extends React.Component {
                                     <img src={host.imgUrl} alt="photo needed" />
                                 </div> */}
                             </div>
-
+                            <Upload
+                                position={0}
+                                onUploadImg={this.onUploadImg}
+                                userImgUrl={this.state.stay.imgUrls[0]} />
                         </div>
                         <div className="stay-edit-perks">
                             <ul className="clean-list">

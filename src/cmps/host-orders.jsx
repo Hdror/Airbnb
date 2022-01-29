@@ -1,8 +1,13 @@
 import React from "react"
-import { connect } from 'react-redux'
 
+// STORE
+import { connect } from 'react-redux'
 import { loadStays } from '../store/stay.action.js'
 import { loadOrders } from '../store/order/order.actions.js'
+
+// SERVICES
+import { utilService } from '../services/util.service.js'
+
 
 // 3 TABS
 
@@ -11,52 +16,29 @@ import { loadOrders } from '../store/order/order.actions.js'
 // HOST ORDERS  - WHICH STAY - DATES - NUM OF GUESTS 
 
 class _HostOrders extends React.Component {
-    // state = {
-    //     orders: []
-    // }
 
     componentDidMount() {
         this.props.loadOrders({ hostId: this.props.user._id })
         this.props.loadStays({ hostId: this.props.user._id })
     }
 
-    // ordersToDisplay = () => {
-    //     const { orders, user } = this.props
-    //     console.log('orders', orders);
-    //     console.log('user', user);
-    //     const hostOrders = orders.filter((order) => {
-    //         return order.host._id === user._id
-    //     })
-    //     this.setState({ orders: hostOrders })
-    // }
-
-    // getStayOrders = (stay) => {
-    //     let { orders } = this.state
-    //     orders = orders.filter(order => {
-    //         return order.stay.name === stay.name
-    //     })
-    //     return orders
-    // }
-
-    calculateRevenue = (stay) => {
-        const orders = this.getStayOrders(stay)
-        let sum = orders.reduce((acc, order) => {
-            if (order.stay.name === stay.name) return acc += order.totalPrice
-        }, 0)
-        return sum
-    }
-
-
     render() {
         const { stays, orders } = this.props
-        console.log(orders)
         if (!orders.length) return <div>Loading</div>
         return (
             <div className="main-container host-stay-container">
                 {orders.map((order, idx) => {
-                    <div key={idx}>
-                        <div>{order.createdAt}</div>
-                    </div>
+                    return <ul className="clean-list order" key={idx}>
+                        <h1>Order {idx + 1}</h1>
+                        <li>Stay : {order.stay.name}</li>
+                        <li>Price :  $ {order.stay.price} / night </li>
+                        <li>Earnings : $ {order.totalPrice}</li>
+                        <li>Status : {order.status}</li>
+                        <li>Created at : {utilService.timeConverter(order.createdAt)}</li>
+                        <li>Check in : {utilService.timeConverter(order.startDate)}</li>
+                        <li>Check out : {utilService.timeConverter(order.endDate)}</li>
+                        <li>Guests : {order.guests.adults} Adults, {order.guests.children} Children</li>
+                    </ul>
                 })}
             </div>
         )

@@ -6,6 +6,7 @@ import { loadStays } from '../store/stay.action.js'
 
 import { HostStays } from '../cmps/hosts-stays.jsx'
 import { HostOrders } from '../cmps/host-orders.jsx'
+import { StayEdit } from '../cmps/stay-edit.jsx'
 
 
 // 3 TABS
@@ -40,6 +41,7 @@ class _HostPage extends React.Component {
                 </div>
                 {this.state.infoToDisplay === "orders" && <HostOrders />}
                 {this.state.infoToDisplay === "stays" && <HostStays />}
+                {this.state.infoToDisplay === "add" && <StayEdit />}
             </div >
         )
     }

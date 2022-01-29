@@ -42,21 +42,6 @@ export class _TripFilter extends React.Component {
         guestsModal: false
     }
 
-    // componentDidMount() {
-    //     this.props.loadStays(filterBy).then(stays => {
-    //         console.log(stays);
-    //     })
-    // }
-
-
-    // toggleDateRange = () => {
-    //     this.setState({ dateRangeModal: !this.state.dateRangeModal })
-    // }
-
-    // toggleGuestsModal = () => {
-    //     this.setState({ guestsModal: !this.state.guestsModal })
-    // }
-
     // CITY HANDLE 
     handleSearchChanges = (ev) => {
         const field = ev.target.name
@@ -80,7 +65,6 @@ export class _TripFilter extends React.Component {
 
     // DATES HANDLE
     handleSelect = (ranges) => {
-        // const { trip } = this.state
         let startDate = ranges.selection.startDate.getTime()
         let endDate = ranges.selection.endDate.getTime()
         this.setState((prevState) => ({
