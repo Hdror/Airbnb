@@ -40,13 +40,6 @@ export class _TripFilter extends React.Component {
         guestsModal: false
     }
 
-    // componentDidMount() {
-    //     this.props.loadStays(filterBy).then(stays => {
-    //         console.log(stays);
-    //     })
-    // }
-
-
     toggleDateRange = () => {
         this.setState({ dateRangeModal: !this.state.dateRangeModal })
     }

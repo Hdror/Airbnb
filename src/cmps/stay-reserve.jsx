@@ -209,7 +209,7 @@ class _StayReserve extends React.Component {
             <p className="footer"> <img src={Flag} alt="" /> <a href="#">Report this listing</a></p>
             <div className='date-range-container'>
                 {MenuDropDownModal && <DateRangePicker
-                    className="date-range-calender"
+                    className="date-range-calender reserve-modal"
                     appearance="default"
                     placeholder="Default"
                     ranges={[selectionRange]}
