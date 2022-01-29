@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 
 // STORE 
 import { addOrder } from '../store/order/order.actions.js'
-import { toggleModal } from '../store/page.action.js'
 
 // LIBS
 import { DateRange as DateRangePicker } from 'react-date-range'
@@ -158,7 +157,6 @@ class _StayReserve extends React.Component {
     render() {
         const { MenuDropDownModal, isTripCreated, trip, guestsModal } = this.state
         const { guests, stayTime } = trip
-        const {toggleModal, isModalOpen, modalState } = this.props
         const selectionRange = {
             startDate: new Date(),
             endDate: new Date(),
@@ -174,17 +172,17 @@ class _StayReserve extends React.Component {
                 <div className="order-data">
                     <div className="date-picker">
                         <div className="date-input">
-                            <label onClick={() => { isModalOpen ? toggleModal() : toggleModal('datePickerModal') }}>CHECK-IN</label>
+                            <label onClick={this.toggleMenuDropDownModal}>CHECK-IN</label>
                             <input onChange={this.handleSelect} value={utilService.formattedDates(stayTime.startDate)} name="stayTime" placeholder="Add date"></input>
                             <div>{trip.startDate}</div>
                         </div>
                         <div className="date-input">
-                            <label onClick={() => { isModalOpen ? toggleModal() : toggleModal('datePickerModal') }}>CHECKOUT</label>
+                            <label onClick={this.toggleMenuDropDownModal}>CHECKOUT</label>
                             <input onChange={this.handleSelect} value={utilService.formattedDates(stayTime.endDate)} name="stayTime" placeholder="Add date"></input>
                             <div>{trip.endDate}</div>
                         </div>
                     </div>
-                    <div className="guest-input" onClick={() => { isModalOpen ? toggleModal() : toggleModal('reservGuestsModal') }}>
+                    <div className="guest-input" onClick={this.toggleGuestsModal}>
                         <label>GUESTS</label>
                         <input readOnly value={trip.guests.adults + trip.guests.children} name="guests" onChange={this.onHandleChange} placeholder="1 guest"></input>
                     </div>
@@ -210,8 +208,8 @@ class _StayReserve extends React.Component {
             </section>
             <p className="footer"> <img src={Flag} alt="" /> <a href="#">Report this listing</a></p>
             <div className='date-range-container'>
-                {modalState.datePickerModal && <DateRangePicker
-                    className="date-range-calender"
+                {MenuDropDownModal && <DateRangePicker
+                    className="date-range-calender reserve-modal"
                     appearance="default"
                     placeholder="Default"
                     ranges={[selectionRange]}
@@ -224,7 +222,7 @@ class _StayReserve extends React.Component {
                     hasCustomRendering={false}
                 />}
             </div>
-            {modalState.reservGuestsModal && <div>
+            {guestsModal && <div>
                 <GuestsDropDown
                     guests={guests}
                     updateNumOfGuests={this.updateNumOfGuests} />
@@ -236,16 +234,12 @@ class _StayReserve extends React.Component {
 function mapStateToProps(state) {
     return {
         order: state.orderModule.order,
-        user: state.userModule.user,
-        modalState: state.pageModule.modalState,
-        isModalOpen: state.pageModule.isModalOpen
+        user: state.userModule.user
     }
 }
 
-
 const mapDispatchToProps = {
     addOrder,
-    toggleModal
 }
 
 export const StayReserve = connect(mapStateToProps, mapDispatchToProps)(_StayReserve)

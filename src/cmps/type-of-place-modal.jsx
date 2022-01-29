@@ -1,8 +1,6 @@
 import React from 'react'
 
 export class TypeOfPlaceModal extends React.Component {
-
-
     state = {
         filterBy: {
 
