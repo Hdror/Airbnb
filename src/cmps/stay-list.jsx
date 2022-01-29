@@ -22,8 +22,7 @@ class _StayList extends React.Component {
   }
 
   render() {
-    const stays  = this.state.filteredStays.length ? this.state.filteredStays : this.props.stays
-
+    const stays = this.state.filteredStays.length ? this.state.filteredStays : this.props.stays
     if (!stays.length) return <h1>There are no stays to show</h1>
     return (
       <section >
