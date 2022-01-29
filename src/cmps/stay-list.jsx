@@ -23,9 +23,11 @@ class _StayList extends React.Component {
 
   render() {
     const stays = this.state.filteredStays.length ? this.state.filteredStays : this.props.stays
+    const numOfStayText = this.props.filterBy.loc === '' ? 'Stays tp explor' : `Stays to show in ${this.props.filterBy.loc}`
     if (!stays.length) return <h1>There are no stays to show</h1>
     return (
       <section >
+      
         <FilterBar setFiltersStays={this.setFiltersStays} stays={this.props.stays} />
         <div className="stay-list">
           {stays.map((stay) => (

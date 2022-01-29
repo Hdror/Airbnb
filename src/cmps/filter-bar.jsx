@@ -17,8 +17,6 @@ export class _FilterBar extends React.Component {
     state = {
         stays: this.props.stays,
         amenities: utilService.getRandomAmenities(),
-        // isPriceModalOpen: false,
-        // isTypeOfPlaceModal: false,
         filterBy: {
             typeOfPlace: {
                 'Entire place': false,
@@ -34,13 +32,19 @@ export class _FilterBar extends React.Component {
         }
     }
 
+
     filterStays = () => {
         const { filterBy } = this.state
         console.log(filterBy);
         const { stays } = this.props
+        let isfilterByTypeOfPlace = true
+        for (let key in filterBy.typeOfPlace) {
+            if (!filterBy.typeOfPlace[key]) isfilterByTypeOfPlace = false
+        }
         let filteredStays = stays.filter(stay => {
             console.log(stay.price, filterBy.price);
-            if (filterBy.typeOfPlace[stay.typeOfPlace] && filterBy.amenities.every((amemity) => {
+
+            if ((!isfilterByTypeOfPlace || filterBy.typeOfPlace[stay.typeOfPlace]) && filterBy.amenities.every((amemity) => {
                 return stay.amenities.includes(amemity)
             }) && (filterBy.price.minPrice < stay.price && filterBy.price.maxPrice > stay.price))
                 return stay
@@ -79,23 +83,6 @@ export class _FilterBar extends React.Component {
         }
 
     }
-
-
-    // toggleTypeOfPlaceModal = () => {
-    //     if (this.state.isPriceModalOpen) {
-    //         return this.setState({ isPriceModalOpen: false })
-    //     }
-    //     this.setState({ isTypeOfPlaceModal: !this.state.isTypeOfPlaceModal })
-    // }
-
-    // togglePriceModal = () => {
-    //     if (this.state.isTypeOfPlaceModal) {
-    //         return this.setState({ isTypeOfPlaceModal: false })
-    //     }
-    //     this.setState({ isPriceModalOpen: !this.state.isPriceModalOpen })
-    // }
-
-
 
     render() {
         const { amenities, filterBy } = this.state

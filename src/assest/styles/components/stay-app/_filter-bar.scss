@@ -26,6 +26,7 @@
         font-size: rem(14px);
         transition: ease-in-out 0.15s;
         cursor: pointer;
+        flex-wrap: nowrap;
 
         &:not(:last-child){
             gap: 10px;
