@@ -1,13 +1,10 @@
 import { orderService } from '../../services/order.service.js'
 
-export function loadOrders() {
-    return (dispatch, getState) => {
-        const { orderModule } = getState()
-        const { filterBy } = orderModule
-        orderService.query().then((orders) => {
-            const action = { type: 'SET_ORDERS', orders }
-            dispatch(action)
-        })
+export function loadOrders(filterBy = {}) {
+    return async (dispatch) => {
+        const orders = await orderService.query(filterBy)
+        const action = { type: 'SET_ORDERS', orders }
+        dispatch(action)
     }
 }
 
