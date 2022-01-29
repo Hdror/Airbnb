@@ -49,7 +49,6 @@ class _HostOrders extends React.Component {
 
     render() {
         const { stays, orders } = this.props
-        console.log(orders)
         if (!orders.length) return <div>Loading</div>
         return (
             <div className="main-container host-stay-container">

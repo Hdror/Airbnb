@@ -13,7 +13,6 @@ export const orderService = {
 // GET orderS
 async function query(filterBy) {
     const orders = await httpService.get('order', filterBy)
-    console.log(orders);
     return orders
 }
 
