@@ -75,7 +75,7 @@ class _StayReserve extends React.Component {
     onCreateOrder = () => {
         const { trip } = this.state
         const orderToSave = {
-            hostId: this.props.stay.host._id,
+            host: this.props.stay.host,
             createdAt: Date.now(),
             buyer: {
                 _id: this.props.user._id,
@@ -164,9 +164,6 @@ class _StayReserve extends React.Component {
             endDate: new Date(),
             key: 'selection',
         }
-        console.log(trip)
-        console.log(stayTime);
-
         return <main>
             <section className="order-container">
                 <div className="order-form-header">
