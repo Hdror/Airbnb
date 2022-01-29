@@ -1,13 +1,12 @@
 :root {
     --clr: gold;
-  }
+}
 
 * {
     box-sizing: border-box;
 }
 
 ::selection {
-  
 }
 
 html {
@@ -18,7 +17,7 @@ body {
     margin: 0;
 }
 
-p{
+p {
     margin: 0;
 }
 
@@ -26,8 +25,20 @@ img {
     width: 100%;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     margin: 0;
 }
 
- 
+.screen {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    &.open {
+        pointer-events: all;
+    }
+}

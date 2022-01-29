@@ -1,10 +1,13 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
+import { connect } from 'react-redux'
+
 
 import { HomePage } from './pages/home-page.jsx'
 // import { StayEdit } from './pages/stay-edit.jsx'
 import { StayApp } from './pages/stay-app.jsx'
 import { HostPage } from './pages/host.jsx'
+import {toggleModal } from './store/page.action.js'
 
 import { StayDetails } from './pages/stay-details.jsx'
 import { AppHeader } from './cmps/app-header.jsx'
@@ -15,12 +18,13 @@ import { StayEdit } from './cmps/stay-edit.jsx'
 
 // Screen component transparant 
 // fix position - and onclick close modal (store - isModalOpen - page)
-export class RootCmp extends React.Component {
+export class _RootCmp extends React.Component {
 
   render() {
     return (
       <>
         <AppHeader />
+
         <Switch>
           {/* <Route component={StayEdit} path="/stay-edit/:stayId" /> */}
           <Route component={StayDetails} path="/stay/:stayId" />
@@ -32,7 +36,24 @@ export class RootCmp extends React.Component {
           <Route component={HostPage} exact path="/host" />
         </Switch>
         <AppFooter />
+        <div onClick={()=>{this.props.toggleModal()}} className={this.props.isModalOpen ? "screen open" : "screen"}></div>
+
       </>
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    isModalOpen: state.pageModule.isModalOpen
+  }
+}
+
+const mapDispatchToProps = {
+ toggleModal
+}
+
+export const RootCmp = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(_RootCmp)

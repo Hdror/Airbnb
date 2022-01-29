@@ -16,7 +16,7 @@ import Share from '../assest/svg/app-detials/Share.svg'
 import { stayService } from '../services/stay.service.js'
 import { StayMap } from '../cmps/stay-map.jsx'
 import { StayReserve } from '../cmps/stay-reserve.jsx'
-import { changePage } from '../store/page.action.js'
+import { changePage,toggleModal } from '../store/page.action.js'
 
 class _StayDetails extends React.Component {
     state = {
@@ -105,10 +105,18 @@ class _StayDetails extends React.Component {
 
 
 const mapDispatchToProps = {
-    changePage
+    changePage,
+    toggleModal
+}
+
+function mapStateToProps(state) {
+    return {
+        modalState: state.pageModule.modalState,
+        isModalOpen: state.pageModule.isModalOpen
+    }
 }
 
 export const StayDetails = connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(_StayDetails)

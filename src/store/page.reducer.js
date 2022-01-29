@@ -1,5 +1,25 @@
 const initialState = {
-  currPage: ''
+  currPage: '',
+  isModalOpen: false,
+  modalState: {
+    dateRangeModal: false,
+    guestsModal: false,
+    menuDropDownModal:false,
+    typeOfPlaceModal:false,
+    priceModal:false,
+    datePickerModal:false,
+    reservGuestsModal:false
+  }
+}
+
+const closeModalState={
+  dateRangeModal: false,
+    guestsModal: false,
+    menuDropDownModal:false,
+    typeOfPlaceModal:false,
+    priceModal:false,
+    datePickerModal:false,
+    reservGuestsModal:false
 }
 
 export function pageReducer(state = initialState, action) {
@@ -8,7 +28,13 @@ export function pageReducer(state = initialState, action) {
     case 'SET_PAGE':
       newState = { ...state, currPage: action.currPage }
       break
+    case 'CLOSE_MODAL':
+      newState = { ...state, modalState: {...closeModalState }, isModalOpen: false }
+      break
+    case 'OPEN_MODAL':
+      newState = { ...state, modalState: { ...closeModalState, [action.modalName]: true }, isModalOpen: true }
+      break
   }
-
   return newState
 }
+

@@ -3,11 +3,12 @@ import { Link, NavLink } from 'react-router-dom'
 
 // STORE
 import { connect } from 'react-redux'
+import { toggleModal } from '../store/page.action.js'
 
 // COMPONENT
 import { TripFilter } from './trip-filter.jsx'
 import { MenuDropDown } from './app-dropdown-menu.jsx'
-import {GuestsModal} from './guests-dropdown.jsx'
+import { GuestsModal } from './guests-dropdown.jsx'
 // SVG
 import menu from '../assest/svg/app-header/menu.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -62,6 +63,7 @@ class _AppHeader extends React.Component {
 
     toggleMenuDropDownModal = () => {
         this.setState({ MenuDropDownModal: !this.state.MenuDropDownModal })
+
     }
 
     onSetFilter = (filterBy) => {
@@ -93,11 +95,11 @@ class _AppHeader extends React.Component {
                             <NavLink className="clean-link" to="/stay">Explore</NavLink>
                             <NavLink className="clean-link" to="/host">Become a host</NavLink>
                             <div className="menu-wrapper flex">
-                                <img className="menu-icon" src={menu} alt="" onClick={this.toggleMenuDropDownModal} />
+                                <img className="menu-icon" src={menu} alt="" onClick={() => { this.props.isModalOpen ? this.props.toggleModal() : this.props.toggleModal('menuDropDownModal') }} />
                                 {!user && <img className="user-icon" src="https://randomuser.me/api/portraits/women/95.jpg" alt="" />}
-                                {user &&<img className="user-icon" src={user.imgUrl} alt="" />}
+                                {user && <img className="user-icon" src={user.imgUrl} alt="" />}
                             </div>
-                            {MenuDropDownModal && <MenuDropDown />}
+                            {this.props.modalState.menuDropDownModal && <MenuDropDown />}
                         </div>
                     </div>
                     <TripFilter isMiniHeader={isMiniHeader} />
@@ -111,9 +113,12 @@ function mapStateToProps(state) {
     return {
         currPage: state.pageModule.currPage,
         user: state.userModule.user,
+        modalState: state.pageModule.modalState,
+        isModalOpen: state.pageModule.isModalOpen
     }
 }
 const mapDispatchToProps = {
+    toggleModal
 }
 
 export const AppHeader = connect(

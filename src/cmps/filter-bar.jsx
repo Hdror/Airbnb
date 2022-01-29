@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import { utilService } from '../services/util.service.js'
 import { setFrontFilter } from '../store/stay.action.js'
+import { toggleModal } from '../store/page.action.js'
 
 import filter from '../assest/svg/general/filter.svg'
 import arrow_down from '../assest/svg/general/arrow-down.svg'
@@ -16,8 +17,8 @@ export class _FilterBar extends React.Component {
     state = {
         stays: this.props.stays,
         amenities: utilService.getRandomAmenities(),
-        isPriceModalOpen: false,
-        isTypeOfPlaceModal: false,
+        // isPriceModalOpen: false,
+        // isTypeOfPlaceModal: false,
         filterBy: {
             typeOfPlace: {
                 'Entire place': false,
@@ -44,9 +45,8 @@ export class _FilterBar extends React.Component {
             }) && (filterBy.price.minPrice < stay.price && filterBy.price.maxPrice > stay.price))
                 return stay
         })
-        console.log(filteredStays);
         this.props.setFiltersStays(filteredStays)
-        this.setState({ isPriceModalOpen: false, isTypeOfPlaceModal: false })
+        this.props.toggleModal()
     }
 
     cleanForm = () => {
@@ -81,33 +81,33 @@ export class _FilterBar extends React.Component {
     }
 
 
-    toggleTypeOfPlaceModal = () => {
-        if (this.state.isPriceModalOpen) {
-            return this.setState({ isPriceModalOpen: false })
-        }
-        this.setState({ isTypeOfPlaceModal: !this.state.isTypeOfPlaceModal })
-    }
+    // toggleTypeOfPlaceModal = () => {
+    //     if (this.state.isPriceModalOpen) {
+    //         return this.setState({ isPriceModalOpen: false })
+    //     }
+    //     this.setState({ isTypeOfPlaceModal: !this.state.isTypeOfPlaceModal })
+    // }
 
-    togglePriceModal = () => {
-        if (this.state.isTypeOfPlaceModal) {
-            return this.setState({ isTypeOfPlaceModal: false })
-        }
-        this.setState({ isPriceModalOpen: !this.state.isPriceModalOpen })
-    }
+    // togglePriceModal = () => {
+    //     if (this.state.isTypeOfPlaceModal) {
+    //         return this.setState({ isTypeOfPlaceModal: false })
+    //     }
+    //     this.setState({ isPriceModalOpen: !this.state.isPriceModalOpen })
+    // }
 
 
 
     render() {
-        const { amenities, isPriceModalOpen, isTypeOfPlaceModal, filterBy } = this.state
-        const { stays } = this.props
+        const { amenities, filterBy } = this.state
+        const { stays, toggleModal, isModalOpen, modalState } = this.props
         return <section className="filter-bar flex">
-            <div onClick={this.togglePriceModal}>Price <img src={arrow_down} /></div>
-            <div onClick={this.toggleTypeOfPlaceModal}>Type of place <img src={arrow_down} /></div>
+            <div onClick={() => { isModalOpen ? toggleModal() : toggleModal('priceModal') }}>Price <img src={arrow_down} /></div>
+            <div onClick={() => { isModalOpen ? toggleModal() : toggleModal('typeOfPlaceModal') }}>Type of place <img src={arrow_down} /></div>
             {amenities.map((amenity, idx) => {
-                return <div onClick={this.handleChange} id="amenities"  className={amenity} key={idx}>{amenity}</div>
+                return <div onClick={this.handleChange} id="amenities" className={amenity} key={idx}>{amenity}</div>
             })}
-            {isTypeOfPlaceModal && <TypeOfPlaceModal filterBy={filterBy} cleanForm={this.cleanForm} filterStays={this.filterStays} handleChange={this.handleChange} />}
-            {isPriceModalOpen && <PriceModal handleChange={this.handleChange} filterStays={this.filterStays} stays={stays} />}
+            {modalState.typeOfPlaceModal && <TypeOfPlaceModal filterBy={filterBy} cleanForm={this.cleanForm} filterStays={this.filterStays} handleChange={this.handleChange} />}
+            {modalState.priceModal && <PriceModal handleChange={this.handleChange} filterStays={this.filterStays} stays={stays} />}
             <div>
                 <img className="filter-svg flex" src={filter} />
                 <p>Filter</p>
@@ -116,15 +116,18 @@ export class _FilterBar extends React.Component {
     }
 }
 
-function mapStateToProps({ stayModule }) {
+function mapStateToProps(state) {
     return {
-        stays: stayModule.stays,
-        filterBy: stayModule.frontFilterBy
+        stays: state.stayModule.stays,
+        filterBy: state.stayModule.frontFilterBy,
+        modalState: state.pageModule.modalState,
+        isModalOpen: state.pageModule.isModalOpen
     }
 }
 
 const mapDispatchToProps = {
-    setFrontFilter
+    setFrontFilter,
+    toggleModal
 }
 
 export const FilterBar = connect(mapStateToProps, mapDispatchToProps)(_FilterBar)

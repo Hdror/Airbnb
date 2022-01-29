@@ -4,9 +4,13 @@
     font-family: f-bold;
     box-shadow: 0px 6px 20px rgb(0 0 0 / 20%);
     z-index: 5;
+    width: 100%;
 
     .rdrDateDisplayWrapper {
         display: none;
+    }
+    .rdrMonthAndYearWrapper {
+        padding: 10px 50px;
     }
 
     .rdrWeekDay {
