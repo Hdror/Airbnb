@@ -213,13 +213,13 @@ class _StayEdit extends React.Component {
                                     {/* <h1>Entire {type} hosted by {host.fullname}</h1> */}
                                     <ul className="clean-list">
                                         <li><input type="number" name="capacity" onChange={this.onHandleChange} placeholder="Enter guest capacity" /></li>
-                                        <select onChange={this.onHandleChange} name="stayType" id="">
+                                        <select onChange={this.onHandleChange} name="typeOfPlace" id="">
                                             <option value="Entire Place">Entire Place</option>
                                             <option value="Private Room">Private Room</option>
                                             <option value="Shared Room">Shared Room</option>
                                             <option value="Hotel Room">Hotel Room</option>
                                         </select>
-                                        <select onChange={this.onHandleChange} name="propertyType" id="">
+                                        <select onChange={this.onHandleChange} name="type" id="">
                                             <option value="Loft">Loft</option>
                                             <option value="Apartment">Apartment</option>
                                             <option value="Shared Room">Shared Room</option>
