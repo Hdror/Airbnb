@@ -1,5 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
+import { Link } from 'react-router-dom'
 
 // SERVICES
 import { utilService } from "../services/util.service.js"
@@ -45,7 +46,9 @@ class _Orders extends React.Component {
                 <div className="user-order-container">
                     {orders.map((order, idx) => {
                         return (
+                                <Link className="clean-link" to={`stay/${order.stay._id}`}>
                             <div className="order-info-container" key={idx}>
+
                                 <div className="order-img-container">
                                     <img src={order.image} alt="" />
                                 </div>
@@ -59,6 +62,8 @@ class _Orders extends React.Component {
                                     <div>Total price : ${order.totalPrice}</div>
                                 </div>
                             </div>
+                            </Link>
+
                         )
                     })}
                 </div>

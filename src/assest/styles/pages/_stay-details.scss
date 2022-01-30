@@ -214,7 +214,10 @@
         position: sticky;
         text-align: center;
         display: flex;
+        z-index: 5;
         flex-direction: column;
+
+        
       }
     }
   }

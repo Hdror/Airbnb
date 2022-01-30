@@ -120,7 +120,6 @@ class _StayReserve extends React.Component {
     }
 
     updateNumOfGuests = (diff, type, ev) => {
-        ev.preventDefault()
         ev.stopPropagation()
         const { guests } = this.state.trip
         if (guests[type] + diff < 0) return

@@ -1,7 +1,7 @@
 .dropdown-user-menu {
     margin-left:1000px;
     background-color: $clr5;
-    border: 1px solid $clr7;
+    // border: 1px solid $clr7;
     border-radius: 10px;
     box-shadow: 0 0 1px 0 $clr8;
     z-index:101;
@@ -10,15 +10,17 @@
     top: 100%;
 
     .dropdown-container {
-        padding: 0;
+        padding: 15px 0px;
         margin: 0;
-        width:230px;
+        width:200px;
 
         li {
             font-family: f-light;
-            font-size: rem(14px);
-            padding: 15px 15px;
+            font-size: rem(12px);
+            padding: 10px 0px;
+            padding-left: 15px;
             color: $clr2;
+            width: 100%;
 
             &:hover {
                 background-color: $clr6;
