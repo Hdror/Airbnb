@@ -1,10 +1,31 @@
-.stay-list {
-    display: grid;
-    grid-auto-flow: dense;
-    grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
-    gap: 20px;
-    // row-gap: 50pxg\;
-    
+.list-section {
+    .text-container {
+        font-family: f-light;
+        font-size: rem(14px);
+        color: $clr2;
+        margin-block-end: 20px;
+        border-bottom: 1px solid $clr11;
 
-  
+        h1 {
+            margin-block-start: 20px;
+            margin-block-end: 20px;
+            font-family: f-light;
+            font-size: rem(14px);
+            color: $clr2;
+        }
+        p {
+            margin-block-end: 20px;
+            span {
+                text-decoration: underline;
+                margin-block-end: 20px;
+            }
+        }
+    }
+    .stay-list {
+        display: grid;
+        grid-auto-flow: dense;
+        grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+        gap: 20px;
+        // row-gap: 50pxg\;
+    }
 }

@@ -4,7 +4,8 @@ export const utilService = {
   delay,
   formattedDates,
   getRandomAmenities,
-  timeConverter
+  timeConverter,
+  firstLetterToUpperCase
 }
 
 function makeId(length = 6) {
@@ -63,3 +64,6 @@ function timeConverter(time) {
   return time
 }
 
+export function firstLetterToUpperCase(word) {
+  return word[0].toUpperCase() + word.slice(1)
+}

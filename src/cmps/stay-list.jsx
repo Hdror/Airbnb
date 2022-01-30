@@ -5,6 +5,7 @@ import { StayPreview } from './stay-preview.jsx'
 import { FilterBar } from './filter-bar.jsx'
 
 import { loadStays } from '../store/stay.action.js'
+import { firstLetterToUpperCase } from '../services/util.service.js'
 
 
 class _StayList extends React.Component {
@@ -23,11 +24,14 @@ class _StayList extends React.Component {
 
   render() {
     const stays = this.state.filteredStays.length ? this.state.filteredStays : this.props.stays
-    const numOfStayText = this.props.filterBy.loc === '' ? 'Stays tp explor' : `Stays to show in ${this.props.filterBy.loc}`
+    const numOfStayText = this.props.filterBy.loc === '' ? 'stays tp explore' : `stays in ${firstLetterToUpperCase(this.props.filterBy.loc)}`
     if (!stays.length) return <h1>There are no stays to show</h1>
     return (
-      <section >
-      
+      <section className="list-section">
+        <div className="text-container">
+          <h1 >{stays.length} {numOfStayText} </h1>
+          <p>Review COVID-19 travel restrictions before you book. <span>Learn more</span> </p>
+        </div>
         <FilterBar setFiltersStays={this.setFiltersStays} stays={this.props.stays} />
         <div className="stay-list">
           {stays.map((stay) => (

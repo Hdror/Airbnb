@@ -64,14 +64,15 @@ header {
 
         .trip-build-container {
             width: 600px;
-            transform: translate(-50%, -9%) scale(0.5);
+            transform: translate(-50%, -50%) scale(0.5);
             transition: width 0.15s, top 0.15s, transform 0.15s;
             box-shadow: 0 0 3px 2px $clr7;
-            padding: 0px 20px;
+            padding-inline-start: 20px;
+            padding-inline-end: 10px;
             justify-content: space-evenly;
             // height: 48px;
             border: 1px solid $clr9;
-
+            top: 50%;
             &:hover {
                 box-shadow: 0px 5px 4px 1px $clr9;
             }
@@ -111,8 +112,9 @@ header {
 
             .mini-header-content {
                 color: $clr2;
-                font-size: rem(34px);
-                padding: 25px 10px;
+                font-size: 1.825rem;;
+                padding: 25px 20px;
+                padding-right: 0;
             }
         }
     }
@@ -208,12 +210,13 @@ header {
             font-family: f-medium;
             font-size: rem(12px);
 
-            .location-indicator{}
+            .location-indicator {
+            }
         }
 
         form {
             display: flex;
-            
+
             .search-input {
                 border: none;
                 font-size: rem(14px);
@@ -227,7 +230,8 @@ header {
                 //     color: blue !important;
                 // }
             }
-            input[type="text"], textarea {
+            input[type="text"],
+            textarea {
                 background-color: unset;
             }
             input:-webkit-autofill {
