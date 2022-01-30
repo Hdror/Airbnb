@@ -106,8 +106,8 @@ class _StayEdit extends React.Component {
         this.setState({
             stay: {
                 name: '',
-                type: '',
-                typeOfPlace: "Entire place",
+                type: 'Loft',
+                typeOfPlace: 'Entire place',
                 imgUrls: [],
                 price: 0,
                 summary: '',
