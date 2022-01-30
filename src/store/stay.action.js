@@ -14,6 +14,7 @@ export function loadStays(filterBy) {
 
 // ADD STAY
 export function addStay(stay) {
+  console.log('AddStay', stay);
   return (dispatch) => {
     stayService.save(stay)
       .then((savedStay) => {

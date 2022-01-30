@@ -59,13 +59,13 @@ export class _HomePage extends React.Component {
                 <div className="city-container flex">
                     <div onClick={this.onSetFilter} className="img-container">
                         <Link to="/stay">
-                            <div className="img-text">Places to stay in London</div>
+                            <div className="img-text">Explore London</div>
                             <img id="london" src="https://images.unsplash.com/photo-1545853332-147d5073187e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80" alt="" />
                         </Link>
                     </div>
                     <div onClick={this.onSetFilter} className="img-container">
                         <Link to="/stay">
-                            <div className="img-text">Places to stay in New York</div>
+                            <div className="img-text">Explore New York</div>
                             <img id="new york" src="https://images.pexels.com/photos/3525688/pexels-photo-3525688.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="" />
                         </Link>
                     </div>
