@@ -42,13 +42,13 @@ async function signup(userInfo) {
 
 async function update(user) {
   user = await httpService.put(`user/${user._id}`, user)
-  if (getLoggedinUser()._id === user._id) _saveLocalUser(user)
+  if (getLoggedinUser()?._id === user._id) _saveLocalUser(user)
   return user
 }
 
 function _saveLocalUser(user) {
   if (!user) return
-  sessionStorage.setItem(STORAGE_KEY_LOGGEDIN ``, JSON.stringify(user))
+  sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
   return user
 }
 
