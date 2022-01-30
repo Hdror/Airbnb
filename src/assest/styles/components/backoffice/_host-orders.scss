@@ -1,0 +1,27 @@
+.host-order-container {
+    flex-direction: row;
+    text-align: left;
+    justify-content: space-evenly;
+
+    .order-box {
+        border-bottom: 1px solid $clr7;
+        border-top: 1px solid $clr7;
+        flex-direction: column;
+        justify-content: space-evenly;
+        padding: 5px 0px;
+        height: 100px;
+        width: 200px;
+
+        :first-child {
+            text-decoration: underline;
+            padding: 5px 15px;
+            font-family: f-medium;
+            font-size: rem(18px);
+        }
+        :last-child {
+            padding: 5px 15px;
+            font-family: f-light;
+            font-size: rem(16px);
+        }
+    }
+}

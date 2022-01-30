@@ -22,10 +22,13 @@
 @import "components/stay-app/type-of-place.scss";
 @import "components/stay-app/price-modal.scss";
 @import "components/guests-modal/guests-modal.scss";
-@import "components/backoffice/stay-edit";
+@import "components/backoffice/stay-edit.scss";
+@import "components/backoffice/host-orders.scss";
+@import "components/backoffice/host-stays.scss";
 
 // Pages
 
 @import "pages/stay-details.scss";
 @import "pages/home-page.scss";
 @import "pages/app-login/app-login.scss";
+@import "pages/orders-page/orders-page.scss";

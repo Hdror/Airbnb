@@ -8,13 +8,7 @@ import { loadOrders } from '../store/order/order.actions.js'
 // SERVICES
 import { utilService } from '../services/util.service.js'
 
-
-// 3 TABS
-
-// ADD STAY + EDIT
-// HOST STAYS - TABLE WITH STAYS (INFO REVENUE NUM OR ORDERS, number of pending orders,)
-// HOST ORDERS  - WHICH STAY - DATES - NUM OF GUESTS 
-
+// SVG
 class _HostOrders extends React.Component {
 
     componentDidMount() {
@@ -27,20 +21,40 @@ class _HostOrders extends React.Component {
         if (!orders.length) return <div>Loading</div>
         return (
             <div className="main-container host-stay-container">
+
                 {orders.map((order, idx) => {
-                    return <ul className="clean-list order" key={idx}>
-                        <h1>Order {idx + 1}</h1>
-                        <li>Stay : {order.stay.name}</li>
-                        <li>Price :  $ {order.stay.price} / night </li>
-                        <li>Earnings : $ {order.totalPrice}</li>
-                        <li>Status : {order.status}</li>
-                        <li>Created at : {utilService.timeConverter(order.createdAt)}</li>
-                        <li>Check in : {utilService.timeConverter(order.startDate)}</li>
-                        <li>Check out : {utilService.timeConverter(order.endDate)}</li>
-                        <li>Guests : {order.guests.adults} Adults, {order.guests.children} Children</li>
-                    </ul>
-                })}
-            </div>
+                    return <div className="host-order-container flex" key={idx}>
+                        <div className="order-box order-stay-name flex">
+                            <div>{order.stay.name}</div>
+                        </div>
+                        <div className="order-box flex">
+                            <div>Earnings</div>
+                            <div>$ {order.totalPrice}</div>
+                        </div>
+                        <div className="order-box flex">
+                            <div>Status</div>
+                            <div>{order.status}</div>
+                        </div>
+                        <div className="order-box flex">
+                            <div>Reserved at</div>
+                            <div>{utilService.timeConverter(order.createdAt)}</div>
+                        </div>
+                        <div className="order-box flex">
+                            <div>Check in</div>
+                            <div>{utilService.timeConverter(order.startDate)}</div>
+                        </div>
+                        <div className="order-box flex">
+                            <div>Check out</div>
+                            <div>{utilService.timeConverter(order.endDate)}</div>
+                        </div>
+                        <div className="order-box flex">
+                            <div>Guests</div>
+                            <div>{order.guests.adults} Adults, {order.guests.children} Children </div>
+                        </div>
+                    </div>
+                })
+                }
+            </div >
         )
     }
 }

@@ -8,7 +8,8 @@ export const userService = {
   logout,
   signup,
   getLoggedinUser,
-  getEmptyUser
+  getEmptyUser,
+  update
 }
 
 // const STORAGE_KEY = 'users'
@@ -31,29 +32,24 @@ async function login(credentials) {
     return null
   }
 }
-// storageService.query(STORAGE_KEY).then(users => {
-//   const user = users.find(user => user.phonenumber === credentials.phonenumber &&
-//     user.email === credentials.email)
-//   if (user) {
-//     localStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
-//     return user
-//   } else {
-//     console.log('No user with those credentials')
-//     console.log(user)
-//     return user
-//   }
-// })
-// }
+
 
 async function signup(userInfo) {
-  // return storageService.post(STORAGE_KEY, userInfo)
-  //   .then((user) => {
-  //     localStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
-  //     return user
-  //   })
   const newUser = await httpService.post('auth/signup', userInfo)
   localStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(newUser))
   return newUser
+}
+
+async function update(user) {
+  user = await httpService.put(`user/${user._id}`, user)
+  if (getLoggedinUser()._id === user._id) _saveLocalUser(user)
+  return user
+}
+
+function _saveLocalUser(user) {
+  if (!user) return
+  sessionStorage.setItem(STORAGE_KEY_LOGGEDIN ``, JSON.stringify(user))
+  return user
 }
 
 function logout() {

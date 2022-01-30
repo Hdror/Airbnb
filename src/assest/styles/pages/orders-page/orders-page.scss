@@ -1,0 +1,48 @@
+.user-details {
+    margin-top: 20px;
+    align-items: center;
+    padding: 20px 30px;
+    gap: 20px;
+    font-size: rem(16px);
+
+    .orders-user-img {
+        border-radius: 50%;
+
+        img {
+            height: 45px;
+            border: 1px solid $clr7;
+            border-radius: 50%;
+        }
+    }
+}
+
+.user-order-container {
+    display: flex;
+    flex-direction: column;
+
+    .order-info-details {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        justify-content: space-evenly;
+        border-bottom: 1px solid $clr7;
+        border-top: 1px solid $clr7;
+        width: 400px;
+        font-family: f-light;
+    }
+    .order-info-container {
+        display: flex;
+        padding: 20px 30px;
+        gap: 20px;
+        .order-img-container {
+            display: flex;
+            align-items: center;
+            width: 260px;
+            img {
+                height: 195px;
+                border: 2px solid $clr7;
+                object-fit: cover;
+            }
+        }
+    }
+}
