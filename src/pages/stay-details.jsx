@@ -16,7 +16,7 @@ import Share from '../assest/svg/app-detials/Share.svg'
 import { stayService } from '../services/stay.service.js'
 import { StayMap } from '../cmps/stay-map.jsx'
 import { StayReserve } from '../cmps/stay-reserve.jsx'
-import { changePage,toggleModal } from '../store/page.action.js'
+import { changePage, toggleModal } from '../store/page.action.js'
 
 class _StayDetails extends React.Component {
     state = {
@@ -34,7 +34,7 @@ class _StayDetails extends React.Component {
     render() {
         if (!this.state.stay) return 'LOADING'
         const { stay } = this.state
-        // console.log(stay);
+        console.log(stay);
         const { name, avgRate, reviews, loc, imgUrls, facilites, capacity, host, summary, type, amenities } = stay
         const numOfReviews = reviews.length
         const txt = facilites.beds > 1 ? 'beds' : 'bed'

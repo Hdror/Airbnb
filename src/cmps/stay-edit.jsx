@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "react-router-dom"
 import { connect } from 'react-redux'
 
-import { loadStays, addStay, onUpdateStay, removeStay } from '../store/stay.action.js'
+import { loadStays, addStay, onUpdateStay, removeStay, setCurrStay } from '../store/stay.action.js'
 import { changePage } from '../store/page.action.js'
 import { Upload } from "./upload.jsx"
 
@@ -21,7 +21,7 @@ class _StayEdit extends React.Component {
     state = {
         stay: {
             name: '',
-            type: '',
+            type: 'Loft',
             typeOfPlace: "Entire place",
             imgUrls: [],
             price: 0,
@@ -32,22 +32,12 @@ class _StayEdit extends React.Component {
                 bedrooms: 1,
                 bathrooms: 1
             },
-            amenities: {
-                Wifi: false,
-                Heating: false,
-                HotTub: false,
-                Dryer: false,
-                Kitchen: false,
-                Microwave: false,
-                Refrigerator: false,
-                Stove: false,
-                TV: false,
-                Oven: false,
-                Hangers: false,
-                'Hair dryer': false,
-                'Free parking': false,
+            amenities: [],
+            host: {
+                fullname: '',
+                imgUrl: '',
+                _id: ''
             },
-            host: {},
             loc: {
                 country: '',
                 city: '',
@@ -57,26 +47,34 @@ class _StayEdit extends React.Component {
                 lng: 0
             },
             reviews: []
+        },
+        amenities: {
+            'Wifi': false,
+            'Heating': false,
+            'HotTub': false,
+            'Dryer': false,
+            'Kitchen': false,
+            'Microwave': false,
+            'Refrigerator': false,
+            'Stove': false,
+            'TV': false,
+            'Oven': false,
+            'Hangers': false,
+            'Hair dryer': false,
+            'Free parking': false,
         }
 
     }
 
 
     componentDidMount() {
-        if (this.props.stayId) {
-            // getById to stay and add to stay state
+        if (this.props.user) {
+            const { fullname, imgUrl, _id } = this.props.user
+            // TODO // getById to stay and add to stay state
+            this.setState((prevState) => ({ stay: { ...prevState.stay, host: { ...this.state.stay.host, fullname, imgUrl, _id } } }))
+
         }
 
-        // this.props.loadStays()
-        // const { stays } = this.props
-        // console.log(stays);
-
-        // this.props.loadStays(this.props.filterBy).then(stays => {
-        // })
-        // this.props.changePage('stay-details')
-        // const { stayId } = this.props.match.params
-        // stayService.getById(stayId)
-        //     .then(stay => { this.setState({ stay }) })
     }
 
     onUploadImg = (imgState, position) => {
@@ -85,23 +83,97 @@ class _StayEdit extends React.Component {
         this.setState({ stay: { ...this.state.stay, imgUrls } })
     }
 
-    updateStay = () => {
+    setAmeneties = () => {
+        const { amenities } = this.state
+        let amensToSave = []
+        for (let amenity in amenities) {
+            if (amenities[amenity])
+                amensToSave.push(amenity)
+        }
+        console.log(amensToSave);
+        this.setState({ stay: { ...this.state.stay, amenities: amensToSave } }, () => { console.log('SaveAmens', this.state.stay) })
+    }
 
+    updateStay = (ev) => {
+        ev.preventDefault()
+
+        this.props.addStay(this.state.stay)
+        this.cleanForm()
+    }
+
+
+    cleanForm = () => {
+        this.setState({
+            stay: {
+                name: '',
+                type: '',
+                typeOfPlace: "Entire place",
+                imgUrls: [],
+                price: 0,
+                summary: '',
+                capacity: 2,
+                facilites: {
+                    beds: 1,
+                    bedrooms: 1,
+                    bathrooms: 1
+                },
+                amenities: {
+                    Wifi: false,
+                    Heating: false,
+                    HotTub: false,
+                    Dryer: false,
+                    Kitchen: false,
+                    Microwave: false,
+                    Refrigerator: false,
+                    Stove: false,
+                    TV: false,
+                    Oven: false,
+                    Hangers: false,
+                    'Hair dryer': false,
+                    'Free parking': false,
+                },
+                host: {},
+                loc: {
+                    country: '',
+                    city: '',
+                    countryCode: '',
+                    address: '',
+                    lat: 0,
+                    lng: 0
+                },
+                reviews: []
+            }
+        })
     }
 
 
     onHandleChange = (ev) => {
         let { target } = ev
-        console.log(target.value);
-        if (target) {
-            const field = target.name
-            const value = target.type === 'number' ? +target.value : target.value
-            this.setState((prevState) => ({ order: { ...prevState.order, [field]: value } }))
+        if (target.type < 0) return
+        const field = target.name
+        const value = target.type === 'number' ? +target.value : target.value
+        if (target.type === 'checkbox') {
+            const checked = target.checked
+            if (!this.state.amenities[checked]) {
+                console.log(field);
+                this.setState({ amenities: { ...this.state.amenities, [field]: checked } }, () => { this.setAmeneties() })
+            }
+
         }
-        else if (ev) {
-            const labels = ev.map(option => option.value.toLowerCase())
-            this.setState(prevState => ({ order: { ...prevState.order, labels } }))
+
+        else if (field === 'loc') {
+
+        } else if (field === 'bedrooms' || field === 'beds' || field === 'bathrooms') {
+            this.setState((prevState) => ({ stay: { ...prevState.stay, facilites: { ...this.state.stay.facilites, [field]: value } } }), () => { console.log(this.state) })
+
+        } else if (field === 'address') {
+            this.setState((prevState) => ({ stay: { ...prevState.stay, loc: { ...this.state.stay.loc, [field]: value } } }), () => { console.log(this.state) })
+
+        } else {
+            this.setState((prevState) => ({ stay: { ...prevState.stay, [field]: value } }), () => { console.log(this.state) })
         }
+
+
 
     }
 
@@ -113,18 +185,16 @@ class _StayEdit extends React.Component {
     render() {
         if (!this.props.stays) return "LOADING"
         const { stay } = this.state
-        const { stays } = this.props
-        // console.log(stay);
-        const { name, avgRate, reviews, loc, imgUrls, facilites, capacity, host, summary, type, amenities } = stays
-        // const txt = facilites.beds > 1 ? 'beds' : 'bed'
+        // const { stays } = this.props
+
         return (
             <main className="page main-container">
                 <div className="stay-edit-container">
                     {/* <div></div> */}
-                    <h2>{name}</h2>
+                    <h2>{stay.name}</h2>
                     <span className="stay-edit-location">
-                        <span><input type="text" name="name" placeholder="Enter stay name here" onChange={this.onHandleChange} value={stay.name} /></span>
-                        <span><input type="text" name="address" placeholder="Enter stay address here" /></span>
+                        <span><input type="text" name="name" placeholder="Enter stay name here" onChange={this.onHandleChange} /></span>
+                        <span><input type="text" name="address" placeholder="Enter stay address here" onChange={this.onHandleChange} /></span>
                     </span>
                 </div>
                 {/* <div>{name}</div> */}
@@ -142,33 +212,54 @@ class _StayEdit extends React.Component {
                                 <section className="stay-edit-details flex">
                                     {/* <h1>Entire {type} hosted by {host.fullname}</h1> */}
                                     <ul className="clean-list">
-                                        <li><input type="number" name="capacity" placeholder="Enter guest capacity" /></li>
-                                        <select name="stayType" id="">
+                                        <li><input type="number" name="capacity" onChange={this.onHandleChange} placeholder="Enter guest capacity" /></li>
+                                        <select onChange={this.onHandleChange} name="stayType" id="">
                                             <option value="Entire Place">Entire Place</option>
                                             <option value="Private Room">Private Room</option>
                                             <option value="Shared Room">Shared Room</option>
                                             <option value="Hotel Room">Hotel Room</option>
                                         </select>
-                                        <select name="propertyType" id="">
-                                            <option onChange={this.onHandleChange} value={stay.type}>Loft</option>
-                                            <option onChange={this.onHandleChange} value="Apartment">Apartment</option>
-                                            <option onChange={this.onHandleChange} value="Shared Room">Shared Room</option>
-                                            <option onChange={this.onHandleChange} value="Hotel">Hotel</option>
-                                            <option onChange={this.onHandleChange} value="House">House</option>
-                                            <option onChange={this.onHandleChange} value="Guesthouse">Guesthouse</option>
+                                        <select onChange={this.onHandleChange} name="propertyType" id="">
+                                            <option value="Loft">Loft</option>
+                                            <option value="Apartment">Apartment</option>
+                                            <option value="Shared Room">Shared Room</option>
+                                            <option value="Hotel">Hotel</option>
+                                            <option value="House">House</option>
+                                            <option value="Guesthouse">Guesthouse</option>
                                         </select>
-                                        <li><input type="text" name="bedrooms" placeholder="Enter number of bedrooms" /></li>
-                                        <li><input type="text" name="beds" placeholder="Enter number of beds" /></li>
+                                        <li><input onChange={this.onHandleChange} type="number" name="bedrooms" placeholder="Enter number of bedrooms" /></li>
+                                        <li><input onChange={this.onHandleChange} type="number" name="beds" placeholder="Enter number of beds" /></li>
+                                        <li><input onChange={this.onHandleChange} type="number" name="bathrooms" placeholder="Enter number of bathrooms" /></li>
+                                        <li><input onChange={this.onHandleChange} type="number" name="price" placeholder="Enter price" />${stay.price}</li>
                                     </ul>
                                 </section>
                                 {/* <div className="host-portrait">
                                     <img src={host.imgUrl} alt="photo needed" />
                                 </div> */}
                             </div>
-                            <Upload
-                                position={0}
-                                onUploadImg={this.onUploadImg}
-                                userImgUrl={this.state.stay.imgUrls[0]} />
+                            <div className="img-upload-container">
+
+                                <Upload
+                                    position={0}
+                                    onUploadImg={this.onUploadImg}
+                                    userImgUrl={this.state.stay.imgUrls[0]} />
+                                <Upload
+                                    position={1}
+                                    onUploadImg={this.onUploadImg}
+                                    userImgUrl={this.state.stay.imgUrls[1]} />
+                                <Upload
+                                    position={2}
+                                    onUploadImg={this.onUploadImg}
+                                    userImgUrl={this.state.stay.imgUrls[2]} />
+                                <Upload
+                                    position={3}
+                                    onUploadImg={this.onUploadImg}
+                                    userImgUrl={this.state.stay.imgUrls[3]} />
+                                <Upload
+                                    position={4}
+                                    onUploadImg={this.onUploadImg}
+                                    userImgUrl={this.state.stay.imgUrls[4]} />
+                            </div>
                         </div>
                         <div className="stay-edit-perks">
                             <ul className="clean-list">
@@ -178,23 +269,23 @@ class _StayEdit extends React.Component {
                                 <li><span><img src={Great_location} alt="" /> Great location</span> <span> 100% of recent guests gave the location a 5-star rating.</span></li>
                             </ul>
                         </div>
-                        <div className="stay-edit-summary">{summary}
-                            <textarea type="text" name="description" cols="30" rows="30"></textarea></div>
+                        <div className="stay-edit-summary">
+                            <textarea type="text" name="summary" cols="30" rows="30" onChange={this.onHandleChange} ></textarea></div>
                         <section className="stay-edit-amenities-container">
                             <div className="stay-edit-amenities clean-list">
-                                <div><input type="checkbox" value="Wifi" />Wifi</div>
-                                <div><input type="checkbox" value="Heating" />Heating</div>
-                                <div><input type="checkbox" value="HotTub" />HotTub</div>
-                                <div><input type="checkbox" value="Dryer" />Dryer</div>
-                                <div><input type="checkbox" value="Kitchen" />Kitchen</div>
-                                <div><input type="checkbox" value="Microwave" />Microwave</div>
-                                <div><input type="checkbox" value="Refrigerator" />Refrigerator</div>
-                                <div><input type="checkbox" value="Stove" />Stove</div>
-                                <div><input type="checkbox" value="TV" />TV</div>
-                                <div><input type="checkbox" value="Oven" />Oven</div>
-                                <div><input type="checkbox" value="Hangers" />Hangers</div>
-                                <div><input type="checkbox" value="Hair dryer" />Hair dryer</div>
-                                <div><input type="checkbox" value="Free parking" />Free Parking</div>
+                                <div><input onChange={this.onHandleChange} type="checkbox" name="Wifi" />Wifi</div>
+                                <div><input onChange={this.onHandleChange} type="checkbox" name="Heating" />Heating</div>
+                                <div><input onChange={this.onHandleChange} type="checkbox" name="HotTub" />HotTub</div>
+                                <div><input onChange={this.onHandleChange} type="checkbox" name="Dryer" />Dryer</div>
+                                <div><input onChange={this.onHandleChange} type="checkbox" name="Kitchen" />Kitchen</div>
+                                <div><input onChange={this.onHandleChange} type="checkbox" name="Microwave" />Microwave</div>
+                                <div><input onChange={this.onHandleChange} type="checkbox" name="Refrigerator" />Refrigerator</div>
+                                <div><input onChange={this.onHandleChange} type="checkbox" name="Stove" />Stove</div>
+                                <div><input onChange={this.onHandleChange} type="checkbox" name="TV" />TV</div>
+                                <div><input onChange={this.onHandleChange} type="checkbox" name="Oven" />Oven</div>
+                                <div><input onChange={this.onHandleChange} type="checkbox" name="Hangers" />Hangers</div>
+                                <div><input onChange={this.onHandleChange} type="checkbox" name="Hair dryer" />Hair dryer</div>
+                                <div><input onChange={this.onHandleChange} type="checkbox" name="Free parking" />Free Parking</div>
                             </div>
                         </section>
                     </div>
@@ -206,16 +297,18 @@ class _StayEdit extends React.Component {
 }
 
 
-function mapStateToProps({ stayModule }) {
+function mapStateToProps(state) {
     return {
-        stays: stayModule.stays,
-        filterBy: stayModule.filterBy
+        stays: state.stayModule.stays,
+        filterBy: state.stayModule.filterBy,
+        user: state.userModule.user
     }
 }
 
 const mapDispatchToProps = {
     changePage,
     onUpdateStay,
+    setCurrStay,
     loadStays,
     addStay,
     removeStay
