@@ -20,7 +20,7 @@ export class StayPreview extends React.Component {
                             {/* <img src={Star} alt="not-found" className="star" /> <span>{avgRate}</span> */}
                             <img src={Star} alt="not-found" className="star" /> <span>{(utilService.getRandomIntInclusive(3,4)+Math.random()).toFixed(2)}</span>
                             {/* <span className="review-count" >( {!reviews.length ? 'No reviews' : reviews.length} ) </span> */}
-                            <span className="review-count" >( {utilService.getRandomIntInclusive(20,50)}) </span>
+                            <span className="review-count" >({utilService.getRandomIntInclusive(20,50)}) </span>
                         </div>
                         <h3>{typeOfPlace} · {loc.address}</h3>
                         <h3>{name}</h3>
