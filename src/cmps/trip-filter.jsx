@@ -156,7 +156,7 @@ export class _TripFilter extends React.Component {
                     </div>
                 </form>}
                 {isMiniHeader &&
-                    <div className="mini-header-filter flex">
+                    <div onClick={this.props.toggleMiniHeader} className="mini-header-filter flex">
                         <div className="mini-header-content flex">
                             {"Location"}
                         </div>

@@ -14,7 +14,7 @@ class _StayApp extends React.Component {
 
   render() {
     return (
-      <main className="main-container page">
+      <main className="main-container page stay-app">
         <StayList />
       </main>
     )

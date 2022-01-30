@@ -122,7 +122,7 @@ class _LoginSignup extends Component {
                                         <button className='login-btn' onClick={this.toggleSignup}>New User?</button>
                                     </div>
                                 </div>
-                                <div className="social-login-container flex">
+                                {/* <div className="social-login-container flex">
                                     <span>or</span>
                                 </div>
                                 <div className="social-login-btns-container flex">
@@ -140,9 +140,9 @@ class _LoginSignup extends Component {
                                         <FontAwesomeIcon className="social-media-icon apple" icon={faApple} />
                                         <h4>Continue with Apple</h4>
                                         <span></span>
-                                    </div>
+                                    </div> */}
                                     {/* <div className="social-btn"><FontAwesomeIcon className="social-media-icon" icon={faEmail} /></div> */}
-                                </div>
+                                {/* </div> */}
                             </form>
                         </div>
                     )}
@@ -191,9 +191,9 @@ class _LoginSignup extends Component {
                                         <button className='login-btn' onClick={this.toggleSignup}>Log to my account</button>
                                     </div>
                                 </div>
-                                <div className="social-login-container">
+                                {/* <div className="social-login-container">
                                     <div className="login-divider"><span>or</span></div>
-                                </div>
+                                </div> */}
                             </form>
                         </div>
                     )

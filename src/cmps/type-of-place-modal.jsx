@@ -8,7 +8,7 @@ export class TypeOfPlaceModal extends React.Component {
     }
 
     render() {
-        const { handleChange, cleanForm, filterStays } = this.props
+        const { handleChange, cleanTypeOfPlaceForm, filterStays } = this.props
         return <section className="modal-container flex">
             <form className="flex" >
                 <div className="check-box-section flex">
@@ -42,7 +42,7 @@ export class TypeOfPlaceModal extends React.Component {
             </form>
             <div className="save-clear flex">
                 <div className="clear" >
-                    <p onClick={cleanForm}>Clear</p>
+                    <p onClick={cleanTypeOfPlaceForm}>Clear</p>
                 </div>
                 <div onClick={filterStays} className="save">Save</div>
             </div>

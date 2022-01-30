@@ -1,6 +1,11 @@
 footer {
     background-color: $clr6;
     font-size: rem(16px);
+    display: none;
+
+    @include for-tablet-layout{
+        display: block;
+    }
 
     h2 {
         font-size: rem(21px);

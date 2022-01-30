@@ -1,9 +1,8 @@
 .filter-bar {
-    margin-block-end: 25px;
-    // padding-block-start: 12px;
+    margin-block-end: 15px;
     position: relative;
-    // position: fixed;
-    // height: 40px;
+    flex-wrap: wrap;
+
 
     img {
         height: 12px;
@@ -12,6 +11,7 @@
             margin-inline-end: 5px;
             width: 16px;
             height: 16px;
+            
         }
     }
 
@@ -27,7 +27,8 @@
         font-size: rem(14px);
         transition: ease-in-out 0.15s;
         cursor: pointer;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
+        margin-block-end: 10px;
 
         &:not(:last-child){
             gap: 10px;

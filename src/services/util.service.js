@@ -43,7 +43,7 @@ function getRandomAmenities() {
   const amens = ['Wifi', 'HotTub', 'Free Parking', 'Dryer', 'Kitchen', 'Microwave', 'Refrigerator', 'Stove', 'TV', 'Oven', 'Hot Water', 'Heating', 'Elevator', 'Beachfront', 'Patio or balcony', 'Backyard', 'EV charge']
 
   let newAmens = []
-  for (var i = 0; i < 6; i++) {
+  for (var i = 0; i < amens.length; i++) {
     const index = getRandomIntInclusive(0, amens.length - 1)
     let amenity = amens.splice(index, 1)
     newAmens.push(amenity)

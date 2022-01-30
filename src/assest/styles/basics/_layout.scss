@@ -1,6 +1,6 @@
 .main-container {
     display: grid;
-    grid-template-columns: minmax(1rem, 1fr) $break-mobile minmax(1rem, 1fr);
+    grid-template-columns: minmax(0.5rem, 1fr) $break-mobile minmax(0.5rem, 1fr);
 
     > * {
         grid-column: 2;

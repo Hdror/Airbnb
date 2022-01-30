@@ -24,7 +24,7 @@ class _StayList extends React.Component {
 
   render() {
     const stays = this.state.filteredStays.length ? this.state.filteredStays : this.props.stays
-    const numOfStayText = this.props.filterBy.loc === '' ? 'stays tp explore' : `stays in ${firstLetterToUpperCase(this.props.filterBy.loc)}`
+    const numOfStayText = this.props.filterBy.loc === '' ? 'stays to explore' : `stays in ${firstLetterToUpperCase(this.props.filterBy.loc)}`
     if (!stays.length) return <h1>There are no stays to show</h1>
     return (
       <section className="list-section">

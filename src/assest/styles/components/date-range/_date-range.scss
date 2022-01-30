@@ -9,8 +9,10 @@
 
     &.reserve-modal{
         position: absolute;
-        z-index: -3;
+        z-index: 1;
         right:0;
+        width: unset;
+        top: 50%;
     }
 
     .rdrDateDisplayWrapper {

@@ -24,7 +24,8 @@ class _AppHeader extends React.Component {
     // STORE FOR APP LAYOUT - HOLDING CURRPAGE AND MINI HEADER (FOR NOW)
 
     componentDidMount() {
-        window.addEventListener("scroll", this.checkScrollY)
+        if (window.innerWidth < 800) this.setState({ isMiniHeader: true })
+        else window.addEventListener("scroll", this.checkScrollY)
     }
 
     componentWillUnmount() {
@@ -35,6 +36,7 @@ class _AppHeader extends React.Component {
         const { scrollTop } = target.scrollingElement
         if (scrollTop > 50 && this.state.isMiniHeader || scrollTop < 50 && !this.state.isMiniHeader) return
         if (scrollTop > 50) {
+            this.props.toggleModal()
             this.setState({ isMiniHeader: true })
         } else {
             this.setState({ isMiniHeader: false })
@@ -70,6 +72,10 @@ class _AppHeader extends React.Component {
         this.props.setFilter(filterBy)
     }
 
+    toggleMiniHeader = () => {
+        this.setState({ isMiniHeader: !this.state.isMiniHeader })
+    }
+
     get pageClass() {
         return this.props.currPage
     }
@@ -79,7 +85,7 @@ class _AppHeader extends React.Component {
     }
 
     render() {
-        const { MenuDropDownModal, isMiniHeader } = this.state
+        const { isMiniHeader } = this.state
         const { user } = this.props
         return (
             <header className={`${this.miniHeaderClass} ${this.pageClass}`} >
@@ -88,7 +94,7 @@ class _AppHeader extends React.Component {
                         <Link className="site-logo-name clean-link" to="/">
                             <div className="logo-container flex">
                                 <FontAwesomeIcon className="logo" icon={faAirbnb} />
-                                <h2>Bnb</h2>
+                                <h2>flairbnb</h2>
                             </div>
                         </Link>
                         <div className="menu-actions flex">
@@ -102,7 +108,7 @@ class _AppHeader extends React.Component {
                             {this.props.modalState.menuDropDownModal && <MenuDropDown />}
                         </div>
                     </div>
-                    <TripFilter isMiniHeader={isMiniHeader} />
+                    <TripFilter toggleMiniHeader={this.toggleMiniHeader} isMiniHeader={isMiniHeader} />
                 </div>
             </header >
         )
