@@ -8,7 +8,7 @@ const initialState = {
     typeOfPlaceModal:false,
     priceModal:false,
     datePickerModal:false,
-    reservGuestsModal:false
+    reserveGuestsModal:false
   }
 }
 
@@ -19,7 +19,7 @@ const closeModalState={
     typeOfPlaceModal:false,
     priceModal:false,
     datePickerModal:false,
-    reservGuestsModal:false
+    reserveGuestsModal:false
 }
 
 export function pageReducer(state = initialState, action) {
