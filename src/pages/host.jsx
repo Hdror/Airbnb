@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import { loadOrders } from '../store/order/order.actions.js'
 import { loadStays } from '../store/stay.action.js'
+import { update } from '../store/user.actions.js'
 
 import { HostStays } from '../cmps/hosts-stays.jsx'
 import { HostOrders } from '../cmps/host-orders.jsx'
@@ -24,6 +25,14 @@ class _HostPage extends React.Component {
     }
 
     render() {
+        if (!this.props.user) {
+            this.props.history.push('/')
+            return <div>Loading</div>
+        }
+        if (!this.props.user.isHost) {
+            this.props.update({ ...this.props.user, isHost: true })
+        }
+
         return (
             <div className="page main-container">
                 <div className="host-page-nav">
@@ -57,7 +66,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
     loadOrders,
-    loadStays
+    loadStays,
+    update
 }
 
 export const HostPage = connect(mapStateToProps, mapDispatchToProps)(_HostPage)

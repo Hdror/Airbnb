@@ -14,11 +14,11 @@ class _HostStays extends React.Component {
         orders: []
     }
 
-
     componentDidMount() {
         this.props.loadOrders()
         this.props.loadStays({ hostId: this.props.user._id })
         this.ordersToDisplay()
+        console.log(this.props.user._id);
     }
 
     ordersToDisplay = () => {
@@ -48,12 +48,13 @@ class _HostStays extends React.Component {
 
     render() {
         const { orders, stays } = this.props
+        console.log(stays);
         return (
             <div className="main-container host-stay-container">
                 <table>
                     <tbody>
                         <tr>
-                            <th>stay</th>
+                            <th>Stay</th>
                             <th>Total number of orders</th>
                             <th>Revenue</th>
                             <th>Price</th>
@@ -72,7 +73,7 @@ class _HostStays extends React.Component {
                                     $ {this.calculateRevenue(stay)}
                                 </td>
                                 <td>
-                                   $ {stay.price} / night
+                                    $ {stay.price} / night
                                 </td>
                                 <td>
                                     {stay.reviews.length}
