@@ -1,7 +1,7 @@
 import React from 'react'
-import { connect } from 'react-redux'
 
 // STORE 
+import { connect } from 'react-redux'
 import { addOrder } from '../store/order/order.actions.js'
 import { toggleModal } from '../store/page.action.js'
 
@@ -9,10 +9,8 @@ import { toggleModal } from '../store/page.action.js'
 import { DateRange as DateRangePicker } from 'react-date-range'
 import 'react-date-range/dist/styles.css' // main css file  
 import 'react-date-range/dist/theme/default.css' // theme css file
-// import { Calendar } from 'react-date-range';
 
 // SERVICES
-import { orderService } from '../services/order.service.js'
 import { tripService } from '../services/trip.service.js'
 import { utilService } from "../services/util.service.js";
 
@@ -50,8 +48,6 @@ class _StayReserve extends React.Component {
             this.setState({ trip: { ...trip, stay: { address: stay.loc.address } } })
         })
     }
-
-  
 
     onAddTrip = (ev) => {
         ev.preventDefault()
@@ -104,7 +100,6 @@ class _StayReserve extends React.Component {
             this.props.loadStays(this.props.filterBy)
         }
     }
-
 
     handleSelect = (ranges) => {
         const { trip } = this.state

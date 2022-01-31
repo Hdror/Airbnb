@@ -1,15 +1,9 @@
 import { Component } from 'react'
-import { connect } from 'react-redux'
 
-// COMPONENTS
+// STORE
+import { connect } from 'react-redux'
 import { login, signup, update } from '../store/user.actions.js'
 import { changePage } from '../store/page.action.js'
-
-// SVG
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebook } from '@fortawesome/free-brands-svg-icons'
-import { faGoogle } from '@fortawesome/free-brands-svg-icons'
-import { faApple } from '@fortawesome/free-brands-svg-icons'
 class _LoginSignup extends Component {
     state = {
         credentials: {

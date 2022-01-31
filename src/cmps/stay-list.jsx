@@ -1,13 +1,16 @@
 import React from 'react'
+
+// STORE
 import { connect } from 'react-redux'
-
-import { StayPreview } from './stay-preview.jsx'
-import { FilterBar } from './filter-bar.jsx'
-
 import { loadStays } from '../store/stay.action.js'
+
+// SERVICES
 import { firstLetterToUpperCase } from '../services/util.service.js'
 
-
+// COMPONENTS
+import { StayPreview } from './stay-preview.jsx'
+import { FilterBar } from './filter-bar.jsx'
+import {Loader} from '../cmps/loader.jsx'
 class _StayList extends React.Component {
 
   state = {
@@ -25,7 +28,7 @@ class _StayList extends React.Component {
   render() {
     const stays = this.state.filteredStays.length ? this.state.filteredStays : this.props.stays
     const numOfStayText = this.props.filterBy.loc === '' ? 'stays to explore' : `stays in ${firstLetterToUpperCase(this.props.filterBy.loc)}`
-    if (!stays.length) return <h1>There are no stays to show</h1>
+    if (!stays.length) return <Loader/>
     return (
       <section className="list-section">
         <div className="text-container">

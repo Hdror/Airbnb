@@ -1,21 +1,23 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 // STORE
+import { connect } from 'react-redux'
 import { loadStays, setFilter } from '../store/stay.action.js'
 import { toggleModal } from '../store/page.action.js'
 
 // SVG
 import search from '../assest/svg/app-header/search.svg'
 
+// SERVICES
+import { tripService } from '../services/trip.service.js'
+import { utilService } from '../services/util.service.js'
+
 // COMPONENTS
+import { GuestsDropDown } from './guests-dropdown.jsx'
 import { DateRange as DateRangePicker } from 'react-date-range'
 import 'react-date-range/dist/styles.css' // main css file  
 import 'react-date-range/dist/theme/default.css' // theme css file
-import { GuestsDropDown } from './guests-dropdown.jsx'
-import { tripService } from '../services/trip.service.js'
-import { utilService } from '../services/util.service.js'
 
 
 export class _TripFilter extends React.Component {

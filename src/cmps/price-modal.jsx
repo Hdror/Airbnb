@@ -4,8 +4,6 @@ import 'rc-slider/assets/index.css';
 
 import { stayService } from '../services/stay.service.js';
 
-
-
 export class PriceModal extends React.Component {
 
     state = {
@@ -18,7 +16,6 @@ export class PriceModal extends React.Component {
     }
 
     onSliderChange = (values) => {
-        // console.log(values);
         const [minPrice, maxPrice] = values
         this.setState({ price: {minPrice, maxPrice} }, () => { console.log(this.state.price)})
     }

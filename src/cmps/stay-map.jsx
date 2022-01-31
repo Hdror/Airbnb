@@ -26,11 +26,6 @@ export function StayMap(props) {
                     </GoogleMap>
                 </LoadScript>
             </div>
-            {/* <div>
-                <h3>{loc.address}</h3>
-                <div className="map-extra-info"><span>Great location</span><br></br><span>Public transport near by</span></div>
-                <span>Show more &#8594;</span>
-            </div> */}
         </section>
     )
 }

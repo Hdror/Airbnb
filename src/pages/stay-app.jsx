@@ -1,9 +1,11 @@
 import React from 'react'
-import { StayList } from '../cmps/stay-list.jsx'
-// import { stayService } from '../services/stay.service.js'
-import { changePage } from '../store/page.action.js'
-import { connect } from 'react-redux'
 
+// STORE
+import { connect } from 'react-redux'
+import { changePage } from '../store/page.action.js'
+
+// COMPONENTS
+import { StayList } from '../cmps/stay-list.jsx'
 class _StayApp extends React.Component {
   state = {}
 

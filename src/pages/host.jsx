@@ -1,20 +1,16 @@
 import React from "react"
-import { connect } from 'react-redux'
 
+// STORE
+import { connect } from 'react-redux'
 import { loadOrders } from '../store/order/order.actions.js'
 import { loadStays } from '../store/stay.action.js'
 import { update } from '../store/user.actions.js'
 
+// COMPONENTS
 import { HostStays } from '../cmps/hosts-stays.jsx'
 import { HostOrders } from '../cmps/host-orders.jsx'
 import { StayEdit } from '../cmps/stay-edit.jsx'
 
-
-// 3 TABS
-
-// ADD STAY + EDIT
-// HOST STAYS - TABLE WITH STAYS (INFO REVENUE NUM OR ORDERS)
-// HOST ORDERS  - WHICH STAY - DATES - NUM OF GUESTS 
 class _HostPage extends React.Component {
     state = {
         infoToDisplay: "orders"
