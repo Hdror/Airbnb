@@ -67,6 +67,10 @@ export class _HomePage extends React.Component {
                         </Link>
                     </div>
                 </div>
+                <Link className="become-host-link" to="/host">
+                    <div className="img-text">Become a host</div>
+                    <img src="https://images.pexels.com/photos/1496610/pexels-photo-1496610.jpeg?cs=srgb&dl=pexels-lena-hsvl-1496610.jpg&fm=jpg" alt="" />
+                </Link>
             </main>
         )
     }
