@@ -21,22 +21,6 @@ class _AppFooter extends React.Component {
         return (
             <footer>
                 <section className="main-container">
-                    {!user &&
-                            <div className="inspiration-container">
-                            <h2>Inspiration for future getaways</h2>
-                            <div className="inspiration">
-                                {stays.map((stay, idx) => (
-                                    <div className="locations-suggestions flex" key={idx}>
-                                        <a className="clean-link" href="">
-                                            <div>
-                                                <div className="inspiraton-cities">{stay.loc.city}</div>
-                                                <div className="inspiraton-countries">{stay.loc.country}</div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>}
                     <div className="border"></div>
                     <div className="footer-bottom-section">
                         <section>

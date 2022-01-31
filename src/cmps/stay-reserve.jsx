@@ -39,7 +39,7 @@ class _StayReserve extends React.Component {
         isTripCreated: false,
         istBtnDisabled: false,
         isStayTimePicked: false,
-        totalPrice: this.props.stay.price
+        totalPrice: this.props.stay.price,
     }
 
     componentDidMount() {
@@ -65,7 +65,8 @@ class _StayReserve extends React.Component {
     }
 
     onCreateOrder = () => {
-        const { trip } = this.state
+        const { trip, totalPrice } = this.state
+        let price = (totalPrice * 0.15) + (totalPrice * 0.1) + (totalPrice * 0.05)
         const orderToSave = {
             host: this.props.stay.host,
             createdAt: Date.now(),
@@ -73,7 +74,7 @@ class _StayReserve extends React.Component {
                 _id: this.props.user._id,
                 fullname: this.props.user.fullname,
             },
-            totalPrice: this.props.stay.price * (trip.stayTime.endDate - trip.stayTime.startDate) / 1000 / 60 / 60 / 24,
+            totalPrice: price,
             startDate: trip.stayTime.startDate,
             endDate: trip.stayTime.endDate,
             guests: trip.guests,
@@ -105,11 +106,13 @@ class _StayReserve extends React.Component {
         const { trip } = this.state
         let startDate = ranges.selection.startDate.getTime()
         let endDate = ranges.selection.endDate.getTime()
+        let price = this.props.stay.price * (endDate - startDate) / 1000 / 60 / 60 / 24
         this.setState((prevState) => ({
             trip: { ...prevState.trip, stayTime: { startDate: startDate, endDate: endDate } }
         }))
-        this.setState({ MenuDropDownModal: false, isStayTimePicked: this.state.isStayTimePicked = true, totalPrice: this.props.stay.price * (endDate - startDate) / 1000 / 60 / 60 / 24 })
+        this.setState({ MenuDropDownModal: false, isStayTimePicked: this.state.isStayTimePicked = true, totalPrice: price })
     }
+
     clearState = () => {
         this.setState({ trip: { stayTime: { startDate: '', endDate: '', }, guests: { adults: 1, children: 0 }, stay: { address: '' } }, totalPrice: this.props.stay.price })
     }
@@ -142,9 +145,9 @@ class _StayReserve extends React.Component {
     }
 
     render() {
-        const {isTripCreated, trip} = this.state
+        const { isTripCreated, trip, isStayTimePicked, totalPrice } = this.state
         const { guests, stayTime } = trip
-        const {toggleModal, isModalOpen, modalState} = this.props
+        const { toggleModal, isModalOpen, modalState } = this.props
         const selectionRange = {
             startDate: new Date(),
             endDate: new Date(),
@@ -153,7 +156,7 @@ class _StayReserve extends React.Component {
         return <main>
             <section className="order-container">
                 <div className="order-form-header">
-                    <p><span className="cost">${this.state.isStayTimePicked ? this.state.totalPrice : this.props.stay.price}</span> / night</p>
+                    <p><span className="cost">${this.props.stay.price}</span> / night</p>
                     <p> <img src={Star} alt="" /> 4.38 <span className="dot">· </span><span className="reviews">(4 reviews)</span></p>
                 </div>
 
@@ -193,7 +196,55 @@ class _StayReserve extends React.Component {
                         </div>
                     </div>
                 }
-            </section>
+                {isStayTimePicked &&
+                    <div>
+                        <ul className="clean-list reserve-charge-notification">
+                            <li className="reserve-charge-notification-txt">You won't be charged yet</li>
+                        </ul>
+                        <div className="reserve-charge-breakdown">
+                            <div className="reserve-charge-row flex">
+                                <span className="reserve-charge-txt">
+                                    ${this.props.stay.price} x {(trip.stayTime.endDate - trip.stayTime.startDate) / 1000 / 60 / 60 / 24} nights
+                                </span>
+                                <span className="reserve-charge-sum">
+                                    ${(totalPrice).toFixed(2)}
+                                </span>
+                            </div>
+                            <div className="reserve-charge-row flex">
+                                <span className="reserve-charge-txt">
+                                    Cleaning fee
+                                </span>
+                                <span className="reserve-charge-sum">
+                                    ${(totalPrice * 0.1).toFixed(2)}
+                                </span>
+                            </div>
+                            <div className="reserve-charge-row flex">
+                                <span className="reserve-charge-txt">
+                                    Service fee
+                                </span>
+                                <span className="reserve-charge-sum">
+                                    ${(totalPrice * 0.05).toFixed(2)}
+                                </span>
+                            </div>
+                            <div className="reserve-charge-row flex">
+                                <span className="reserve-charge-txt">
+                                    Occupancy taxes and fees
+                                </span>
+                                <span className="reserve-charge-sum">
+                                    ${(totalPrice * 0.15).toFixed(2)}
+                                </span>
+                            </div>
+                            <div className="reserve-charge-total flex">
+                                <span>
+                                    Total
+                                </span>
+                                <span>
+                                    ${(totalPrice + totalPrice * 0.1 + totalPrice * 0.05 + totalPrice * 0.15).toFixed(2)}
+                                </span>
+                            </div>
+                        </div>
+                    </div>}
+            </section >
             <p className="footer"> <img src={Flag} alt="" /> <a href="#">Report this listing</a></p>
             <div className='date-range-container'>
                 {modalState.datePickerModal && <DateRangePicker
@@ -210,12 +261,14 @@ class _StayReserve extends React.Component {
                     hasCustomRendering={false}
                 />}
             </div>
-            {modalState.reserveGuestsModal && <div>
-                <GuestsDropDown
-                    guests={guests}
-                    updateNumOfGuests={this.updateNumOfGuests} />
-            </div>}
-        </main>
+            {
+                modalState.reserveGuestsModal && <div>
+                    <GuestsDropDown
+                        guests={guests}
+                        updateNumOfGuests={this.updateNumOfGuests} />
+                </div>
+            }
+        </main >
     }
 }
 

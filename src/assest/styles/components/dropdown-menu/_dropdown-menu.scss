@@ -1,13 +1,13 @@
 .dropdown-user-menu {
     margin-left:1000px;
     background-color: $clr5;
-    // border: 1px solid $clr7;
     border-radius: 10px;
     box-shadow: 0 0 1px 0 $clr8;
     z-index:101;
     position: absolute;
     right: 0;
     top: 100%;
+    cursor: pointer;
 
     .dropdown-container {
         padding: 15px 0px;

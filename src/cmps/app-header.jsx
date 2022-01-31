@@ -8,7 +8,7 @@ import { toggleModal } from '../store/page.action.js'
 // COMPONENT
 import { TripFilter } from './trip-filter.jsx'
 import { MenuDropDown } from './app-dropdown-menu.jsx'
-import { GuestsModal } from './guests-dropdown.jsx'
+
 // SVG
 import menu from '../assest/svg/app-header/menu.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -19,7 +19,7 @@ class _AppHeader extends React.Component {
     state = {
         loggedInUser: null,
         MenuDropDownModal: false,
-        isMiniHeader: false
+        isMiniHeader: false,
     }
     // STORE FOR APP LAYOUT - HOLDING CURRPAGE AND MINI HEADER (FOR NOW)
 
