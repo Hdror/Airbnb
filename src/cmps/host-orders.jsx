@@ -8,7 +8,8 @@ import { loadOrders } from '../store/order/order.actions.js'
 // SERVICES
 import { utilService } from '../services/util.service.js'
 
-// SVG
+// COMPONENTS
+import {Loader} from '../cmps/loader.jsx'
 class _HostOrders extends React.Component {
 
     componentDidMount() {
@@ -18,7 +19,7 @@ class _HostOrders extends React.Component {
 
     render() {
         const { stays, orders } = this.props
-        if (!orders.length) return <div>Loading</div>
+        if (!orders.length) return <Loader />
         return (
             <div className="main-container host-stay-container">
 

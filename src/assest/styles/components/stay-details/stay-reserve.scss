@@ -26,6 +26,10 @@
   justify-content: space-between;
   width: 100%;
   margin-block-end: 30px;
+  .reserve-ratings {
+    font-family: f-light;
+    font-weight: 500;
+  }
 
   img {
     width: 12px;
@@ -95,6 +99,8 @@ span.reviews {
   color: $clr2;
   font-size: rem(14px);
   text-decoration: underline;
+  font-weight: unset;
+  // font-family: f-light;
 }
 
 .btn-container {
@@ -173,18 +179,24 @@ span.reviews {
 p.footer {
   color: $clr3;
   font-weight: 500;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   text-align: center;
+  margin-top: 18px;
   img {
+    display: flex;
     height: 13px;
     width: 14px;
     filter: invert(49%) sepia(0%) saturate(1334%) hue-rotate(167deg)
       brightness(88%) contrast(89%);
     margin-inline-end: 7px;
-    margin-top:18px;
   }
   a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: $clr3;
     font-size: (14px);
     font-family: f-medium;

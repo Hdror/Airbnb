@@ -1,21 +1,23 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 // STORE
+import { connect } from 'react-redux'
 import { loadStays, setFilter } from '../store/stay.action.js'
 import { toggleModal } from '../store/page.action.js'
 
 // SVG
 import search from '../assest/svg/app-header/search.svg'
 
+// SERVICES
+import { tripService } from '../services/trip.service.js'
+import { utilService } from '../services/util.service.js'
+
 // COMPONENTS
+import { GuestsDropDown } from './guests-dropdown.jsx'
 import { DateRange as DateRangePicker } from 'react-date-range'
 import 'react-date-range/dist/styles.css' // main css file  
 import 'react-date-range/dist/theme/default.css' // theme css file
-import { GuestsDropDown } from './guests-dropdown.jsx'
-import { tripService } from '../services/trip.service.js'
-import { utilService } from '../services/util.service.js'
 
 
 export class _TripFilter extends React.Component {
@@ -91,13 +93,14 @@ export class _TripFilter extends React.Component {
             endDate: new Date(),
             key: 'selection',
         }
+        console.log(this.state.filterBy.loc);
 
         return (
             <div className="trip-build-container flex">
 
                 {!isMiniHeader && <form action="">
                     <div className="trip-location-selector flex">
-                        <div className="trip-destination flex">
+                        <div className="trip-destination">
                             <div className="location-indicator">Location</div>
                             <input className="search-input"
                                 onChange={this.handleSearchChanges}
@@ -111,8 +114,8 @@ export class _TripFilter extends React.Component {
                         </div>
                     </div>
                     <div className="flex">
-                        <div className="trip-selections trip-dates-filter flex" onClick={() => { this.props.isModalOpen ? this.props.toggleModal() : this.props.toggleModal('dateRangeModal') }}>
-                            <div>Check in</div>
+                        <div className="trip-selections trip-dates-filter" onClick={() => { this.props.isModalOpen ? this.props.toggleModal() : this.props.toggleModal('dateRangeModal') }}>
+                            <div className="location-indicator">Check in</div>
                             <input readOnly
                                 type="text"
                                 onChange={this.handleSelect}
@@ -121,8 +124,8 @@ export class _TripFilter extends React.Component {
                                 placeholder="Add date" />
                         </div>
 
-                        <div className="trip-selections trip-dates-filter flex" onClick={() => { this.props.isModalOpen ? this.props.toggleModal() : this.props.toggleModal('dateRangeModal') }}>
-                            <div>Check out</div>
+                        <div className="trip-selections trip-dates-filter" onClick={() => { this.props.isModalOpen ? this.props.toggleModal() : this.props.toggleModal('dateRangeModal') }}>
+                            <div className="location-indicator">Check out</div>
                             <input readOnly
                                 type="text"
                                 onChange={this.handleSelect}
@@ -132,7 +135,7 @@ export class _TripFilter extends React.Component {
                         </div>
 
                         <div className="search-btn-container flex">
-                            <div onClick={() => { this.props.isModalOpen ? this.props.toggleModal() : this.props.toggleModal('guestsModal') }} className="trip-selections trip-dates-filter flex">
+                            <div onClick={() => { this.props.isModalOpen ? this.props.toggleModal() : this.props.toggleModal('guestsModal') }} className="trip-selections trip-dates-filter">
                                 <div>Guests</div>
                                 <div>
                                     <input
@@ -158,7 +161,7 @@ export class _TripFilter extends React.Component {
                 {isMiniHeader &&
                     <div onClick={this.props.toggleMiniHeader} className="mini-header-filter flex">
                         <div className="mini-header-content flex">
-                            {"Location"}
+                            {!this.state.filterBy.loc ? 'Location' : this.state.filterBy.loc}
                         </div>
                         <div className="search-img-btn flex">
                             <div className="img-container flex"><img onClick={this.onSetStayFilter} className="search-btn-img" src={search} alt="" /> </div>

@@ -1,17 +1,21 @@
 import React from "react"
-import { connect } from "react-redux"
 import { Link } from 'react-router-dom'
 
-// SERVICES
-import { utilService } from "../services/util.service.js"
-
 // STORE
+import { connect } from "react-redux"
 import { loadOrders } from "../store/order/order.actions.js"
+import { changePage } from '../store/page.action.js'
+
+// COMPONENTS
+import { Loader } from "../cmps/loader.jsx"
+
 
 class _Orders extends React.Component {
     state = {}
 
     componentDidMount() {
+        window.scrollTo(0, 0)
+        this.props.changePage('order')
         this.props.loadOrders({ buyerId: this.props.user._id })
     }
 
@@ -30,42 +34,41 @@ class _Orders extends React.Component {
         })
         return hosts
     }
+    formattedDate = (timestamp) => {
+        const d = new Date(timestamp);
+        const date = d.toDateString();
+        return date
+    }
 
     render() {
-        const { orders, user } = this.props
-
-        if (!orders.length) return <h1 className="page main-container">Loading</h1>
+        const { orders, stays } = this.props
+        if (!orders.length) return <Loader/>
         return (
             <section className="page main-container">
-                <div className="user-details flex">
-                    <div className="orders-user-img">
-                        <img src={user.imgUrl} alt="" />
-                    </div>
-                    <h2>Hi! {user.fullname}</h2>
-                </div>
                 <div className="user-order-container">
-                    {orders.map((order, idx) => {
-                        return (
-                                <Link className="clean-link" to={`stay/${order.stay._id}`}>
-                            <div className="order-info-container" key={idx}>
-
-                                <div className="order-img-container">
-                                    <img src={order.image} alt="" />
-                                </div>
-                                <div className="order-info-details">
-                                    <div>Status : {order.status}</div>
-                                    <div>{order.stay.name}</div>
-                                    <div>Host : {order.host.fullname}</div>
-                                    <div>Dates : {utilService.formattedDates(order.startDate)}-{utilService.formattedDates(order.endDate)}</div>
-                                    <div>Guests : {order.guests.adults} adults and {order.guests.children} children</div>
-                                    <div>$ {order.stay.price} / night </div>
-                                    <div>Total price : ${order.totalPrice}</div>
-                                </div>
-                            </div>
-                            </Link>
-
-                        )
-                    })}
+                    <h3>Orders</h3>
+                    <div className="order-list-headlines flex">
+                        <div>Stay</div>
+                        <div>Check in</div>
+                        <div>Check out</div>
+                        <div>Guests</div>
+                        <div className="user-order-price">Price</div>
+                        <div>Status</div>
+                    </div>
+                    <div>
+                        {orders.map((order, idx) => {
+                            return (
+                                <Link to={`/stay/${order.stay._id}`} className="clean-link" key={idx}><div className="user-order-card flex">
+                                    <p className="user-order-div">{order.stay.name}</p>
+                                    <p className="user-order-div">{this.formattedDate(order.startDate)}</p>
+                                    <p className="user-order-div">{this.formattedDate(order.endDate)}</p>
+                                    <p className="user-order-div">{order.guests.adults} Adults & {order.guests.children} children</p>
+                                    <p className="user-order-price user-order-div">$ {order.totalPrice}</p>
+                                    <p className="user-order-div">{order.status}</p>
+                                </div></Link>
+                            )
+                        })}
+                    </div>
                 </div>
             </section>
         )
@@ -74,13 +77,20 @@ class _Orders extends React.Component {
 
 const mapDispatchToProps = {
     loadOrders,
+    changePage
 }
 
 function mapStateToProps(state) {
     return {
         orders: state.orderModule.orders,
-        user: state.userModule.user
+        user: state.userModule.user,
+        stays: state.stayModule.stays,
+
     }
 }
 
 export const Orders = connect(mapStateToProps, mapDispatchToProps)(_Orders)
+
+
+
+

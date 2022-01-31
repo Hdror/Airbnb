@@ -98,10 +98,10 @@ class _AppHeader extends React.Component {
                             </div>
                         </Link>
                         <div className="menu-actions flex">
-                            <NavLink className="clean-link" to="/stay">Explore</NavLink>
-                            <NavLink className="clean-link" to="/host">Become a host</NavLink>
-                            <div className="menu-wrapper flex">
-                                <img className="menu-icon" src={menu} alt="" onClick={() => { this.props.isModalOpen ? this.props.toggleModal() : this.props.toggleModal('menuDropDownModal') }} />
+                            <NavLink className="header-nav clean-link" to="/stay">Explore</NavLink>
+                            <NavLink className="header-nav clean-link" to="/host">Become a host</NavLink>
+                            <div className="menu-wrapper flex" onClick={() => { this.props.isModalOpen ? this.props.toggleModal() : this.props.toggleModal('menuDropDownModal') }}>
+                                <img className="menu-icon" src={menu} alt="" />
                                 {!user && <img className="user-icon" src="https://randomuser.me/api/portraits/women/95.jpg" alt="" />}
                                 {user && <img className="user-icon" src={user.imgUrl} alt="" />}
                             </div>

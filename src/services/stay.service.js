@@ -36,22 +36,7 @@ export const stayService = {
 // GET STAYS
 async function query(filterBy) {
   return await httpService.get('stay', filterBy)
-  // console.log(filterBy);
-  // console.log(stays);
-  // const filteredStays = _filteredStays(stays, filterBy)
-  // return filteredStays
 }
-
-// GET FILTERED STAYS
-// function _filteredStays(stays, filterBy) {
-//   console.log( filterBy?.loc)
-//   console.log(loc);
-//   const filteredStays = stays.filter((stay) => {
-//     console.log(stay);
-//     return stay.loc.city.toUpperCase().includes(loc.toUpperCase()) || stay.loc.country.toUpperCase().includes(loc.toUpperCase())
-//   })
-//   return filteredStays
-// }
 
 // GET BY ID
 function getById(stayId) {

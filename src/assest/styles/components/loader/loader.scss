@@ -1,0 +1,27 @@
+body {
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 500px;
+
+  .loader {
+    width: 100px;
+    aspect-ratio: 1;
+    transform-style: preserve-3d;
+
+    img {
+      animation: rotate 4s ease-in-out infinite;
+    }
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotatey(0deg);
+    }
+    from {
+      transform: rotatey(360deg);
+    }
+  }
+}

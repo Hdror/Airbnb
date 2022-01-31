@@ -48,7 +48,6 @@ class _HostStays extends React.Component {
 
     render() {
         const { orders, stays } = this.props
-        console.log(stays);
         return (
             <div className="main-container host-stay-container">
                 <table>

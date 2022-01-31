@@ -1,7 +1,7 @@
 import React from 'react'
-import { connect } from 'react-redux'
 
 // STORE 
+import { connect } from 'react-redux'
 import { addOrder } from '../store/order/order.actions.js'
 import { toggleModal } from '../store/page.action.js'
 
@@ -9,10 +9,8 @@ import { toggleModal } from '../store/page.action.js'
 import { DateRange as DateRangePicker } from 'react-date-range'
 import 'react-date-range/dist/styles.css' // main css file  
 import 'react-date-range/dist/theme/default.css' // theme css file
-// import { Calendar } from 'react-date-range';
 
 // SERVICES
-import { orderService } from '../services/order.service.js'
 import { tripService } from '../services/trip.service.js'
 import { utilService } from "../services/util.service.js";
 
@@ -51,7 +49,7 @@ class _StayReserve extends React.Component {
         })
     }
 
-  
+
 
     onAddTrip = (ev) => {
         ev.preventDefault()
@@ -105,7 +103,6 @@ class _StayReserve extends React.Component {
         }
     }
 
-
     handleSelect = (ranges) => {
         const { trip } = this.state
         let startDate = ranges.selection.startDate.getTime()
@@ -147,9 +144,9 @@ class _StayReserve extends React.Component {
     }
 
     render() {
-        const {isTripCreated, trip} = this.state
+        const { isTripCreated, trip } = this.state
         const { guests, stayTime } = trip
-        const {toggleModal, isModalOpen, modalState} = this.props
+        const { toggleModal, isModalOpen, modalState } = this.props
         const selectionRange = {
             startDate: new Date(),
             endDate: new Date(),
@@ -159,7 +156,7 @@ class _StayReserve extends React.Component {
             <section className="order-container">
                 <div className="order-form-header">
                     <p><span className="cost">${this.state.isStayTimePicked ? this.state.totalPrice : this.props.stay.price}</span> / night</p>
-                    <p> <img src={Star} alt="" /> 4.38 <span className="dot">· </span><span className="reviews">(4 reviews)</span></p>
+                    <p className='reserve-ratings'> <img src={Star} alt="" /> 4.38 <span className="dot">· </span><span className="reviews">4 reviews</span></p>
                 </div>
 
                 <div className="order-data">
@@ -199,7 +196,9 @@ class _StayReserve extends React.Component {
                     </div>
                 }
             </section>
-            <p className="footer"> <img src={Flag} alt="" /> <a href="#">Report this listing</a></p>
+            <p className="footer">
+                <img src={Flag} alt="" /> <a href="#">Report this listing</a>
+            </p>
             <div className='date-range-container'>
                 {modalState.datePickerModal && <DateRangePicker
                     className="date-range-calender reserve-modal"
