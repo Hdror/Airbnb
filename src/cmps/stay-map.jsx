@@ -8,7 +8,7 @@ import {
 
 const containerStyle = {
     width: '100%',
-    height: '35vh',
+    height: '45vh',
 }
 
 export function StayMap(props) {

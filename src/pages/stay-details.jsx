@@ -95,7 +95,7 @@ class _StayDetails extends React.Component {
                         <div className="reserve"><StayReserve stay={stay} /></div>
                     </div>
                 </div>
-                <div>
+                <div className="details-map">
                     <StayMap loc={loc} />
                 </div>
             </main>

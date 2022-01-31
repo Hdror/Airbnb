@@ -51,7 +51,7 @@ class _StayReserve extends React.Component {
         })
     }
 
-  
+
 
     onAddTrip = (ev) => {
         ev.preventDefault()
@@ -147,9 +147,9 @@ class _StayReserve extends React.Component {
     }
 
     render() {
-        const {isTripCreated, trip} = this.state
+        const { isTripCreated, trip } = this.state
         const { guests, stayTime } = trip
-        const {toggleModal, isModalOpen, modalState} = this.props
+        const { toggleModal, isModalOpen, modalState } = this.props
         const selectionRange = {
             startDate: new Date(),
             endDate: new Date(),
@@ -159,7 +159,7 @@ class _StayReserve extends React.Component {
             <section className="order-container">
                 <div className="order-form-header">
                     <p><span className="cost">${this.state.isStayTimePicked ? this.state.totalPrice : this.props.stay.price}</span> / night</p>
-                    <p> <img src={Star} alt="" /> 4.38 <span className="dot">· </span><span className="reviews">(4 reviews)</span></p>
+                    <p className='reserve-ratings'> <img src={Star} alt="" /> 4.38 <span className="dot">· </span><span className="reviews">4 reviews</span></p>
                 </div>
 
                 <div className="order-data">
@@ -199,7 +199,9 @@ class _StayReserve extends React.Component {
                     </div>
                 }
             </section>
-            <p className="footer"> <img src={Flag} alt="" /> <a href="#">Report this listing</a></p>
+            <p className="footer">
+                <img src={Flag} alt="" /> <a href="#">Report this listing</a>
+            </p>
             <div className='date-range-container'>
                 {modalState.datePickerModal && <DateRangePicker
                     className="date-range-calender reserve-modal"
