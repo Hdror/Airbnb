@@ -51,7 +51,7 @@ export class _HomePage extends React.Component {
                     </div>
                 </div>
                 <p>Popular destinations</p>
-                <div className="city-container flex">
+                <div className="city-container ">
                     <div onClick={this.onSetFilter} className="img-container">
                         <Link to="/stay">
                             <div className="img-text">Explore London</div>

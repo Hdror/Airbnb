@@ -104,8 +104,8 @@ header {
         .img-container {
           img {
             height: 28px;
-            filter: brightness(0) saturate(100%) invert(100%) sepia(100%)
-              saturate(0%) hue-rotate(81deg) brightness(105%) contrast(102%);
+            filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(81deg)
+              brightness(105%) contrast(102%);
           }
         }
       }
@@ -203,6 +203,41 @@ header {
       justify-content: space-evenly;
       align-items: center;
       padding: 14px 0;
+
+      .search-link-modal {
+        position: absolute;
+        background-color: $clr5;
+        // top: 50px;
+        top: 115%;
+        left: 0;
+        z-index: 100;
+        margin-left: 0px;
+        flex-direction: column;
+        width: 440px;
+        font-family: f-light;
+        font-size: 1rem;
+        border-radius: 12px;
+        box-shadow: rgb(0 0 0 / 15%) 0px 10px 37px;
+        border: 0.5px solid rgba(118, 118, 118, 0.28);
+        padding: 15px 0px;
+
+        p {
+          font-family: f-medium;
+          padding: 16px 16px;
+          font-size: 12px;
+          box-shadow: 0 1px 0 $clr9;
+          margin-bottom: 3px;
+        }
+
+        .search-link {
+          // margin-block-end: 16px;
+          padding: 16px 16px;
+
+          &:hover {
+            background-color: $clr6;
+          }
+        }
+      }
 
       &:hover {
         &input:-webkit-autofill {
@@ -335,8 +370,8 @@ header {
             .search-btn-img {
               height: 15px;
               width: 15px;
-              filter: brightness(0) saturate(100%) invert(100%) sepia(100%)
-                saturate(0%) hue-rotate(81deg) brightness(105%) contrast(102%);
+              filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(81deg)
+                brightness(105%) contrast(102%);
             }
           }
         }

@@ -16,6 +16,7 @@ import { utilService } from '../services/util.service.js'
 // COMPONENTS
 import { GuestsDropDown } from './guests-dropdown.jsx'
 import { DateRange as DateRangePicker } from 'react-date-range'
+import { SearchSuggestionModal } from './search-sug-modal.jsx'
 import 'react-date-range/dist/styles.css' // main css file  
 import 'react-date-range/dist/theme/default.css' // theme css file
 
@@ -53,6 +54,8 @@ export class _TripFilter extends React.Component {
         }))
     }
 
+    handleSelect
+
     // GUESTS HANDLE
     updateNumOfGuests = (diff, type, ev) => {
         ev.preventDefault()
@@ -84,37 +87,39 @@ export class _TripFilter extends React.Component {
         tripService.save(trip)
     }
 
+    
+
     render() {
         const { trip } = this.state
         const { guests } = trip
-        const { isMiniHeader } = this.props
+        const { isMiniHeader, modalState, isModalOpen, toggleModal,setFilter,loadStays } = this.props
         const selectionRange = {
             startDate: new Date(),
             endDate: new Date(),
             key: 'selection',
         }
-        console.log(this.state.filterBy.loc);
-
         return (
             <div className="trip-build-container flex">
 
                 {!isMiniHeader && <form action="">
-                    <div className="trip-location-selector flex">
-                        <div className="trip-destination">
-                            <div className="location-indicator">Location</div>
+                    <div className="trip-location-selector flex" onClick={() => { isModalOpen ? toggleModal() : toggleModal('searchSuggestion') }}>
+                        <div className="trip-destination" >
+                            <div className="location-indicator" >Location</div>
                             <input className="search-input"
                                 onChange={this.handleSearchChanges}
                                 type="text"
                                 aria-autocomplete="none"
                                 autoCorrect="off"
+                                autoComplete="off"
                                 name="loc"
                                 value={this.state.filterBy.loc}
                                 placeholder="Where are you going?"
                             />
+                            {modalState.searchSuggestion && <SearchSuggestionModal  handleSearchChanges={this.handleSearchChanges} setFilter={setFilter} loadStays={loadStays} />}
                         </div>
                     </div>
                     <div className="flex">
-                        <div className="trip-selections trip-dates-filter" onClick={() => { this.props.isModalOpen ? this.props.toggleModal() : this.props.toggleModal('dateRangeModal') }}>
+                        <div className="trip-selections trip-dates-filter" onClick={() => { isModalOpen ? this.props.toggleModal() : this.props.toggleModal('dateRangeModal') }}>
                             <div className="location-indicator">Check in</div>
                             <input readOnly
                                 type="text"
@@ -124,7 +129,7 @@ export class _TripFilter extends React.Component {
                                 placeholder="Add date" />
                         </div>
 
-                        <div className="trip-selections trip-dates-filter" onClick={() => { this.props.isModalOpen ? this.props.toggleModal() : this.props.toggleModal('dateRangeModal') }}>
+                        <div className="trip-selections trip-dates-filter" onClick={() => { isModalOpen ? this.props.toggleModal() : this.props.toggleModal('dateRangeModal') }}>
                             <div className="location-indicator">Check out</div>
                             <input readOnly
                                 type="text"
@@ -168,7 +173,7 @@ export class _TripFilter extends React.Component {
                         </div>
 
                     </div >}
-                {this.props.modalState.dateRangeModal && <div className='date-range-container'>
+                {modalState.dateRangeModal && <div className='date-range-container'>
                     <DateRangePicker
                         className="date-range-calender"
                         appearance="default"
@@ -183,7 +188,7 @@ export class _TripFilter extends React.Component {
                         hasCustomRendering={false}
                     />
                 </div>}
-                {this.props.modalState.guestsModal && <div>
+                {modalState.guestsModal && <div>
                     <GuestsDropDown
                         guests={guests}
                         updateNumOfGuests={this.updateNumOfGuests} />
