@@ -1,6 +1,5 @@
 {
   "name": "airbnb",
-  "homepage": "https://hdror.github.io/airbnb",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
