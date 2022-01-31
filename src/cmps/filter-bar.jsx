@@ -35,15 +35,12 @@ export class _FilterBar extends React.Component {
 
     filterStays = () => {
         const { filterBy } = this.state
-        console.log(filterBy);
         const { stays } = this.props
-        console.log(stays);
         let isfilterByTypeOfPlace = false
         for (let key in filterBy.typeOfPlace) {
             if (filterBy.typeOfPlace[key]) isfilterByTypeOfPlace = true
         }
         let filteredStays = stays.filter(stay => {
-            console.log(stay.price, filterBy.price);
 
             if ((!isfilterByTypeOfPlace || filterBy.typeOfPlace[stay.typeOfPlace]) && filterBy.amenities.every((amemity) => {
                 return stay.amenities.includes(amemity)

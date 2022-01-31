@@ -17,7 +17,7 @@ export class PriceModal extends React.Component {
 
     onSliderChange = (values) => {
         const [minPrice, maxPrice] = values
-        this.setState({ price: {minPrice, maxPrice} }, () => { console.log(this.state.price)})
+        this.setState({ price: { minPrice, maxPrice } },)
     }
 
     onSave = () => {
@@ -34,7 +34,7 @@ export class PriceModal extends React.Component {
                     defaultValue={[0, 100]}
                     min={0}
                     max={1000}
-                    onChange={ this.props.handleChange}
+                    onChange={this.props.handleChange}
                 />
             </form>
             <div className="save-clear flex">

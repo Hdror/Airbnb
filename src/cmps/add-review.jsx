@@ -37,8 +37,7 @@ export class AddReview extends React.Component {
     }
 
     changeRate = (value, field) => {
-        console.log('value from changeRate',value);
-        console.log('field from changeRate',field);
+
         this.setState((prevState) => ({
             ...prevState,
             review: {
@@ -82,7 +81,6 @@ export class AddReview extends React.Component {
 
     onSubmit = (ev) => {
         ev.preventDefault()
-        console.log(this.state)
         this.setState({
             review: {
                 ...this.state.review, txt: this.state.review.txt,
@@ -93,7 +91,6 @@ export class AddReview extends React.Component {
             async () => {
                 const user = await userService.getLoggedinUser()
                 if (!user) return
-                console.log(this.state.review)
                 await this.props.onAddReview(this.state.review)
                 this.clearState()
             }

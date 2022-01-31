@@ -43,7 +43,6 @@ export function logout() {
                 type: 'SET_USER',
                 user: null,
             })
-            console.log('logged out')
         } catch (err) {
             console.error('Could not Logout', err)
 
@@ -118,16 +117,16 @@ export function loadUserLikedStays() {
 
 export function loadOrdersFromUser() {
     return async (dispatch) => {
-      try {
-        const user = await userService.getLoggedinUser()
-        const orders = await orderService.getOrders(user._id)
-        dispatch({ type: 'LOAD_ORDERS_FROM_USER', orders })
-        return orders
-      } catch (err) {
-        console.log('UserActions: err in loadOrdersFromUser', err)
-      }
+        try {
+            const user = await userService.getLoggedinUser()
+            const orders = await orderService.getOrders(user._id)
+            dispatch({ type: 'LOAD_ORDERS_FROM_USER', orders })
+            return orders
+        } catch (err) {
+            console.log('UserActions: err in loadOrdersFromUser', err)
+        }
     }
-  }
+}
 
 export function removeOrderFromUser(orderId) {
     return async (dispatch) => {

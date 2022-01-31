@@ -8,14 +8,42 @@ export function loadOrders(filterBy = {}) {
     }
 }
 
+export function setOrders(orders) {
+    return async (dispatch) => {
+        const action = { type: 'SET_ORDERS', orders }
+        dispatch(action)
+    }
+}
+
 export function addOrder(order) {
     return async (dispatch) => {
         try {
             const orderToAdd = await orderService.save(order)
-            console.log(orderToAdd);
             dispatch({ type: 'ADD_ORDER', order: orderToAdd })
         } catch (err) {
             console.log('Cannot add order', err);
+        }
+    }
+}
+
+export function updateUnreadCount(isNewOrder) {
+    if (isNewOrder) {
+        return async (dispatch) => {
+            try {
+                await dispatch({ type: 'UPDATE_UNREAD_ORDER_COUNT' })
+
+            } catch (err) {
+                console.log('Cannot update unread count', err);
+            }
+        }
+    } else {
+        return async (dispatch) => {
+            try {
+                await dispatch({ type: 'RESET_UNREAD_ORDER_COUNT' })
+
+            } catch (err) {
+                console.log('Cannot reset unread count', err);
+            }
         }
     }
 }

@@ -4,6 +4,7 @@ import { Component } from 'react'
 import { connect } from 'react-redux'
 import { login, signup, update } from '../store/user.actions.js'
 import { changePage } from '../store/page.action.js'
+import { loadOrders } from '../store/order/order.actions.js'
 class _LoginSignup extends Component {
     state = {
         credentials: {
@@ -50,6 +51,7 @@ class _LoginSignup extends Component {
         try {
             let user = await this.props.login(this.state.credentials);
             if (user) {
+                this.props.loadOrders({ buyerId: user._id })
                 this.props.history.push('/')
             }
         } catch (err) {
@@ -208,6 +210,7 @@ const mapDispatchToProps = {
     signup,
     changePage,
     update,
+    loadOrders
 }
 
 export const LoginSignup = connect(

@@ -15,10 +15,8 @@ class _HostStays extends React.Component {
     }
 
     componentDidMount() {
-        this.props.loadOrders()
         this.props.loadStays({ hostId: this.props.user._id })
         this.ordersToDisplay()
-        console.log(this.props.user._id);
     }
 
     ordersToDisplay = () => {

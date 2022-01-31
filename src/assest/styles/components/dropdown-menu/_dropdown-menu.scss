@@ -9,6 +9,16 @@
   right: 0;
   top: 80%;
 
+  .orders-link {
+    position: relative;
+    margin: 0;
+    .order-made {
+      top: 50%;
+      right: 15px;
+      transform: translateY(-50%);
+    }
+  }
+
   .dropdown-container {
     padding: 15px 0px;
     margin: 0;

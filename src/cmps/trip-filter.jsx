@@ -93,7 +93,6 @@ export class _TripFilter extends React.Component {
             endDate: new Date(),
             key: 'selection',
         }
-        console.log(this.state.filterBy.loc);
 
         return (
             <div className="trip-build-container flex">
