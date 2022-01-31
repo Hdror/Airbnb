@@ -4,6 +4,7 @@ import { Component } from 'react'
 import { connect } from 'react-redux'
 import { login, signup, update } from '../store/user.actions.js'
 import { changePage } from '../store/page.action.js'
+import { loadOrders } from '../store/order/order.actions.js'
 class _LoginSignup extends Component {
     state = {
         credentials: {
@@ -50,6 +51,7 @@ class _LoginSignup extends Component {
         try {
             let user = await this.props.login(this.state.credentials);
             if (user) {
+                this.props.loadOrders({ buyerId: user._id })
                 this.props.history.push('/')
             }
         } catch (err) {
@@ -116,27 +118,6 @@ class _LoginSignup extends Component {
                                         <button className='login-btn' onClick={this.toggleSignup}>New User?</button>
                                     </div>
                                 </div>
-                                {/* <div className="social-login-container flex">
-                                    <span>or</span>
-                                </div>
-                                <div className="social-login-btns-container flex">
-                                    <div className="social-btn">
-                                        <FontAwesomeIcon className="social-media-icon facebook" icon={faFacebook} />
-                                        <h4>Continue with Facebook</h4>
-                                        <span></span>
-                                    </div>
-                                    <div className="social-btn">
-                                        <FontAwesomeIcon className="social-media-icon google" icon={faGoogle} />
-                                        <h4>Continue with Google</h4>
-                                        <span></span>
-                                    </div>
-                                    <div className="social-btn">
-                                        <FontAwesomeIcon className="social-media-icon apple" icon={faApple} />
-                                        <h4>Continue with Apple</h4>
-                                        <span></span>
-                                    </div> */}
-                                {/* <div className="social-btn"><FontAwesomeIcon className="social-media-icon" icon={faEmail} /></div> */}
-                                {/* </div> */}
                             </form>
                         </div>
                     )}
@@ -185,9 +166,6 @@ class _LoginSignup extends Component {
                                         <button className='login-btn' onClick={this.toggleSignup}>Log to my account</button>
                                     </div>
                                 </div>
-                                {/* <div className="social-login-container">
-                                    <div className="login-divider"><span>or</span></div>
-                                </div> */}
                             </form>
                         </div>
                     )
@@ -208,6 +186,7 @@ const mapDispatchToProps = {
     signup,
     changePage,
     update,
+    loadOrders
 }
 
 export const LoginSignup = connect(

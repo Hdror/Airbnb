@@ -4,11 +4,12 @@ import { Link, NavLink } from 'react-router-dom'
 // STORE
 import { connect } from 'react-redux'
 import { toggleModal } from '../store/page.action.js'
+import { loadOrders } from '../store/order/order.actions.js'
 
 // COMPONENT
 import { TripFilter } from './trip-filter.jsx'
 import { MenuDropDown } from './app-dropdown-menu.jsx'
-import { GuestsModal } from './guests-dropdown.jsx'
+
 // SVG
 import menu from '../assest/svg/app-header/menu.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -19,13 +20,14 @@ class _AppHeader extends React.Component {
     state = {
         loggedInUser: null,
         MenuDropDownModal: false,
-        isMiniHeader: false
+        isMiniHeader: false,
     }
     // STORE FOR APP LAYOUT - HOLDING CURRPAGE AND MINI HEADER (FOR NOW)
 
     componentDidMount() {
         if (window.innerWidth < 800) this.setState({ isMiniHeader: true })
         else window.addEventListener("scroll", this.checkScrollY)
+        // this.props.loadOrders()
     }
 
     componentWillUnmount() {
@@ -101,6 +103,7 @@ class _AppHeader extends React.Component {
                             <NavLink className="header-nav clean-link" to="/stay">Explore</NavLink>
                             <NavLink className="header-nav clean-link" to="/host">Become a host</NavLink>
                             <div className="menu-wrapper flex" onClick={() => { this.props.isModalOpen ? this.props.toggleModal() : this.props.toggleModal('menuDropDownModal') }}>
+                                {this.props.unreadOrdersCount && this.props.user ? <div className="order-made">{this.props.unreadOrdersCount}</div> : ''}
                                 <img className="menu-icon" src={menu} alt="" />
                                 {!user && <img className="user-icon" src="https://randomuser.me/api/portraits/women/95.jpg" alt="" />}
                                 {user && <img className="user-icon" src={user.imgUrl} alt="" />}
@@ -120,11 +123,14 @@ function mapStateToProps(state) {
         currPage: state.pageModule.currPage,
         user: state.userModule.user,
         modalState: state.pageModule.modalState,
-        isModalOpen: state.pageModule.isModalOpen
+        isModalOpen: state.pageModule.isModalOpen,
+        orders: state.orderModule.orders,
+        unreadOrdersCount: state.orderModule.unreadOrdersCount
     }
 }
 const mapDispatchToProps = {
-    toggleModal
+    toggleModal,
+    loadOrders,
 }
 
 export const AppHeader = connect(

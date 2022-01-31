@@ -26,7 +26,6 @@ async function save(order) {
         // orders.push(order)
         // localStorage.setItem(STORAGE_KEY, JSON.stringify(orders))
         //add
-        console.log('new order in order service front', order)
         const newOrder = await httpService.post('order', order)
         return newOrder
     }

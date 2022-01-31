@@ -42,7 +42,8 @@ export class _TripFilter extends React.Component {
             totalPrice: 0
         },
         dateRangeModal: false,
-        guestsModal: false
+        guestsModal: false,
+        isCityDropDownShown: false
     }
 
     // CITY HANDLE 
@@ -90,7 +91,7 @@ export class _TripFilter extends React.Component {
     
 
     render() {
-        const { trip } = this.state
+        const { trip, isCityDropDownShownn } = this.state
         const { guests } = trip
         const { isMiniHeader, modalState, isModalOpen, toggleModal,setFilter,loadStays } = this.props
         const selectionRange = {

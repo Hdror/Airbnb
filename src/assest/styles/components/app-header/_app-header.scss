@@ -13,6 +13,27 @@ header {
   z-index: 100;
   box-shadow: rgb(0 0 0 / 8%) 0px 1px 12px !important;
 
+  .order-made {
+    background-color: rgb(255, 56, 92);
+    box-shadow: rgb(255, 255, 255) 0px 0px 0px 1.5px;
+    position: absolute;
+    z-index: 1;
+    border-radius: 9px;
+    color: rgb(255, 255, 255);
+    font-size: 10px;
+    // font-weight: 800t;
+    height: 16px;
+    // left: 100%;
+    line-height: 16px;
+    // margin-left: -18px;
+    right: -3px;
+    width: 16px;
+    padding: 0px 5px;
+    text-align: center;
+    // top: 17px;
+    top: -3px;
+  }
+
   &.home-page {
     background-color: rgba(0, 0, 0, 0);
     // color: $clr5;
@@ -166,6 +187,7 @@ header {
     }
 
     .menu-wrapper {
+      position: relative;
       cursor: pointer;
       height: 42px;
       width: 77px;
@@ -173,8 +195,9 @@ header {
       line-height: 2;
       border-radius: 1.5rem;
       align-items: center;
-      justify-content: center;
       border: 1px solid $clr7;
+      padding: 5px 5px;
+      padding-inline-start: 12px;
 
       .menu-icon {
         margin-right: 10px;

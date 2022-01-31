@@ -32,8 +32,8 @@ export class _RootCmp extends React.Component {
           <Route component={StayApp} path="/stay" />
           <Route component={LoginSignup} path="/login" />
           <Route component={Orders} path="/orders" />
-          <Route component={HomePage} exact path="/" />
           <Route component={HostPage} exact path="/host" />
+          <Route component={HomePage} exact path="/" />
         </Switch>
         <AppFooter />
         <div onClick={() => { this.props.toggleModal() }} className={this.props.isModalOpen ? "screen open" : "screen"}></div>

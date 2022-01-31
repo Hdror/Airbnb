@@ -11,7 +11,6 @@
   span {
     padding: 0 0;
     margin: 0 0;
-    color: white;
     font-size: 16px;
     line-height: 20px;
     font-weight: 600;
@@ -34,8 +33,7 @@
   img {
     width: 12px;
     height: 12px;
-    filter: invert(56%) sepia(80%) saturate(6258%) hue-rotate(328deg)
-      brightness(100%) contrast(103%);
+    filter: invert(56%) sepia(80%) saturate(6258%) hue-rotate(328deg) brightness(100%) contrast(103%);
   }
   .dot {
     color: $clr2;
@@ -67,6 +65,9 @@
   &:last-of-type {
     border-left: 1px solid #00000050;
   }
+  :hover {
+    cursor: pointer;
+  }
 
   input {
     border: none;
@@ -82,6 +83,9 @@
   gap: 5px;
   border-top: 1px solid #00000050;
   padding: 7px 12px;
+  :hover {
+    cursor: pointer;
+  }
   input {
     border: none;
     padding: 0 0;
@@ -119,8 +123,7 @@ span.reviews {
       --positionX: #{$i};
     }
 
-    .cell:nth-child(n + #{10 * $i + 1}):nth-child(-n + #{10 * ($i + 1)}):hover
-      ~ .content {
+    .cell:nth-child(n + #{10 * $i + 1}):nth-child(-n + #{10 * ($i + 1)}):hover ~ .content {
       --positionY: #{$i};
     }
   }
@@ -141,6 +144,9 @@ span.reviews {
 }
 
 .content {
+  span {
+    color: $clr5 !important ;
+  }
   --positionX: 0;
   --positionY: 5;
 
@@ -156,8 +162,7 @@ span.reviews {
   border-radius: 8px;
 
   background-image: radial-gradient(
-    circle at calc((0 + var(--positionX, 0)) * 10%)
-      calc((0 + var(--positionY, 0)) * 5%),
+    circle at calc((0 + var(--positionX, 0)) * 10%) calc((0 + var(--positionY, 0)) * 5%),
     rgb(241, 37, 75) 0%,
     rgb(230, 30, 77) 27.5%,
     rgb(227, 28, 95) 40%,
@@ -189,8 +194,7 @@ p.footer {
     display: flex;
     height: 13px;
     width: 14px;
-    filter: invert(49%) sepia(0%) saturate(1334%) hue-rotate(167deg)
-      brightness(88%) contrast(89%);
+    filter: invert(49%) sepia(0%) saturate(1334%) hue-rotate(167deg) brightness(88%) contrast(89%);
     margin-inline-end: 7px;
   }
   a {
@@ -200,5 +204,37 @@ p.footer {
     color: $clr3;
     font-size: (14px);
     font-family: f-medium;
+  }
+}
+
+.reserve-charge-breakdown {
+  .reserve-charge-row {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding-bottom: 17px;
+    font-size: rem(16px);
+    line-height: 20px;
+    
+    .reserve-charge-txt {
+      color: $clr8;
+      font-family: f-light;
+      text-decoration: underline $clr8;
+    }
+    
+    .reserve-charge-sum{
+      font-family: f-light;
+      color: $clr8;
+    }
+  }
+
+  .reserve-charge-total {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    font-family: f-medium;
+    padding-top: 20px;
+    font-size: rem(16px);
+    line-height: 20px;
+    border-top: 1px solid $clr7;
+    color: $clr2;
   }
 }

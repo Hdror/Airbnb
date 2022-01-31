@@ -4,7 +4,6 @@ export const cloudinaryService = {
 };
 
 function uploadImg(ev) {
-    console.log(ev.target.files);
     const CLOUD_NAME = "dcys8pbcf";
     const PRESET_NAME = "airbnb";
     const UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;

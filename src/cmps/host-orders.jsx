@@ -9,11 +9,11 @@ import { loadOrders } from '../store/order/order.actions.js'
 import { utilService } from '../services/util.service.js'
 
 // COMPONENTS
-import {Loader} from '../cmps/loader.jsx'
+import { Loader } from '../cmps/loader.jsx'
 class _HostOrders extends React.Component {
 
     componentDidMount() {
-        this.props.loadOrders({ hostId: this.props.user._id })
+        // this.props.loadOrders({ hostId: this.props.user._id })
         this.props.loadStays({ hostId: this.props.user._id })
     }
 

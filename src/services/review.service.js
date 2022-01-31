@@ -12,7 +12,6 @@ export const reviewService = {
 
 function query(filterBy = null) {
     const reviews = storageService.query('review', { params: filterBy })
-    console.log(reviews)
     return
 }
 
@@ -22,9 +21,7 @@ function remove(reviewId) {
 
 async function add(stay, review) {
     await userService.getLoggedinUser()
-    console.log(review);
     const { ratings } = review
-    console.log(ratings);
     var rate =
         ratings.cleanliness +
         ratings.communication +
