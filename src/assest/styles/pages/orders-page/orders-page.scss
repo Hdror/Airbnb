@@ -1,47 +1,46 @@
-.user-details {
-    margin-top: 20px;
-    align-items: center;
-    gap: 20px;
-    font-size: rem(16px);
-
-    .orders-user-img {
-        border-radius: 50%;
-
-        img {
-            height: 45px;
-            border: 1px solid $clr7;
-            border-radius: 50%;
-        }
-    }
-}
-
 .user-order-container {
-    display: flex;
-    flex-direction: column;
-
-    .order-info-details {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        justify-content: space-evenly;
-        border-bottom: 1px solid $clr7;
-        border-top: 1px solid $clr7;
-        width: 400px;
-        font-family: f-light;
+    .user-order-price {
+        margin-left: 25px;
     }
-    .order-info-container {
-        display: flex;
-        padding-top: 20px;
-        gap: 20px;
-        .order-img-container {
-            display: flex;
-            align-items: center;
-            width: 260px;
-            img {
-                height: 195px;
-                border: 2px solid $clr7;
-                object-fit: cover;
-            }
+
+    h3 {
+        margin: 50px 0px;
+    }
+    .order-list-headlines {
+        display: grid;
+        grid-auto-flow: dense;
+        grid-template-columns: 350px repeat(auto-fit, minmax(100px, 1fr));
+        gap: 30px;
+        padding: 15px 0px;
+        padding-left: 30px;
+        font-family: f-medium;
+    }
+
+    .user-order-card {
+        display: grid;
+        grid-auto-flow: dense;
+        grid-template-columns: 350px repeat(auto-fit, minmax(100px, 1fr));
+        margin-bottom: 20px;
+        margin-top: 25px;
+        padding: 15px 0px;
+        padding-left: 30px;
+        gap: 30px;
+        border-radius: 100vw;
+        border: 1px solid $clr7;
+        box-shadow: rgb(0 0 0 / 8%) 0px 1px 5px;
+        transition: 0.15s;
+
+        &:hover {
+            transition: 0.15s;
+            background-color: $clr6;
+            box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 10px;
+            font-family: f-medium;
+        }
+
+        .user-order-div {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     }
 }

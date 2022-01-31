@@ -9,14 +9,9 @@ import { loadStays, setFilter } from '../store/stay.action.js'
 
 
 export class _HomePage extends React.Component {
-
     componentDidMount() {
         window.scrollTo(0, 0)
         this.props.changePage('home-page')
-    }
-
-    componentDidUpdate() {
-
     }
 
     onSetFilter = (ev) => {
@@ -72,7 +67,6 @@ export class _HomePage extends React.Component {
                 </div>
             </main>
         )
-
     }
 }
 

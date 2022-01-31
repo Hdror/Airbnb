@@ -1,22 +1,27 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
 
+// STORE
+import { connect } from 'react-redux'
+import { changePage, toggleModal } from '../store/page.action.js'
+// import { loadReviews, addReview } from '../store/review.actions.js'
+
+
+//SVG
 import Enhanced_clean from '../assest/svg/perks/Enhanced_clean.svg'
 import Entire_home from '../assest/svg/perks/Entire_home.svg'
 import Great_location from '../assest/svg/perks/Great_location.svg'
 import Self_check_in from '../assest/svg/perks/Self_check_in.svg'
-
-
 import Star from '../assest/svg/app-detials/star.svg'
 import Save from '../assest/svg/app-detials/save.svg'
 import Share from '../assest/svg/app-detials/Share.svg'
 
-
+// COMPONENTS
 import { stayService } from '../services/stay.service.js'
 import { StayMap } from '../cmps/stay-map.jsx'
 import { StayReserve } from '../cmps/stay-reserve.jsx'
-import { changePage, toggleModal } from '../store/page.action.js'
+// import { ReviewList } from '../cmps/review.list.jsx'
+// import { AddReview } from '../cmps/add-review.jsx'
 
 class _StayDetails extends React.Component {
     state = {
@@ -31,6 +36,16 @@ class _StayDetails extends React.Component {
             .then(stay => { this.setState({ stay }) })
     }
 
+    onAddReview = async (review) => {
+        try {
+            const { stay } = this.state
+            console.log(review);
+            await this.props.addReview(stay, review);
+        } catch (err) {
+            console.log('login first');
+        }
+    }
+
     render() {
         if (!this.state.stay) return 'LOADING'
         const { stay } = this.state
@@ -41,11 +56,9 @@ class _StayDetails extends React.Component {
         return (
             <main className="main-container stay-details page">
                 <div className="stay-summary">
-                    {/* <div></div> */}
                     <h2>{name}</h2>
                     <span className="stay-summary-address flex"><span className="summary-details flex"><img src={Star} alt="" />{avgRate} · <a href="#">{numOfReviews} Reviews</a> · <span>{loc.address}</span></span><span className="summary-share-save flex"><span className="summary-share"><img src={Share} alt="" /> <a href="#">Share</a></span><span className="summary-save"><img src={Save} alt="" /><a href="#">Save</a></span></span></span>
                 </div>
-                {/* <div>{name}</div> */}
                 <div className="image-container">
                     {imgUrls.map((imgUrl, idx) => {
                         return <div key={idx} className="img">
@@ -70,7 +83,6 @@ class _StayDetails extends React.Component {
                                     <img src={host.imgUrl} alt="photo needed" />
                                 </div>
                             </div>
-
                         </div>
                         <div className="stay-perks">
                             <ul className="clean-list">
@@ -95,7 +107,11 @@ class _StayDetails extends React.Component {
                         <div className="reserve"><StayReserve stay={stay} /></div>
                     </div>
                 </div>
-                <div className="details-map">
+                <div>
+                    {/* <ReviewList reviews={stay.reviews} />
+                    <AddReview onAddReview={(review) => this.onAddReview(review)} /> */}
+                </div>
+                <div>
                     <StayMap loc={loc} />
                 </div>
             </main>
@@ -106,7 +122,9 @@ class _StayDetails extends React.Component {
 
 const mapDispatchToProps = {
     changePage,
-    toggleModal
+    toggleModal,
+    // loadReviews,
+    // addReview
 }
 
 function mapStateToProps(state) {

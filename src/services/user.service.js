@@ -17,12 +17,6 @@ const STORAGE_KEY_LOGGEDIN = 'loggedinUser'
 
 window.us = userService
 
-// const users = userJson
-// _createUsers()
-// function _createUsers() {
-//   localStorage.setItem(STORAGE_KEY, JSON.stringify(users))
-// }
-
 async function login(credentials) {
   const user = await httpService.post(`auth/login`, credentials)
   if (user) {
