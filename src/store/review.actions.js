@@ -12,7 +12,6 @@ export function loadReviews() {
 }
 
 export function addReview(stay, review) {
-  console.log(review);
   return async dispatch => {
     try {
       const addedReview = await reviewService.add(stay, review)

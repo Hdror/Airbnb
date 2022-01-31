@@ -18,11 +18,9 @@ export class RateStar extends React.Component {
 
     avgRate = (reviews, field) => {
         // return (
-        console.log(reviews, 'reviews')
         const avg = reviews.reduce((acc, value) => {
             return acc + value.ratings[field]
         }, 0) / reviews.length
-        console.log(avg)
         // )
     }
 

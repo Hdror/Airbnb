@@ -1,65 +1,60 @@
 .filter-bar {
-    margin-block-end: 15px;
-    position: relative;
+  margin-block-end: 15px;
+  position: relative;
+  flex-wrap: wrap;
+
+  img {
+    height: 12px;
+    width: 12px;
+    &.filter-svg {
+      margin-inline-end: 5px;
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  > div {
+    height: 40px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    padding: 0px 16px;
+    justify-content: center;
+    border: 1px solid $clr7;
+    border-radius: 30px;
+    font-size: rem(14px);
+    transition: ease-in-out 0.15s;
+    cursor: pointer;
     flex-wrap: wrap;
+    margin-block-end: 10px;
 
-
-    img {
-        height: 12px;
-        width: 12px;
-        &.filter-svg{
-            margin-inline-end: 5px;
-            width: 16px;
-            height: 16px;
-            
-        }
+    &:not(:last-child) {
+      gap: 10px;
     }
 
-    > div {
-        height: 40px;
-        margin-right: 10px;
-        display: flex;
-        align-items: center;
-        padding: 0px 16px;
-        justify-content: center;
-        border: 1px solid $clr7;
-        border-radius: 30px;
-        font-size: rem(14px);
-        transition: ease-in-out 0.15s;
-        cursor: pointer;
-        flex-wrap: wrap;
-        margin-block-end: 10px;
-
-        &:not(:last-child){
-            gap: 10px;
-        }
-
-        &.active{
-            background-color: violet;
-            color: violet;
-        }
-
-       
-
-       &:hover{
-           border-color: $clr10;
-           transition: ease-in-out 0.15s;
-       }
-
-
-        @for $i from 0 to 7 {
-            &:nth-child(#{$i + 1}) {
-                @if $i > 3 {
-                    display: none;
-                }
-            }
-        }
-        &:last-child {
-            display: flex;
-        }
-
-        @include for-normal-layout {
-            display: flex !important;
-        }
+    &.selected {
+      background-color: violet;
+      color: violet;
     }
+
+    &:hover {
+      border-color: $clr10;
+      transition: ease-in-out 0.15s;
+    }
+
+    @for $i from 0 to 7 {
+      &:nth-child(#{$i + 1}) {
+        @if $i > 3 {
+          display: none;
+        }
+      }
+    }
+    &:last-child {
+      display: flex;
+    }
+
+    @include for-normal-layout {
+      display: flex !important;
+    }
+  }
 }

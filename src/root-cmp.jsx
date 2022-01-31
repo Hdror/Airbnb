@@ -7,7 +7,7 @@ import { HomePage } from './pages/home-page.jsx'
 // import { StayEdit } from './pages/stay-edit.jsx'
 import { StayApp } from './pages/stay-app.jsx'
 import { HostPage } from './pages/host.jsx'
-import {toggleModal } from './store/page.action.js'
+import { toggleModal } from './store/page.action.js'
 
 import { StayDetails } from './pages/stay-details.jsx'
 import { AppHeader } from './cmps/app-header.jsx'
@@ -32,12 +32,11 @@ export class _RootCmp extends React.Component {
           <Route component={StayApp} path="/stay" />
           <Route component={LoginSignup} path="/login" />
           <Route component={Orders} path="/orders" />
-          <Route component={HomePage} exact path="/" />
           <Route component={HostPage} exact path="/host" />
+          <Route component={HomePage} exact path="/" />
         </Switch>
         <AppFooter />
-        <div onClick={()=>{this.props.toggleModal()}} className={this.props.isModalOpen ? "screen open" : "screen"}></div>
-
+        <div onClick={() => { this.props.toggleModal() }} className={this.props.isModalOpen ? "screen open" : "screen"}></div>
       </>
     )
   }
@@ -50,7 +49,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
- toggleModal
+  toggleModal
 }
 
 export const RootCmp = connect(

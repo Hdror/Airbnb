@@ -39,7 +39,6 @@ class _StayDetails extends React.Component {
     onAddReview = async (review) => {
         try {
             const { stay } = this.state
-            console.log(review);
             await this.props.addReview(stay, review);
         } catch (err) {
             console.log('login first');
@@ -49,7 +48,6 @@ class _StayDetails extends React.Component {
     render() {
         if (!this.state.stay) return 'LOADING'
         const { stay } = this.state
-        console.log(stay);
         const { name, avgRate, reviews, loc, imgUrls, facilites, capacity, host, summary, type, amenities } = stay
         const numOfReviews = reviews.length
         const txt = facilites.beds > 1 ? 'beds' : 'bed'

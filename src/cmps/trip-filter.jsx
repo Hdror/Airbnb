@@ -100,7 +100,7 @@ export class _TripFilter extends React.Component {
 
                 {!isMiniHeader && <form action="">
                     <div className="trip-location-selector flex">
-                        <div className="trip-destination flex">
+                        <div className="trip-destination">
                             <div className="location-indicator">Location</div>
                             <input className="search-input"
                                 onChange={this.handleSearchChanges}
@@ -114,8 +114,8 @@ export class _TripFilter extends React.Component {
                         </div>
                     </div>
                     <div className="flex">
-                        <div className="trip-selections trip-dates-filter flex" onClick={() => { this.props.isModalOpen ? this.props.toggleModal() : this.props.toggleModal('dateRangeModal') }}>
-                            <div>Check in</div>
+                        <div className="trip-selections trip-dates-filter" onClick={() => { this.props.isModalOpen ? this.props.toggleModal() : this.props.toggleModal('dateRangeModal') }}>
+                            <div className="location-indicator">Check in</div>
                             <input readOnly
                                 type="text"
                                 onChange={this.handleSelect}
@@ -124,8 +124,8 @@ export class _TripFilter extends React.Component {
                                 placeholder="Add date" />
                         </div>
 
-                        <div className="trip-selections trip-dates-filter flex" onClick={() => { this.props.isModalOpen ? this.props.toggleModal() : this.props.toggleModal('dateRangeModal') }}>
-                            <div>Check out</div>
+                        <div className="trip-selections trip-dates-filter" onClick={() => { this.props.isModalOpen ? this.props.toggleModal() : this.props.toggleModal('dateRangeModal') }}>
+                            <div className="location-indicator">Check out</div>
                             <input readOnly
                                 type="text"
                                 onChange={this.handleSelect}
@@ -135,7 +135,7 @@ export class _TripFilter extends React.Component {
                         </div>
 
                         <div className="search-btn-container flex">
-                            <div onClick={() => { this.props.isModalOpen ? this.props.toggleModal() : this.props.toggleModal('guestsModal') }} className="trip-selections trip-dates-filter flex">
+                            <div onClick={() => { this.props.isModalOpen ? this.props.toggleModal() : this.props.toggleModal('guestsModal') }} className="trip-selections trip-dates-filter">
                                 <div>Guests</div>
                                 <div>
                                     <input
@@ -161,7 +161,7 @@ export class _TripFilter extends React.Component {
                 {isMiniHeader &&
                     <div onClick={this.props.toggleMiniHeader} className="mini-header-filter flex">
                         <div className="mini-header-content flex">
-                            {"Location"}
+                            {!this.state.filterBy.loc ? 'Location' : this.state.filterBy.loc}
                         </div>
                         <div className="search-img-btn flex">
                             <div className="img-container flex"><img onClick={this.onSetStayFilter} className="search-btn-img" src={search} alt="" /> </div>

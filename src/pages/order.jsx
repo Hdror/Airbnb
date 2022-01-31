@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 // STORE
 import { connect } from "react-redux"
-import { loadOrders } from "../store/order/order.actions.js"
+import { loadOrders, setOrders } from "../store/order/order.actions.js"
 import { changePage } from '../store/page.action.js'
 
 // COMPONENTS
@@ -11,21 +11,27 @@ import { Loader } from "../cmps/loader.jsx"
 
 
 class _Orders extends React.Component {
-    state = {}
+    state = {
+        orderRead: false
+    }
 
     componentDidMount() {
         window.scrollTo(0, 0)
         this.props.changePage('order')
-        this.props.loadOrders({ buyerId: this.props.user._id })
+        const readOrders = this.props.orders.map(order => {
+            return { ...order, isRead: true }
+        })
+        this.props.setOrders(readOrders)
+        // this.props.loadOrders({ buyerId: this.props.user._id })
     }
 
-    ordersToDisplay = () => {
-        const { orders, user } = this.props
-        const ordersToShow = orders.filter(order => {
-            return order.buyer._id === user._id
-        })
-        return ordersToShow
-    }
+    // ordersToDisplay = () => {
+    //     const { orders, user } = this.props
+    //     const ordersToShow = orders.filter(order => {
+    //         return order.buyer._id === user._id
+    //     })
+    //     return ordersToShow
+    // }
 
     hostDetails = () => {
         const { orders } = this.props
@@ -42,7 +48,7 @@ class _Orders extends React.Component {
 
     render() {
         const { orders, stays } = this.props
-        if (!orders.length) return <Loader/>
+        if (!orders.length) return <Loader />
         return (
             <section className="page main-container">
                 <div className="user-order-container">
@@ -77,7 +83,8 @@ class _Orders extends React.Component {
 
 const mapDispatchToProps = {
     loadOrders,
-    changePage
+    changePage,
+    setOrders
 }
 
 function mapStateToProps(state) {

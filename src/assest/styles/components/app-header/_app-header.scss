@@ -1,326 +1,369 @@
 header {
-    display: grid;
-    grid-auto-flow: dense;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    position: fixed;
-    flex-direction: column;
-    align-items: flex-start;
+  display: grid;
+  grid-auto-flow: dense;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  position: fixed;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: $clr5;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 176px;
+  z-index: 100;
+  box-shadow: rgb(0 0 0 / 8%) 0px 1px 12px !important;
+
+  .order-made {
+    background-color: rgb(255, 56, 92);
+    box-shadow: rgb(255, 255, 255) 0px 0px 0px 1.5px;
+    position: absolute;
+    z-index: 1;
+    border-radius: 9px;
+    color: rgb(255, 255, 255);
+    font-size: 10px;
+    // font-weight: 800t;
+    height: 16px;
+    // left: 100%;
+    line-height: 16px;
+    // margin-left: -18px;
+    right: -3px;
+    width: 16px;
+    padding: 0px 5px;
+    text-align: center;
+    // top: 17px;
+    top: -3px;
+  }
+
+  &.home-page {
+    background-color: rgba(0, 0, 0, 0);
+    // color: $clr5;
+    box-shadow: unset !important;
+
+    .logo-container {
+      h2 {
+        // color: $clr5;
+      }
+
+      .logo {
+        // color: $clr5;
+      }
+    }
+  }
+
+  // MINI HEADER
+  &.mini-header {
     background-color: $clr5;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 176px;
-    z-index: 100;
+    height: 80px;
+    padding-block-end: unset;
     box-shadow: rgb(0 0 0 / 8%) 0px 1px 12px !important;
 
-    &.home-page {
-        background-color: rgba(0, 0, 0, 0);
-        // color: $clr5;
-        box-shadow: unset !important;
-
-        .logo-container {
-            h2 {
-                // color: $clr5;
-            }
-
-            .logo {
-                // color: $clr5;
-            }
-        }
-    }
-
-    // MINI HEADER
-    &.mini-header {
-        background-color: $clr5;
-        height: 80px;
-        padding-block-end: unset;
-        box-shadow: rgb(0 0 0 / 8%) 0px 1px 12px !important;
-
-        .menu-actions a {
-            color: $clr2;
-        }
-
-        .logo-container {
-            h2 {
-                color: $clr1;
-            }
-
-            .logo {
-                color: $clr1;
-            }
-        }
-
-        .menu-wrapper {
-            border: 1px solid $clr7;
-        }
-
-        .trip-destination span {
-            display: none;
-        }
-
-        .input::placeholder {
-            font-size: rem(30px);
-        }
-
-        .trip-build-container {
-            width: 600px;
-            transform: translate(-50%, -50%) scale(0.5);
-            transition: width 0.15s, top 0.15s, transform 0.15s;
-            box-shadow: 0 0 3px 2px $clr7;
-            padding-inline-start: 20px;
-            padding-inline-end: 10px;
-            justify-content: space-evenly;
-            // height: 48px;
-            border: 1px solid $clr9;
-            top: 50%;
-            &:hover {
-                box-shadow: 0px 5px 4px 1px $clr9;
-            }
-
-            .trip-dates-filter {
-                display: none;
-            }
-
-            form {
-                .trip-location-selector {
-                    padding: 25px;
-                    .trip-destination input {
-                        font-size: rem(30px);
-                    }
-                }
-            }
-        }
-
-        .mini-header-filter {
-            justify-content: space-between;
-            align-items: center;
-            .search-img-btn {
-                height: 67px;
-                width: 67px;
-                border-radius: 50%;
-                background-color: $clr1;
-                align-items: center;
-                justify-content: center;
-                .img-container {
-                    img {
-                        height: 28px;
-                        filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(81deg)
-                            brightness(105%) contrast(102%);
-                    }
-                }
-            }
-
-            .mini-header-content {
-                color: $clr2;
-                font-size: 1.825rem;;
-                padding: 25px 20px;
-                padding-right: 0;
-            }
-        }
-    }
-
-    .main-header {
-        justify-content: space-between;
+    .menu-actions a {
+      color: $clr2;
     }
 
     .logo-container {
-        padding: 20px 0px;
-        align-items: center;
+      h2 {
+        color: $clr1;
+      }
 
-        h2 {
-            font-size: rem(24px);
-            font-family: f-bold;
-            color: $clr1;
-        }
-
-        .logo {
-            font-size: rem(34px);
-            margin-right: 8px;
-            color: $clr1;
-        }
+      .logo {
+        color: $clr1;
+      }
     }
 
-    .menu-actions {
-        gap: 20px;
-        padding: 20px 0px;
-        position: relative;
+    .menu-wrapper {
+      border: 1px solid $clr7;
+    }
 
-        a {
-            display: flex;
-            font-family: f-book;
-            font-size: rem(14px);
-            line-height: 1.685;
-            align-items: center;
-        }
+    .trip-destination span {
+      display: none;
+    }
 
-        img {
-            height: 30px;
-            width: 30px;
-            border-radius: 50%;
-        }
-
-        .menu-wrapper {
-            height: 42px;
-            width: 77px;
-            background-color: $clr5;
-            line-height: 2;
-            border-radius: 1.5rem;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid $clr7;
-            cursor: pointer;
-
-            .menu-icon {
-                margin-right: 10px;
-                height: 18px;
-                width: 18px;
-            }
-        }
+    .input::placeholder {
+      font-size: rem(30px);
     }
 
     .trip-build-container {
-        position: absolute;
-        top: 0%;
-        left: 50%;
-        transform: translate(-50%, 125%);
-        background-color: $clr5;
-        flex-direction: column;
-        justify-content: center;
-        border-radius: 100vw;
-        transition: width 0.3s, top 0.3s, transform 0.3s;
-        border: 1px solid $clr7;
-        margin: auto;
+      width: 600px;
+      transform: translate(-50%, -50%) scale(0.5);
+      transition: width 0.15s, top 0.15s, transform 0.15s;
+      box-shadow: 0 0 3px 2px $clr7;
+      padding-inline-start: 20px;
+      padding-inline-end: 10px;
+      justify-content: space-evenly;
+      // height: 48px;
+      border: 1px solid $clr9;
+      top: 50%;
+      &:hover {
+        box-shadow: 0px 5px 4px 1px $clr9;
+      }
 
+      .trip-dates-filter {
+        display: none;
+      }
+
+      form {
         .trip-location-selector {
-            width: 270px;
-            flex-direction: column;
-            justify-content: space-evenly;
-            align-items: center;
-            padding: 14px 0;
-
-            &:hover {
-                background-color: $clr9;
-                border-radius: 100vw;
-            }
+          padding: 25px;
+          .trip-destination input {
+            font-size: rem(30px);
+          }
         }
-
-        .trip-destination {
-            flex-direction: column;
-            padding: 0px;
-            color: $clr2;
-            font-family: f-medium;
-            font-size: rem(12px);
-
-            .location-indicator {
-            }
-        }
-
-        form {
-            display: flex;
-
-            .search-input {
-                border: none;
-                font-size: rem(14px);
-                font-family: f-light;
-                color: $clr8;
-                background: none;
-                // background-color: #ffffff00 !important;
-
-                // input[type="text"] {
-                //     background-color: $clr5 ;
-                //     color: blue !important;
-                // }
-            }
-            input[type="text"],
-            textarea {
-                background-color: unset;
-            }
-            input:-webkit-autofill {
-                background-color: transparent !important;
-                -webkit-box-shadow: 0 0 0 50px rgb(235, 235, 235) inset;
-            }
-            input {
-                width: 100%;
-                padding: 0;
-                font-family: f-light;
-                outline-style: none;
-                box-shadow: none;
-                border-color: transparent;
-                font-size: rem(14px);
-                background-color: #ffffff00;
-
-                &::-webkit-input-placeholder {
-                    color: $clr8;
-                    font-family: f-light;
-                    background-color: #ffffff00;
-                }
-            }
-
-            .trip-selections {
-                color: $clr2;
-                font-size: rem(14px);
-                font-family: f-medium;
-                flex-direction: column;
-                justify-content: space-evenly;
-                padding: 14px 0px;
-
-                > div {
-                    padding: 0px 24px;
-                    border-left: 1px solid $clr7;
-                }
-
-                &:hover {
-                    background-color: $clr9;
-                    border-radius: 100vw;
-                    &input:-webkit-autofill {
-                        background-color: transparent !important;
-                        -webkit-box-shadow: 0 0 0 50px rgb(235, 235, 235) inset;
-                    }
-                    > div {
-                        border-right: none;
-                    }
-                }
-
-                > :last-child {
-                    font-family: f-light;
-                    font-size: rem(14px);
-                    border-left: 1px solid #ddd;
-                    color: $clr8;
-                    padding: 0px 24px;
-                }
-
-                :not(:last-child) {
-                    width: 170px;
-                    font-size: rem(12px);
-                }
-            }
-            .search-btn-container {
-                justify-content: space-between;
-                &:hover {
-                    background-color: $clr9;
-                    border-radius: 100vw;
-                }
-                .search-btn {
-                    justify-content: center;
-                    align-content: center;
-                    align-items: center;
-                    .img-container {
-                        align-items: center;
-                        justify-content: center;
-                        height: 47px;
-                        width: 47px;
-                        border-radius: 50%;
-                        margin-right: 8px;
-                        background-color: $clr1;
-                        .search-btn-img {
-                            height: 15px;
-                            width: 15px;
-                            filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(81deg)
-                                brightness(105%) contrast(102%);
-                        }
-                    }
-                }
-            }
-        }
+      }
     }
+
+    .mini-header-filter {
+      justify-content: space-between;
+      align-items: center;
+      .search-img-btn {
+        height: 67px;
+        width: 67px;
+        border-radius: 50%;
+        background-color: $clr1;
+        align-items: center;
+        justify-content: center;
+        .img-container {
+          img {
+            height: 28px;
+            filter: brightness(0) saturate(100%) invert(100%) sepia(100%)
+              saturate(0%) hue-rotate(81deg) brightness(105%) contrast(102%);
+          }
+        }
+      }
+
+      .mini-header-content {
+        color: $clr2;
+        font-size: 1.825rem;
+        padding: 25px 20px;
+        padding-right: 0;
+      }
+    }
+  }
+
+  .main-header {
+    justify-content: space-between;
+  }
+
+  .logo-container {
+    padding: 20px 0px;
+    align-items: center;
+
+    h2 {
+      font-size: rem(24px);
+      font-family: f-bold;
+      color: $clr1;
+    }
+
+    .logo {
+      font-size: rem(34px);
+      margin-right: 8px;
+      color: $clr1;
+    }
+  }
+
+  .menu-actions {
+    gap: 20px;
+    padding: 20px 0px;
+    position: relative;
+    .header-nav {
+      padding: 0px 12px;
+      &:hover {
+        background-color: #0001;
+        border-radius: 100vw;
+      }
+    }
+    a {
+      display: flex;
+      font-family: f-book;
+      font-size: rem(14px);
+      line-height: 1.685;
+      align-items: center;
+    }
+
+    img {
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
+    }
+
+    .menu-wrapper {
+      position: relative;
+      cursor: pointer;
+      height: 42px;
+      width: 77px;
+      background-color: $clr5;
+      line-height: 2;
+      border-radius: 1.5rem;
+      align-items: center;
+      border: 1px solid $clr7;
+      padding: 5px 5px;
+      padding-inline-start: 12px;
+
+      .menu-icon {
+        margin-right: 10px;
+        height: 18px;
+        width: 18px;
+      }
+    }
+  }
+
+  .trip-build-container {
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, 125%);
+    background-color: $clr5;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 100vw;
+    transition: width 0.3s, top 0.3s, transform 0.3s;
+    border: 1px solid $clr7;
+    margin: auto;
+
+    .trip-location-selector {
+      width: 270px;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      padding: 14px 0;
+
+      &:hover {
+        &input:-webkit-autofill {
+          background-color: $clr9;
+        }
+        background-color: $clr9;
+        border-radius: 100vw;
+      }
+    }
+
+    .trip-destination {
+      :hover {
+        cursor: pointer;
+      }
+      flex-direction: column;
+      padding: 0px;
+      color: $clr2;
+      font-family: f-medium;
+      font-size: rem(12px);
+
+      .location-indicator {
+        padding-block-end: 2px;
+      }
+    }
+
+    form {
+      display: flex;
+
+      .search-input {
+        border: none;
+        font-size: rem(14px);
+        font-family: f-light;
+        color: $clr8;
+        background: none;
+        // background-color: #ffffff00 !important;
+
+        // input[type="text"] {
+        //     background-color: $clr5 ;
+        //     color: blue !important;
+        // }
+      }
+      input[type="text"],
+      textarea {
+        background-color: unset;
+      }
+      input:-webkit-autofill {
+        font-family: f-medium;
+        background-color: transparent !important;
+        -webkit-box-shadow: 0 0 0 50px rgb(255, 255, 255) inset;
+        &:hover {
+          -webkit-box-shadow: 0 0 0 50px rgb(235, 235, 235) inset;
+        }
+      }
+      input {
+        width: 100%;
+        padding: 0;
+        font-family: f-light;
+        outline-style: none;
+        box-shadow: none;
+        border-color: transparent;
+        font-size: rem(14px);
+        background-color: #ffffff00;
+
+        &::-webkit-input-placeholder {
+          color: $clr8;
+          font-family: f-light;
+          background-color: #ffffff00;
+        }
+      }
+
+      .trip-selections {
+        :hover {
+          cursor: pointer;
+        }
+        color: $clr2;
+        font-size: rem(14px);
+        font-family: f-medium;
+        flex-direction: column;
+        justify-content: space-evenly;
+        padding: 14px 0px;
+
+        > div {
+          padding: 0px 24px 2px;
+          border-left: 1px solid $clr7;
+        }
+
+        &:hover {
+          background-color: $clr9;
+          border-radius: 100vw;
+          &input:-webkit-autofill {
+            background-color: transparent !important;
+            -webkit-box-shadow: 0 0 0 50px rgb(235, 235, 235) inset;
+          }
+          > div {
+            border-right: none;
+          }
+        }
+
+        > :last-child {
+          font-family: f-light;
+          font-size: rem(14px);
+          border-left: 1px solid #ddd;
+          color: $clr8;
+          padding: 0px 24px;
+        }
+
+        :not(:last-child) {
+          width: 170px;
+          font-size: rem(12px);
+        }
+      }
+      .search-btn-container {
+        justify-content: space-between;
+        &:hover {
+          background-color: $clr9;
+          border-radius: 100vw;
+        }
+        .search-btn {
+          justify-content: center;
+          align-content: center;
+          align-items: center;
+          .img-container {
+            align-items: center;
+            justify-content: center;
+            height: 47px;
+            width: 47px;
+            border-radius: 50%;
+            margin-right: 8px;
+            background-color: $clr1;
+            .search-btn-img {
+              height: 15px;
+              width: 15px;
+              filter: brightness(0) saturate(100%) invert(100%) sepia(100%)
+                saturate(0%) hue-rotate(81deg) brightness(105%) contrast(102%);
+            }
+          }
+        }
+      }
+    }
+  }
 }

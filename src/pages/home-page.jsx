@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 import { changePage } from '../store/page.action.js'
 import { StayApp } from './stay-app.jsx'
+import { loadOrders } from '../store/order/order.actions.js'
 
 import { loadStays, setFilter } from '../store/stay.action.js'
 
@@ -12,10 +13,11 @@ export class _HomePage extends React.Component {
     componentDidMount() {
         window.scrollTo(0, 0)
         this.props.changePage('home-page')
+        // this.props.loadOrders({ buyerId: this.props.user._id })
+
     }
 
     onSetFilter = (ev) => {
-        console.log(ev.target.name);
         ev.preventDefault()
         const filterBy = { loc: ev.target.id, checkInDate: '', checkOutDate: '' }
         this.props.setFilter(filterBy)
@@ -65,21 +67,28 @@ export class _HomePage extends React.Component {
                         </Link>
                     </div>
                 </div>
+                <Link className="become-host-link" to="/host">
+                    <div className="img-text">Become a host</div>
+                    <img src="https://images.pexels.com/photos/1496610/pexels-photo-1496610.jpeg?cs=srgb&dl=pexels-lena-hsvl-1496610.jpg&fm=jpg" alt="" />
+                </Link>
             </main>
         )
     }
 }
 
-function mapStateToProps({ stayModule }) {
+function mapStateToProps(state) {
     return {
-        stays: stayModule.stays,
+        stays: state.stayModule.stays,
+        orders: state.orderModule.orders,
+        user: state.userModule.user
     }
 }
 
 const mapDispatchToProps = {
     changePage,
     loadStays,
-    setFilter
+    setFilter,
+    loadOrders
 }
 
 export const HomePage = connect(mapStateToProps, mapDispatchToProps)(_HomePage)

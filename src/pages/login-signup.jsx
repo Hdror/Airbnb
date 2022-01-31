@@ -4,6 +4,7 @@ import { Component } from 'react'
 import { connect } from 'react-redux'
 import { login, signup, update } from '../store/user.actions.js'
 import { changePage } from '../store/page.action.js'
+import { loadOrders } from '../store/order/order.actions.js'
 class _LoginSignup extends Component {
     state = {
         credentials: {
@@ -50,6 +51,7 @@ class _LoginSignup extends Component {
         try {
             let user = await this.props.login(this.state.credentials);
             if (user) {
+                this.props.loadOrders({ buyerId: user._id })
                 this.props.history.push('/')
             }
         } catch (err) {
@@ -85,14 +87,14 @@ class _LoginSignup extends Component {
                     {!isSignup && (
                         <div className='login-form-container'>
                             <div className="login-page-header"><h2>Log in or sign up</h2></div>
-                            <div><h3>Welcome to SomethingBnb</h3></div>
+                            <div><h3>Welcome to flairbnb</h3></div>
                             <form className='login-form' onSubmit={this.onLogin}>
                                 <div className='login-content'>
                                     <input
                                         className='login-form-input'
                                         type='email'
                                         name='email'
-                                        placeholder='Email Address'
+                                        placeholder='Email address'
                                         autoComplete='off'
                                         value={email}
                                         onChange={this.handleChange}
@@ -102,7 +104,7 @@ class _LoginSignup extends Component {
                                         className='login-form-input'
                                         type='tel'
                                         name='phonenumber'
-                                        placeholder='Phone Number'
+                                        placeholder='Phone number'
                                         autoComplete='off'
                                         value={phonenumber}
                                         onChange={this.handleChange}
@@ -140,7 +142,7 @@ class _LoginSignup extends Component {
                                         className='login-form-input'
                                         type='phonenumber'
                                         name='phonenumber'
-                                        placeholder='phonenumber'
+                                        placeholder='Phone number'
                                         autoComplete='off'
                                         value={phonenumber}
                                         onChange={this.handleChange}
@@ -160,7 +162,7 @@ class _LoginSignup extends Component {
                                 <div className='login-form-actions'>
                                     <small>We’ll call or text you to confirm your number. Standard message and data rates apply. <span>Privacy Policy</span></small>
                                     <div className="signin-btn-container">
-                                        <button type='submit' className='login-btn'>sign up</button>
+                                        <button type='submit' className='login-btn'>Sign up</button>
                                         <button className='login-btn' onClick={this.toggleSignup}>Log to my account</button>
                                     </div>
                                 </div>
@@ -184,6 +186,7 @@ const mapDispatchToProps = {
     signup,
     changePage,
     update,
+    loadOrders
 }
 
 export const LoginSignup = connect(

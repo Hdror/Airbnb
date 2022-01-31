@@ -35,15 +35,12 @@ export class _FilterBar extends React.Component {
 
     filterStays = () => {
         const { filterBy } = this.state
-        console.log(filterBy);
         const { stays } = this.props
-        console.log(stays);
         let isfilterByTypeOfPlace = false
         for (let key in filterBy.typeOfPlace) {
             if (filterBy.typeOfPlace[key]) isfilterByTypeOfPlace = true
         }
         let filteredStays = stays.filter(stay => {
-            console.log(stay.price, filterBy.price);
 
             if ((!isfilterByTypeOfPlace || filterBy.typeOfPlace[stay.typeOfPlace]) && filterBy.amenities.every((amemity) => {
                 return stay.amenities.includes(amemity)
@@ -54,7 +51,7 @@ export class _FilterBar extends React.Component {
         this.props.toggleModal()
     }
 
-    cleanTypeOfPlaceForm = () => {
+    cleanForm = () => {
         this.setState({ filterBy: { ...this.state.filterBy, typeOfPlace: { 'Entire place': false, 'Private room': false, 'Hotel room': false, 'Shared room': false } } })
     }
 
@@ -92,10 +89,10 @@ export class _FilterBar extends React.Component {
             <div onClick={() => { isModalOpen ? toggleModal() : toggleModal('priceModal') }}>Price <img src={arrow_down} /></div>
             <div onClick={() => { isModalOpen ? toggleModal() : toggleModal('typeOfPlaceModal') }}>Type of place <img src={arrow_down} /></div>
             {amenities.map((amenity, idx) => {
-                return <div onClick={this.handleChange} id="amenities" className={ amenity} key={idx}>{amenity}</div>
+                return <div onClick={this.handleChange} id="amenities" className={amenity} key={idx}>{amenity}</div>
             })}
             {/* // {filterBy.amenities.includes(`${amenity}`)? `${amenity} 'lll'`: amenity} key = { idx } > { amenity } */}
-            {modalState.typeOfPlaceModal && <TypeOfPlaceModal filterBy={filterBy} cleanTypeOfPlaceForm={this.cleanTypeOfPlaceForm} filterStays={this.filterStays} handleChange={this.handleChange} />}
+            {modalState.typeOfPlaceModal && <TypeOfPlaceModal filterBy={filterBy} cleanForm={this.cleanForm} filterStays={this.filterStays} handleChange={this.handleChange} />}
             {modalState.priceModal && <PriceModal handleChange={this.handleChange} filterStays={this.filterStays} stays={stays} />}
             <div>
                 <img className="filter-svg flex" src={filter} />

@@ -2,7 +2,7 @@ import React from 'react'
 
 // STORE 
 import { connect } from 'react-redux'
-import { addOrder } from '../store/order/order.actions.js'
+import { addOrder, updateUnreadCount } from '../store/order/order.actions.js'
 import { toggleModal } from '../store/page.action.js'
 
 // LIBS
@@ -84,7 +84,8 @@ class _StayReserve extends React.Component {
                 price: this.props.stay.price
             },
             image: this.props.stay.imgUrls[0],
-            status: 'pending'
+            status: 'pending',
+            isRead: false
         }
         this.props.addOrder(orderToSave)
         this.toggleDisableBtn()
@@ -283,7 +284,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
     addOrder,
-    toggleModal
+    toggleModal,
+    updateUnreadCount
 }
 
 export const StayReserve = connect(mapStateToProps, mapDispatchToProps)(_StayReserve)
