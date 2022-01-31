@@ -92,7 +92,7 @@ export class _FilterBar extends React.Component {
             <div onClick={() => { isModalOpen ? toggleModal() : toggleModal('priceModal') }}>Price <img src={arrow_down} /></div>
             <div onClick={() => { isModalOpen ? toggleModal() : toggleModal('typeOfPlaceModal') }}>Type of place <img src={arrow_down} /></div>
             {amenities.map((amenity, idx) => {
-                return <div onClick={this.handleChange} id="amenities" className={ amenity} key={idx}>{amenity}</div>
+                return <div onClick={this.handleChange} id="amenities" className={amenity} key={idx}>{amenity}</div>
             })}
             {/* // {filterBy.amenities.includes(`${amenity}`)? `${amenity} 'lll'`: amenity} key = { idx } > { amenity } */}
             {modalState.typeOfPlaceModal && <TypeOfPlaceModal filterBy={filterBy} cleanTypeOfPlaceForm={this.cleanTypeOfPlaceForm} filterStays={this.filterStays} handleChange={this.handleChange} />}
