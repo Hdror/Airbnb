@@ -125,7 +125,7 @@ class _LoginSignup extends Component {
                     {isSignup && (
                         <div className='login-form-container'>
                             <div className="login-page-header"><h2>Log in or sign up</h2></div>
-                            <div><h3>Welcome to SomethingBnb</h3></div>
+                            <div><h3>Welcome to flairbnb</h3></div>
                             <form className='login-form' onSubmit={this.onSignup}>
                                 <div className='login-content'>
                                     <input

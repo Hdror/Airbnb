@@ -104,17 +104,30 @@
   }
   .become-host-link {
     position: relative;
-    margin-block-end: 30px;
+    margin-block-end: 100px;
+    overflow: hidden;
+    border-radius: 12px;
+    height: 60vh;
+    &:after {
+      pointer-events: none;
+      position: absolute;
+      top: 0;
+      right: 0;
+      content: "";
+      height: 100%;
+      width: 100%;
+      background-image: linear-gradient(0deg, #0008, 30%, #0000);
+    }
 
     .img-text {
-      top: 0;
-      padding: 120px;
-      font-size: rem(40px);
+      // top: 0;
+      // // padding: 120px;
+      // font-size: rem(40px);
     }
     img {
       object-fit: cover;
-      border-radius: 12px;
-      height: 70vh;
+      // border-radius: 12px;
+      height: 100%;
     }
   }
 }
