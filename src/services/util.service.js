@@ -46,8 +46,10 @@ function getRandomAmenities() {
   for (var i = 0; i < amens.length; i++) {
     const index = getRandomIntInclusive(0, amens.length - 1)
     let amenity = amens.splice(index, 1)
-    newAmens.push(amenity)
+    console.log(amenity);
+    newAmens.push(amenity[0])
   }
+  console.log(newAmens);
   return newAmens
 }
 

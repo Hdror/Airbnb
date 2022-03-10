@@ -32,15 +32,19 @@
       gap: 10px;
     }
 
-    &.selected {
-      background-color: violet;
-      color: violet;
-    }
-
     &:hover {
       border-color: $clr10;
       transition: ease-in-out 0.15s;
   
+    }
+
+    &.active{
+      background-color: $clr6;
+      border: 1px solid #ffffff;
+      &:hover{
+        border: 1px solid black
+      }
+
     }
 
 

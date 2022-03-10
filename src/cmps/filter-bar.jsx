@@ -65,13 +65,15 @@ export class _FilterBar extends React.Component {
                 this.setState({ filterBy: { ...this.state.filterBy, typeOfPlace: { ...this.state.filterBy.typeOfPlace, [field]: value } } })
 
             } else if (target.id === 'amenities') {
-                value = target.className
+                value = target.innerText
                 const { amenities } = this.state.filterBy
                 if (this.state.filterBy.amenities.includes(value)) {
+                    // target.className = "not-active"
                     this.setState({
                         filterBy: { ...this.state.filterBy, amenities: amenities.filter((val) => { return val !== value }) }
                     }, () => { this.filterStays() })
                 } else {
+                    // target.className = "active"
                     this.setState({ filterBy: { ...this.state.filterBy, amenities: [...amenities, value] } }, () => { this.filterStays() })
                 }
             }
@@ -79,7 +81,21 @@ export class _FilterBar extends React.Component {
             const [minPrice, maxPrice] = ev
             this.setState({ filterBy: { ...this.state.filterBy, price: { minPrice, maxPrice } } })
         }
+    }
 
+    isActive = (amenity) => {
+        console.log(amenity);
+        const { amenities } = this.state.filterBy
+        let res = true
+        if (amenities.includes(amenity)) {
+
+            res = true
+        }else{
+
+            res =false
+        } 
+        console.log(res);
+        return res
     }
 
     render() {
@@ -89,9 +105,8 @@ export class _FilterBar extends React.Component {
             <div onClick={() => { isModalOpen ? toggleModal() : toggleModal('priceModal') }}>Price <img src={arrow_down} /></div>
             <div onClick={() => { isModalOpen ? toggleModal() : toggleModal('typeOfPlaceModal') }}>Type of place <img src={arrow_down} /></div>
             {amenities.map((amenity, idx) => {
-                return <div onClick={this.handleChange} id="amenities" className={amenity} key={idx}>{amenity}</div>
+                return <div onClick={this.handleChange} id="amenities" className={(this.isActive(amenity))? "active":"not-active"} key={idx}>{amenity}</div>
             })}
-            {/* // {filterBy.amenities.includes(`${amenity}`)? `${amenity} 'lll'`: amenity} key = { idx } > { amenity } */}
             {modalState.typeOfPlaceModal && <TypeOfPlaceModal filterBy={filterBy} cleanForm={this.cleanForm} filterStays={this.filterStays} handleChange={this.handleChange} />}
             {modalState.priceModal && <PriceModal handleChange={this.handleChange} filterStays={this.filterStays} stays={stays} />}
             <div>
