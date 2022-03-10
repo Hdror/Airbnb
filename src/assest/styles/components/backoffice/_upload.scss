@@ -1,0 +1,29 @@
+.upload-preview {
+  position: relative;
+  background-color: $clr12;
+  .img-upload-label {
+    height: 100%;
+    input[type="file" i] {
+      opacity: 0;
+      height: 100%;
+      width: 100%;
+      z-index: 5;
+    }
+    input {
+      left: 0;
+      top: 0;
+      position: absolute;
+    }
+  }
+}
+
+// .img-upload-btn::after {
+//   // &::after {
+//   content: "";
+//   position: absolute;
+//   left: 90px;
+//   height: 40px;
+//   width: 100px;
+//   background-color: #ffff;
+//   // }
+// }
