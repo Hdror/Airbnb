@@ -239,18 +239,16 @@ class _StayEdit extends React.Component {
                                 <li><span><img src={Great_location} alt="" /> Great location</span> <span> 100% of recent guests gave the location a 5-star rating.</span></li>
                             </ul>
                         </div> */}
-                    <div className="stay-edit-summary">
-                        <textarea value={stay.summary ? stay.summary : ''} type="text" name="summary" cols="30" rows="30" onChange={this.onHandleChange} ></textarea></div>
-                    <section className="stay-edit-amenities-container">
+                    <div className="summary-container">
+                        <textarea value={stay.summary ? stay.summary : ''} type="text" name="summary" cols="30" rows="30" onChange={this.onHandleChange} ></textarea>
                         <div className="stay-edit-amenities">
                             {amenities.map((amenity, idx) => {
                                 return <div key={idx}><input onChange={this.onHandleChange} type="checkbox" checked={this.state.amenities[amenity]} name={amenity} />{amenity}</div>
                             })}
                         </div>
-                    </section>
+                    </div >
+                    {/* </div> */}
                 </div >
-                {/* </div> */}
-                {/* </div > */}
                 <button onClick={this.updateStay}>Save</button>
             </main >
         )
