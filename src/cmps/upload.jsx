@@ -53,7 +53,10 @@ export class Upload extends Component {
                 <div className="img-upload-label" htmlFor="imgUpload">
                     {/* {this.uploadMsg} */}
                     <input type="file" onChange={this.uploadImg} accept="img/*" className="img-upload-btn" id="imgUpload" />
+                    <div className="img-container">
+
                     <img src={imgUrl} alt="" />
+                    </div>
                 </div>
             </div>
         )

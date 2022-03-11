@@ -1,8 +1,29 @@
 .upload-preview {
-  position: relative;
   background-color: $clr12;
+
   .img-upload-label {
+    position: relative;
     height: 100%;
+    &:hover {
+      ::after {
+        content: "Upload image";
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        color: $clr6;
+        width: 200px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+
+        height: 40px;
+        // }
+      }
+    }
+    .img-container {
+      height: 100%;
+    }
+
     input[type="file" i] {
       opacity: 0;
       height: 100%;
@@ -17,13 +38,4 @@
   }
 }
 
-// .img-upload-btn::after {
-//   // &::after {
-//   content: "";
-//   position: absolute;
-//   left: 90px;
-//   height: 40px;
-//   width: 100px;
-//   background-color: #ffff;
-//   // }
-// }
+

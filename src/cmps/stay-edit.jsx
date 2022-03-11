@@ -172,66 +172,66 @@ class _StayEdit extends React.Component {
         const { stay, amenities } = this.state
         console.log(stay.imgUrls);
         return (
-            <main className="stay-edit main-container">
-                <div className="stay-edit-container">
-                    <div className="stay-edit-location flex">
-                        <span><input type="text" value={stay.name ? stay.name : ''} name="name" placeholder="Enter stay name here" onChange={this.onHandleChange} /></span>
-                        <span><input value={stay.loc.address ? stay.loc.address : ''} type="text" name="address" placeholder="Enter stay address here" onChange={this.onHandleChange} /></span>
-                    </div>
-                    <div className="img-upload-container">
-                        <Upload
-                            position={0}
-                            onUploadImg={this.onUploadImg}
-                            userImgUrl={this.state.stay.imgUrls[0]} />
-                        <Upload
-                            position={1}
-                            onUploadImg={this.onUploadImg}
-                            userImgUrl={this.state.stay.imgUrls[1]} />
-                        <Upload
-                            position={2}
-                            onUploadImg={this.onUploadImg}
-                            userImgUrl={this.state.stay.imgUrls[2]} />
-                        <Upload
-                            position={3}
-                            onUploadImg={this.onUploadImg}
-                            userImgUrl={this.state.stay.imgUrls[3]} />
-                        <Upload
-                            position={4}
-                            onUploadImg={this.onUploadImg}
-                            userImgUrl={this.state.stay.imgUrls[4]} />
-                    </div>
+            <main className="stay-edit">
+                {/* <div className="stay-edit-container"> */}
+                <div className="stay-edit-location flex">
+                    <input type="text" value={stay.name ? stay.name : ''} name="name" placeholder="Enter stay name here" onChange={this.onHandleChange} />
+                    <input value={stay.loc.address ? stay.loc.address : ''} type="text" name="address" placeholder="Enter stay address here" onChange={this.onHandleChange} />
                 </div>
-                <div className="stay-edit-info-container">
-                    <div className="stay-edit-info flex">
-                        <div className="stay-edit-container flex">
-                            <div className="stay-edit-property-details">
-                                <section className="stay-edit-details flex">
-                                    <ul className="clean-list">
-                                        <li><input type="number" value={stay.capacity ? stay.capacity : ''} name="capacity" onChange={this.onHandleChange} placeholder="Enter guest capacity" /></li>
-                                        <select value={stay.typeOfPlace} onChange={this.onHandleChange} name="typeOfPlace" id="">
-                                            <option value="Entire Place">Entire Place</option>
-                                            <option value="Private Room">Private Room</option>
-                                            <option value="Shared Room">Shared Room</option>
-                                            <option value="Hotel Room">Hotel Room</option>
-                                        </select>
-                                        <select value={stay.type} onChange={this.onHandleChange} name="type" id="">
-                                            <option value="Loft">Loft</option>
-                                            <option value="Apartment">Apartment</option>
-                                            <option value="Shared Room">Shared Room</option>
-                                            <option value="Hotel">Hotel</option>
-                                            <option value="House">House</option>
-                                            <option value="Guesthouse">Guesthouse</option>
-                                        </select>
-                                        <li><input onChange={this.onHandleChange} value={stay.facilites.bedrooms ? stay.facilites.bedrooms : ''} type="number" name="bedrooms" placeholder="Enter number of bedrooms" /></li>
-                                        <li><input onChange={this.onHandleChange} value={stay.facilites.beds ? stay.facilites.beds : ''} type="number" name="beds" placeholder="Enter number of beds" /></li>
-                                        <li><input onChange={this.onHandleChange} value={stay.facilites.bathrooms ? stay.facilites.bathrooms : ''} type="number" name="bathrooms" placeholder="Enter number of bathrooms" /></li>
-                                        <li><input onChange={this.onHandleChange} value={stay.price > 0 ? stay.price : ''} type="number" name="price" placeholder="Enter price" />${stay.price}</li>
-                                    </ul>
-                                </section>
-                            </div>
+                <div className="img-upload-container">
+                    <Upload
+                        position={0}
+                        onUploadImg={this.onUploadImg}
+                        userImgUrl={this.state.stay.imgUrls[0]} />
+                    <Upload
+                        position={1}
+                        onUploadImg={this.onUploadImg}
+                        userImgUrl={this.state.stay.imgUrls[1]} />
+                    <Upload
+                        position={2}
+                        onUploadImg={this.onUploadImg}
+                        userImgUrl={this.state.stay.imgUrls[2]} />
+                    <Upload
+                        position={3}
+                        onUploadImg={this.onUploadImg}
+                        userImgUrl={this.state.stay.imgUrls[3]} />
+                    <Upload
+                        position={4}
+                        onUploadImg={this.onUploadImg}
+                        userImgUrl={this.state.stay.imgUrls[4]} />
+                </div>
+                {/* </div> */}
+                <div className="info-container">
+                    {/* <div className="stay-edit-info flex"> */}
+                    {/* <div className="stay-edit-container flex"> */}
+                    {/* <div className="stay-edit-details flex"> */}
+                    <div className="selection-container flex">
+                        <input title='Guest capacity' type="number" value={stay.capacity ? stay.capacity : ''} name="capacity" onChange={this.onHandleChange} placeholder="Enter guest capacity" />
+                        <select value={stay.typeOfPlace} onChange={this.onHandleChange} name="typeOfPlace" id="">
+                            <option value="Entire Place">Entire Place</option>
+                            <option value="Private Room">Private Room</option>
+                            <option value="Shared Room">Shared Room</option>
+                            <option value="Hotel Room">Hotel Room</option>
+                        </select>
 
-                        </div>
-                        {/* <div className="stay-edit-perks">
+                        <select value={stay.type} onChange={this.onHandleChange} name="type" id="">
+                            <option value="Loft">Loft</option>
+                            <option value="Apartment">Apartment</option>
+                            <option value="Shared Room">Shared Room</option>
+                            <option value="Hotel">Hotel</option>
+                            <option value="House">House</option>
+                            <option value="Guesthouse">Guesthouse</option>
+                        </select>
+
+                        <input onChange={this.onHandleChange} value={stay.facilites.bedrooms ? stay.facilites.bedrooms : ''} type="number" name="bedrooms" placeholder="Enter number of bedrooms" />
+                        <input onChange={this.onHandleChange} value={stay.facilites.beds ? stay.facilites.beds : ''} type="number" name="beds" placeholder="Enter number of beds" />
+                        <input onChange={this.onHandleChange} value={stay.facilites.bathrooms ? stay.facilites.bathrooms : ''} type="number" name="bathrooms" placeholder="Enter number of bathrooms" />
+                        <input onChange={this.onHandleChange} value={stay.price > 0 ? stay.price : ''} type="number" name="price" placeholder="Enter price" />
+                    </div>
+                    {/* ${stay.price}</div> */}
+                    {/* </div> */}
+                    {/* </div> */}
+                    {/* <div className="stay-edit-perks">
                             <ul className="clean-list">
                                 <li><span><img src={Entire_home} alt="" />Entire home</span> <span>You’ll have the apartment to yourself.</span> </li>
                                 <li><span><img src={Enhanced_clean} alt="" /> Enhanced Clean</span><span> This Host committed to Airbnb's 5-step enhanced cleaning process.</span></li>
@@ -239,26 +239,25 @@ class _StayEdit extends React.Component {
                                 <li><span><img src={Great_location} alt="" /> Great location</span> <span> 100% of recent guests gave the location a 5-star rating.</span></li>
                             </ul>
                         </div> */}
-                        <div className="stay-edit-summary">
-                            <textarea value={stay.summary ? stay.summary : ''} type="text" name="summary" cols="30" rows="30" onChange={this.onHandleChange} ></textarea></div>
-                        <section className="stay-edit-amenities-container">
-                            <div className="stay-edit-amenities clean-list">
-                                <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities.Wifi} name="Wifi" />Wifi</div>
-                                <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities.Heating} name="Heating" />Heating</div>
-                                <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities.HotTub} name="HotTub" />HotTub</div>
-                                <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities.Dryer} name="Dryer" />Dryer</div>
-                                <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities.Kitchen} name="Kitchen" />Kitchen</div>
-                                <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities.Microwave} name="Microwave" />Microwave</div>
-                                <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities.Refrigerator} name="Refrigerator" />Refrigerator</div>
-                                <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities.Stove} name="Stove" />Stove</div>
-                                <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities.TV} name="TV" />TV</div>
-                                <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities.Oven} name="Oven" />Oven</div>
-                                <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities.Hangers} name="Hangers" />Hangers</div>
-                                <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities["Hair dryer"]} name="Hair dryer" />Hair dryer</div>
-                                <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities["Free parking"]} name="Free parking" />Free Parking</div>
-                            </div>
-                        </section>
+                    <div className="summary-container">
+                        <textarea value={stay.summary ? stay.summary : ''} type="text" name="summary" cols="30" rows="30" onChange={this.onHandleChange} ></textarea>
+                        <div className="stay-edit-amenities clean-list">
+                            <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities.Wifi} name="Wifi" />Wifi</div>
+                            <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities.Heating} name="Heating" />Heating</div>
+                            <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities.HotTub} name="HotTub" />HotTub</div>
+                            <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities.Dryer} name="Dryer" />Dryer</div>
+                            <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities.Kitchen} name="Kitchen" />Kitchen</div>
+                            <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities.Microwave} name="Microwave" />Microwave</div>
+                            <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities.Refrigerator} name="Refrigerator" />Refrigerator</div>
+                            <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities.Stove} name="Stove" />Stove</div>
+                            <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities.TV} name="TV" />TV</div>
+                            <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities.Oven} name="Oven" />Oven</div>
+                            <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities.Hangers} name="Hangers" />Hangers</div>
+                            <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities["Hair dryer"]} name="Hair dryer" />Hair dryer</div>
+                            <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities["Free parking"]} name="Free parking" />Free Parking</div>
+                        </div>
                     </div>
+                    {/* </div> */}
                 </div>
                 <button onClick={this.updateStay}>Save</button>
             </main>
