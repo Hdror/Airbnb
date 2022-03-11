@@ -10,6 +10,9 @@ import { Loader } from '../cmps/loader.jsx'
 import { Upload } from './upload.jsx'
 // import { resetUploads } from './upload.jsx'
 
+// Utils
+import { getAllAmenities, utilService } from '../services/util.service.js'
+
 // SVG
 import Enhanced_clean from '../assest/svg/perks/Enhanced_clean.svg'
 import Entire_home from '../assest/svg/perks/Entire_home.svg'
@@ -67,7 +70,6 @@ class _StayEdit extends React.Component {
     componentDidMount() {
         if (this.props.user) {
             const { fullname, imgUrl, _id } = this.props.user
-            // TODO // getById to stay and add to stay state
             this.setState((prevState) => ({ stay: { ...prevState.stay, host: { ...this.state.stay.host, fullname, imgUrl, _id } } }))
         }
     }
@@ -137,8 +139,6 @@ class _StayEdit extends React.Component {
                 'Free parking': false,
             }
         })
-        // window.location.reload(false);
-        // this.props.Upload.resetUploads()
     }
 
 
@@ -169,10 +169,10 @@ class _StayEdit extends React.Component {
 
     render() {
         if (!this.props.stays) return <Loader />
-        const { stay, amenities } = this.state
-        console.log(stay.imgUrls);
+        const { stay } = this.state
+        const amenities = utilService.getAllAmenities()
         return (
-            <main className="stay-edit main-container">
+            <main className="stay-edit">
                 <div className="stay-edit-container">
                     <div className="stay-edit-location flex">
                         <span><input type="text" value={stay.name ? stay.name : ''} name="name" placeholder="Enter stay name here" onChange={this.onHandleChange} /></span>
@@ -242,20 +242,10 @@ class _StayEdit extends React.Component {
                         <div className="stay-edit-summary">
                             <textarea value={stay.summary ? stay.summary : ''} type="text" name="summary" cols="30" rows="30" onChange={this.onHandleChange} ></textarea></div>
                         <section className="stay-edit-amenities-container">
-                            <div className="stay-edit-amenities clean-list">
-                                <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities.Wifi} name="Wifi" />Wifi</div>
-                                <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities.Heating} name="Heating" />Heating</div>
-                                <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities.HotTub} name="HotTub" />HotTub</div>
-                                <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities.Dryer} name="Dryer" />Dryer</div>
-                                <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities.Kitchen} name="Kitchen" />Kitchen</div>
-                                <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities.Microwave} name="Microwave" />Microwave</div>
-                                <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities.Refrigerator} name="Refrigerator" />Refrigerator</div>
-                                <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities.Stove} name="Stove" />Stove</div>
-                                <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities.TV} name="TV" />TV</div>
-                                <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities.Oven} name="Oven" />Oven</div>
-                                <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities.Hangers} name="Hangers" />Hangers</div>
-                                <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities["Hair dryer"]} name="Hair dryer" />Hair dryer</div>
-                                <div><input onChange={this.onHandleChange} type="checkbox" checked={amenities["Free parking"]} name="Free parking" />Free Parking</div>
+                            <div className="stay-edit-amenities">
+                                {amenities.map((amenity, idx) => {
+                                    return <div key={idx}><input onChange={this.onHandleChange} type="checkbox" checked={this.state.amenities[amenity]} name={amenity} />{amenity}</div>
+                                })}
                             </div>
                         </section>
                     </div>

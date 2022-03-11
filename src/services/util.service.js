@@ -4,6 +4,7 @@ export const utilService = {
   delay,
   formattedDates,
   getRandomAmenities,
+  getAllAmenities,
   timeConverter,
   firstLetterToUpperCase
 }
@@ -51,6 +52,10 @@ function getRandomAmenities() {
   }
   console.log(newAmens);
   return newAmens
+}
+
+function getAllAmenities() {
+  return ['Wifi', 'Heating', 'HotTub', 'Dryer', 'Kitchen', 'Microwave', 'Refrigerator', 'Stove', 'TV', 'Oven', 'Hangers', 'Hair dryer', 'Free parking',]
 }
 
 function timeConverter(time) {
