@@ -23,6 +23,7 @@ class _MenuDropDown extends React.Component {
                     {!user && <Link className="clean-link clean-list" to="/login"><li>Sign up</li></Link>}
                     {user && user.isHost && <Link className="clean-link clean-list" to="/host"><li>Host your home</li></Link>}
                     {user && <Link className="orders-link clean-link clean-list" to="/orders"><li>Orders {this.props.unreadOrdersCount && this.props.user ? <div className="order-made">{this.props.unreadOrdersCount}</div> : ''}</li></Link>}
+                    {user && <Link className="clean-link clean-list" to="/wish-list"><li>Wishlist</li></Link>}
                     <Link className="clean-link clean-list" to="/login"><li>Help</li></Link>
                     {user && <Link className="clean-link clean-list" to="/"><li onClick={this.onLogout}>Log out</li></Link>}
                 </ul>

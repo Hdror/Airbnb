@@ -15,6 +15,7 @@ import { AppFooter } from './cmps/app-footer.jsx'
 import { LoginSignup } from './pages/login-signup.jsx'
 import { Orders } from './pages/order.jsx'
 import { StayEdit } from './cmps/stay-edit.jsx'
+import { Wishlist } from './pages/wishlist.jsx'
 
 // Screen component transparant 
 // fix position - and onclick close modal (store - isModalOpen - page)
@@ -32,6 +33,7 @@ export class _RootCmp extends React.Component {
           <Route component={StayApp} path="/stay" />
           <Route component={LoginSignup} path="/login" />
           <Route component={Orders} path="/orders" />
+          <Route component={Wishlist} path="/wish-list" />
           <Route component={HostPage} exact path="/host" />
           <Route component={HomePage} exact path="/" />
         </Switch>
