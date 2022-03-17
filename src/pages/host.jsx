@@ -4,7 +4,7 @@ import React from "react"
 import { connect } from 'react-redux'
 import { loadOrders } from '../store/order/order.actions.js'
 import { loadStays } from '../store/stay.action.js'
-import { update } from '../store/user.actions.js'
+import { update, login } from '../store/user.actions.js'
 
 // COMPONENTS
 import { HostStays } from '../cmps/hosts-stays.jsx'
@@ -13,7 +13,35 @@ import { StayEdit } from '../cmps/stay-edit.jsx'
 
 class _HostPage extends React.Component {
     state = {
-        infoToDisplay: "orders"
+        infoToDisplay: "orders",
+        superGuest: {
+            email: 'guestHost@gmail.com',
+            fullname: 'Super Guest',
+            phonenumber: '054-0070077',
+        },
+        isGuestHostModalOpen: false
+    }
+
+    componentDidMount() {
+        if (!this.props.user) {
+            this.props.login(this.state.superGuest)
+            this.toggleGuestHost()
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.user !== this.props.user && this.props.user) {
+            if (!this.props.user.isHost) {
+                this.props.update({ ...this.props.user, isHost: true })
+            }
+        }
+    }
+
+    toggleGuestHost = () => {
+        this.setState({ isGuestHostModalOpen: this.state.isGuestHostModalOpen ? false : true })
+        setTimeout(() => {
+            this.setState({ isGuestHostModalOpen: false })
+        }, 9000)
     }
 
     infoToDisplay = (val) => {
@@ -21,18 +49,23 @@ class _HostPage extends React.Component {
     }
 
     render() {
-        if (!this.props.user) {
-            this.props.history.push('/')
-            return <div>Loading</div>
-        }
-        if (!this.props.user.isHost) {
-            this.props.update({ ...this.props.user, isHost: true })
-        }
-
-        return (
+        //     //     // this.props.history.push('/')
+        //     //     // return <div>Loading</div>
+        // }
+        return (this.props.user &&
             <div className="page main-container">
+                {this.state.isGuestHostModalOpen && <div className="guest-host-modal flex">
+                    <div className="guest-modal-content">
+                        <p>Greetings!</p>
+                        <p>You have been granted "Guest Host" credentials.</p>
+                        <p>You can now add stays and orders.</p>
+                        <p>In addition, you can add places to your Wishlist.</p>
+                        <p>Enjoy!</p>
+                    </div>
+                    <div onClick={this.toggleGuestHost}>Close</div>
+                </div>}
                 <div className="host-page-nav">
-                    <ul className="clear-list">
+                    <ul className="host-options clear-list">
                         <li onClick={() => { this.infoToDisplay("orders") }}>
                             My Orders
                         </li>
@@ -40,7 +73,7 @@ class _HostPage extends React.Component {
                             My Stays
                         </li>
                         <li onClick={() => { this.infoToDisplay("add") }}>
-                            Add stay
+                            Add Stays
                         </li>
                     </ul>
                 </div>
@@ -63,7 +96,8 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
     loadOrders,
     loadStays,
-    update
+    update,
+    login
 }
 
 export const HostPage = connect(mapStateToProps, mapDispatchToProps)(_HostPage)

@@ -22,7 +22,6 @@ export function login(credentials) {
 export function signup(credentials) {
     return async (dispatch) => {
         try {
-            console.log(credentials);
             const user = await userService.signup(credentials)
             dispatch({
                 type: 'SET_USER',
@@ -63,10 +62,12 @@ export function getCurrentUser() {
 }
 
 export function update(credentials) {
+    console.log(credentials);
     return async (dispatch) => {
         try {
             const user = await userService.update(credentials)
             dispatch({ type: 'SET_USER', user })
+            console.log(user);
             return user
         } catch (err) {
             console.log('Cannot signup', err)

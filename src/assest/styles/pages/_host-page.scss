@@ -3,3 +3,50 @@
     cursor: pointer;
   }
 }
+
+.host-options {
+  li {
+    width: rem(80px);
+  }
+}
+
+.guest-host-modal {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  flex-direction: column;
+  z-index: 10;
+  color: $clr4;
+  padding: 15px;
+  background-color: $clr6;
+  border: 2px solid $clr1;
+  border-radius: 8px;
+  align-items: center;
+  p {
+    text-align: center;
+    line-height: 1.5;
+  }
+  p:last-of-type {
+    margin-block-end: rem(20px);
+  }
+  p:first-child {
+    margin-block-end: 5px;
+    font-family: f-bold;
+  }
+  div:last-of-type {
+    font-family: f-medium;
+    cursor: pointer;
+    padding-top: 8px;
+    border-radius: 4px;
+    padding: 7px;
+    background-color: $clr1;
+    color: $clr5;
+    &:hover {
+      color: $clr1;
+      background-color: $clr7;
+    }
+  }
+  .guest-modal-content {
+    margin-top: 8px;
+  }
+}
