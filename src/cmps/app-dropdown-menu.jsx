@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 // COMPONENTS
-import { logout } from '../store/user.actions.js'
+import { logout, update } from '../store/user.actions.js'
 
 // SVGS
 import 'rc-menu/assets/index.css'
@@ -12,6 +12,9 @@ class _MenuDropDown extends React.Component {
     onLogout = () => {
         this.props.logout()
         this.setState({ isLoggedIn: false })
+        if (this.props.user._id === '61f808b5fccf274464888f88') {
+            this.props.update({ ...this.props.user, likedStays: [] })
+        }
     }
 
     render() {
@@ -40,6 +43,7 @@ function mapStateToProps(state) {
 }
 const mapDispatchToProps = {
     logout,
+    update
 
 }
 

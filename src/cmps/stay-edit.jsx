@@ -18,6 +18,7 @@ import Entire_home from '../assest/svg/perks/Entire_home.svg'
 import Great_location from '../assest/svg/perks/Great_location.svg'
 import Self_check_in from '../assest/svg/perks/Self_check_in.svg'
 
+
 class _StayEdit extends React.Component {
     state = {
         stay: {
