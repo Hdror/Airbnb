@@ -173,7 +173,6 @@ class _StayEdit extends React.Component {
         const amenities = utilService.getAllAmenities()
         return (
             <main className="stay-edit">
-                {/* <div className="stay-edit-container"> */}
                 <div className="stay-edit-location flex">
                     <input type="text" value={stay.name ? stay.name : ''} name="name" placeholder="Enter stay name here" onChange={this.onHandleChange} />
                     <input value={stay.loc.address ? stay.loc.address : ''} type="text" name="address" placeholder="Enter stay address here" onChange={this.onHandleChange} />
@@ -200,11 +199,8 @@ class _StayEdit extends React.Component {
                         onUploadImg={this.onUploadImg}
                         userImgUrl={this.state.stay.imgUrls[4]} />
                 </div>
-                {/* </div> */}
                 <div className="info-container">
-                    {/* <div className="stay-edit-info flex"> */}
-                    {/* <div className="stay-edit-container flex"> */}
-                    {/* <div className="stay-edit-details flex"> */}
+                   
                     <div className="selection-container flex">
                         <input title='Guest capacity' type="number" value={stay.capacity ? stay.capacity : ''} name="capacity" onChange={this.onHandleChange} placeholder="Enter guest capacity" />
                         <select value={stay.typeOfPlace} onChange={this.onHandleChange} name="typeOfPlace" id="">
@@ -229,8 +225,6 @@ class _StayEdit extends React.Component {
                         <input onChange={this.onHandleChange} value={stay.price > 0 ? stay.price : ''} type="number" name="price" placeholder="Enter price" />
                     </div>
                     {/* ${stay.price}</div> */}
-                    {/* </div> */}
-                    {/* </div> */}
                     {/* <div className="stay-edit-perks">
                             <ul className="clean-list">
                                 <li><span><img src={Entire_home} alt="" />Entire home</span> <span>You’ll have the apartment to yourself.</span> </li>
@@ -243,13 +237,13 @@ class _StayEdit extends React.Component {
                         <textarea value={stay.summary ? stay.summary : ''} type="text" name="summary" cols="30" rows="30" onChange={this.onHandleChange} ></textarea>
                         <div className="stay-edit-amenities">
                             {amenities.map((amenity, idx) => {
-                                return <div key={idx}><input onChange={this.onHandleChange} type="checkbox" checked={this.state.amenities[amenity]} name={amenity} />{amenity}</div>
+                                return <div className="amenity-checkbox flex" key={idx}><input onChange={this.onHandleChange} type="checkbox" checked={this.state.amenities[amenity]} name={amenity} />{amenity}</div>
                             })}
                         </div>
                     </div >
-                    {/* </div> */}
+         
                 </div >
-                <button onClick={this.updateStay}>Save</button>
+                <div onClick={this.updateStay}>Save</div>
             </main >
         )
     }

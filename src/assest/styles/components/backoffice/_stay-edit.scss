@@ -13,10 +13,20 @@
   .info-container {
     display: flex;
 
-    .summary-container{
+    .summary-container {
       width: 100%;
       display: flex;
       flex-direction: column;
+
+      .stay-edit-amenities {
+        column-gap: 20px;
+        columns: 3;
+
+        .amenity-checkbox{
+          flex-wrap: nowrap;
+          justify-content: center;
+        }
+      }
     }
 
     img {
@@ -27,7 +37,7 @@
 
   .stay-edit-location {
     margin-block-end: 25px;
-   input {
+    input {
       margin-inline-end: 25px;
     }
   }

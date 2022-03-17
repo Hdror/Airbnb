@@ -24,7 +24,7 @@ export function userReducer(state = initialState, action) {
             }
             break
         case 'ADD_USER_LIKED_STAY':
-            newState = { ...state, user: action.user }
+            newState = { ...state.user, likedStays: [...action.user] }
             break
         case 'REMOVE_USER_LIKED_STAY':
             newState = { ...state, user: action.user }

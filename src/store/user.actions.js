@@ -74,13 +74,13 @@ export function update(credentials) {
     }
 }
 
-export function addToLikedStays(stayId) {
+export function addToLikedStays(stayId,user) {
+    console.log(stayId);
     return async (dispatch) => {
         try {
-            const user = userService.getLoggedinUser()
             user.likedStays.push(stayId)
             await userService.update(user)
-            dispatch({ type: 'ADD_USER_LIKED_STAY', user })
+            dispatch({ type: 'SET_USER', user })
         } catch (err) {
             console.log('Cannot save stay', err)
         }
