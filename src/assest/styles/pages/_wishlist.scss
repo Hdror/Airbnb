@@ -1,0 +1,7 @@
+.wishlist-container{
+    display: grid;
+    grid-auto-flow: dense;
+    grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+    gap: 20px;
+    margin-block-start: 50px;
+}
