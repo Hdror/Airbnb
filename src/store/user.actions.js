@@ -62,7 +62,6 @@ export function getCurrentUser() {
 }
 
 export function update(credentials) {
-    console.log(credentials);
     return async (dispatch) => {
         try {
             const user = await userService.update(credentials)
@@ -75,8 +74,7 @@ export function update(credentials) {
     }
 }
 
-export function addToLikedStays(stayId,user) {
-    console.log(stayId);
+export function addToLikedStays(stayId, user) {
     return async (dispatch) => {
         try {
             user.likedStays.push(stayId)

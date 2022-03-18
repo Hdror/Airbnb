@@ -30,7 +30,8 @@ class _HostPage extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (prevProps.user !== this.props.user && this.props.user) {
+        if (prevProps.user !== this.props.user && this.props.user && !this.props.user.isHost) {
+            console.log(this.props.user.isHost);
             if (!this.props.user.isHost) {
                 this.props.update({ ...this.props.user, isHost: true })
             }
@@ -39,9 +40,13 @@ class _HostPage extends React.Component {
 
     toggleGuestHost = () => {
         this.setState({ isGuestHostModalOpen: this.state.isGuestHostModalOpen ? false : true })
-        setTimeout(() => {
+        this.timeoutId = setTimeout(() => {
             this.setState({ isGuestHostModalOpen: false })
         }, 9000)
+    }
+
+    componentWillUnmount() {
+        clearTimeout(this.timeoutId)
     }
 
     infoToDisplay = (val) => {
