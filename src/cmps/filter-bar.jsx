@@ -86,21 +86,21 @@ export class _FilterBar extends React.Component {
         let res = true
         if (amenities.includes(amenity)) {
             res = true
-        }else{
-            res =false
-        } 
-        console.log(res);
+        } else {
+
+            res = false
+        }
         return res
     }
 
     render() {
-        const { amenities, filterBy ,} = this.state
+        const { amenities, filterBy, } = this.state
         const { stays, toggleModal, isModalOpen, modalState } = this.props
         return <section className="filter-bar flex">
             <div onClick={() => { isModalOpen ? toggleModal() : toggleModal('priceModal') }}>Price <img src={arrow_down} /></div>
             <div onClick={() => { isModalOpen ? toggleModal() : toggleModal('typeOfPlaceModal') }}>Type of place <img src={arrow_down} /></div>
             {amenities.map((amenity, idx) => {
-                return <div onClick={this.handleChange} id="amenities" className={(this.isActive(amenity))? "active":"not-active"} key={idx}>{amenity}</div>
+                return <div onClick={this.handleChange} id="amenities" className={(this.isActive(amenity)) ? "active" : "not-active"} key={idx}>{amenity}</div>
             })}
             {modalState.typeOfPlaceModal && <TypeOfPlaceModal filterBy={filterBy} cleanForm={this.cleanForm} filterStays={this.filterStays} handleChange={this.handleChange} />}
             {modalState.priceModal && <PriceModal handleChange={this.handleChange} filterStays={this.filterStays} price={filterBy.price} stays={stays} />}

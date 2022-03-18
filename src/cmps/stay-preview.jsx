@@ -16,9 +16,6 @@ import UnLike from "../assest/svg/general/unlike.svg"
 
 class _StayPreview extends React.Component {
 
-
-
-
     isLiked = () => {
         const { user, stay } = this.props
         if (!user) return false

@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { login, signup, update } from '../store/user.actions.js'
 import { changePage } from '../store/page.action.js'
 import { loadOrders } from '../store/order/order.actions.js'
+
 class _LoginSignup extends Component {
     state = {
         credentials: {
@@ -18,7 +19,7 @@ class _LoginSignup extends Component {
     componentDidMount() {
         window.scrollTo(0, 0)
         this.props.changePage('login')
-        if (this.props.user) this.props.history.push('/')
+        // if (this.props.user) this.props.history.push('/')
     }
 
     toggleSignup = () => {
@@ -52,12 +53,12 @@ class _LoginSignup extends Component {
             let user = await this.props.login(this.state.credentials);
             if (user) {
                 this.props.loadOrders({ buyerId: user._id })
+                this.clearState()
                 this.props.history.push('/')
             }
         } catch (err) {
             console.log('error:', err)
         }
-        this.clearState()
     }
 
     onSignup = (ev) => {

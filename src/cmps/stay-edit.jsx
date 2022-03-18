@@ -8,7 +8,6 @@ import { changePage } from '../store/page.action.js'
 // COMPONENTS
 import { Loader } from '../cmps/loader.jsx'
 import { Upload } from './upload.jsx'
-// import { resetUploads } from './upload.jsx'
 
 // Utils
 import { getAllAmenities, utilService } from '../services/util.service.js'
@@ -18,6 +17,7 @@ import Enhanced_clean from '../assest/svg/perks/Enhanced_clean.svg'
 import Entire_home from '../assest/svg/perks/Entire_home.svg'
 import Great_location from '../assest/svg/perks/Great_location.svg'
 import Self_check_in from '../assest/svg/perks/Self_check_in.svg'
+
 
 class _StayEdit extends React.Component {
     state = {
@@ -200,7 +200,7 @@ class _StayEdit extends React.Component {
                         userImgUrl={this.state.stay.imgUrls[4]} />
                 </div>
                 <div className="info-container">
-                   
+
                     <div className="selection-container flex">
                         <input title='Guest capacity' type="number" value={stay.capacity ? stay.capacity : ''} name="capacity" onChange={this.onHandleChange} placeholder="Enter guest capacity" />
                         <select value={stay.typeOfPlace} onChange={this.onHandleChange} name="typeOfPlace" id="">
@@ -241,7 +241,7 @@ class _StayEdit extends React.Component {
                             })}
                         </div>
                     </div >
-         
+
                 </div >
                 <div onClick={this.updateStay}>Save</div>
             </main >

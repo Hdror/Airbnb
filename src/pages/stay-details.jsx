@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 // STORE
 import { connect } from 'react-redux'
 import { changePage, toggleModal } from '../store/page.action.js'
+import { getCurrentUser, update } from '../store/user.actions.js'
+
 // import { loadReviews, addReview } from '../store/review.actions.js'
 
 
@@ -14,6 +16,7 @@ import Great_location from '../assest/svg/perks/Great_location.svg'
 import Self_check_in from '../assest/svg/perks/Self_check_in.svg'
 import Star from '../assest/svg/app-detials/star.svg'
 import Save from '../assest/svg/app-detials/save.svg'
+import Saved from '../assest/svg/app-detials/saved.svg'
 import Share from '../assest/svg/app-detials/Share.svg'
 
 // COMPONENTS
@@ -26,6 +29,26 @@ import { StayReserve } from '../cmps/stay-reserve.jsx'
 class _StayDetails extends React.Component {
     state = {
         stay: null
+    }
+
+    onShare = () => {
+
+    }
+
+    isLiked = () => {
+        const { user } = this.props
+        const { stay } = this.state
+        if (!user) return false
+        if (user.likedStays.includes(stay._id)) return true
+    }
+
+    onLike = () => {
+        const { user } = this.props
+        const { stay } = this.state
+        let likedStays = user.likedStays
+        if (!this.isLiked()) likedStays.push(stay._id)
+        else likedStays = likedStays.filter(likedStay => likedStay !== stay._id)
+        this.props.update({ ...this.props.user, likedStays })
     }
 
     componentDidMount() {
@@ -47,6 +70,8 @@ class _StayDetails extends React.Component {
 
     render() {
         if (!this.state.stay) return 'LOADING'
+        console.log(this.props);
+        const isLiked = this.isLiked()
         const { stay } = this.state
         const { name, avgRate, reviews, loc, imgUrls, facilites, capacity, host, summary, type, amenities } = stay
         const numOfReviews = reviews.length
@@ -55,7 +80,15 @@ class _StayDetails extends React.Component {
             <main className="main-container stay-details page">
                 <div className="stay-summary">
                     <h2>{name}</h2>
-                    <span className="stay-summary-address flex"><span className="summary-details flex"><img src={Star} alt="" />{avgRate} · <a href="#">{numOfReviews} Reviews</a> · <span>{loc.address}</span></span><span className="summary-share-save flex"><span className="summary-share"><img src={Share} alt="" /> <a href="#">Share</a></span><span className="summary-save"><img src={Save} alt="" /><a href="#">Save</a></span></span></span>
+                    <div className="stay-summary-address flex">
+                        <div className="summary-details flex">
+                            <img src={Star} alt="" />{avgRate} · <a href="#">{numOfReviews} Reviews</a> · <span>{loc.address}</span>
+                        </div>
+                        <div className="summary-share-save flex">
+                            <div onClick={this.onShare} className="summary-share"><img src={Share} alt="" />Share</div>
+                            <div onClick={this.onLike} className="summary-save"><img src={(isLiked) ? Saved : Save} alt="" />{(isLiked) ? "Saved" : "Save"}</div>
+                        </div>
+                    </div>
                 </div>
                 <div className="image-container">
                     {imgUrls.map((imgUrl, idx) => {
@@ -121,6 +154,8 @@ class _StayDetails extends React.Component {
 const mapDispatchToProps = {
     changePage,
     toggleModal,
+    getCurrentUser,
+    update
     // loadReviews,
     // addReview
 }
@@ -128,7 +163,8 @@ const mapDispatchToProps = {
 function mapStateToProps(state) {
     return {
         modalState: state.pageModule.modalState,
-        isModalOpen: state.pageModule.isModalOpen
+        isModalOpen: state.pageModule.isModalOpen,
+        user: state.userModule.user,
     }
 }
 
