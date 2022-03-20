@@ -5,7 +5,8 @@ export const utilService = {
   formattedDates,
   getRandomAmenities,
   timeConverter,
-  firstLetterToUpperCase
+  firstLetterToUpperCase,
+  avgReviewRate
 }
 
 function makeId(length = 6) {
@@ -66,4 +67,20 @@ function timeConverter(time) {
 
 export function firstLetterToUpperCase(word) {
   return word[0].toUpperCase() + word.slice(1)
+}
+
+// calculate stay avgRate
+function avgReviewRate(reviews) { // avg per review
+  if (!reviews.length) return 0
+  let sum = 0
+  let stayAvgs = []
+  reviews.map(review => {
+      sum = Object.values(review.ratings).reduce((sum, acc) => {
+          return sum + acc
+      }, 0) // returns an array of keys
+      stayAvgs.push(sum / 6)
+  })
+  return (stayAvgs.reduce((sum, acc) => {
+      return sum + acc
+  })) / stayAvgs.length
 }

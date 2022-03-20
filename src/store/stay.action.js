@@ -41,11 +41,11 @@ export function removeStay(stayId) {
 export function onUpdateStay(stay) {
   return async (dispatch) => {
     try {
-      const updatedStay = await stayService.save(stay)
-      dispatch({ type: 'UPDATE_STAY', updatedStay })
+      const stayToSave = await stayService.save(stay)
+      dispatch({ type: 'UPDATE_STAY', stayToSave })
       return stay
     } catch (err) {
-      console.log('Cannot  update stay', err)
+      console.log('Cannot update stay', err)
     }
   }
 }

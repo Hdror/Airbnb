@@ -9,7 +9,6 @@ export const reviewService = {
     remove,
 }
 
-
 function query(filterBy = null) {
     const reviews = storageService.query('review', { params: filterBy })
     return
@@ -22,15 +21,12 @@ function remove(reviewId) {
 async function add(stay, review) {
     await userService.getLoggedinUser()
     const { ratings } = review
-    var rate =
-        ratings.cleanliness +
+    var rate = (ratings.cleanliness +
         ratings.communication +
         ratings.checkIn +
         ratings.accuracy +
         ratings.location +
-        ratings.value
-    var average = rate / 6
-    ratings.avg = average
+        ratings.value)
 
     const newReview = {
         id: utilService.makeId(),

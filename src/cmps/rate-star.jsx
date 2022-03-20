@@ -5,7 +5,6 @@ import { Loader } from './loader.jsx'
 export class RateStar extends React.Component {
     state = {
         ratings: {
-            avg: 0,
             cleanliness: 0,
             communication: 0,
             checkIn: 0,
@@ -21,7 +20,7 @@ export class RateStar extends React.Component {
         const avg = reviews.reduce((acc, value) => {
             return acc + value.ratings[field]
         }, 0) / reviews.length
-        // )
+        return avg
     }
 
     componentDidMount() {

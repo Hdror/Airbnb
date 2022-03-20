@@ -158,7 +158,7 @@ class _StayReserve extends React.Component {
             <section className="order-container">
                 <div className="order-form-header">
                     <p><span className="cost">${this.props.stay.price}</span> / night</p>
-                    <p> <img src={Star} alt="" /> 4.38 <span className="dot">· </span><span className="reviews">(4 reviews)</span></p>
+                    <p> <img src={Star} alt="" />{this.props.stay.avgRate} <span className="dot">· </span><span className="reviews">({this.props.stay.reviews.length} reviews)</span></p>
                 </div>
 
                 <div className="order-data">

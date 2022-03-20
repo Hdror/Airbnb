@@ -1,13 +1,13 @@
 import React from 'react'
 import { userService } from '../services/user.service.js'
 import { RateStar } from './rate-star.jsx'
+import { Link } from 'react-router-dom'
 
 export class AddReview extends React.Component {
     state = {
         review: {
             txt: '',
             ratings: {
-                avg: 0,
                 cleanliness: 0,
                 communication: 0,
                 checkIn: 0,
@@ -37,7 +37,6 @@ export class AddReview extends React.Component {
     }
 
     changeRate = (value, field) => {
-
         this.setState((prevState) => ({
             ...prevState,
             review: {
@@ -59,7 +58,6 @@ export class AddReview extends React.Component {
             review: {
                 txt: '',
                 ratings: {
-                    avg: 0,
                     cleanliness: 0,
                     communication: 0,
                     checkIn: 0,
@@ -100,19 +98,19 @@ export class AddReview extends React.Component {
 
     render() {
         const { txt, by } = this.state.review
-        if (!by) return <h4>You need to log in to write a review</h4>
+        if (!by) return (
+            <div className="review-login-request">
+                <h4>Login to add review</h4>
+                <Link to="/login"><button className="review-login-btn">Login / Signup</button></Link>
+            </div>
+        )
         return (
-            <div className='add-review'>
-                <h1>Add Review</h1>
-                <div className='add-review-ratings'>
-                    {!by && (
-                        <img
-                            src={'https://randomuser.me/api/portraits/men/51.jpg'}
-                        />
-                    )}
-                    {by && <img src={by.imgUrl} />}
+            <div className="add-review">
+                <h2>Add Review</h2>
+                <div className="add-review-by flex">
+                    <div className="review-by-img"><img src={by.imgUrl} /></div>
                     <div>
-                        {!by ? <h3>Guest</h3> : <h3>{by.fullname}</h3>}
+                        <h4>{by.fullname}</h4>
                         <h4>{new Date(Date.now()).toLocaleDateString('en-GB')}</h4>
                     </div>
                 </div>
@@ -120,14 +118,14 @@ export class AddReview extends React.Component {
                 <RateStar isChangeable={true} ratingChanged={this.changeRate} />
 
                 <form
-                    className='add-review-input'
+                    className="add-review-form flex"
                     onSubmit={this.onSubmit}
                 >
                     <textarea
-                        className='add-review-txtarea'
-                        name='txt'
-                        type='text'
-                        placeholder='Share your experience...'
+                        className="add-review-txtarea"
+                        name="txt"
+                        type="text"
+                        placeholder="Share your experience..."
                         value={txt}
                         onChange={this.onHandleChange}
                         required

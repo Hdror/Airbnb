@@ -25,6 +25,7 @@ class _StayEdit extends React.Component {
             price: 0,
             summary: '',
             capacity: 2,
+            avgRate:0,
             facilites: {
                 beds: 1,
                 bedrooms: 1,
@@ -103,9 +104,10 @@ class _StayEdit extends React.Component {
                 price: 0,
                 summary: '',
                 capacity: 2,
+                avgRate:0,
                 facilites: {
                     beds: 1,
-                    bedrooms: 1,
+                    bedrooms: 1,    
                     bathrooms: 1
                 },
                 amenities: {

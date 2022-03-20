@@ -1,0 +1,56 @@
+.review-login-request{
+    display: flex;
+    flex-direction: column;
+    margin-top:10px;
+    margin-bottom: 30px;
+    font-size: rem(24px);
+
+    button {
+        margin-top: 10px;
+        width: 200px;
+        height: 48px;
+        background-color: #ff385c;
+        border: none;
+        border-radius: 8px;
+        color: #fff;
+        cursor: pointer;
+        font-size: rem(16px);
+    }
+}
+
+.add-review {
+    width: 100%;
+
+    h2{
+        font-size: rem(24px);
+    }
+
+    .add-review-by {
+        align-items: center;
+        gap: 10px;
+        font-size: rem(14px);
+        font-family: f-light;
+        color: $clr2;
+        .review-by-img {
+            margin: 10px 0px;
+            width: 56px;
+            height: 56px;
+            img {
+                object-fit: cover;
+                border-radius: 50%;
+            }
+        }
+    }
+    .add-review-form {
+        padding:20px 0px;
+        .add-review-txtarea {
+            width:50%;
+            border: 1px solid $clr7;
+        }
+        .add-review-txtarea::placeholder{
+            font-family: f-light;
+            color:$clr2;
+            font-size: rem(14px);
+        }
+    }
+}
