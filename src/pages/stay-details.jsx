@@ -1,13 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 // STORE
 import { connect } from 'react-redux'
 import { changePage, toggleModal } from '../store/page.action.js'
+import { loadReviews, addReview } from '../store/review.actions.js'
+import { onUpdateStay } from '../store/stay.action.js'
 import { getCurrentUser, update } from '../store/user.actions.js'
-
-// import { loadReviews, addReview } from '../store/review.actions.js'
-
 
 //SVG
 import Enhanced_clean from '../assest/svg/perks/Enhanced_clean.svg'
@@ -21,10 +19,11 @@ import Share from '../assest/svg/app-detials/Share.svg'
 
 // COMPONENTS
 import { stayService } from '../services/stay.service.js'
+import { utilService } from '../services/util.service.js'
 import { StayMap } from '../cmps/stay-map.jsx'
 import { StayReserve } from '../cmps/stay-reserve.jsx'
-// import { ReviewList } from '../cmps/review.list.jsx'
-// import { AddReview } from '../cmps/add-review.jsx'
+import { ReviewList } from '../cmps/review.list.jsx'
+import { AddReview } from '../cmps/add-review.jsx'
 
 class _StayDetails extends React.Component {
     state = {
@@ -62,9 +61,12 @@ class _StayDetails extends React.Component {
     onAddReview = async (review) => {
         try {
             const { stay } = this.state
-            await this.props.addReview(stay, review);
+            await this.props.addReview(stay, review)
+            const stayAvg = utilService.avgReviewRate(stay.reviews).toFixed(2)
+            this.setState({ stay: { ...this.state.stay, avgRate: stayAvg} })
+            await this.props.onUpdateStay(this.state.stay)
         } catch (err) {
-            console.log('login first');
+            console.log('login first')
         }
     }
 
@@ -139,8 +141,8 @@ class _StayDetails extends React.Component {
                     </div>
                 </div>
                 <div>
-                    {/* <ReviewList reviews={stay.reviews} />
-                    <AddReview onAddReview={(review) => this.onAddReview(review)} /> */}
+                    {!!reviews.length && <ReviewList stay={stay} />}
+                    <AddReview onAddReview={(review) => this.onAddReview(review)} />
                 </div>
                 <div>
                     <StayMap loc={loc} />
@@ -154,10 +156,11 @@ class _StayDetails extends React.Component {
 const mapDispatchToProps = {
     changePage,
     toggleModal,
+    loadReviews,
+    addReview,
+    onUpdateStay,
     getCurrentUser,
     update
-    // loadReviews,
-    // addReview
 }
 
 function mapStateToProps(state) {

@@ -50,6 +50,7 @@ function remove(stayId) {
 
 // SAVE OR UPDATE STAY
 function save(stay) {
+  console.log('stay in stayService',stay);
   if (stay._id) {
     // EDIT
     return httpService.put(`stay/${stay._id}`, stay)

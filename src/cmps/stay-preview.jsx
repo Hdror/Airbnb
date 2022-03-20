@@ -42,8 +42,8 @@ class _StayPreview extends React.Component {
                     </div>
                     <div className="stay-preview-info">
                         <div className="flex align-center">
-                            <img src={Star} alt="not-found" className="star" /><span>{(utilService.getRandomIntInclusive(4, 4.99) + Math.random()).toFixed(2)}</span>
-                            <span className="review-count" >({utilService.getRandomIntInclusive(20, 50)}) </span>
+                            <img src={Star} alt="not-found" className="star" /><span>{stay.avgRate}</span>
+                            <span className="review-count" >({stay.reviews.length}) </span>
                         </div >
                         <h3>{typeOfPlace} · {loc.address}</h3>
                         <h3>{name}</h3>

@@ -1,0 +1,19 @@
+.review-preview {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin:10px 0px;
+    .review-header {
+        margin: 10px 0px;
+        gap:10px;
+        font-size: rem(12px);
+        font-family: f-light;
+        img {
+            width: 56px;
+            border-radius: 50%;
+        }
+    }
+    .review-content{
+        font-family: f-light;
+    }
+}
