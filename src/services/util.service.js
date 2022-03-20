@@ -4,6 +4,7 @@ export const utilService = {
   delay,
   formattedDates,
   getRandomAmenities,
+  getAllAmenities,
   timeConverter,
   firstLetterToUpperCase,
   avgReviewRate
@@ -47,9 +48,13 @@ function getRandomAmenities() {
   for (var i = 0; i < amens.length; i++) {
     const index = getRandomIntInclusive(0, amens.length - 1)
     let amenity = amens.splice(index, 1)
-    newAmens.push(amenity)
+    newAmens.push(amenity[0])
   }
   return newAmens
+}
+
+function getAllAmenities() {
+  return ['Wifi', 'Heating', 'HotTub', 'Dryer', 'Kitchen', 'Microwave', 'Refrigerator', 'Stove', 'TV', 'Oven', 'Hangers', 'Hair dryer', 'Free parking',]
 }
 
 function timeConverter(time) {

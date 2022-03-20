@@ -3,7 +3,7 @@ import { cloudinaryService } from '../services/cloudinary.service.js'
 
 export class Upload extends Component {
     state = {
-        imgUrl: null,
+        imgUrl: this.props.imgUrl,
         height: 60,
         width: 60,
         isUploading: false
@@ -14,12 +14,17 @@ export class Upload extends Component {
         if (userImgUrl) this.setState({ imgUrl: userImgUrl })
     }
 
+    componentDidUpdate(prevProps) {
+        // if (!this.props.userImgUrl && this.state.imgUrl !== '') this.setState({ imgUrl: '' })
+        if (this.props !== prevProps) this.setState({ imgUrl: this.props.userImgUrl })
+    }
+
     uploadImg = async (ev) => {
         this.setState({ isUploading: true })
         const { secure_url, height, width } = await cloudinaryService.uploadImg(ev)
         this.setState({ isUploading: false, imgUrl: secure_url, height, width }, () => { this.props.onUploadImg(this.state, this.props.position) })
     }
-    
+
     get uploadMsg() {
         const { imgUrl, isUploading } = this.state
         if (imgUrl) return 'Upload Another?'
@@ -30,13 +35,18 @@ export class Upload extends Component {
         const { imgUrl } = this.state
         const previewStyle = {
             backgroundImage: `url(${imgUrl})`,
-
         }
+
         return (
-            <div className="upload-preview" style={previewStyle} >
-                <label className="img-upload-label" htmlFor="imgUpload">{this.uploadMsg}
+            <div className="upload-preview">
+                <div className="img-upload-label" htmlFor="imgUpload">
+                    {/* {this.uploadMsg} */}
                     <input type="file" onChange={this.uploadImg} accept="img/*" className="img-upload-btn" id="imgUpload" />
-                </label>
+                    <div className="img-container">
+
+                    <img src={imgUrl} alt="" />
+                    </div>
+                </div>
             </div>
         )
     }

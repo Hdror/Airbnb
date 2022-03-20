@@ -1,8 +1,89 @@
-.stay-edit-info-container {
-  display: flex;
-  //   flex-direction: column;
-  img {
-    height: 24px;
-    width: 24px;
+.stay-edit {
+  .selection-container {
+    flex-direction: column;
+    gap: 20px;
+    margin-inline-end: 40px;
+    > * {
+      height: 40px;
+      padding: 10px;
+      width: 200px;
+    }
+  }
+
+  .info-container {
+    display: flex;
+
+    .summary-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+
+      .stay-edit-amenities {
+        column-gap: 20px;
+        columns: 3;
+
+        .amenity-checkbox{
+          flex-wrap: nowrap;
+          justify-content: center;
+        }
+      }
+    }
+
+    img {
+      height: 24px;
+      width: 24px;
+    }
+  }
+
+  .stay-edit-location {
+    margin-block-end: 25px;
+    input {
+      margin-inline-end: 25px;
+    }
+  }
+
+  .img-upload-container {
+    width: 100%;
+    height: 500px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 8px;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-block-end: 50px;
+
+    > .upload-preview:first-child {
+      grid-column: 1/3;
+      grid-row: 1/-1;
+    }
+
+    .upload-preview {
+      height: 100%;
+
+      &:not(:first-child) {
+        height: 246px;
+      }
+
+      img {
+        height: 100%;
+        object-fit: cover;
+        // &:not(:first-child) {
+        //   height: 246px;
+        // }
+      }
+
+      &:hover {
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.719);
+        // ::after{
+        //   position: absolute;
+        //   content: 'Upload image';
+        // }
+        img {
+          opacity: 0.8;
+        }
+      }
+    }
   }
 }

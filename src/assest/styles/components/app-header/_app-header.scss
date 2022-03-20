@@ -230,7 +230,6 @@ header {
       .search-link-modal {
         position: absolute;
         background-color: $clr5;
-        // top: 50px;
         top: 115%;
         left: 0;
         z-index: 100;
@@ -246,15 +245,15 @@ header {
 
         p {
           font-family: f-medium;
-          padding: 16px 16px;
+          padding: 15px 30px;
           font-size: 12px;
-          box-shadow: 0 1px 0 $clr9;
+          box-shadow: 0 0.3px 0 $clr7;
           margin-bottom: 3px;
         }
 
         .search-link {
           // margin-block-end: 16px;
-          padding: 16px 16px;
+          padding: 15px 30px;
 
           &:hover {
             background-color: $clr6;

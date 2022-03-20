@@ -65,7 +65,7 @@ export class _FilterBar extends React.Component {
                 this.setState({ filterBy: { ...this.state.filterBy, typeOfPlace: { ...this.state.filterBy.typeOfPlace, [field]: value } } })
 
             } else if (target.id === 'amenities') {
-                value = target.className
+                value = target.innerText
                 const { amenities } = this.state.filterBy
                 if (this.state.filterBy.amenities.includes(value)) {
                     this.setState({
@@ -79,21 +79,31 @@ export class _FilterBar extends React.Component {
             const [minPrice, maxPrice] = ev
             this.setState({ filterBy: { ...this.state.filterBy, price: { minPrice, maxPrice } } })
         }
+    }
 
+    isActive = (amenity) => {
+        const { amenities } = this.state.filterBy
+        let res = true
+        if (amenities.includes(amenity)) {
+            res = true
+        } else {
+
+            res = false
+        }
+        return res
     }
 
     render() {
-        const { amenities, filterBy } = this.state
+        const { amenities, filterBy, } = this.state
         const { stays, toggleModal, isModalOpen, modalState } = this.props
         return <section className="filter-bar flex">
             <div onClick={() => { isModalOpen ? toggleModal() : toggleModal('priceModal') }}>Price <img src={arrow_down} /></div>
             <div onClick={() => { isModalOpen ? toggleModal() : toggleModal('typeOfPlaceModal') }}>Type of place <img src={arrow_down} /></div>
             {amenities.map((amenity, idx) => {
-                return <div onClick={this.handleChange} id="amenities" className={amenity} key={idx}>{amenity}</div>
+                return <div onClick={this.handleChange} id="amenities" className={(this.isActive(amenity)) ? "active" : "not-active"} key={idx}>{amenity}</div>
             })}
-            {/* // {filterBy.amenities.includes(`${amenity}`)? `${amenity} 'lll'`: amenity} key = { idx } > { amenity } */}
             {modalState.typeOfPlaceModal && <TypeOfPlaceModal filterBy={filterBy} cleanForm={this.cleanForm} filterStays={this.filterStays} handleChange={this.handleChange} />}
-            {modalState.priceModal && <PriceModal handleChange={this.handleChange} filterStays={this.filterStays} stays={stays} />}
+            {modalState.priceModal && <PriceModal handleChange={this.handleChange} filterStays={this.filterStays} price={filterBy.price} stays={stays} />}
             <div>
                 <img className="filter-svg flex" src={filter} />
                 <p>Filter</p>
