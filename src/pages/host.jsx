@@ -39,6 +39,7 @@ class _HostPage extends React.Component {
     }
 
     toggleGuestHost = () => {
+        clearTimeout(this.timeoutId)
         this.setState({ isGuestHostModalOpen: this.state.isGuestHostModalOpen ? false : true })
         this.timeoutId = setTimeout(() => {
             this.setState({ isGuestHostModalOpen: false })
