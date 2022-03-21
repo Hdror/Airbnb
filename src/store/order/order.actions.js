@@ -1,6 +1,6 @@
 import { orderService } from '../../services/order.service.js'
 
-export function loadOrders(filterBy = {}) {
+export function loadOrders(filterBy = []) {
     return async (dispatch) => {
         const orders = await orderService.query(filterBy)
         const action = { type: 'SET_ORDERS', orders }

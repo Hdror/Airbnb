@@ -101,7 +101,7 @@ class _StayEdit extends React.Component {
             stay: {
                 name: '',
                 type: 'Loft',
-                typeOfPlace: 'Entire place',
+                typeOfPlace: "Entire place",
                 imgUrls: [],
                 price: 0,
                 summary: '',
@@ -112,7 +112,7 @@ class _StayEdit extends React.Component {
                     bathrooms: ''
                 },
                 amenities: [],
-                host: {},
+                host: this.state.stay.host,
                 loc: {
                     country: '',
                     city: '',
@@ -138,7 +138,9 @@ class _StayEdit extends React.Component {
                 'Hair dryer': false,
                 'Free parking': false,
             }
-        })
+        },()=>{ console.log(this.state.stay);})
+       
+
     }
 
 

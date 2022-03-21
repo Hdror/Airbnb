@@ -34,7 +34,7 @@ export const stayService = {
 
 
 // GET STAYS
-async function query(filterBy) {
+async function query(filterBy = []) {
   return await httpService.get('stay', filterBy)
 }
 

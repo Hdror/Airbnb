@@ -4,18 +4,19 @@ import { connect } from 'react-redux'
 import { loadStays } from '../store/stay.action.js'
 import { loadOrders } from '../store/order/order.actions.js'
 
-// 3 TABS
-
-// ADD STAY + EDIT
-// HOST ORDERS  - WHICH STAY - DATES - NUM OF GUESTS 
+import {Loader} from "../cmps/loader.jsx"
 
 class _HostStays extends React.Component {
     state = {
-        orders: []
+        orders: [],
+        userStays: []
     }
 
     componentDidMount() {
-        this.props.loadStays({ hostId: this.props.user._id })
+        console.log(this.props.user._id);
+        const userStays = this.props.stays.filter(stay => stay.host._id === this.props.user._id)
+        console.log(userStays);
+        this.setState({ userStays },()=>{console.log(this.state);})
         this.ordersToDisplay()
     }
 
@@ -45,7 +46,8 @@ class _HostStays extends React.Component {
     }
 
     render() {
-        const { orders, stays } = this.props
+        const { userStays } = this.state
+        if (!userStays.length) return <Loader />
         return (
             <div className="main-container host-stay-container">
                 <table>
@@ -58,7 +60,7 @@ class _HostStays extends React.Component {
                             <th>Reviews</th>
                             <th>Avg Rate</th>
                         </tr>
-                        {stays.map((stay, idx) => {
+                        {userStays.map((stay, idx) => {
                             return <tr className="host-stay-info" key={idx}>
                                 <td>
                                     {stay.name}
