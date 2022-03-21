@@ -7,7 +7,8 @@ export const utilService = {
   getAllAmenities,
   timeConverter,
   firstLetterToUpperCase,
-  avgReviewRate
+  avgReviewRate,
+  getCells,
 }
 
 function makeId(length = 6) {
@@ -40,6 +41,13 @@ function formattedDates(chosenDate) {
   return date.toLocaleDateString('en-GB')
 }
 
+function getCells() {
+  const cells = []
+  for (let i = 0; i < 100; i++) {
+      cells.push(<div key={`cell-${i}`} className="cell"></div>)
+  }
+  return cells
+}
 
 function getRandomAmenities() {
   const amens = ['Wifi', 'HotTub', 'Free Parking', 'Dryer', 'Kitchen', 'Microwave', 'Refrigerator', 'Stove', 'TV', 'Oven', 'Hot Water', 'Heating', 'Elevator', 'Beachfront', 'Patio or balcony', 'Backyard', 'EV charge']
