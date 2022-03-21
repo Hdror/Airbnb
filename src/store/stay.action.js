@@ -42,7 +42,7 @@ export function onUpdateStay(stay) {
   return async (dispatch) => {
     try {
       const stayToSave = await stayService.save(stay)
-      dispatch({ type: 'UPDATE_STAY', stayToSave })
+      dispatch({ type: 'UPDATE_STAY', stay: stay })
       return stay
     } catch (err) {
       console.log('Cannot update stay', err)
