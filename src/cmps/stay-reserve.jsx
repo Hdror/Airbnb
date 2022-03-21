@@ -137,13 +137,13 @@ class _StayReserve extends React.Component {
         }))
     }
 
-    getCells() {
-        const cells = []
-        for (let i = 0; i < 100; i++) {
-            cells.push(<div key={`cell-${i}`} className="cell"></div>)
-        }
-        return cells
-    }
+    // getCells() {
+    //     const cells = []
+    //     for (let i = 0; i < 100; i++) {
+    //         cells.push(<div key={`cell-${i}`} className="cell"></div>)
+    //     }
+    //     return cells
+    // }
 
     render() {
         const { isTripCreated, trip, isStayTimePicked, totalPrice } = this.state
@@ -181,7 +181,7 @@ class _StayReserve extends React.Component {
                 </div>
                 {isTripCreated ?
                     <div onClick={this.onCreateOrder} className={this.state.istBtnDisabled ? "btn-container disabled" : "btn-container"}>
-                        {this.getCells()}
+                        {utilService.getCells()}
                         <div className="content">
                             <button className="action-btn" >
                                 <span>Reserve</span>
@@ -189,7 +189,7 @@ class _StayReserve extends React.Component {
                         </div>
                     </div>
                     : <div onClick={this.onAddTrip} className="btn-container">
-                        {this.getCells()}
+                        {utilService.getCells()}
                         <div className="content">
                             <button className="action-btn" >
                                 <span>Check availability</span>

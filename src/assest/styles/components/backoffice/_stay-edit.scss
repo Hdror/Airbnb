@@ -3,26 +3,81 @@
     flex-direction: column;
     gap: 20px;
     margin-inline-end: 40px;
-    > * {
-      height: 40px;
+    > *:not(label) {
+      color: $clr3;
       padding: 10px;
-      width: 200px;
+      justify-content: space-between;
+      align-items: flex-end;
+      width: 150px;
+      border: 1px solid $clr3;
+      border-radius: 8px;
+      font-family: f-light;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .input-container {
+      label{
+        cursor: pointer;
+      }
+      input {
+        font-size: rem(14px);
+        width: 60%;
+        border: none;
+        &:focus-visible {
+          outline: none;
+        }
+      }
+
+      .price-label {
+        width: 45%;
+        cursor: pointer;
+        span {
+          padding-inline-start: 5px;
+        }
+      }
+
+      .price-input {
+        color: $clr1;
+      }
+    }
+
+    select {
+      padding: 10px 6px;
+    }
+    label {
+      align-self: flex-end;
+      width: inherit;
     }
   }
 
   .info-container {
     display: flex;
+    margin-block-end: 30px;
 
     .summary-container {
       width: 100%;
       display: flex;
       flex-direction: column;
 
-      .stay-edit-amenities {
-        column-gap: 20px;
-        columns: 3;
+      textarea {
+        border-radius: 12px;
+        height: 30vh;
+        padding: 24px;
+        line-height: 2;
+        margin-block-end: 40px;
+        width: unset;
+      }
 
-        .amenity-checkbox{
+      .stay-edit-amenities {
+      display: grid;
+      // grid-template-columns: repeat(4, 1fr);
+      // grid-template-columns: repeat(4, minmax(100px, 1fr));
+      grid-column: 2;
+      justify-items: baseline;
+      gap: 10px;
+
+        .amenity-checkbox {
           flex-wrap: nowrap;
           justify-content: center;
         }
@@ -37,8 +92,17 @@
 
   .stay-edit-location {
     margin-block-end: 25px;
+    flex-wrap: wrap;
+    gap: 10px;
     input {
-      margin-inline-end: 25px;
+      margin-inline-end: 15px;
+      color: $clr3;
+      padding: 10px;
+      align-items: flex-end;
+      border: 1px solid $clr3;
+      border-radius: 8px;
+      font-family: f-light;
+      font-size: 1rem;
     }
   }
 
@@ -51,7 +115,7 @@
     gap: 8px;
     border-radius: 15px;
     overflow: hidden;
-    margin-block-end: 50px;
+    margin-block-end: 40px;
 
     > .upload-preview:first-child {
       grid-column: 1/3;
@@ -76,14 +140,16 @@
       &:hover {
         cursor: pointer;
         background-color: rgba(0, 0, 0, 0.719);
-        // ::after{
-        //   position: absolute;
-        //   content: 'Upload image';
-        // }
         img {
           opacity: 0.8;
         }
       }
     }
+  }
+  .btn-container{
+    margin: auto;
+    width: 20%;
+    min-width: 100px;
+    align-self: center;
   }
 }

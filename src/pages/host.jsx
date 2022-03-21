@@ -55,11 +55,8 @@ class _HostPage extends React.Component {
     }
 
     render() {
-        //     //     // this.props.history.push('/')
-        //     //     // return <div>Loading</div>
-        // }
         return (this.props.user &&
-            <div className="page main-container">
+            <div className="host-page page main-container">
                 {this.state.isGuestHostModalOpen && <div className="guest-host-modal flex">
                     <div className="guest-modal-content">
                         <p>Greetings!</p>
