@@ -112,7 +112,11 @@ class _StayEdit extends React.Component {
                     bathrooms: ''
                 },
                 amenities: [],
-                host: {},
+                host: {
+                    fullname: '',
+                    imgUrl: '',
+                    _id: ''
+                },
                 loc: {
                     country: '',
                     city: '',
@@ -251,7 +255,7 @@ class _StayEdit extends React.Component {
                         <textarea value={stay.summary ? stay.summary : ''} type="text" name="summary" onChange={this.onHandleChange} ></textarea>
                         <div className="stay-edit-amenities">
                             {amenities.map((amenity, idx) => {
-                                return <label htmlFor={idx} className="amenity-checkbox flex"  key={idx}><input id={idx} onChange={this.onHandleChange} type="checkbox" checked={this.state.amenities[amenity]} name={amenity} />{amenity}</label>
+                                return <label htmlFor={idx} className="amenity-checkbox flex" key={idx}><input id={idx} onChange={this.onHandleChange} type="checkbox" checked={this.state.amenities[amenity]} name={amenity} />{amenity}</label>
                             })}
                         </div>
                     </div >
