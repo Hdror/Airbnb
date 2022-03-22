@@ -2,26 +2,28 @@ const initialState = {
   currPage: '',
   isModalOpen: false,
   modalState: {
+    shareModal: false,
     dateRangeModal: false,
     guestsModal: false,
-    menuDropDownModal:false,
-    typeOfPlaceModal:false,
-    priceModal:false,
-    datePickerModal:false,
-    reserveGuestsModal:false,
-    searchSuggestion:false
+    menuDropDownModal: false,
+    typeOfPlaceModal: false,
+    priceModal: false,
+    datePickerModal: false,
+    reserveGuestsModal: false,
+    searchSuggestion: false
   }
 }
 
-const closeModalState={
+const closeModalState = {
+  shareModal: false,
   dateRangeModal: false,
-    guestsModal: false,
-    menuDropDownModal:false,
-    typeOfPlaceModal:false,
-    priceModal:false,
-    datePickerModal:false,
-    reserveGuestsModal:false,
-    searchSuggestion:false
+  guestsModal: false,
+  menuDropDownModal: false,
+  typeOfPlaceModal: false,
+  priceModal: false,
+  datePickerModal: false,
+  reserveGuestsModal: false,
+  searchSuggestion: false
 }
 
 export function pageReducer(state = initialState, action) {
@@ -31,7 +33,7 @@ export function pageReducer(state = initialState, action) {
       newState = { ...state, currPage: action.currPage }
       break
     case 'CLOSE_MODAL':
-      newState = { ...state, modalState: {...closeModalState }, isModalOpen: false }
+      newState = { ...state, modalState: { ...closeModalState }, isModalOpen: false }
       break
     case 'OPEN_MODAL':
       newState = { ...state, modalState: { ...closeModalState, [action.modalName]: true }, isModalOpen: true }

@@ -41,6 +41,9 @@ class _StayDetails extends React.Component {
         this.setState({ isShareModalOpen: isShareModalOpen ? false : true })
     }
 
+
+
+
     isLiked = () => {
         const { user } = this.props
         const { stay } = this.state
@@ -80,7 +83,8 @@ class _StayDetails extends React.Component {
     render() {
         if (!this.state.stay) return 'LOADING'
         const isLiked = this.isLiked()
-        const { stay, isShareModalOpen } = this.state
+        const { stay } = this.state
+        const { isModalOpen, modalState, toggleModal } = this.props
         const { name, avgRate, reviews, loc, imgUrls, facilites, capacity, host, summary, type, amenities } = stay
         const numOfReviews = reviews.length
         const txt = facilites.beds > 1 ? 'beds' : 'bed'
@@ -93,37 +97,45 @@ class _StayDetails extends React.Component {
                             <img src={Star} alt="" />{avgRate} · <a href="#">{numOfReviews} Reviews</a> · <span>{loc.address}</span>
                         </div>
                         <div className="summary-share-save flex">
-                            <div onClick={this.toggleShareModal} className="summary-share"><img src={Share} alt="" />Share</div>
+                            <div onClick={() => { isModalOpen ? toggleModal() : toggleModal('shareModal') }} className="summary-share"><img src={Share} alt="" />Share</div>
                             <div onClick={this.onLike} className="summary-save"><img src={(isLiked) ? Saved : Save} alt="" />{(isLiked) ? "Saved" : "Save"}</div>
                         </div>
                     </div>
                 </div>
-                {isShareModalOpen && <div className="share-modal">
-                    <FacebookShareButton
-                        url={`https://flair-bnb.herokuapp.com/#/stay/${stay._id}`}
-                        quote={"Check out this place I found on Flairbnb"}
-                        className="facebook-share"
-                        openShareDialogOnClick={this.toggleShareModal}
-                    >
-                        <FacebookIcon size={32} round /> Facebook share
-                    </FacebookShareButton>
-                    <WhatsappShareButton
-                        url={`https://flair-bnb.herokuapp.com/#/stay/${stay._id}`}
-                        title={"Check out this place I found on Flairbnb:"}
-                        className="whatsapp-share"
-                        onClick={this.toggleShareModal}
-                        openShareDialogOnClick={this.toggleShareModal}
-                    >
-                        <WhatsappIcon size={32} round /> Whatsapp share
-                    </WhatsappShareButton>
-                    <EmailShareButton
-                        url={`https://flair-bnb.herokuapp.com/#/stay/${stay._id}`}
-                        subject={"Check out this place I found on Flairbnb:"}
-                        className="email-share"
-                        openShareDialogOnClick={this.toggleShareModal}
-                    >
-                        <EmailIcon size={32} round /> Email share
-                    </EmailShareButton>
+                {modalState.shareModal && <div className="share-modal flex">
+                    <span className="share-name flex">Share {stay.name} on:</span>
+                    <div className="share-image-preview flex">
+                        <img className="flex" src={stay.imgUrls[0]} alt="" />
+                        <span className="share-address flex">{stay.loc.address}</span>
+                    </div>
+                    <div className="share-container flex">
+                        <FacebookShareButton
+                            url={`https://flair-bnb.herokuapp.com/#/stay/${stay._id}`}
+                            quote={"Check out this place I found on Flairbnb"}
+                            className="share flex"
+                            // disabledStyle={true}
+                            openShareDialogOnClick={() => toggleModal()}
+                        >
+                            <FacebookIcon size={32} /> Facebook
+                        </FacebookShareButton>
+                        <WhatsappShareButton
+                            url={`https://flair-bnb.herokuapp.com/#/stay/${stay._id}`}
+                            title={"Check out this place I found on Flairbnb:"}
+                            className="share flex"
+                            onClick={this.toggleShareModal}
+                            openShareDialogOnClick={toggleModal}
+                        >
+                            <WhatsappIcon size={32} /> Whatsapp
+                        </WhatsappShareButton>
+                        <EmailShareButton
+                            url={`https://flair-bnb.herokuapp.com/#/stay/${stay._id}`}
+                            subject={"Check out this place I found on Flairbnb:"}
+                            className="share flex"
+                            openShareDialogOnClick={toggleModal}
+                        >
+                            <EmailIcon size={32} /> Email
+                        </EmailShareButton>
+                    </div>
                 </div>
                 }
                 <div className="image-container">
