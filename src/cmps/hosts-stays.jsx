@@ -13,12 +13,7 @@ class _HostStays extends React.Component {
     }
 
     componentDidMount() {
-<<<<<<< HEAD
-        const userStays = this.props.stays.filter(stay => stay.host._id === this.props.user._id)
-        this.setState({ userStays })
-=======
         this.setUserStays()
->>>>>>> 752012d49a257c3de245a91e12039e36561afd4f
         this.ordersToDisplay()
     }
 

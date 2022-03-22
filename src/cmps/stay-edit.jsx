@@ -138,13 +138,8 @@ class _StayEdit extends React.Component {
                 'Hair dryer': false,
                 'Free parking': false,
             }
-<<<<<<< HEAD
         })
        
-=======
-        }, () => { console.log(this.state.stay); })
-
->>>>>>> 752012d49a257c3de245a91e12039e36561afd4f
 
     }
 
