@@ -1,23 +1,29 @@
 import React from "react"
 import { connect } from 'react-redux'
 
-import { loadStays } from '../store/stay.action.js'
+import { loadStays, removeStay } from '../store/stay.action.js'
 import { loadOrders } from '../store/order/order.actions.js'
 
-// 3 TABS
-
-// ADD STAY + EDIT
-// HOST ORDERS  - WHICH STAY - DATES - NUM OF GUESTS 
+import { Loader } from "../cmps/loader.jsx"
 
 class _HostStays extends React.Component {
     state = {
-        orders: []
+        orders: [],
+        userStays: []
     }
 
     componentDidMount() {
-        this.props.loadStays({ hostId: this.props.user._id })
+        this.setUserStays()
         this.ordersToDisplay()
     }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.stays.length !== this.props.stays.length) {
+            this.props.loadStays()
+            this.setUserStays()
+        }
+    }
+
 
     ordersToDisplay = () => {
         const { orders, user } = this.props
@@ -26,6 +32,11 @@ class _HostStays extends React.Component {
         })
         this.setState({ orders: hostOrders })
         return hostOrders
+    }
+
+    setUserStays = () => {
+        const userStays = this.props.stays.filter(stay => stay.host._id === this.props.user._id)
+        this.setState({ userStays })
     }
 
     getStayOrders = (stay) => {
@@ -44,8 +55,17 @@ class _HostStays extends React.Component {
         return sum
     }
 
+    onRemoveStay = (stayId) => {
+        this.props.removeStay(stayId)
+    }
+
+    onEditStay = (stayId) => {
+        console.log(stayId);
+    }
+
     render() {
-        const { orders, stays } = this.props
+        const { userStays } = this.state
+        if (!userStays.length) return <Loader />
         return (
             <div className="main-container host-stay-container">
                 <table>
@@ -58,7 +78,7 @@ class _HostStays extends React.Component {
                             <th>Reviews</th>
                             <th>Avg Rate</th>
                         </tr>
-                        {stays.map((stay, idx) => {
+                        {userStays.map((stay, idx) => {
                             return <tr className="host-stay-info" key={idx}>
                                 <td>
                                     {stay.name}
@@ -78,6 +98,12 @@ class _HostStays extends React.Component {
                                 <td>
                                     {stay.avgRate}
                                 </td>
+                                <td onClick={() => this.onRemoveStay(stay._id)}>
+                                    Remove Stay
+                                </td>
+                                {/* <td onClick={() => this.onEditStay(stay._id)}>
+                                    Edit
+                                </td> */}
                             </tr>
                         })}
                     </tbody>
@@ -97,7 +123,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
     loadOrders,
-    loadStays
+    loadStays,
+    removeStay
 }
 
 export const HostStays = connect(mapStateToProps, mapDispatchToProps)(_HostStays)

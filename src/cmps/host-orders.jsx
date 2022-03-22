@@ -13,8 +13,8 @@ import { Loader } from '../cmps/loader.jsx'
 class _HostOrders extends React.Component {
 
     componentDidMount() {
-        // this.props.loadOrders({ hostId: this.props.user._id })
-        this.props.loadStays({ hostId: this.props.user._id })
+        this.props.loadOrders({ hostId: this.props.user._id })
+        // this.props.loadStays({ hostId: this.props.user._id })
     }
 
     render() {

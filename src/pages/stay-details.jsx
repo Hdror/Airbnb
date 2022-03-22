@@ -25,13 +25,20 @@ import { StayReserve } from '../cmps/stay-reserve.jsx'
 import { ReviewList } from '../cmps/review.list.jsx'
 import { AddReview } from '../cmps/add-review.jsx'
 
+// REACT SHARE
+import { FacebookShareButton, TwitterShareButton, WhatsappShareButton, EmailShareButton, } from "react-share";
+import { FacebookIcon, TwitterIcon, WhatsappIcon, EmailIcon } from "react-share";
+
+
 class _StayDetails extends React.Component {
     state = {
-        stay: null
+        stay: null,
+        isShareModalOpen: false
     }
 
-    onShare = () => {
-
+    toggleShareModal = () => {
+        const { isShareModalOpen } = this.state
+        this.setState({ isShareModalOpen: isShareModalOpen ? false : true })
     }
 
     isLiked = () => {
@@ -63,7 +70,7 @@ class _StayDetails extends React.Component {
             const { stay } = this.state
             await this.props.addReview(stay, review)
             const stayAvg = utilService.avgReviewRate(stay.reviews).toFixed(2)
-            this.setState({ stay: { ...this.state.stay, avgRate: stayAvg} })
+            this.setState({ stay: { ...this.state.stay, avgRate: stayAvg } })
             await this.props.onUpdateStay(this.state.stay)
         } catch (err) {
             console.log('login first')
@@ -72,9 +79,8 @@ class _StayDetails extends React.Component {
 
     render() {
         if (!this.state.stay) return 'LOADING'
-        console.log(this.props);
         const isLiked = this.isLiked()
-        const { stay } = this.state
+        const { stay, isShareModalOpen } = this.state
         const { name, avgRate, reviews, loc, imgUrls, facilites, capacity, host, summary, type, amenities } = stay
         const numOfReviews = reviews.length
         const txt = facilites.beds > 1 ? 'beds' : 'bed'
@@ -87,11 +93,39 @@ class _StayDetails extends React.Component {
                             <img src={Star} alt="" />{avgRate} · <a href="#">{numOfReviews} Reviews</a> · <span>{loc.address}</span>
                         </div>
                         <div className="summary-share-save flex">
-                            <div onClick={this.onShare} className="summary-share"><img src={Share} alt="" />Share</div>
+                            <div onClick={this.toggleShareModal} className="summary-share"><img src={Share} alt="" />Share</div>
                             <div onClick={this.onLike} className="summary-save"><img src={(isLiked) ? Saved : Save} alt="" />{(isLiked) ? "Saved" : "Save"}</div>
                         </div>
                     </div>
                 </div>
+                {isShareModalOpen && <div className="share-modal">
+                    <FacebookShareButton
+                        url={`https://flair-bnb.herokuapp.com/#/stay/${stay._id}`}
+                        quote={"Check out this place I found on Flairbnb"}
+                        className="facebook-share"
+                        openShareDialogOnClick={this.toggleShareModal}
+                    >
+                        <FacebookIcon size={32} round /> Facebook share
+                    </FacebookShareButton>
+                    <WhatsappShareButton
+                        url={`https://flair-bnb.herokuapp.com/#/stay/${stay._id}`}
+                        title={"Check out this place I found on Flairbnb:"}
+                        className="whatsapp-share"
+                        onClick={this.toggleShareModal}
+                        openShareDialogOnClick={this.toggleShareModal}
+                    >
+                        <WhatsappIcon size={32} round /> Whatsapp share
+                    </WhatsappShareButton>
+                    <EmailShareButton
+                        url={`https://flair-bnb.herokuapp.com/#/stay/${stay._id}`}
+                        subject={"Check out this place I found on Flairbnb:"}
+                        className="email-share"
+                        openShareDialogOnClick={this.toggleShareModal}
+                    >
+                        <EmailIcon size={32} round /> Email share
+                    </EmailShareButton>
+                </div>
+                }
                 <div className="image-container">
                     {imgUrls.map((imgUrl, idx) => {
                         return <div key={idx} className="img">

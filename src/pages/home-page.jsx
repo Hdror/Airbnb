@@ -13,7 +13,7 @@ export class _HomePage extends React.Component {
     componentDidMount() {
         window.scrollTo(0, 0)
         this.props.changePage('home-page')
-        // this.props.loadOrders({ buyerId: this.props.user._id })
+        this.props.loadStays()
 
     }
 
@@ -21,7 +21,7 @@ export class _HomePage extends React.Component {
         ev.preventDefault()
         const filterBy = { loc: ev.target.id, checkInDate: '', checkOutDate: '' }
         this.props.setFilter(filterBy)
-        loadStays({ loc: ev.target.id })
+        this.props.loadStays({ loc: ev.target.id })
     }
 
 
