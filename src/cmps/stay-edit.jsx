@@ -138,8 +138,13 @@ class _StayEdit extends React.Component {
                 'Hair dryer': false,
                 'Free parking': false,
             }
+<<<<<<< HEAD
         })
        
+=======
+        }, () => { console.log(this.state.stay); })
+
+>>>>>>> 752012d49a257c3de245a91e12039e36561afd4f
 
     }
 
@@ -253,7 +258,7 @@ class _StayEdit extends React.Component {
                         <textarea value={stay.summary ? stay.summary : ''} type="text" name="summary" onChange={this.onHandleChange} ></textarea>
                         <div className="stay-edit-amenities">
                             {amenities.map((amenity, idx) => {
-                                return <label htmlFor={idx} className="amenity-checkbox flex"  key={idx}><input id={idx} onChange={this.onHandleChange} type="checkbox" checked={this.state.amenities[amenity]} name={amenity} />{amenity}</label>
+                                return <label htmlFor={idx} className="amenity-checkbox flex" key={idx}><input id={idx} onChange={this.onHandleChange} type="checkbox" checked={this.state.amenities[amenity]} name={amenity} />{amenity}</label>
                             })}
                         </div>
                     </div >

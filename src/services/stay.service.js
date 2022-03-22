@@ -45,7 +45,7 @@ function getById(stayId) {
 
 // REMOVE
 function remove(stayId) {
-  return httpService.remove(`stay/${stayId}`)
+  return httpService.delete(`stay/${stayId}`)
 }
 
 // SAVE OR UPDATE STAY
