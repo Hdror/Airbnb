@@ -1,0 +1,20 @@
+.host-stay-container {
+    border-radius: 8px;
+    .table-headers {
+        display: grid;
+        grid-template-columns: repeat(7,minmax(100px,1fr));
+        // justify-content: space-between;
+        background-color: $clr8;
+        padding: 10px;
+        padding-inline-start: 30px;
+        align-items: center;
+    }
+
+    .host-stay-info {
+        // justify-content: space-between;
+        display: grid;
+        grid-template-columns: repeat(auto-fit,minmax(100px,1fr));
+        box-shadow: 0 1px 0 $clr8;
+        padding: 10px;
+    }
+}
