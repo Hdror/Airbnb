@@ -12,6 +12,7 @@ export class _Wishlist extends React.Component {
     }
 
     componentDidMount() {
+        window.scrollTo(0, 0)
         const likedStays = this.getWishList()
         this.setState({ likedStays })
     }
@@ -29,10 +30,13 @@ export class _Wishlist extends React.Component {
         const { likedStays } = this.state
         if (!likedStays.length) return <Loader />
         return <main className="page main-container">
-            <div className="wishlist-container">
-                {likedStays.map((stay) => (
-                    <StayPreview key={stay._id} stay={stay} />
-                ))}
+            <div className="wishlist">
+                <h1>Your favorite stays</h1>
+                <div className="wishlist-container">
+                    {likedStays.map((stay) => (
+                        <StayPreview key={stay._id} stay={stay} />
+                    ))}
+                </div>
             </div>
         </main>
     }

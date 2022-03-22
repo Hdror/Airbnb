@@ -138,7 +138,7 @@ class _StayEdit extends React.Component {
                 'Hair dryer': false,
                 'Free parking': false,
             }
-        },()=>{ console.log(this.state.stay);})
+        })
        
 
     }

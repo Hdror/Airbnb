@@ -111,6 +111,8 @@
   .stay-info-container {
     display: flex;
     justify-content: space-between;
+    box-shadow: 0 1px 0 #e2e2e2;
+    padding-block-end: 56px;
     .info {
       width: 0;
       flex-grow: 2;
@@ -153,13 +155,14 @@
         padding-top: 50px;
         border-top: 1px solid #e2e2e2;
         line-height: 20px;
-        margin-block-end: 50px;
+        // margin-block-end: 50px;
         h1 {
           margin-block-end: 30px;
         }
         ul {
           padding: 0;
           column-count: 2;
+          margin: 0;
         }
         img {
           width: 24px;
@@ -172,7 +175,7 @@
           page-break-inside: avoid;
           break-inside: avoid;
           line-height: 20px;
-          margin-block-end: 15px;
+          padding-block-end: 16px;
         }
       }
 

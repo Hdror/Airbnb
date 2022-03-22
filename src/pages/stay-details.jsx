@@ -72,7 +72,6 @@ class _StayDetails extends React.Component {
 
     render() {
         if (!this.state.stay) return 'LOADING'
-        console.log(this.props);
         const isLiked = this.isLiked()
         const { stay } = this.state
         const { name, avgRate, reviews, loc, imgUrls, facilites, capacity, host, summary, type, amenities } = stay

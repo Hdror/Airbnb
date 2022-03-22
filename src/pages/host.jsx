@@ -23,6 +23,7 @@ class _HostPage extends React.Component {
     }
 
     componentDidMount() {
+        this.props.loadStays()
         if (!this.props.user) {
             this.props.login(this.state.superGuest)
             this.toggleGuestHost()

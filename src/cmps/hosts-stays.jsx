@@ -13,10 +13,8 @@ class _HostStays extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props.user._id);
         const userStays = this.props.stays.filter(stay => stay.host._id === this.props.user._id)
-        console.log(userStays);
-        this.setState({ userStays },()=>{console.log(this.state);})
+        this.setState({ userStays })
         this.ordersToDisplay()
     }
 

@@ -2,8 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-// COMPONENTS
 import { logout, update } from '../store/user.actions.js'
+import { toggleModal } from '../store/page.action.js'
 
 // SVGS
 import 'rc-menu/assets/index.css'
@@ -12,16 +12,13 @@ class _MenuDropDown extends React.Component {
     onLogout = () => {
         this.props.logout()
         this.setState({ isLoggedIn: false })
-        // if (this.props.user._id === '61f808b5fccf274464888f88') {
-        //     this.props.update({ ...this.props.user, likedStays: [] })
-        // }
     }
 
     render() {
         const { user } = this.props
         return (
             <div className="dropdown-user-menu">
-                <ul className="dropdown-container">
+                <ul className="dropdown-container" onClick={()=>{this.props.toggleModal()}}>
                     {!user && < Link className="clean-link clean-list" to="/login"><li>Log in</li></Link>}
                     {!user && <Link className="clean-link clean-list" to="/login"><li>Sign up</li></Link>}
                     {user && user.isHost && <Link className="clean-link clean-list" to="/host"><li>Host your home</li></Link>}
@@ -43,7 +40,8 @@ function mapStateToProps(state) {
 }
 const mapDispatchToProps = {
     logout,
-    update
+    update,
+    toggleModal
 
 }
 
