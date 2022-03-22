@@ -67,47 +67,29 @@ class _HostStays extends React.Component {
         const { userStays } = this.state
         if (!userStays.length) return <Loader />
         return (
-            <div className="main-container host-stay-container">
-                <table>
-                    <tbody>
-                        <tr>
-                            <th>Stay</th>
-                            <th>Total number of orders</th>
-                            <th>Revenue</th>
-                            <th>Price</th>
-                            <th>Reviews</th>
-                            <th>Avg Rate</th>
-                        </tr>
-                        {userStays.map((stay, idx) => {
-                            return <tr className="host-stay-info" key={idx}>
-                                <td>
-                                    {stay.name}
-                                </td>
-                                <td>
-                                    {this.getStayOrders(stay).length}
-                                </td>
-                                <td>
-                                    $ {this.calculateRevenue(stay)}
-                                </td>
-                                <td>
-                                    $ {stay.price} / night
-                                </td>
-                                <td>
-                                    {stay.reviews.length}
-                                </td>
-                                <td>
-                                    {stay.avgRate}
-                                </td>
-                                <td onClick={() => this.onRemoveStay(stay._id)}>
-                                    Remove Stay
-                                </td>
-                                {/* <td onClick={() => this.onEditStay(stay._id)}>
-                                    Edit
-                                </td> */}
-                            </tr>
-                        })}
-                    </tbody>
-                </table>
+            <div className=" host-stay-container">
+
+               
+                    <div className="table-headers">
+                        <div>Stay</div>
+                        <div>Total number of orders</div>
+                        <div>Revenue</div>
+                        <div>Price</div>
+                        <div>Reviews</div>
+                        <div>Avg Rate</div>
+                    </div>
+                    {userStays.map((stay, idx) => {
+                        return <div className="host-stay-info" key={idx} >
+                            <div>{stay.name}</div>
+                            <div>{this.getStayOrders(stay).length}</div>
+                            <div>$ {this.calculateRevenue(stay)}</div>
+                            <div>$ {stay.price} / night</div>
+                            <div>{stay.reviews.length}</div>
+                            <div>{stay.avgRate}</div>
+                            <div onClick={() => this.onRemoveStay(stay._id)}> Remove Stay</div>
+                        </div>
+                    })}
+             
             </div>
         )
     }

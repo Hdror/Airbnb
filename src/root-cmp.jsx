@@ -17,8 +17,7 @@ import { Orders } from './pages/order.jsx'
 import { StayEdit } from './cmps/stay-edit.jsx'
 import { Wishlist } from './pages/wishlist.jsx'
 
-// Screen component transparant 
-// fix position - and onclick close modal (store - isModalOpen - page)
+
 export class _RootCmp extends React.Component {
 
   render() {
