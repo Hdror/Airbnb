@@ -9,7 +9,9 @@ import { Loader } from "../cmps/loader.jsx"
 class _HostStays extends React.Component {
     state = {
         orders: [],
-        userStays: []
+        userStays: [],
+        isDeleteModalOpen: false,
+        stayToDelete: ''
     }
 
     componentDidMount() {
@@ -23,7 +25,6 @@ class _HostStays extends React.Component {
             this.setUserStays()
         }
     }
-
 
     ordersToDisplay = () => {
         const { orders, user } = this.props
@@ -57,6 +58,7 @@ class _HostStays extends React.Component {
 
     onRemoveStay = (stayId) => {
         this.props.removeStay(stayId)
+        this.setState({ isDeleteModalOpen: false, stayToDelete: '' })
     }
 
     onEditStay = (stayId) => {
@@ -64,32 +66,38 @@ class _HostStays extends React.Component {
     }
 
     render() {
-        const { userStays } = this.state
+        const { userStays, isDeleteModalOpen, stayToDelete } = this.state
         if (!userStays.length) return <Loader />
         return (
-            <div className=" host-stay-container">
-
-               
-                    <div className="table-headers">
-                        <div>Stay</div>
-                        <div>Total number of orders</div>
-                        <div>Revenue</div>
-                        <div>Price</div>
-                        <div>Reviews</div>
-                        <div>Avg Rate</div>
+            <div className="host-stay-container">
+                {isDeleteModalOpen && <div className="confirm-delete-container">
+                    <div className="confirm-delete-text ">Are you sure you want to <span className="delete-permanently">permanently</span> delete this stay from your list?
+                        <p>this action cannot be undone. </p>
                     </div>
-                    {userStays.map((stay, idx) => {
-                        return <div className="host-stay-info" key={idx} >
-                            <div>{stay.name}</div>
-                            <div>{this.getStayOrders(stay).length}</div>
-                            <div>$ {this.calculateRevenue(stay)}</div>
-                            <div>$ {stay.price} / night</div>
-                            <div>{stay.reviews.length}</div>
-                            <div>{stay.avgRate}</div>
-                            <div onClick={() => this.onRemoveStay(stay._id)}> Remove Stay</div>
-                        </div>
-                    })}
-             
+                    <div className="flex" >
+                        <div className="confirm-delete" onClick={() => this.onRemoveStay(stayToDelete)} >Yes</div>
+                        <div className="decline-delete" onClick={() => this.setState({ isDeleteModalOpen: false })}>No</div>
+                    </div>
+                </div>}
+                <div className="table-headers">
+                    <div>Stay</div>
+                    <div>Total number of orders</div>
+                    <div>Revenue</div>
+                    <div>Price</div>
+                    <div>Reviews</div>
+                    <div>Avg Rate</div>
+                </div>
+                {userStays.map((stay, idx) => {
+                    return <div className="host-stay-info" key={idx} >
+                        <div>{stay.name}</div>
+                        <div>{this.getStayOrders(stay).length}</div>
+                        <div>$ {this.calculateRevenue(stay)}</div>
+                        <div>$ {stay.price} / night</div>
+                        <div>{stay.reviews.length}</div>
+                        <div>{stay.avgRate}</div>
+                        <div onClick={() => this.setState({ isDeleteModalOpen: true, stayToDelete: stay._id })}>Remove Stay</div>
+                    </div>
+                })}
             </div>
         )
     }

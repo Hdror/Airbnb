@@ -3,7 +3,6 @@
 @mixin for-narrow-layout {
   @media (min-width: calc($break-narrow + 50px)) {
     @content;
-  
   }
 }
 
