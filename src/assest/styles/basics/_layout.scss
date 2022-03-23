@@ -10,14 +10,10 @@
         grid-column: 1 / -1;
     }
 
-    & .stay-edit-amenities{
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)) ;   
-    } 
+   
     @include for-narrow-layout {
         grid-template-columns: minmax(1rem, 1fr) $break-narrow minmax(1rem, 1fr);
-        .stay-edit-amenities{
-            grid-template-columns: repeat(3, minmax(100px, 1fr)) ;   
-        }
+      
     }
 
     @include for-tablet-layout {

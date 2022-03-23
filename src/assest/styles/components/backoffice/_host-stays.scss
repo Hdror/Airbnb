@@ -2,7 +2,7 @@
     border-radius: 8px;
     .table-headers {
         display: grid;
-        grid-template-columns: repeat(7,minmax(100px,1fr));
+        grid-template-columns: repeat(7,minmax(50px,1fr));
         // justify-content: space-between;
         background-color: $clr8;
         padding: 10px;
@@ -11,10 +11,19 @@
     }
 
     .host-stay-info {
+        align-items: center;
+        justify-items: center;
         // justify-content: space-between;
         display: grid;
-        grid-template-columns: repeat(auto-fit,minmax(100px,1fr));
+        grid-template-columns: repeat(auto-fit,minmax(50px,1fr));
         box-shadow: 0 1px 0 $clr8;
         padding: 10px;
+
+        div{
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+        }
     }
 }

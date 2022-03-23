@@ -72,8 +72,8 @@ class _HostStays extends React.Component {
                
                     <div className="table-headers">
                         <div>Stay</div>
-                        <div>Total number of orders</div>
-                        <div>Revenue</div>
+                        <div>Orders placed</div>
+                        <div>Profit</div>
                         <div>Price</div>
                         <div>Reviews</div>
                         <div>Avg Rate</div>
