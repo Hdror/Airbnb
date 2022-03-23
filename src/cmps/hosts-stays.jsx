@@ -69,10 +69,18 @@ class _HostStays extends React.Component {
         const { userStays, isDeleteModalOpen, stayToDelete } = this.state
         if (!userStays.length) return <Loader />
         return (
-            <div className="host-stay-container">
+            <div className=" host-stay-container">
                 {isDeleteModalOpen && <div className="confirm-delete-container">
                     <div className="confirm-delete-text ">Are you sure you want to <span className="delete-permanently">permanently</span> delete this stay from your list?
                         <p>this action cannot be undone. </p>
+                    </div>
+                    <div className="table-headers">
+                        <div>Stay</div>
+                        <div>Orders placed</div>
+                        <div>Profit</div>
+                        <div>Price</div>
+                        <div>Reviews</div>
+                        <div>Avg Rate</div>
                     </div>
                     <div className="flex" >
                         <div className="confirm-delete" onClick={() => this.onRemoveStay(stayToDelete)} >Yes</div>

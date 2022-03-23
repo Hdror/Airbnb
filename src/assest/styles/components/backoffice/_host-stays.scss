@@ -11,11 +11,19 @@
   }
 
   .host-stay-info {
+    align-items: center;
+    justify-items: center;
     // justify-content: space-between;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
     box-shadow: 0 1px 0 $clr8;
     padding: 10px;
+
+    div {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 
   .confirm-delete-container {
@@ -27,42 +35,42 @@
         font-family: f-bold;
         text-decoration: underline;
       }
-    }
-    position: absolute;
-    left: 50%;
-    top: 20%;
-    transform: translate(-50%, 0);
-    z-index: 10;
-    color: $clr4;
-    padding: 30px;
-    background-color: $clr5;
-    border: 3px solid $clr1;
-    border-radius: 8px;
-    div {
-      justify-content: space-around;
-      .confirm-delete,
-      .decline-delete {
-        // width: 80px;
-        text-align: center;
-        font-family: f-medium;
-        cursor: pointer;
-        border-radius: 4px;
-        padding: 7px 40px;
-        background-color: $clr1;
-        color: $clr5;
-        &:hover {
-          //   background-color: $clr1;
-          //   color: $clr5;
-          opacity: 0.7;
+      position: absolute;
+      left: 50%;
+      top: 20%;
+      transform: translate(-50%, 0);
+      z-index: 10;
+      color: $clr4;
+      padding: 30px;
+      background-color: $clr5;
+      border: 3px solid $clr1;
+      border-radius: 8px;
+      div {
+        justify-content: space-around;
+        .confirm-delete,
+        .decline-delete {
+          // width: 80px;
+          text-align: center;
+          font-family: f-medium;
+          cursor: pointer;
+          border-radius: 4px;
+          padding: 7px 40px;
+          background-color: $clr1;
+          color: $clr5;
+          &:hover {
+            //   background-color: $clr1;
+            //   color: $clr5;
+            opacity: 0.7;
+          }
         }
-      }
-      .decline-delete {
-        color: $clr5;
-        background-color: $clr12;
-        &:hover {
-          //   background-color: $clr1;
-          //   color: $clr5;
-          opacity: 0.7;
+        .decline-delete {
+          color: $clr5;
+          background-color: $clr12;
+          &:hover {
+            //   background-color: $clr1;
+            //   color: $clr5;
+            opacity: 0.7;
+          }
         }
       }
     }
