@@ -116,7 +116,10 @@
     .info {
       width: 0;
       flex-grow: 2;
-      padding-inline-end: 80px;
+      @include for-normal-layout {
+        padding-inline-end: 80px;
+      }
+
       flex-direction: column;
       .stay-container {
         flex-direction: column;
@@ -142,6 +145,7 @@
           }
           ul {
             display: flex;
+            flex-wrap: wrap;
             max-width: 350px;
             gap: 5px;
             padding: 0;

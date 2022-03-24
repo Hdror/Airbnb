@@ -70,9 +70,9 @@
     .summary-container {
       @include for-narrow-layout {
         width: 0;
-        flex: 1; 
+        flex: 1;
       }
-      
+
       textarea {
         border-radius: 12px;
         height: 20vh;

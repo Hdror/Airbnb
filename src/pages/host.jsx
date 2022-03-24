@@ -51,6 +51,7 @@ class _HostPage extends React.Component {
         clearTimeout(this.timeoutId)
     }
 
+
     infoToDisplay = (val) => {
         this.setState({ infoToDisplay: val })
     }

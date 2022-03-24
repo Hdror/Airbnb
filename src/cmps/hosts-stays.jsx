@@ -71,26 +71,18 @@ class _HostStays extends React.Component {
         return (
             <div className=" host-stay-container">
                 {isDeleteModalOpen && <div className="confirm-delete-container">
-                    <div className="confirm-delete-text ">Are you sure you want to <span className="delete-permanently">permanently</span> delete this stay from your list?
+                    <div className="confirm-delete-text">Are you sure you want to <span className="delete-permanently">permanently</span> delete this stay from your list?
                         <p>this action cannot be undone. </p>
-                    </div>
-                    <div className="table-headers">
-                        <div>Stay</div>
-                        <div>Orders placed</div>
-                        <div>Profit</div>
-                        <div>Price</div>
-                        <div>Reviews</div>
-                        <div>Avg Rate</div>
-                    </div>
-                    <div className="flex" >
-                        <div className="confirm-delete" onClick={() => this.onRemoveStay(stayToDelete)} >Yes</div>
-                        <div className="decline-delete" onClick={() => this.setState({ isDeleteModalOpen: false })}>No</div>
+                        <div className="flex" >
+                            <div className="confirm-delete" onClick={() => this.onRemoveStay(stayToDelete)} >Yes</div>
+                            <div className="decline-delete" onClick={() => this.setState({ isDeleteModalOpen: false })}>No</div>
+                        </div>
                     </div>
                 </div>}
                 <div className="table-headers">
                     <div>Stay</div>
-                    <div>Total number of orders</div>
-                    <div>Revenue</div>
+                    <div>Orders placed</div>
+                    <div>Profit</div>
                     <div>Price</div>
                     <div>Reviews</div>
                     <div>Avg Rate</div>
