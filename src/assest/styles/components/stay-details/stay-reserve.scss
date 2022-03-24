@@ -1,10 +1,12 @@
 .order-container {
   border: 1px solid $clr7;
   border-radius: 12px;
-  padding: 20px;
+  padding: 8px;
   margin: 0px auto 10px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
-
+@include for-narrow-layout{
+  padding: 20px;
+}
   span {
     padding: 0 0;
     margin: 0 0;

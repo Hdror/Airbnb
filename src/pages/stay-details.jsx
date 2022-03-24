@@ -96,7 +96,7 @@ class _StayDetails extends React.Component {
                         <div className="summary-details flex">
                             <img src={Star} alt="" />{avgRate} · <a href="#">{numOfReviews} Reviews</a> · <span>{loc.address}</span>
                         </div>
-                        <div className="summary-share-save flex">
+                        <div className="summary-share-save">
                             <div onClick={() => { isModalOpen ? toggleModal() : toggleModal('shareModal') }} className="summary-share"><img src={Share} alt="" />Share</div>
                             <div onClick={this.onLike} className="summary-save"><img src={(isLiked) ? Saved : Save} alt="" />{(isLiked) ? "Saved" : "Save"}</div>
                         </div>

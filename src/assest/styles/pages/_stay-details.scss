@@ -16,8 +16,13 @@
         margin-right: 5px;
       }
       .summary-details {
+        flex-wrap: wrap;
+        justify-content: flex-start;
         align-items: center;
-        justify-content: center;
+        @include for-normal-layout{
+          flex-wrap:nowrap;
+          justify-content: center;
+        }
         span {
           text-decoration: underline;
         }
@@ -38,6 +43,10 @@
       color: $clr2;
       font-family: f-medium;
       font-size: rem(14px);
+      flex-direction: column; 
+      @include for-narrow-layout{
+        flex-direction: row;
+      }
       .summary-share {
         cursor: pointer;
         display: flex;
@@ -113,6 +122,10 @@
     justify-content: space-between;
     box-shadow: 0 1px 0 #e2e2e2;
     padding-block-end: 56px;
+    gap: 4px;
+    @include for-narrow-layout{
+      gap:0px;
+    }
     .info {
       width: 0;
       flex-grow: 2;
