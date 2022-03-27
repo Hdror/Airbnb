@@ -1,12 +1,25 @@
 .host-page-nav {
-  li {
+  display: flex;
+  padding: 30px 0px;
+  box-shadow: 0px 0.5px 0px $clr9;
+  margin-block-end: 30px;
+  gap: 20px;
+  justify-content: center;
+  >*{
     cursor: pointer;
-  }
-}
-
-.host-options {
-  li {
-    width: rem(80px);
+    padding: 10px 16px;
+    border: 1px solid $clr7;
+    border-radius: 50vw;
+    transition: 0.3s;
+    &:hover{
+      transition: 0.3s;
+      border-color: $clr10;
+    } 
+    &.btn-active{
+      transition: 0.3s;
+      background-color: $clr1;
+      color: $clr5;
+    }
   }
 }
 

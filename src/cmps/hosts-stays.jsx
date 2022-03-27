@@ -95,7 +95,7 @@ class _HostStays extends React.Component {
                         <div>$ {stay.price} / night</div>
                         <div>{stay.reviews.length}</div>
                         <div>{stay.avgRate}</div>
-                        <div onClick={() => this.setState({ isDeleteModalOpen: true, stayToDelete: stay._id })}>Remove Stay</div>
+                        <div onClick={() => this.setState({ isDeleteModalOpen: true, stayToDelete: stay._id })}></div>
                     </div>
                 })}
             </div>

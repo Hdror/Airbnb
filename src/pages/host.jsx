@@ -57,6 +57,7 @@ class _HostPage extends React.Component {
     }
 
     render() {
+        const { infoToDisplay } = this.state
         return (this.props.user &&
             <div className="host-page page main-container">
                 {this.state.isGuestHostModalOpen && <div className="guest-host-modal flex">
@@ -70,17 +71,9 @@ class _HostPage extends React.Component {
                     <div onClick={this.toggleGuestHost}>Close</div>
                 </div>}
                 <div className="host-page-nav">
-                    <ul className="host-options clear-list">
-                        <li onClick={() => { this.infoToDisplay("orders") }}>
-                            My Orders
-                        </li>
-                        <li onClick={() => { this.infoToDisplay("stays") }}>
-                            My Stays
-                        </li>
-                        <li onClick={() => { this.infoToDisplay("add") }}>
-                            Add Stays
-                        </li>
-                    </ul>
+                    <div className={infoToDisplay === "orders" ? "btn-active" : "btn"} onClick={() => { this.infoToDisplay("orders") }}>My Orders</div>
+                    <div className={infoToDisplay === "stays" ? "btn-active" : "btn"} onClick={() => { this.infoToDisplay("stays") }}>My Stays</div>
+                    <div className={infoToDisplay === "add" ? "btn-active" : "btn"} onClick={() => { this.infoToDisplay("add") }}>Add Stay</div>
                 </div>
                 {this.state.infoToDisplay === "orders" && <HostOrders />}
                 {this.state.infoToDisplay === "stays" && <HostStays />}
