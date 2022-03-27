@@ -23,6 +23,7 @@ class _HostPage extends React.Component {
     }
 
     componentDidMount() {
+        this.props.loadStays()
         if (!this.props.user) {
             this.props.login(this.state.superGuest)
             this.toggleGuestHost()
@@ -39,6 +40,7 @@ class _HostPage extends React.Component {
     }
 
     toggleGuestHost = () => {
+        clearTimeout(this.timeoutId)
         this.setState({ isGuestHostModalOpen: this.state.isGuestHostModalOpen ? false : true })
         this.timeoutId = setTimeout(() => {
             this.setState({ isGuestHostModalOpen: false })
@@ -49,16 +51,14 @@ class _HostPage extends React.Component {
         clearTimeout(this.timeoutId)
     }
 
+
     infoToDisplay = (val) => {
         this.setState({ infoToDisplay: val })
     }
 
     render() {
-        //     //     // this.props.history.push('/')
-        //     //     // return <div>Loading</div>
-        // }
         return (this.props.user &&
-            <div className="page main-container">
+            <div className="host-page page main-container">
                 {this.state.isGuestHostModalOpen && <div className="guest-host-modal flex">
                     <div className="guest-modal-content">
                         <p>Greetings!</p>

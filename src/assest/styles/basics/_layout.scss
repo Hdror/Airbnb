@@ -10,15 +10,10 @@
         grid-column: 1 / -1;
     }
 
-    //     $break-mobile: 400px;
-    // $break-narrow: 560px;
-    // $break-tablet: 720px;
-    // $break-normal: 960px;
-    // $break-large: 1200px;
-    // $break-wide: 1800px;
-
+   
     @include for-narrow-layout {
         grid-template-columns: minmax(1rem, 1fr) $break-narrow minmax(1rem, 1fr);
+      
     }
 
     @include for-tablet-layout {
@@ -27,6 +22,7 @@
 
     @include for-normal-layout {
         grid-template-columns: minmax(2rem, 1fr) $break-normal minmax(2rem, 1fr);
+        
     }
 
     @include for-large-layout {
@@ -38,24 +34,15 @@
     }
 }
 
-// Main Header Layout
-
-// .card-grid {
-//     display: grid;
-//     grid-auto-flow: dense;
-//     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-//     gap: 20px;
-//     // grid-auto-rows: 300px;
-
-//     > * {
-//         @include aspect-ratio(16, 9);
-//     }
-// }
 
 .page {
     margin: 176px 0 80px;
     min-height: 70vh;
     &.home-page {
         margin: unset;
+    }
+
+    &.host-page{
+        min-height: unset;
     }
 }

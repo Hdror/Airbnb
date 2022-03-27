@@ -11,9 +11,7 @@ export function changePage(pageName) {
 
 export function toggleModal(modalName) {
     if (modalName) {
-
         return async (dispatch) => {
-
             try {
                 dispatch({ type: 'OPEN_MODAL', modalName })
             } catch (err) {

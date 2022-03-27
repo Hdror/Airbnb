@@ -30,8 +30,6 @@ class _StayPreview extends React.Component {
         this.props.update({ ...this.props.user, likedStays })
     }
 
-
-
     render() {
         const isLiked = this.isLiked()
         const { stay } = this.props

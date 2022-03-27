@@ -7,7 +7,6 @@ import { changePage } from '../store/page.action.js'
 // COMPONENTS
 import { StayList } from '../cmps/stay-list.jsx'
 class _StayApp extends React.Component {
-  state = {}
 
   componentDidMount() {
     window.scrollTo(0, 0)

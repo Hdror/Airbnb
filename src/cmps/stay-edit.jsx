@@ -10,7 +10,7 @@ import { Loader } from '../cmps/loader.jsx'
 import { Upload } from './upload.jsx'
 
 // Utils
-import { getAllAmenities, utilService } from '../services/util.service.js'
+import { utilService } from '../services/util.service.js'
 
 // SVG
 import Enhanced_clean from '../assest/svg/perks/Enhanced_clean.svg'
@@ -101,7 +101,7 @@ class _StayEdit extends React.Component {
             stay: {
                 name: '',
                 type: 'Loft',
-                typeOfPlace: 'Entire place',
+                typeOfPlace: "Entire place",
                 imgUrls: [],
                 price: 0,
                 summary: '',
@@ -112,7 +112,7 @@ class _StayEdit extends React.Component {
                     bathrooms: ''
                 },
                 amenities: [],
-                host: {},
+                host: this.state.stay.host,
                 loc: {
                     country: '',
                     city: '',
@@ -139,6 +139,8 @@ class _StayEdit extends React.Component {
                 'Free parking': false,
             }
         })
+       
+
     }
 
 
@@ -174,8 +176,8 @@ class _StayEdit extends React.Component {
         return (
             <main className="stay-edit">
                 <div className="stay-edit-location flex">
-                    <input type="text" value={stay.name ? stay.name : ''} name="name" placeholder="Enter stay name here" onChange={this.onHandleChange} />
-                    <input value={stay.loc.address ? stay.loc.address : ''} type="text" name="address" placeholder="Enter stay address here" onChange={this.onHandleChange} />
+                    <input title="Stay name" type="text" value={stay.name ? stay.name : ''} name="name" placeholder="Enter stay name here" onChange={this.onHandleChange} />
+                    <input title="Stay address" value={stay.loc.address ? stay.loc.address : ''} type="text" name="address" placeholder="Enter stay address here" onChange={this.onHandleChange} />
                 </div>
                 <div className="img-upload-container">
                     <Upload
@@ -202,7 +204,10 @@ class _StayEdit extends React.Component {
                 <div className="info-container">
 
                     <div className="selection-container flex">
-                        <input title='Guest capacity' type="number" value={stay.capacity ? stay.capacity : ''} name="capacity" onChange={this.onHandleChange} placeholder="Enter guest capacity" />
+                        <div className="input-container flex">
+                            <label htmlFor="guest">Guests:</label>
+                            <input id="guest" title='Guest capacity' min="0" type="number" value={stay.capacity ? stay.capacity : ''} name="capacity" onChange={this.onHandleChange} />
+                        </div>
                         <select value={stay.typeOfPlace} onChange={this.onHandleChange} name="typeOfPlace" id="">
                             <option value="Entire Place">Entire Place</option>
                             <option value="Private Room">Private Room</option>
@@ -218,11 +223,22 @@ class _StayEdit extends React.Component {
                             <option value="House">House</option>
                             <option value="Guesthouse">Guesthouse</option>
                         </select>
-
-                        <input onChange={this.onHandleChange} value={stay.facilites.bedrooms ? stay.facilites.bedrooms : ''} type="number" name="bedrooms" placeholder="Enter number of bedrooms" />
-                        <input onChange={this.onHandleChange} value={stay.facilites.beds ? stay.facilites.beds : ''} type="number" name="beds" placeholder="Enter number of beds" />
-                        <input onChange={this.onHandleChange} value={stay.facilites.bathrooms ? stay.facilites.bathrooms : ''} type="number" name="bathrooms" placeholder="Enter number of bathrooms" />
-                        <input onChange={this.onHandleChange} value={stay.price > 0 ? stay.price : ''} type="number" name="price" placeholder="Enter price" />
+                        <div className="input-container flex">
+                            <label htmlFor="bedrooms">Bedrooms:</label>
+                            <input id="bedrooms" onChange={this.onHandleChange} min="0" value={stay.facilites.bedrooms ? stay.facilites.bedrooms : ''} type="number" name="bedrooms" />
+                        </div >
+                        <div className="input-container flex">
+                            <label htmlFor="beds">Beds:</label>
+                            <input id="beds" onChange={this.onHandleChange} min="0" value={stay.facilites.beds ? stay.facilites.beds : ''} type="number" name="beds" />
+                        </div>
+                        <div className="input-container flex">
+                            <label htmlFor="bathrooms">Bathrooms:</label>
+                            <input id="bathrooms" onChange={this.onHandleChange} min="0" value={stay.facilites.bathrooms ? stay.facilites.bathrooms : ''} type="number" name="bathrooms" />
+                        </div>
+                        <div className="input-container flex">
+                            <label className="price-label" htmlFor="price">Price:<span>$</span></label>
+                            <input className="price-input" id="price" onChange={this.onHandleChange} min="0" value={stay.price > 0 ? stay.price : ''} type="number" name="price" />
+                        </div>
                     </div>
                     {/* ${stay.price}</div> */}
                     {/* <div className="stay-edit-perks">
@@ -234,16 +250,23 @@ class _StayEdit extends React.Component {
                             </ul>
                         </div> */}
                     <div className="summary-container">
-                        <textarea value={stay.summary ? stay.summary : ''} type="text" name="summary" cols="30" rows="30" onChange={this.onHandleChange} ></textarea>
+                        <textarea value={stay.summary ? stay.summary : ''} type="text" name="summary" onChange={this.onHandleChange} ></textarea>
                         <div className="stay-edit-amenities">
                             {amenities.map((amenity, idx) => {
-                                return <div className="amenity-checkbox flex" key={idx}><input onChange={this.onHandleChange} type="checkbox" checked={this.state.amenities[amenity]} name={amenity} />{amenity}</div>
+                                return <label htmlFor={idx} className="amenity-checkbox flex" key={idx}><input id={idx} onChange={this.onHandleChange} type="checkbox" checked={this.state.amenities[amenity]} name={amenity} />{amenity}</label>
                             })}
                         </div>
                     </div >
 
                 </div >
-                <div onClick={this.updateStay}>Save</div>
+                <div onClick={this.updateStay} className="btn-container">
+                    {utilService.getCells()}
+                    <div className="content">
+                        <button className="action-btn " >
+                            <span>Save</span>
+                        </button>
+                    </div>
+                </div>
             </main >
         )
     }

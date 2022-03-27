@@ -34,7 +34,7 @@ export const stayService = {
 
 
 // GET STAYS
-async function query(filterBy) {
+async function query(filterBy = []) {
   return await httpService.get('stay', filterBy)
 }
 
@@ -45,12 +45,12 @@ function getById(stayId) {
 
 // REMOVE
 function remove(stayId) {
-  return httpService.remove(`stay/${stayId}`)
+  return httpService.delete(`stay/${stayId}`)
 }
 
 // SAVE OR UPDATE STAY
 function save(stay) {
-  console.log('stay in stayService',stay);
+  console.log('stay in stayService', stay);
   if (stay._id) {
     // EDIT
     return httpService.put(`stay/${stay._id}`, stay)

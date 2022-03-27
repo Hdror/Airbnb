@@ -26,14 +26,14 @@ export function addStay(stay) {
 
 // REMOVE STAY
 export function removeStay(stayId) {
-  return (dispatch) => {
-    stayService.remove(stayId)
-      .then(() => {
-        dispatch({ type: 'REMOVE_STAY', stayId })
-      })
-      .catch((err) => {
-        console.log('Cannot remove stay', err)
-      })
+  return async (dispatch) => {
+    try {
+      await stayService.remove(stayId)
+      dispatch({ type: 'REMOVE_STAY', stayId })
+      // return stayToDelete
+    } catch (err) {
+      console.log('Cannot remove stay', err)
+    }
   }
 }
 
@@ -41,8 +41,9 @@ export function removeStay(stayId) {
 export function onUpdateStay(stay) {
   return async (dispatch) => {
     try {
-      const stayToSave = await stayService.save(stay)
-      dispatch({ type: 'UPDATE_STAY', stayToSave })
+      // const stayToSave = await stayService.save(stay)
+      await stayService.save(stay)
+      dispatch({ type: 'UPDATE_STAY', stay: stay })
       return stay
     } catch (err) {
       console.log('Cannot update stay', err)
