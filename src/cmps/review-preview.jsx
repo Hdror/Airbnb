@@ -6,7 +6,7 @@ export function ReviewPreview({ review }) {
     <div className='review-preview'>
       <div className='review-header flex'>
         <img src={review.by.imgUrl} />
-        <div>
+        <div className="review-by-content flex">
           <h3>{review.by.fullname}</h3>
           <h4>
             {utilService.formattedDates(review.date)}

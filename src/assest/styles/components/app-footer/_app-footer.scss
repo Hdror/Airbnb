@@ -68,7 +68,6 @@ footer {
     .footer-bottom {
         grid-column: 1/-1;
         justify-content: space-between;
-        margin: 0 5px;
         padding: 24px 0px;
         font-size: rem(14px);
 
@@ -87,7 +86,6 @@ footer {
 
         p {
             margin-right: 30px;
-            margin-left: 5px;
 
             .currency {
                 font-weight: 600;

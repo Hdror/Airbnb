@@ -69,11 +69,11 @@ class _AppFooter extends React.Component {
                         <div className='footer-bottom flex'>
                             <div className="flex">
                                 <p>© 2022 flairbnb Inc.</p>
-                                <span>·</span>
+                                {/* <span>·</span> */}
                                 <a className="clean-link" href="#"> <p>Privacy</p></a>
-                                <span>·</span>
+                                {/* <span>·</span> */}
                                 <a className="clean-link" href="#"> <p>Terms</p></a>
-                                <span>·</span>
+                                {/* <span>·</span> */}
                                 <a className="clean-link" href="#"> <p>Settings</p></a>
                             </div>
                             <div className="media-container flex">

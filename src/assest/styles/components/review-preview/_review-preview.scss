@@ -2,18 +2,24 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    margin:10px 0px;
+    margin: 10px 0px;
     .review-header {
         margin: 10px 0px;
-        gap:10px;
+        gap: 10px;
         font-size: rem(12px);
         font-family: f-light;
         img {
             width: 56px;
             border-radius: 50%;
         }
+        .review-by-content {
+            flex-direction: column;
+            justify-content: center;
+        }
     }
-    .review-content{
+
+    .review-content {
         font-family: f-light;
+        padding-right: 70px;
     }
 }

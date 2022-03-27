@@ -198,7 +198,6 @@ class _StayDetails extends React.Component {
     }
 }
 
-
 const mapDispatchToProps = {
     changePage,
     toggleModal,

@@ -8,7 +8,8 @@ export const utilService = {
   timeConverter,
   firstLetterToUpperCase,
   avgReviewRate,
-  getCells,
+  getAvgRatings,
+  getCells
 }
 
 function makeId(length = 6) {
@@ -88,12 +89,102 @@ function avgReviewRate(reviews) { // avg per review
   let sum = 0
   let stayAvgs = []
   reviews.map(review => {
-      sum = Object.values(review.ratings).reduce((sum, acc) => {
-          return sum + acc
-      }, 0) // returns an array of keys
-      stayAvgs.push(sum / 6)
+    sum = Object.values(review.ratings).reduce((sum, acc) => {
+      return sum + acc
+    }, 0) // returns an array of keys
+    stayAvgs.push(sum / 6)
   })
   return (stayAvgs.reduce((sum, acc) => {
-      return sum + acc
+    return sum + acc
   })) / stayAvgs.length
 }
+
+function getAvgRatingsByKey(reviews) {
+  // Array(reviews) -- object(review) -- object(ratings)
+  let newRtaings = {
+    cleanliness: 0,
+    location: 0,
+    accessibility: 0,
+    checkIn: 0,
+    communication: 0,
+    accuracy: 0,
+  }
+
+  reviews.forEach((review) => {
+    // console.log(review);
+    for (const key in review.ratings) {
+      // console.log(review.ratings);
+      // console.log(key);
+      newRtaings[key] += review.ratings[key]
+    }
+  })
+  // console.log(newRtaings)
+  return newRtaings
+}
+
+function getAvgRatings(reviews) {
+  let ratings = getAvgRatingsByKey(reviews)
+  let numOfReviews = reviews.length
+  return {
+    accuracy: ratings.accuracy / numOfReviews,
+    location: ratings.location / numOfReviews,
+    cleanliness: ratings.cleanliness / numOfReviews,
+    accessibility: ratings.accessibility / numOfReviews,
+    checkIn: ratings.checkIn / numOfReviews,
+    communication: ratings.communication / numOfReviews,
+  }
+}
+
+// function avgRatingsCleanliness(reviews) {
+//   let total = 0
+//   reviews.forEach(review => {
+//     total += review.ratings.cleanliness // getting right number
+//   })
+//   let avg = total / reviews.length
+//   return avg.toFixed(1)
+// }
+
+// function avgRatingsCommunication(reviews) {
+//   let total = 0
+//   reviews.forEach(review => {
+//     total += review.ratings.communication // getting right number
+//   })
+//   let avg = total / reviews.length
+//   return avg.toFixed(1)
+// }
+
+// function avgRatingsCheckIn(reviews) {
+//   let total = 0
+//   reviews.forEach(review => {
+//     total += review.ratings.checkIn // getting right number
+//   })
+//   let avg = total / reviews.length
+//   return avg.toFixed(1)
+// }
+
+// function avgRatingsAccuracyy(reviews) {
+//   let total = 0
+//   reviews.forEach(review => {
+//     total += review.ratings.accuracy // getting right number
+//   })
+//   let avg = total / reviews.length
+//   return avg.toFixed(1)
+// }
+
+// function avgRatingsAccessibility(reviews) {
+//   let total = 0
+//   reviews.forEach(review => {
+//     total += review.ratings.accessibility // getting right number
+//   })
+//   let avg = total / reviews.length
+//   return avg.toFixed(1)
+// }
+
+// function avgRatingsLocation(reviews) {
+//   let total = 0
+//   reviews.forEach(review => {
+//     total += review.ratings.location // getting right number
+//   })
+//   let avg = total / reviews.length
+//   return avg.toFixed(1)
+// }

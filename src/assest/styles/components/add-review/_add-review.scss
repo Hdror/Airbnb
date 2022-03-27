@@ -1,7 +1,7 @@
-.review-login-request{
+.review-login-request {
     display: flex;
     flex-direction: column;
-    margin-top:10px;
+    margin-top: 10px;
     margin-bottom: 30px;
     font-size: rem(24px);
 
@@ -21,7 +21,7 @@
 .add-review {
     width: 100%;
 
-    h2{
+    h2 {
         font-size: rem(24px);
     }
 
@@ -42,15 +42,29 @@
         }
     }
     .add-review-form {
-        padding:20px 0px;
+        padding: 20px 0px;
+        gap: 20px;
         .add-review-txtarea {
-            width:50%;
+            width: 400px;
+            height: 50px;
             border: 1px solid $clr7;
+            border-radius: 8px;
+            padding:12px;
         }
-        .add-review-txtarea::placeholder{
+        .add-review-txtarea::placeholder {
             font-family: f-light;
-            color:$clr2;
+            color: $clr2;
             font-size: rem(14px);
+        }
+        button {
+            width: 100px;
+            height: 50px;
+            background-color: #ff385c;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            font-size: rem(16px);
         }
     }
 }

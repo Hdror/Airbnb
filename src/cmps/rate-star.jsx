@@ -48,85 +48,92 @@ export class RateStar extends React.Component {
         if (isShown) return <Loader />
         return (
             <div className='review-rating-container'>
-                <div className='review-rating-item'>
-                    <div>
+
+                <div className="review-rating-line">
+
+                    <div className='review-rating-item'>
                         <h3>Location</h3>
+                        <ReactStars
+                            name='location'
+                            value={location}
+                            size={24}
+                            count={5}
+                            onChange={(value) => ratingChanged(value, 'location')}
+                            edit={isChangeable}
+                            activeColor='#FF385C'
+                        />
                     </div>
 
-                    <ReactStars
-                        name='location'
-                        value={location}
-                        size={24}
-                        count={5}
-                        onChange={(value) => ratingChanged(value, 'location')}
-                        edit={isChangeable}
-                        activeColor='#FF385C'
-                    />
+                    <div className='review-rating-item'>
+                        <h3>Accessibility</h3>
+                        <ReactStars
+                            name='accessibility'
+                            size={24}
+                            count={5}
+                            onChange={(value) => ratingChanged(value, 'accessibility')}
+                            value={value}
+                            edit={isChangeable}
+                            activeColor='#FF385C'
+                        />
+                    </div>
+
+                    <div className='review-rating-item'>
+                        <h3>Accuracy</h3>
+                        <ReactStars
+                            name='accuracy'
+                            size={24}
+                            count={5}
+                            onChange={(ev) => ratingChanged(ev, 'accuracy')}
+                            value={accuracy}
+                            edit={isChangeable}
+                            activeColor='#FF385C'
+                        />
+                    </div>
                 </div>
 
-                <div className='review-rating-item'>
-                    <h3>Accessibility</h3>
-                    <ReactStars
-                        name='accessibility'
-                        size={24}
-                        count={5}
-                        onChange={(value) => ratingChanged(value, 'accessibility')}
-                        value={value}
-                        edit={isChangeable}
-                        activeColor='#FF385C'
-                    />
+                <div className="review-rating-line">
+
+                    <div className='review-rating-item'>
+                        <h3>Check-in</h3>
+                        <ReactStars
+                            name='checkIn'
+                            size={24}
+                            count={5}
+                            onChange={(value) => ratingChanged(value, 'checkIn')}
+                            value={checkIn}
+                            edit={isChangeable}
+                            activeColor='#FF385C'
+                        />
+                    </div>
+
+                    <div className='review-rating-item'>
+                        <h3>Communication</h3>
+                        <ReactStars
+                            name='communication'
+                            size={24}
+                            count={5}
+                            onChange={(value) => ratingChanged(value, 'communication')}
+                            value={communication}
+                            edit={isChangeable}
+                            activeColor='#FF385C'
+                        />
+                    </div>
+
+                    <div className='review-rating-item'>
+                        <h3>Cleanliness</h3>
+                        <ReactStars
+                            name='cleanliness'
+                            size={24}
+                            count={5}
+                            onChange={(value) => ratingChanged(value, 'cleanliness')}
+                            value={cleanliness}
+                            edit={isChangeable}
+                            activeColor='#FF385C'
+                        />
+                    </div>
+
                 </div>
 
-                <div className='review-rating-item'>
-                    <h3>Accuracy</h3>
-                    <ReactStars
-                        name='accuracy'
-                        size={24}
-                        count={5}
-                        onChange={(ev) => ratingChanged(ev, 'accuracy')}
-                        value={accuracy}
-                        edit={isChangeable}
-                        activeColor='#FF385C'
-                    />
-                </div>
-
-                <div className='review-rating-item'>
-                    <h3>Check-in</h3>
-                    <ReactStars
-                        name='checkIn'
-                        size={24}
-                        count={5}
-                        onChange={(value) => ratingChanged(value, 'checkIn')}
-                        value={checkIn}
-                        edit={isChangeable}
-                        activeColor='#FF385C'
-                    />
-                </div>
-
-                <div className='review-rating-item'>
-                    <h3>Communication</h3>
-                    <ReactStars
-                        name='communication'
-                        size={24}
-                        count={5}
-                        onChange={(value) => ratingChanged(value, 'communication')}
-                        value={communication}
-                        edit={isChangeable}
-                        activeColor='#FF385C'
-                    />
-                </div>
-                <div className='review-rating-item'>
-                    <h3>Cleanliness</h3>
-                    <ReactStars
-                        name='cleanliness'
-                        size={24}
-                        count={5}
-                        onChange={(value) => ratingChanged(value, 'cleanliness')}
-                        value={cleanliness}
-                        edit={isChangeable}
-                        activeColor='#FF385C'
-                    />
-                </div>
             </div>
         );
     }
