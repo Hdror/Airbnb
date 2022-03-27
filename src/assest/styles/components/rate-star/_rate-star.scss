@@ -1,15 +1,24 @@
-.review-rating-container{
-    display:flex;
+.review-rating-container {
+    margin:20px 0px;
+    display: flex;
     flex-wrap: wrap;
-    .review-rating-item{
-        padding: 0px 12px;
-        margin:20px 0px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        h3{
-            font-size: rem(14px);
+
+    .review-rating-line {
+
+        .review-rating-item {
+            margin-right: 200px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            justify-content: space-between;
+            gap:100px;
+
+            h3 {
+                font-size: rem(14px);
+                width: 150px;
+            }
         }
     }
 }
