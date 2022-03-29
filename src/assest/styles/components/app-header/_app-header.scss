@@ -84,7 +84,13 @@ header {
     }
 
     .trip-build-container {
-      width: 600px;
+      width: 300px;
+      @include for-normal-layout {
+        width: 400px;
+      }
+      @include for-large-layout{
+        width: 600px;
+      }
       transform: translate(-50%, -50%) scale(0.5);
       transition: width 0.15s, top 0.15s, transform 0.15s;
       box-shadow: 0 0 3px 2px $clr7;
@@ -145,13 +151,18 @@ header {
   }
 
   .logo-container {
-    padding: 20px 0px;
+    // padding: 20px 0px;
+    height: 100%;
     align-items: center;
 
     h2 {
-      font-size: rem(24px);
-      font-family: f-bold;
-      color: $clr1;
+      display: none;
+      @include for-narrow-layout {
+        display: flex;
+        font-size: rem(24px);
+        font-family: f-bold;
+        color: $clr1;
+      }
     }
 
     .logo {
@@ -162,13 +173,20 @@ header {
   }
 
   .menu-actions {
-    gap: 20px;
+    gap: 10px;
+    @include for-normal-layout{
+      gap: 20px;
+    }
     padding: 20px 0px;
     position: relative;
     .header-nav {
+      display: none;
+      @include for-tablet-layout {
+        display: flex;
+      }
       padding: 0px 12px;
       &:hover {
-        background-color: #0001;
+        background-color: #00000011;
         border-radius: 100vw;
       }
     }
@@ -178,6 +196,19 @@ header {
       font-size: rem(14px);
       line-height: 1.685;
       align-items: center;
+      &.explore-link {
+        display: flex;
+        @include for-tablet-layout{
+          display: none;
+        }
+      }
+      &.host-link{
+        display: none;
+        @include for-normal-layout{
+          display: flex;
+        }
+
+      }
     }
 
     img {
@@ -221,11 +252,20 @@ header {
     margin: auto;
 
     .trip-location-selector {
-      width: 270px;
+      width: 120px;
       flex-direction: column;
       justify-content: space-evenly;
       align-items: center;
-      padding: 14px 0;
+      padding-inline-start: 16px;
+      padding-inline-end: 10px;
+
+      @include for-narrow-layout {
+        width: 243px;
+      }
+      @include for-tablet-layout {
+        padding: 14px 0;
+        width: 270px;
+      }
 
       .search-link-modal {
         position: absolute;
@@ -342,8 +382,11 @@ header {
         padding: 14px 0px;
 
         > div {
-          padding: 0px 24px 2px;
           border-left: 1px solid $clr7;
+          padding: 0px 11px 2px;
+          @include for-tablet-layout {
+            padding: 0px 24px 2px;
+          }
         }
 
         &:hover {
@@ -363,12 +406,17 @@ header {
           font-size: rem(14px);
           border-left: 1px solid #ddd;
           color: $clr8;
-          padding: 0px 24px;
+          padding: 0px 10px;
+          @include for-tablet-layout {
+            padding: 0px 24px;
+          }
         }
 
         :not(:last-child) {
-          width: 170px;
           font-size: rem(12px);
+          @include for-tablet-layout {
+            width: 170px;
+          }
         }
       }
       .search-btn-container {

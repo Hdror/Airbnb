@@ -22,13 +22,17 @@
   .dropdown-container {
     padding: 15px 0px;
     margin: 0;
-    width: 200px;
+    width: 117px;
+    @include for-narrow-layout{
+      width: 200px;
+
+    }
 
     li {
       font-family: f-light;
       font-size: rem(12px);
-      padding: 10px 0px;
-      padding-left: 15px;
+      padding: 10px 15px;
+      // padding-left: 15px;
       color: $clr2;
       width: 100%;
 

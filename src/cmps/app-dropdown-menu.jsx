@@ -21,6 +21,7 @@ class _MenuDropDown extends React.Component {
                 <ul className="dropdown-container" onClick={()=>{this.props.toggleModal()}}>
                     {!user && < Link className="clean-link clean-list" to="/login"><li>Log in</li></Link>}
                     {!user && <Link className="clean-link clean-list" to="/login"><li>Sign up</li></Link>}
+                    <Link className="explore-link clean-link clean-list" to="/stay"><li>Explore</li></Link>
                     {user && user.isHost && <Link className="clean-link clean-list" to="/host"><li>Host your home</li></Link>}
                     {user && <Link className="orders-link clean-link clean-list" to="/orders"><li>Orders {this.props.unreadOrdersCount && this.props.user ? <div className="order-made">{this.props.unreadOrdersCount}</div> : ''}</li></Link>}
                     {user && <Link className="clean-link clean-list" to="/wish-list"><li>Wishlist</li></Link>}

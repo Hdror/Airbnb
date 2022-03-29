@@ -1,29 +1,56 @@
 .host-stay-container {
+    display: flex;
+    overflow-x: scroll;
+    width: 100%;
     border-radius: 8px;
+    border: 1px solid #dddddd;
+    @include for-normal-layout {
+        display: block;
+        border: none;
+    }
     .table-headers {
         display: grid;
-        grid-template-columns: repeat(7, minmax(100px, 1fr));
-        background-color: $clr12;
-        border-radius: 5px;
+        grid-template-rows: repeat(7, minmax(100px, 1fr));
+        grid-template-columns: repeat(1, minmax(100px, 150px));
         padding: 10px;
+        text-align: center;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        @include for-normal-layout {
+            grid-template-columns: repeat(7, minmax(100px, 1fr));
+            grid-template-rows: none;
+            padding: 10px 5px;
+            border-radius: 5px;
+        }
+        background-color: $clr12;
         justify-items: center;
+        align-items: center;
     }
 
     .host-stay-info {
         display: grid;
         justify-items: center;
-        grid-template-columns: repeat(7, minmax(50px, 1fr));
-        box-shadow: 0 1px 0 $clr8;
-        padding: 5px 0px 5px 10px;
+        text-align: center;
+        grid-template-rows: repeat(7, minmax(100px, 1fr));
+        grid-template-columns: repeat(1, minmax(100px, 150px));
+        padding: 5px 10px;
+        border-right: 1px solid $clr7;
+        @include for-normal-layout {
+            grid-template-columns: repeat(7, minmax(100px, 1fr));
+            grid-template-rows: none;
+            padding: 5px 0px 5px 5px;
+            box-shadow: 0 1px 0 $clr7;
+            border: none;
+        }
         align-items: center;
         font-size: rem(14px);
         color: $clr3;
         div {
             white-space: nowrap;
-            overflow: hidden;
             text-overflow: ellipsis;
             &:first-of-type {
                 width: 100%;
+                overflow: hidden;
             }
             &:last-of-type {
                 cursor: pointer;
@@ -33,14 +60,16 @@
                 border: 1px solid $clr5;
                 transition: 0.3s;
                 color: $clr5;
-                justify-self: end;
+                @include for-normal-layout {
+                    justify-self: end;
+                }
                 &::before {
                     content: "X";
                 }
                 @include for-tablet-layout {
                     &::before {
                         content: "Remove stay";
-                    }  
+                    }
                 }
                 &:hover {
                     border: 1px solid $clr2;

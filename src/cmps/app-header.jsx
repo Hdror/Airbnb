@@ -1,16 +1,13 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 
-// STORE
 import { connect } from 'react-redux'
 import { toggleModal } from '../store/page.action.js'
 import { loadOrders } from '../store/order/order.actions.js'
 
-// COMPONENT
 import { TripFilter } from './trip-filter.jsx'
 import { MenuDropDown } from './app-dropdown-menu.jsx'
 
-// SVG
 import menu from '../assest/svg/app-header/menu.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAirbnb } from '@fortawesome/free-brands-svg-icons'
@@ -22,11 +19,11 @@ class _AppHeader extends React.Component {
         MenuDropDownModal: false,
         isMiniHeader: false,
     }
-    // STORE FOR APP LAYOUT - HOLDING CURRPAGE AND MINI HEADER (FOR NOW)
 
     componentDidMount() {
-        if (window.innerWidth < 800) this.setState({ isMiniHeader: true })
-        else window.addEventListener("scroll", this.checkScrollY)
+        // if (window.innerWidth < 800) this.setState({ isMiniHeader: true })
+        // else
+         window.addEventListener("scroll", this.checkScrollY)
         // this.props.loadOrders()
     }
 
@@ -101,7 +98,7 @@ class _AppHeader extends React.Component {
                         </Link>
                         <div className="menu-actions flex">
                             <NavLink className="header-nav clean-link" to="/stay">Explore</NavLink>
-                            <NavLink className="header-nav clean-link" to="/host">Become a host</NavLink>
+                            <NavLink className="host-link header-nav clean-link" to="/host">Become a host</NavLink>
                             <div className="menu-wrapper flex" onClick={() => { this.props.isModalOpen ? this.props.toggleModal() : this.props.toggleModal('menuDropDownModal') }}>
                                 {this.props.unreadOrdersCount && this.props.user ? <div className="order-made">{this.props.unreadOrdersCount}</div> : ''}
                                 <img className="menu-icon" src={menu} alt="" />
