@@ -16,9 +16,11 @@
         .review-by-content {
             flex-direction: column;
             justify-content: center;
-            p{
-                line-height: 24px;
-            }
+        }
+    }
+    .review-content{
+        p{
+            line-height: 24px;
         }
     }
 }
