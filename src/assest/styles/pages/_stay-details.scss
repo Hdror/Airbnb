@@ -175,6 +175,7 @@
         // margin-block-end: 50px;
         h1 {
           margin-block-end: 30px;
+          line-height: 1.5;
         }
         ul {
           padding: 0;
@@ -193,6 +194,8 @@
           break-inside: avoid;
           line-height: 20px;
           padding-block-end: 16px;
+          overflow: hidden;
+          white-space: nowrap;
         }
       }
 
@@ -276,7 +279,7 @@
     font-weight: 600 !important;
     position: absolute;
     left: 50%;
-    top: 40%;
+    top: 50%;
     transform: translate(-50%, 0);
     flex-direction: column;
     z-index: 10;

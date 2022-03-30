@@ -4,22 +4,21 @@
     flex-wrap: wrap;
     margin: 10px 0px;
     .review-header {
-        margin: 10px 0px;
+        margin: 16px 0px;
         gap: 10px;
         font-size: rem(12px);
         font-family: f-light;
         img {
             width: 56px;
+            height:56px ;
             border-radius: 50%;
         }
         .review-by-content {
             flex-direction: column;
             justify-content: center;
+            p{
+                line-height: 24px;
+            }
         }
-    }
-
-    .review-content {
-        font-family: f-light;
-        padding-right: 70px;
     }
 }

@@ -60,14 +60,13 @@
         @include for-normal-layout {
           width: 130px;
         }
-        // width: 140px;
         height: 3px;
         background-color: $clr7;
 
         .review-avg-width {
           position: absolute;
           height: 3px;
-          z-index: 100;
+          z-index: 10;
           left: 0;
           background-color: $clr2;
         }
@@ -86,8 +85,20 @@
   .reviews-container {
     display: flex;
     flex-wrap: wrap;
+    @include for-narrow-layout{
+      justify-content: space-between;
+    }
     .review-card {
-      width: 50%;
+      margin-right: 5.3333%;
+      @include for-narrow-layout {
+        margin-right: 0.3333%;
+        width: 47.6667%;
+      }
+
+      @include for-normal-layout {
+        margin-right: 8.3333%;
+        width: 41.6667%;
+      }
     }
   }
 }

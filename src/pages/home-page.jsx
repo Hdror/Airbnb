@@ -35,20 +35,20 @@ export class _HomePage extends React.Component {
                     <p>Top Rated</p>
                     <div className="card-container">
                         <div className="img-container">
-                            <Link to="/stay/61f1667dbb734c19efd4088a"><img src="https://a0.muscache.com/im/pictures/268b4a9d-42b5-46e1-89b3-163e4be1883d.jpg?im_w=1440" alt="" /></Link>
-                            <p>New cozy cottage</p>
+                            <Link to="/stay/62444cdaa9e274eca407d356"><img src="https://res.cloudinary.com/dcys8pbcf/image/upload/v1648643221/e7inwzyqslyg8fokwsnx.webp" alt="" /></Link>
+                            <p>East Sooke Tree Hous</p>
                         </div>
                         <div className="img-container">
-                            <Link to="/stay/61f1667dbb734c19efd40890"><img src="https://a0.muscache.com/im/pictures/751a92f0-bdc9-48a0-84ed-b4bc735164d9.jpg?im_w=720" alt="" /></Link>
-                            <p>Cabin waterfront retreat</p>
+                            <Link to="/stay/62445a88b5343a057b8223d8"><img src="https://res.cloudinary.com/dcys8pbcf/image/upload/v1648646766/db9iswyleuhkedze6vwc.webp" alt="" /></Link>
+                            <p>Minimalist Studio in Lisbon</p>
                         </div>
                         <div className="img-container">
-                            <Link to="/stay/61f1667dbb734c19efd4088c"><img src="https://a0.muscache.com/im/pictures/71f014d7-d1e6-46ab-abf7-e373147e97e2.jpg?im_w=1440" alt="" /></Link>
-                            <p>Sleeping in a unique ship</p>
+                            <Link to="/stay/62444c2fa9e274eca407d355"><img src="https://res.cloudinary.com/dcys8pbcf/image/upload/v1648643017/qumctls4nxkpdsfwnwun.webp" alt="" /></Link>
+                            <p>Luxury Exec Suite</p>
                         </div>
                         <div className="img-container">
-                            <Link to="/stay/61f1667dbb734c19efd4088e"><img src="https://a0.muscache.com/im/pictures/miso/Hosting-49381739/original/ddca4b48-7044-4e29-8978-540dc9415df0.jpeg?im_w=1200" alt="" /></Link>
-                            <p>Come catch a Broadway Show</p>
+                            <Link to="/stay/61f66377009fc58dcc44a4bd"><img src="https://res.cloudinary.com/dcys8pbcf/image/upload/v1643537234/ztru2qavdnneb8xbtbzb.webp" alt="" /></Link>
+                            <p>Jeanettes for 6 persons.</p>
                         </div>
                     </div>
                 </div>

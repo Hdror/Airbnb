@@ -23,6 +23,7 @@ class _HostPage extends React.Component {
     }
 
     componentDidMount() {
+        window.scrollTo(0, 0)
         this.props.loadStays()
         if (!this.props.user) {
             this.props.login(this.state.superGuest)
