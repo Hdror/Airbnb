@@ -21,9 +21,7 @@ export function ReviewList({ stay }) {
                 <h3>{stay.avgRate} · {stay.reviews.length} reviews</h3>
             </div>
             <div className="review-ratings-avg-container">
-
                 <div className="review-ratings-avg-holder">
-
                     <div className="review-ratings-avg">
                         <div>Cleanliness</div>
                         <div className="graph-review">
@@ -43,7 +41,6 @@ export function ReviewList({ stay }) {
                             {<span>{avg.communication.toFixed(1)}</span>}
                         </div>
                     </div>
-
                     <div className="review-ratings-avg">
                         <div>Check-In</div>
                         <div className="graph-review">
@@ -54,9 +51,6 @@ export function ReviewList({ stay }) {
                         </div>
                     </div>
 
-                </div>
-
-                <div className="review-ratings-avg-holder">
 
                     <div className="review-ratings-avg">
                         <div>Location</div>
@@ -66,6 +60,7 @@ export function ReviewList({ stay }) {
                             </div>
                             {<span>{avg.location.toFixed(1)}</span>}
                         </div>
+
                     </div>
 
                     <div className="review-ratings-avg">
@@ -89,6 +84,7 @@ export function ReviewList({ stay }) {
                     </div>
 
                 </div>
+
 
             </div>
             <div className="reviews-container">

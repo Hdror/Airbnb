@@ -23,7 +23,7 @@ class _AppHeader extends React.Component {
     componentDidMount() {
         // if (window.innerWidth < 800) this.setState({ isMiniHeader: true })
         // else
-         window.addEventListener("scroll", this.checkScrollY)
+        window.addEventListener("scroll", this.checkScrollY)
         // this.props.loadOrders()
     }
 

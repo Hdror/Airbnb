@@ -1,75 +1,93 @@
 .review-list {
+  margin: 20px 0px;
+  .review-list-header {
+    font-size: rem(18px);
+    font-family: f-light;
+    display: flex;
+    gap: 10px;
+    img {
+      width: 18px;
+      filter: invert(56%) sepia(80%) saturate(6258%) hue-rotate(328deg)
+        brightness(100%) contrast(103%);
+    }
+  }
+
+  .review-ratings-avg-container {
     margin: 20px 0px;
-    .review-list-header {
-        font-size: rem(18px);
-        font-family: f-light;
-        display: flex;
-        gap: 10px;
-        img {
-            width: 18px;
-            filter: invert(56%) sepia(80%) saturate(6258%) hue-rotate(328deg) brightness(100%) contrast(103%);
-        }
+    font-family: f-light;
+    font-size: rem(16px);
+    // display: flex;
+    gap: 10%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .review-ratings-avg-holder {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      // margin-right: 10%;
+      @include for-narrow-layout {
+        flex-direction: row;
+      }
     }
+    .review-ratings-avg {
+      width: unset;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 5px 8px;
+      margin-right: 5.3333%;
+      @include for-narrow-layout {
+        margin-right: 0.3333%;
+        width: 47.6667%;
+      }
 
-    .review-ratings-avg-container {
-        margin: 20px 0px;
-        font-family: f-light;
-        font-size: rem(16px);
+      @include for-normal-layout {
+        margin-right: 8.3333%;
+        width: 41.6667%;
+      }
+
+      .graph-review {
         display: flex;
-        gap: 10%;
-        flex-wrap: wrap;
-        justify-content: space-between;
+        flex-direction: row;
+        align-items: center;
+      }
 
-        .review-ratings-avg-holder {
-            display: flex;
-            flex-direction: column;
-            margin-right: 10%;
+      .review-avg-full-width {
+        position: relative;
+        width: 60px;
+        @include for-normal-layout {
+          width: 130px;
         }
-        .review-ratings-avg {
-            display: flex;
-            align-items: center;
-            padding: 5px 0px;
+        // width: 140px;
+        height: 3px;
+        background-color: $clr7;
 
-            :first-child {
-                width: 130px;
-            }
-
-            .graph-review {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-            }
-
-            .review-avg-full-width {
-                position: relative;
-                width: 140px;
-                height: 3px;
-                background-color: $clr7;
-
-                .review-avg-width {
-                    position: absolute;
-                    height: 3px;
-                    z-index: 100;
-                    left: 0;
-                    background-color: $clr2;
-                }
-            }
-
-            span {
-                font-family: f-medium;
-                font-size: rem(12px);
-                color: $clr2;
-                margin-left: 8px;
-                width: 20px;
-            }
+        .review-avg-width {
+          position: absolute;
+          height: 3px;
+          z-index: 100;
+          left: 0;
+          background-color: $clr2;
         }
+      }
+
+      span {
+        font-family: f-medium;
+        font-size: rem(12px);
+        color: $clr2;
+        margin-left: 8px;
+        width: 20px;
+      }
     }
+  }
 
-    .reviews-container {
-        display: flex;
-        flex-wrap: wrap;
-        .review-card {
-            width: 50%;
-        }
+  .reviews-container {
+    display: flex;
+    flex-wrap: wrap;
+    .review-card {
+      width: 50%;
     }
+  }
 }
