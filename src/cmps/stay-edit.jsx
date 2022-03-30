@@ -139,7 +139,7 @@ class _StayEdit extends React.Component {
                 'Free parking': false,
             }
         })
-       
+
 
     }
 
@@ -218,7 +218,6 @@ class _StayEdit extends React.Component {
                         <select value={stay.type} onChange={this.onHandleChange} name="type" id="">
                             <option value="Loft">Loft</option>
                             <option value="Apartment">Apartment</option>
-                            <option value="Shared Room">Shared Room</option>
                             <option value="Hotel">Hotel</option>
                             <option value="House">House</option>
                             <option value="Guesthouse">Guesthouse</option>
