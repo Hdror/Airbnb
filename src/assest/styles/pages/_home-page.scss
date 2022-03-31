@@ -49,13 +49,18 @@
         gap: 20px;
       }
 
-      .img-container {
-        aspect-ratio: 1;
-        position: relative;
-        img {
-          height: 100%;
-          border-radius: 15px;
-          object-fit: cover;
+      .card {
+        // aspect-ratio: 1;
+      
+        // position: relative;
+        .img-container{
+
+          @include aspect-ratio(1,1);
+          img {
+            height: 100%;
+            border-radius: 15px;
+            object-fit: cover;
+          }
         }
 
         p {
