@@ -9,7 +9,7 @@ A one page application, built with React, Redux, Node.js, SASS.
 
 ## Home Page Screenshots
 
-![App Screenshot](https://res.cloudinary.com/dcys8pbcf/image/upload/v1649080257/readme_lxmpyz.png)
+![App Screenshot](https://res.cloudinary.com/dcys8pbcf/image/upload/v1649093191/fbnb_guw4mh.jpg)
 
 
 ## Tech Stack
