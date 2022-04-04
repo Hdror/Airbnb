@@ -4,6 +4,7 @@ Welcome to our Airbnb-like project: 'Flairbnb'.
 A one page application, built with React, Redux, Node.js, SASS. 
 
  **Visit end-to-end web application in the link below:**
+ 
  *https://flair-bnb.herokuapp.com/#/* 
 
 ## Home Page Screenshots
