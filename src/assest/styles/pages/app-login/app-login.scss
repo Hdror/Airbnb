@@ -14,6 +14,46 @@
     margin-top: 40px;
     border: 1px solid $clr7;
     display: flex;
+    position: relative;
+    .phone-number-modal {
+      position: absolute;
+      z-index: 5;
+      padding: 40px 0;
+      background-color: $clr5;
+      border-radius: 12px;
+      left: 50%;
+      transform: translate(-50%, 60%);
+      box-shadow: rgb(0 0 0 / 15%) 0px 10px 37px;
+      border: 0.5px solid rgba(118, 118, 118, 0.28);
+      p {
+        margin-block-end: 20px;
+        white-space: nowrap;
+        padding: 0px 40px 30px;
+        border-bottom: 1px solid #b4b4b4;
+      }
+
+      .input-submit-container {
+        padding: 0 40px;
+        form{
+          display: flex;
+          justify-content: space-between;
+        }
+        .login-form-input {
+          padding: 12px;
+          border: 1px solid #b4b4b4;
+          border-radius: 10px;
+        }
+        .submit-btn{
+          padding: 10px 60px;
+          background-color: $clr1;
+          color: $clr5;
+          border-radius: 8px;
+          font-size: rem(14px);
+          cursor: pointer;
+          border: unset;
+        }
+      }
+    }
 
     .login-form-container {
       .login-page-header {

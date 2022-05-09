@@ -18,7 +18,8 @@ const STORAGE_KEY_LOGGEDIN = 'loggedinUser'
 window.us = userService
 
 async function login(credentials) {
-  const user = await httpService.post(`auth/login`, credentials)
+  const user = !credentials.phonenumber ? await httpService.post(`auth/google-login`, credentials)
+    : await httpService.post(`auth/login`, credentials)
   if (user) {
     localStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
     return user

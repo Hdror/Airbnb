@@ -10,7 +10,8 @@ const initialState = {
     priceModal: false,
     datePickerModal: false,
     reserveGuestsModal: false,
-    searchSuggestion: false
+    searchSuggestion: false,
+    googlePhoneNumber: false
   }
 }
 
@@ -23,7 +24,8 @@ const closeModalState = {
   priceModal: false,
   datePickerModal: false,
   reserveGuestsModal: false,
-  searchSuggestion: false
+  searchSuggestion: false,
+  googlePhoneNumber: false
 }
 
 export function pageReducer(state = initialState, action) {

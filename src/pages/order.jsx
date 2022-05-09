@@ -48,7 +48,7 @@ class _Orders extends React.Component {
 
     render() {
         const { orders, stays } = this.props
-        if (!orders.length) return <Loader />
+        if (!orders.length) return <main className="page main-container"> <Loader /> </main>
         return (
             <section className="page main-container">
                 <div className="user-order-container">

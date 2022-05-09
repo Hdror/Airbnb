@@ -1,0 +1,31 @@
+.admin-page {
+    padding-top: 20px;
+    .admin-page-container {
+        position: relative;
+
+        h1 {
+            padding-block-end: 20px;
+            box-shadow: 0 1px 0 0 $clr11;
+            font-weight: unset;
+            margin-block-end: 25px
+        }
+        .back-btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: 1px solid $clr7;
+            position: absolute;
+            right: 0;
+            top: 0;
+            transition: ease-in-out 0.15s;
+            cursor: pointer;
+            &:hover{
+                border-color: $clr10;
+                transition: ease-in-out 0.15s;
+            }
+            &:active{
+                border-style:inset;
+                box-shadow: 0 0 5px -1px rgba(0,0,0,0.6)
+            }
+        }
+    }
+}
