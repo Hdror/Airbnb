@@ -99,6 +99,7 @@ class _AppHeader extends React.Component {
                         <div className="menu-actions flex">
                             <NavLink className="header-nav clean-link" to="/stay">Explore</NavLink>
                             <NavLink className="host-link header-nav clean-link" to="/host">Become a host</NavLink>
+                            {user && user.isAdmin && <NavLink className="header-nav clean-link" to="/admin">Admin panel</NavLink>}
                             <div className="menu-wrapper flex" onClick={() => { this.props.isModalOpen ? this.props.toggleModal() : this.props.toggleModal('menuDropDownModal') }}>
                                 {this.props.unreadOrdersCount && this.props.user ? <div className="order-made">{this.props.unreadOrdersCount}</div> : ''}
                                 <img className="menu-icon" src={menu} alt="" />

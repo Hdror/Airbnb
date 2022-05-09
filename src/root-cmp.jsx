@@ -16,6 +16,7 @@ import { LoginSignup } from './pages/login-signup.jsx'
 import { Orders } from './pages/order.jsx'
 import { StayEdit } from './cmps/stay-edit.jsx'
 import { Wishlist } from './pages/wishlist.jsx'
+import { AdminPage } from './pages/admin-page.jsx'
 
 
 export class _RootCmp extends React.Component {
@@ -29,6 +30,7 @@ export class _RootCmp extends React.Component {
           {/* <Route component={StayEdit} path="/stay-edit/:stayId" /> */}
           <Route component={StayDetails} path="/stay/:stayId" />
           <Route component={StayEdit} path="/stay-edit/" />
+          <Route component={AdminPage} path="/admin" />
           <Route component={StayApp} path="/stay" />
           <Route component={LoginSignup} path="/login" />
           <Route component={Orders} path="/orders" />

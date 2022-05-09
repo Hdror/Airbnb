@@ -13,7 +13,8 @@ export function login(credentials) {
             })
             return user
         } catch (err) {
-            console.log('Could not Signin', err);
+            if (credentials.phoneNumber) console.log('Could not Signin', err);
+            else dispatch({ type: 'OPEN_MODAL', modalName:'googlePhoneNumber'})
         }
 
     }

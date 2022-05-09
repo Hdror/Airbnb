@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import GoogleLogin from 'react-google-login';
 
 // STORE
 import { connect } from 'react-redux'
@@ -19,7 +20,6 @@ class _LoginSignup extends Component {
     componentDidMount() {
         window.scrollTo(0, 0)
         this.props.changePage('login')
-        // if (this.props.user) this.props.history.push('/')
     }
 
     toggleSignup = () => {
@@ -47,8 +47,10 @@ class _LoginSignup extends Component {
     }
 
     onLogin = async (ev) => {
-        ev.preventDefault()
-        if (!this.state.credentials.email || !this.state.credentials.phonenumber) return
+        if (ev) {
+            var isGoogleLogIn = true
+            ev.preventDefault()
+        } else isGoogleLogIn = true
         try {
             let user = await this.props.login(this.state.credentials);
             if (user) {
@@ -67,9 +69,7 @@ class _LoginSignup extends Component {
             !this.state.credentials.phonenumber ||
             !this.state.credentials.fullname
         ) return
-
         ev.preventDefault()
-
         try {
             this.props.signup(this.state.credentials)
             this.props.history.push('/')
@@ -77,7 +77,10 @@ class _LoginSignup extends Component {
             console.log('error:', err)
         }
         this.clearState()
-
+    }
+    
+    responseGoogle = (response) => {
+        this.setState({ credentials: { ...this.state.credentials, email: response.profileObj.email, fullname: response.profileObj.name } }, () => this.onLogin())
     }
 
     render() {
@@ -85,6 +88,23 @@ class _LoginSignup extends Component {
         return (
             <section className='main-container page login-page'>
                 <div className='login-page-container'>
+                    {this.props.modalState.googlePhoneNumber && <div className="phone-number-modal">
+                        <p>Please enter your phone number to complete the sign up process</p>
+                        <div className="input-submit-container">
+                            <form onSubmit={this.onSignup}>
+                                <input
+                                    className='login-form-input'
+                                    type='tel'
+                                    name='phonenumber'
+                                    placeholder='Phone number'
+                                    value={phonenumber}
+                                    onChange={this.handleChange}
+                                    required
+                                />
+                                <button className="submit-btn" type="submit">Submit</button>
+                            </form>
+                        </div>
+                    </div>}
                     {!isSignup && (
                         <div className='login-form-container'>
                             <div className="login-page-header"><h2>Log in or sign up</h2></div>
@@ -112,6 +132,11 @@ class _LoginSignup extends Component {
                                         required
                                     />
                                 </div>
+
+                                <GoogleLogin clientId="788195606858-1cfjtluvtl6bgs3h2khemue184a7hs27.apps.googleusercontent.com"
+                                    onSuccess={this.responseGoogle}
+                                    onFailure={this.responseGoogle}
+                                    cookiePolicy={'single_host_origin'} />
                                 <div className='login-form-actions'>
                                     <small>We’ll call or text you to confirm your number. Standard message and data rates apply. <span>Privacy Policy</span></small>
                                     <div className="signin-btn-container">
@@ -180,6 +205,7 @@ class _LoginSignup extends Component {
 function mapStateToProps(state) {
     return {
         user: state.userModule.user,
+        modalState: state.pageModule.modalState
     }
 }
 const mapDispatchToProps = {

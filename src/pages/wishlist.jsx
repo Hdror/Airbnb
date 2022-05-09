@@ -27,7 +27,7 @@ export class _Wishlist extends React.Component {
 
     render() {
         const { likedStays } = this.state
-        if (!likedStays.length) return <Loader />
+        if (!likedStays.length) return <main className="page main-container"> <Loader /> </main>
         return <main className="page main-container">
             <div className="wishlist">
                 <h1>Your favorite stays</h1>

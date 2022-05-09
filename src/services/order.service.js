@@ -7,7 +7,9 @@ export const orderService = {
     query,
     save,
     getById,
-    remove
+    remove,
+    getStatistics,
+    getStatisticsByCity
 }
 
 // GET orderS
@@ -42,4 +44,14 @@ async function getById(orderId) {
 async function remove(orderId) {
     await httpService.delete(`order/${orderId}`)
     //  storageService.remove(STORAGE_KEY, orderId)
+}
+
+async function getStatistics() {
+    const statistics = await httpService.get(`statistics`)
+    return statistics
+}
+
+async function getStatisticsByCity(cityName) {
+    const statistics = await httpService.get(`statistics/${cityName}`)
+    return statistics
 }
