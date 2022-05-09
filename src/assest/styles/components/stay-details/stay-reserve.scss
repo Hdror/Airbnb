@@ -4,9 +4,11 @@
   padding: 8px;
   margin: 0px auto 10px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
-@include for-narrow-layout{
-  padding: 20px;
-}
+
+  @include for-narrow-layout {
+    padding: 20px;
+  }
+
   span {
     padding: 0 0;
     margin: 0 0;
@@ -19,13 +21,16 @@
 
 .order-form-header {
   margin-block-start: 10px;
+
   @include for-narrow-layout {
     display: flex;
   }
+
   align-items: center;
   justify-content: space-between;
   width: 100%;
   margin-block-end: 30px;
+
   .reserve-ratings {
     font-family: f-light;
     font-weight: 500;
@@ -34,9 +39,9 @@
   img {
     width: 12px;
     height: 12px;
-    filter: invert(56%) sepia(80%) saturate(6258%) hue-rotate(328deg)
-      brightness(100%) contrast(103%);
+    filter: invert(56%) sepia(80%) saturate(6258%) hue-rotate(328deg) brightness(100%) contrast(103%);
   }
+
   .dot {
     color: $clr2;
   }
@@ -68,7 +73,7 @@
   flex-direction: column;
   gap: 5px;
   padding: 7px 12px;
-  z-index: -99999999;
+
   &:last-of-type {
     border-top: 1px solid #00000050;
   }
@@ -98,9 +103,11 @@
   gap: 5px;
   border-top: 1px solid #00000050;
   padding: 7px 12px;
+
   :hover {
     cursor: pointer;
   }
+
   input {
     border: none;
     padding: 0 0;
@@ -135,17 +142,18 @@ span.reviews {
   grid-template: repeat(10, 1fr) / repeat(10, 1fr);
 
   @for $i from 0 to 10 {
-    .cell:nth-child(10n + #{$i + 1}):hover ~ .content {
+    .cell:nth-child(10n + #{$i + 1}):hover~.content {
       --positionX: #{$i};
     }
 
-    .cell:nth-child(n + #{10 * $i + 1}):nth-child(-n + #{10 * ($i + 1)}):hover
-      ~ .content {
+    .cell:nth-child(n + #{10 * $i + 1}):nth-child(-n + #{10 * ($i + 1)}):hover~.content {
       --positionY: #{$i};
     }
   }
+
   &.disabled {
     pointer-events: none;
+
     .content {
       background-image: unset;
       background-color: gray !important;
@@ -162,12 +170,14 @@ span.reviews {
 
 .content {
   span {
-    color: $clr5 !important ;
+    color: $clr5  !important;
     font-size: rem(12px);
+
     @include for-narrow-layout {
       font-size: rem(16px);
     }
   }
+
   --positionX: 0;
   --positionY: 5;
 
@@ -182,16 +192,13 @@ span.reviews {
   height: 100%;
   border-radius: 8px;
 
-  background-image: radial-gradient(
-    circle at calc((0 + var(--positionX, 0)) * 10%)
-      calc((0 + var(--positionY, 0)) * 5%),
+  background-image: radial-gradient(circle at calc((0 + var(--positionX, 0)) * 10%) calc((0 + var(--positionY, 0)) * 5%),
     rgb(241, 37, 75) 0%,
     rgb(230, 30, 77) 27.5%,
     rgb(227, 28, 95) 40%,
     rgb(215, 4, 102) 57.5%,
     rgb(189, 30, 89) 75%,
-    rgb(189, 30, 89) 100%
-  );
+    rgb(189, 30, 89) 100%);
 }
 
 .action-btn {
@@ -212,14 +219,15 @@ p.footer {
   width: 100%;
   text-align: center;
   margin-top: 18px;
+
   img {
     display: flex;
     height: 13px;
     width: 14px;
-    filter: invert(49%) sepia(0%) saturate(1334%) hue-rotate(167deg)
-      brightness(88%) contrast(89%);
+    filter: invert(49%) sepia(0%) saturate(1334%) hue-rotate(167deg) brightness(88%) contrast(89%);
     margin-inline-end: 7px;
   }
+
   a {
     display: flex;
     align-items: center;
