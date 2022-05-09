@@ -1,5 +1,6 @@
 .admin-page {
-    padding-top: 20px;
+    padding-top: 50px;
+
     .admin-page-container {
         position: relative;
 
@@ -7,8 +8,9 @@
             padding-block-end: 20px;
             box-shadow: 0 1px 0 0 $clr11;
             font-weight: unset;
-            margin-block-end: 25px
+            margin-block-end: 50px
         }
+
         .back-btn {
             padding: 10px 20px;
             border-radius: 8px;
@@ -18,13 +20,15 @@
             top: 0;
             transition: ease-in-out 0.15s;
             cursor: pointer;
-            &:hover{
+
+            &:hover {
                 border-color: $clr10;
                 transition: ease-in-out 0.15s;
             }
-            &:active{
-                border-style:inset;
-                box-shadow: 0 0 5px -1px rgba(0,0,0,0.6)
+
+            &:active {
+                border-style: inset;
+                box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.6)
             }
         }
     }
