@@ -5,7 +5,7 @@ A one page application, built with React, Redux, Node.js, SASS.
 
  **Visit end-to-end web application in the link below:**
  
- *https://flair-bnb.herokuapp.com/#/* 
+ *https://flairbnb.onrender.com* 
 
 ## Home Page Screenshot
 
@@ -43,7 +43,7 @@ Javascript, HTML, CSS , SASS...
 
 
 ## 🔗 Links
- - [![herokuapp](https://res.cloudinary.com/dcys8pbcf/image/upload/v1649089030/2_qebfp8.png)](https://flair-bnb.herokuapp.com/#/)
+ - [![herokuapp](https://res.cloudinary.com/dcys8pbcf/image/upload/v1649089030/2_qebfp8.png)](https://flairbnb.onrender.com)
 
 - [Backend-git repository](https://github.com/OriC89/airbnb---backend)
 
